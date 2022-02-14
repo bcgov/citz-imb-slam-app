@@ -1,6 +1,19 @@
-import mockData from '../../software.mockdata.json'
+export const getData = async (endPoint) => {
+    const url = `${window.location.protocol}//${window.location.hostname}/api/${endPoint}`;
 
-export const getData = async (table) => {
-    console.log('mockData', mockData)
-    return mockData
+    const response = await fetch(url);
+
+    if (response.ok) {
+        if (response.status === 204) {
+            //!no content
+            return;
+        } else if (response.status === 304) {
+            console.warn(`${response.status} ${response.statusText} ${endPoint}`);
+            return response.json();
+        } else {
+            return response.json();
+        }
+    } else {
+        throw new Error(`${response.status} ${response.statusText} for ${url}`);
+    }
 }
