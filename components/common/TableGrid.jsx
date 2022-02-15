@@ -5,6 +5,8 @@ import React, { useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { getData } from './getData';
 
+
+
 export const TableGrid = ({ listName, title }) => {
 	const options = {};
 
@@ -37,12 +39,6 @@ export const TableGrid = ({ listName, title }) => {
 			<div>{title}</div>
 			<div>{JSON.stringify(columns)}</div>
 			<div>{JSON.stringify(rows)}</div>
-			{/* <MUIDataTable
-				title={title}
-				data={rows}
-				columns={columns}
-				options={options}
-			/> */}
 		</>
 	);
 };

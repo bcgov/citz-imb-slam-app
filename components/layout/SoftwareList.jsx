@@ -1,5 +1,7 @@
 import React from 'react'
 import { TableGrid } from '../common/TableGrid';
+import TableApp from "../common/TableApp";
+
 
 export const SoftwareList = () => {
   return (
@@ -9,6 +11,8 @@ export const SoftwareList = () => {
         <div>add button</div>
       </div>
       <TableGrid listName={'software'} title={'Software List'} />
+      <TableApp />
+
 		</div>
 	);
 }

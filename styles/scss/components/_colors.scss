@@ -1,0 +1,39 @@
+:root {
+    /* Colors */
+    --primary: #fdb54a;
+    --secondary: #ffd479;
+    --link-color: white;
+    --border-color: #111;
+    --heading-font-color: var(--primary);
+    --background-color: #252525;
+    --sidebar-color: #2b2b2b;
+    --navbar-color: #181818;
+    --navbar-color-hover: #272727;
+    --sidebar-color-hover: #383838;
+    --sidebar-color-focus: #444;
+    --category-background-color: #161616;
+    --category-background-color-hover: #1f1f1f;
+    --light-border-color: #444;
+    --line-color: #ddd;
+    --toolbar-background-color: #181818;
+    --toolbar-color: #eee;
+    --font-color: #222222;
+    --medium-font-color: #aaa;
+    --dark-font-color: #8f949d;
+    --bright-font-color: #eee;
+    --input-background: #393939;
+    --blockquote-background-color: rgba(0, 0, 0, 0.4);
+    --blockquote-color: var(--dark-font-color);
+    --black: #111;
+    --white: #fff;
+    --inline-code-background-color: rgba(255, 255, 255, 0.08);
+    --inline-code-color: #b3b9c5;
+    --dark-opacity: rgba(0, 0, 0, 0.2);
+    --dark-opacity-hover: rgba(0, 0, 0, 0.3);
+    --reverse: #111;
+    --scrollbar: var(--border-color);
+    --scrollbar-track: var(--light-border-color);
+    --yellow: #ffd479;
+    --button-color: #6b76f3;
+    --page-width: 850px;
+}
