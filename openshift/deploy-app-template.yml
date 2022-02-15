@@ -1,0 +1,126 @@
+# @format
+
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: deploy-template
+objects:
+  - kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: 'slam-app'
+      namespace: '${NAMESPACE}'
+      labels:
+        app: 'slam-app'
+        deployment: 'slam-app'
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: 'slam-app'
+          deployment: 'slam-app'
+      template:
+        metadata:
+          labels:
+            app: 'slam-app'
+            deployment: 'slam-app'
+            role: frontend
+        spec:
+          containers:
+            - name: 'slam-app'
+              image: 'ghcr.io/bcgov/slam-app:${TAG}'
+              ports:
+                - containerPort: ${{PORT}}
+                  protocol: TCP
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: 'slam-app'
+      namespace: '${NAMESPACE}'
+      labels:
+        app: 'slam-app'
+    spec:
+      ports:
+        - name: ${PORT}-tcp
+          protocol: TCP
+          port: ${{PORT}}
+          targetPort: ${{PORT}}
+      selector:
+        app: 'slam-app'
+        deployment: 'slam-app'
+        role: frontend
+      type: ClusterIP
+  - kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      name: 'slam-app'
+      namespace: '${NAMESPACE}'
+      labels:
+        app: 'slam-app'
+    spec:
+      host: 'slam-${NAMESPACE}.apps.silver.devops.gov.bc.ca'
+      to:
+        kind: Service
+        name: 'slam-app'
+        weight: 100
+      port:
+        targetPort: ${PORT}-tcp
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+      wildcardPolicy: None
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: allow-loadgen-to-frontend
+      namespace: '${NAMESPACE}'
+    spec:
+      podSelector:
+        matchLabels:
+          role: frontend
+      ingress:
+        - ports:
+            - protocol: TCP
+              port: 8080
+          from:
+            - podSelector:
+                matchLabels:
+                  role: loadgenerator
+      policyTypes:
+        - Ingress
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: allow-from-openshift-ingress
+      namespace: '${NAMESPACE}'
+    spec:
+      ingress:
+        - from:
+            - namespaceSelector:
+                matchLabels:
+                  network.openshift.io/policy-group: ingress
+      podSelector:
+        matchLabels:
+          role: frontend
+      policyTypes:
+        - Ingress
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: allow-same-namespace
+    spec:
+      podSelector:
+      ingress:
+        - from:
+            - podSelector: {}
+parameters:
+  - name: NAMESPACE
+    displayName: Namespace
+    required: true
+  - name: TAG
+    displayName: Tag for github container registry
+    required: false
+    value: latest
+  - name: PORT
+    displayName: exposed port
+    required: true
