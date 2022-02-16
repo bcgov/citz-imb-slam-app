@@ -5,44 +5,59 @@
     width: 100%;
     background: var(--white);
     border-bottom: 1px solid var(--line-color);
-    height: 60px;
+    height: 75px;
     z-index: 9;
+    box-shadow: $shadow;
   }
 
-  .nav-brand {
-      display: inline-block;
-  }
+.nav-brand {
+    display: inline-block;
+}
 
-  .nav-header {
-      display: inline-block;
-      font-family: var(--heading-font-family);
-      float: right;
-      line-height: 57px;
-  }
-  
-  .nav-container {
+.nav-logo{
+    margin-right: 4px;
+}
+
+.nav-header {
+    display: inline;
+    // font-family: var(--bc-gov-family);
+    float: right;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    font-size: 0.9rem;
+    padding: 0px 14px;
+    margin: 13px 2px;
+    // color: var(--primary);
+    border-left: 2px solid var(--secondary);
+
+    &:before{
+        content: '';
+        line-height: 30px;
+    }
+}
+
+.nav-container {
     display: flex;
     margin: 0 auto;
-    display: flex;
     align-items: center;
     padding: 0.5rem 1.5rem;
-    font-family: var(--heading-font-family);
+    font-family: var(--body-font-family);
     height: 100%;
     justify-content: space-between;
     max-width: 100%;
-  }
-  
-  nav {
+}
+
+nav {
     ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
-  
+
     li { 
         display: inline-block; 
     }
-  
+
     a {
         display: flex;
         align-items: center;
@@ -50,12 +65,17 @@
         color: var(--font-color);
         gap: 0.4rem;
         font-size: 0.9rem;
-        padding: 0.5rem;
-        border-radius: 8px;
-        font-weight: 500;
+        padding: 0.7rem 1rem;
+        border-radius: 5px;
+        font-weight: 400;
         line-height: 1.1;
+        
+        &:hover{
+            cursor: pointer;
+            background-color: var(--light-background-color);
+        }
     }
-  }
+}
 
 
 

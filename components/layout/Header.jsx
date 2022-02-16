@@ -14,7 +14,7 @@ export const Header = () => {
             width={136}
             height={53}
             />
-            <h1 className="nav-header">CITZ License Management</h1>
+            <h1 className="nav-header">Software License Management</h1>
         </a>
         <div className="nav-group">
           <ul className="nav-item-wrapper">
@@ -22,7 +22,7 @@ export const Header = () => {
               <a className="nav-link" to="/path1">Link 1</a>
             </li>
             <li className="nav-item">
-              <acorn className="nav-link" to="/path2">Link 2</acorn>
+              <a className="nav-link" to="/path2">Link 2</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" to="/path3">Link 3</a>
