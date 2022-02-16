@@ -1,0 +1,74 @@
+name: CICD SLAM-APP
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: citz-imb-slam-app-CICD
+  cancel-in-progress: false
+
+jobs:
+  commit-data:
+    runs-on: ubuntu-20.04
+    outputs:
+      short_sha: ${{ steps.commit-data.outputs.short_sha }}
+    steps:
+      - name: Checkout Action
+        uses: actions/checkout@v2
+      - name: Get commit short_sha
+        id: commit-data
+        uses: redhat-actions/common/commit-data@v1
+
+  build:
+    needs: commit-data
+    uses: bcgov/citz-imb-slam-app/.github/workflows/build.yml@main
+    with:
+      SHORT_SHA: ${{ needs.commit-data.outputs.short_sha }}
+
+  deploy-dev:
+    name: Deploy Dev
+    needs: [commit-data, build]
+    uses: bcgov/citz-imb-slam-app/.github/workflows/deploy.yml@main
+    with:
+      ENVIRONMENT: dev
+      TAG: ${{ needs.commit-data.outputs.short_sha}}
+    secrets:
+      OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
+      OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+      OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+      TEAM_HOOK: ${{ secrets.TEAM_HOOK }}
+
+  deploy-test:
+    if: contains(github.event.head_commit.message, '#release')
+    name: Deploy Test
+    needs: [commit-data, deploy-dev]
+    uses: bcgov/citz-imb-slam-app/.github/workflows/deploy.yml@main
+    with:
+      ENVIRONMENT: test
+      TAG: ${{ needs.commit-data.outputs.short_sha}}
+    secrets:
+      OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
+      OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+      OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+      TEAM_HOOK: ${{ secrets.TEAM_HOOK }}
+
+  deploy-prod:
+    if: contains(github.event.head_commit.message, '#release')
+    name: Deploy Prod
+    needs: [commit-data, deploy-test]
+    uses: bcgov/citz-imb-slam-app/.github/workflows/deploy.yml@main
+    with:
+      ENVIRONMENT: prod
+      TAG: ${{ needs.commit-data.outputs.short_sha}}
+    secrets:
+      OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
+      OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+      OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+      TEAM_HOOK: ${{ secrets.TEAM_HOOK }}
