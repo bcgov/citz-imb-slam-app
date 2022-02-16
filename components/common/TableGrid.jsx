@@ -3,11 +3,12 @@
 import { Alert, AlertTitle } from '@mui/material';
 import React, { useMemo } from 'react';
 import { useQuery } from 'react-query';
-import { getData } from './getData';
+// import { getData } from './getData';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 
 
-export const TableGrid = ({ listName, title }) => {
+export const TableGrid = ({ listName, title, getData }) => {
 	const options = {};
 
 	const { data, isLoading, isError } = useQuery(listName, async () => {
@@ -36,9 +37,17 @@ export const TableGrid = ({ listName, title }) => {
 	console.log('data', data);
 	return (
 		<>
-			<div>{title}</div>
-			<div>{JSON.stringify(columns)}</div>
-			<div>{JSON.stringify(rows)}</div>
+			<DataGrid 
+				columns={columns} 
+				rows={rows} 
+				autoHeight={true} 
+				loading={isLoading} 
+				checkboxSelection={true}
+				sx={{
+					boxShadow: 0,
+					backgroundColor: '#fff',
+				  }}
+			/>
 		</>
 	);
 };

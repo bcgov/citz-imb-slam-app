@@ -3,7 +3,30 @@ div {
     color: var(--font-color);
 }
 
-.app-body {
+.app {
     margin-top: 74px;
     padding: 1.5rem 3rem;
+    background-color: var(--light-background-color);
+
+    &-toolbar{
+        align-items: center;
+        display: flex;
+        margin-bottom: 12px;
+
+    }
+
+}
+
+.block {
+
+    &-title {
+        width: 50%;
+        font-size: 2rem;
+        font-family: var(--heading-font-family);
+    }
+    &-button {
+        width: 50%;
+        text-align: right;       
+    }
+
 }

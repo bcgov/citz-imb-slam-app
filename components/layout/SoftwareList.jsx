@@ -1,18 +1,22 @@
 import React from 'react'
 import { TableGrid } from '../common/TableGrid';
-import TableApp from "../common/TableApp";
+import moockdata from "../../software.mockdata.json"
+
 
 
 export const SoftwareList = () => {
+  
+  const getData = async () => {
+    return moockdata
+  }
+
   return (
 		<div className="app-body">
-			<div>
-        <div>Software List Title</div>
-        <div>add button</div>
-      </div>
-      <TableGrid listName={'software'} title={'Software List'} />
-      <TableApp />
-
+      <TableGrid 
+        listName={'software'} 
+        title={'Software List'}
+        getData={getData}
+       />
 		</div>
 	);
 }
