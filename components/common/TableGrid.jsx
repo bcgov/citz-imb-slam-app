@@ -3,7 +3,6 @@
 import { Alert, AlertTitle } from '@mui/material';
 import React, { useMemo } from 'react';
 import { useQuery } from 'react-query';
-// import { getData } from './getData';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 
@@ -20,7 +19,7 @@ export const TableGrid = ({ listName, title, getData }) => {
 
 	const { rows, columns } = useMemo(() => {
 		if (isLoading || isError) {
-			return { rows: [], columns: [] };
+			return { rows: [], columns: [] };			
 		}
 
 		return data;
@@ -43,6 +42,7 @@ export const TableGrid = ({ listName, title, getData }) => {
 				autoHeight={true} 
 				loading={isLoading} 
 				checkboxSelection={true}
+				disableColumnMenu={true}
 				sx={{
 					boxShadow: 0,
 					backgroundColor: '#fff',

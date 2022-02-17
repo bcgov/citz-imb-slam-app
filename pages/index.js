@@ -1,13 +1,13 @@
 import { Header } from "../components/layout/Header";
 import { SoftwareList } from "../components/layout/SoftwareList";
-import {Toolbar} from "../components/layout/Toolbar"
+import {AppHeader} from "../components/layout/AppHeader"
 
 export default function Home() {
   return (
     <>
       <Header />
       <div className="app">
-        <Toolbar />
+        <AppHeader />
         <SoftwareList />
       </div>
     </>

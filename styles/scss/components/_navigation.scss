@@ -24,7 +24,7 @@
     float: right;
     font-weight: 400;
     letter-spacing: 0.8px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 0px 14px;
     margin: 13px 2px;
     // color: var(--primary);
@@ -78,3 +78,82 @@ nav {
 }
 
 
+
+
+
+
+
+  .nav button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    color: var(--font-color);
+    cursor: pointer;
+    line-height: 0;
+    font-weight: 500;
+  }
+  
+  .nav button:hover {
+    background: var(--navbar-color-hover);
+    color: var(--bright-font-color);
+  }
+  
+  .nav button:focus {
+    outline: none;
+  }
+  
+  .nav button:focus-visible {
+    outline: 3px solid var(--primary);
+  }
+  
+  .nav button span {
+    font-size: 0.9rem;
+  }
+  
+  .nav button svg rect {
+    fill: var(--font-color);
+  }
+  
+  .nav nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    height: 100%;
+  }
+  
+  .nav nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color);
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+  
+  .nav nav a.active {
+    color: var(--bright-font-color);
+  }
+  
+  .nav nav a.brand {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .nav nav a.brand span {
+    white-space: nowrap;
+  }
+  
+  .nav nav a:hover {
+    color: var(--bright-font-color);
+    background: var(--navbar-color-hover);
+  }

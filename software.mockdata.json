@@ -7,78 +7,138 @@
       "type": "number"
     },
     {
-      "field": "Name",
-      "headerName": "Name",
+      "field": "Title",
+      "headerName": "Title",
       "type": "string",
-      "width": 100
+      "min-width": 250,
+      "flex": 1
     },
     {
       "field": "RenewalDate",
       "headerName": "Renewal Date",
       "type": "date",
-      "width": 150
+      "flex": 0.5,
+      "align": "left"
     },
     {
       "field": "Cost",
       "headerName": "Cost",
       "type": "number",
-      "width": 100
+      "flex": 0.5,
+      "headerAlign": "left",
+      "align": "left"
     },
     {
       "field": "BillingCycle",
       "headerName": "Billing Cycle",
       "type": "string",
-      "width": 150
+      "flex": 0.5
     },
     {
       "field": "Administrator",
       "headerName": "Administrator",
       "type": "string",
-      "width": 150
+      "flex": 0.5
     },
     {
       "field": "Quantity",
       "headerName": "Quantity",
       "type": "number",
-      "width": 100
+      "headerAlign": "left",
+      "align": "left",
+      "flex": 0.5
     },
     {
-      "field": "Status",
-      "headerName": "Status",
+      "field": "Note",
+      "headerName": "Note",
       "type": "string",
-      "width": 100
+      "min-width": 300,
+      "flex": 1
     }
   ],
   "rows": [
     {
-      "id": 1,
-      "Name": "Visio",
-      "RenewalDate": "12/29/2023",
-      "Cost": 1000,
-      "BillingCycle": "Annually",
-      "Administrator": "Ben Carson",
-      "Quantity": 30,
-      "Status": "Active"
-    },
-    {
-      "id": 2,
-      "Name": "Jira",
-      "RenewalDate": "6/3/2025",
-      "Cost": 10,
-      "BillingCycle": "Monthly",
-      "Administrator": "Anita Break",
-      "Quantity": 250,
-      "Status": "Active"
-    },
-    {
-      "id": 3,
-      "Name": "Notepad++",
-      "RenewalDate": "",
-      "Cost": 500,
-      "BillingCycle": "One-Time",
-      "Administrator": "Anita Break",
-      "Quantity": 30,
-      "Status": "Active"
-    }
-  ]
+    "id": 1,
+    "Title": "Openshift Enterprise",
+    "RenewalDate": "2022-05-11",
+    "Cost": "$400K",
+    "BillingCycle": "Annually",
+    "Administrator": "Craig Shutko",
+    "Quantity": "30",
+    "Note": "ED approval required"
+  }, {
+    "id": 2,
+    "Title": "Adobe Creative Cloud",
+    "RenewalDate": "2023-12-01",
+    "Cost": "$120",
+    "BillingCycle": "Annually",
+    "Administrator": "John Doe",
+    "Quantity": "500",
+    "Note": "Photoshop, Illustrator, Indesign, XD"
+  }, {
+    "id": 3,
+    "Title": "Adobe Acrobat Pro DC",
+    "RenewalDate": "2028-03-31",
+    "Cost": "$10",
+    "BillingCycle": "Annually",
+    "Administrator": "John Doe",
+    "Quantity": "500",
+    "Note": ""
+  }, {
+    "id": 4,
+    "Title": "Mural Enterprise",
+    "RenewalDate": "2025-01-01",
+    "Cost": "$50K",
+    "BillingCycle": "Annually",
+    "Administrator": "Craig Shutko",
+    "Quantity": "10",
+    "Note": ""
+  }, {
+    "id": 5,
+    "Title": "CMS Lite",
+    "RenewalDate": "N/A",
+    "Cost": "$5",
+    "BillingCycle": "Monthly",
+    "Administrator": "Ali Emery",
+    "Quantity": "∞",
+    "Note": "GDX Hosting"
+  }, {
+    "id": 6,
+    "Title": "Orbeon Forms",
+    "RenewalDate": "2025-01-01",
+    "Cost": "$20K",
+    "BillingCycle": "Annually",
+    "Administrator": "Craig Shutko",
+    "Quantity": "5",
+    "Note": "GDX Hosting"
+  }, {
+    "id": 7,
+    "Title": "Jira Enterprise",
+    "RenewalDate": "2025-01-01",
+    "Cost": "$300",
+    "BillingCycle": "Monthly",
+    "Administrator": "Jane Dixon",
+    "Quantity": "5,000",
+    "Note": ""
+  }, {
+    "id": 8,
+    "Title": "Visio",
+    "RenewalDate": "2028-03-31",
+    "Cost": "$20",
+    "BillingCycle": "Monthly",
+    "Administrator": "Craig Shutko",
+    "Quantity": "2,000",
+    "Note": "Windows only"
+  }, {
+    "id": 9,
+    "Title": "Notepad++",
+    "RenewalDate": "2028-01-01",
+    "Cost": "$30",
+    "BillingCycle": "Annually",
+    "Administrator": "Craig Shutko",
+    "Quantity": "850",
+    "Note": "Windows only"
+  }
+]
+
 }

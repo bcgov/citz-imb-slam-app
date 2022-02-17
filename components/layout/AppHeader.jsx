@@ -1,9 +1,9 @@
 import React from 'react'
 import Button from "../common/Button"
 
-export const Toolbar = () => {
+export const AppHeader = () => {
     return (
-        <div className="app-toolbar">
+        <div className="app-header">
             <div className="block-title">
                 <h1>Software List</h1>
             </div>

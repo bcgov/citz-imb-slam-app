@@ -7,8 +7,9 @@ div {
     margin-top: 74px;
     padding: 1.5rem 3rem;
     background-color: var(--light-background-color);
+    font-family: var(--heading-font-family);
 
-    &-toolbar{
+    &-header{
         align-items: center;
         display: flex;
         margin-bottom: 12px;
@@ -21,7 +22,7 @@ div {
 
     &-title {
         width: 50%;
-        font-size: 2rem;
+        font-size: 1.75rem;
         font-family: var(--heading-font-family);
     }
     &-button {
@@ -29,4 +30,29 @@ div {
         text-align: right;       
     }
 
+}
+
+.MuiDataGrid-root {
+    font-family: var(--body-font-family) !important;
+}
+
+.MuiDataGrid-columnHeaderTitle {
+    font-weight: 600 !important;
+    color: var(--black);
+}
+
+.MuiDataGrid-columnSeparator {
+    display: none !important;
+}
+
+.MuiDataGrid-columnHeaderTitleContainer {
+    padding: 0 !important;
+}
+
+.MuiDataGrid-cell, .MuiDataGrid-columnHeader{
+
+    &:focus, &:focus-within {
+        outline: none !important;
+    }
+    
 }
