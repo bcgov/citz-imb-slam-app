@@ -1,12 +1,15 @@
 import { Header } from "../../components/layout/Header";
-import { CreateForm } from "../../components/layout/CreateForm"
+import { CreateSoftwareForm } from "../../components/layout/CreateSoftwareForm";
+import React, { useState } from 'react'
 
 
 export default function SoftwareForm() {
+
+
   return (
     <>
       <Header />
-      <CreateForm />
+      <CreateSoftwareForm />
 
     </>
   )

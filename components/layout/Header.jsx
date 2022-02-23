@@ -7,13 +7,15 @@ export const Header = () => {
     <nav className="nav">
       <div className="nav-container">
         <a to="/" className="nav-brand">
-          <Image 
-            src="/Images/bcgov-h.png" 
-            className="nav-logo" 
-            alt="BC GOV Logo"
-            width={136}
-            height={53}
-            />
+          <div className="logo-block">
+            <Image 
+              src="/Images/bcgov-h.png" 
+              className="nav-logo" 
+              alt="BC GOV Logo"
+              width={113}
+              height={30}
+              />
+            </div>
             <h1 className="nav-header">Software License Management</h1>
         </a>
         <div className="nav-group">

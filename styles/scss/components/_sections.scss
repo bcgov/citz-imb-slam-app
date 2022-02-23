@@ -6,6 +6,44 @@ div {
     color: var(--font-color);
 }
 
+// Full container
+.full-container {
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+// Container
+.container {
+  max-width: $large;
+  padding: 0 $padding;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Small container
+.small-container {
+  @extend .container;
+  max-width: $small;
+}
+
+// Medium container
+.medium-container {
+  @extend .container;
+  max-width: $medium;
+}
+
+// Content
+.content-section {
+  padding: $content-padding-mobile;
+}
+
+@include small-breakpoint {
+  .content-section {
+    padding: $content-padding;
+  }
+}
+
+
 .app {
     margin-top: 74px;
     padding: 1.5rem 3rem;
@@ -58,4 +96,9 @@ div {
         outline: none !important;
     }
     
+}
+
+
+.software {
+    margin-top: 75px;
 }
