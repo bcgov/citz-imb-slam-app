@@ -8,6 +8,8 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 
 export const TableGrid = ({ listName, title, getData }) => {
+	
+
 	const options = {};
 
 	const { data, isLoading, isError } = useQuery(listName, async () => {
@@ -43,6 +45,14 @@ export const TableGrid = ({ listName, title, getData }) => {
 				loading={isLoading} 
 				checkboxSelection={true}
 				disableColumnMenu={true}
+				// components={{ Toolbar: QuickSearchToolbar }}
+				// componentsProps={{
+				// 	toolbar: {
+				// 	  value: searchText,
+				// 	  onChange: (event) => requestSearch(event.target.value),
+				// 	  clearSearch: () => requestSearch(''),
+				// 	},
+				//   }}
 				sx={{
 					boxShadow: 0,
 					backgroundColor: '#fff',
