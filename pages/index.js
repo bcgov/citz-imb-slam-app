@@ -1,13 +1,13 @@
-import { Header } from "../components/layout/Header";
+import { Navigation } from "../components/layout/Navigation";
 import { SoftwareList } from "../components/layout/SoftwareList";
-import {AppHeader} from "../components/layout/AppHeader"
+import {TableHeader} from "../components/layout/TableHeader"
 
 export default function Home() {
   return (
     <>
-      <Header />
+      <Navigation />
       <div className="app">
-        <AppHeader />
+        <TableHeader />
         <SoftwareList />
       </div>
     </>

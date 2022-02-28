@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Button from "../common/Button"
 
 export const CreateSoftwareForm = props => {
 	const initialFormState = { id: null, name: '', renewaldate: '' }
@@ -20,12 +21,17 @@ export const CreateSoftwareForm = props => {
 			<div className="full-container">
 			<div className="flex-row">
 				<div className="flex-large">
+					<h1 className="form-title">Add Software</h1>
+				</div>
+			</div>
+			<div className="flex-row">
+				<div className="flex-large">
 					<label>Title</label>
 					<input type="text" name="name" value={software.name} onChange={handleInputChange} />
 				</div>
 				<div className="flex-large">
 					<label>Renewal Date</label>
-					<input type="date" name="renewaldate" value={software.renewaldate} onChange={handleInputChange} />
+					<input type="date" name="renewaldate" placeholder="YYYY/MM/DD" value={software.renewaldate} onChange={handleInputChange} />
 				</div>
 			</div>
 			<div className="flex-row">
@@ -54,9 +60,18 @@ export const CreateSoftwareForm = props => {
 					<textarea type="text" name="note" value={software.note} onChange={handleInputChange} />
 				</div>
 			</div>
-			
-			
-			<button>Add Software</button>
+			<div className="flex-row">
+				<div className="flex-large button-group">
+					<Button
+						theme="muted"
+						>Cancel
+					</Button>
+					<Button
+						theme="default"
+						>Save
+					</Button>
+				</div>
+			</div>
 			</div>
 		</form>
 	)

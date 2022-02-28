@@ -1,0 +1,24 @@
+.MuiDataGrid-root {
+    font-family: var(--body-font-family) !important;
+}
+
+.MuiDataGrid-columnHeaderTitle {
+    font-weight: 600 !important;
+    color: var(--black);
+}
+
+.MuiDataGrid-columnSeparator {
+    display: none !important;
+}
+
+.MuiDataGrid-columnHeaderTitleContainer {
+    padding: 0 !important;
+}
+
+.MuiDataGrid-cell, .MuiDataGrid-columnHeader{
+
+    &:focus, &:focus-within {
+        outline: none !important;
+    }
+    
+}

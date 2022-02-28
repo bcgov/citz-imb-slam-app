@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from "../common/Button"
 
-export const AppHeader = () => {
+
+export const TableHeader = () => {
     return (
         <div className="app-header">
             <div className="block-title">

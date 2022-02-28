@@ -54,6 +54,7 @@ div {
         align-items: center;
         display: flex;
         margin-bottom: 12px;
+        min-height: 50px;
 
     }
 
@@ -63,42 +64,52 @@ div {
 
     &-title {
         width: 50%;
-        font-size: 1.75rem;
-        font-family: var(--heading-font-family);
+
+        h1 {
+            font-size: 1.75rem;
+            font-family: var(--heading-font-family);
+        }
+
+        a {
+            font-size: 0.9rem;
+            font-family: var(--heading-font-family); 
+            color: #222;
+            text-decoration: none;   
+            
+            &:before{
+                content: "\E72B";
+                font-family: FabricMDL2Icons;
+                margin-right: 7px;
+                font-size: 0.7rem;
+            }
+        }
     }
     &-button {
         width: 50%;
-        text-align: right;       
+        text-align: right;  
+        
+        button {
+            margin-left: 1rem;
+        }
     }
 
 }
 
-.MuiDataGrid-root {
-    font-family: var(--body-font-family) !important;
+form {
+    background-color: #fff;
+    padding: 2rem 2rem;
+    border-radius: 5px;
+    box-shadow: $shadow;
 }
 
-.MuiDataGrid-columnHeaderTitle {
-    font-weight: 600 !important;
-    color: var(--black);
-}
+.button-group {
+    text-align: center;
 
-.MuiDataGrid-columnSeparator {
-    display: none !important;
-}
-
-.MuiDataGrid-columnHeaderTitleContainer {
-    padding: 0 !important;
-}
-
-.MuiDataGrid-cell, .MuiDataGrid-columnHeader{
-
-    &:focus, &:focus-within {
-        outline: none !important;
+    button {
+        margin: 0rem 1rem;
     }
-    
 }
 
-
-.software {
-    margin-top: 75px;
+.form-title {
+    margin-top: 0;
 }

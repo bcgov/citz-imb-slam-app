@@ -15,12 +15,33 @@
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    // box-shadow: 0 12px 35px 0 rgba(16, 39, 112, .25);
     outline: 0;
     text-transform: capitalize;
+    font-family: var(--body-font-family) !important;
 
     &-default {
         background-color: var(--button-color);
+        border:  var(--button-color);
         color: var(--white);
     }
+
+    &-muted {
+        background: $muted-background;
+        border: $muted-border;
+        color: $muted-color;   
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: $muted-color-hover;
+          border: $muted-border-hover;
+          background: $muted-background-hover;
+        }
+    &.warning {
+        color: $error;
+        border-color: $error;
+    }
+
+    }
 }
+

@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 
 
-export const Header = () => {
+export const Navigation = () => {
   return (
     <nav className="nav">
       <div className="nav-container">
