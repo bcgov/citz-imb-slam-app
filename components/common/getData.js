@@ -1,21 +1,8 @@
-export const getData = async (endPoint) => {
-    const url = `${window.location.protocol}//${window.location.hostname}/api/${endPoint}`;
+import { fetchData } from "./fetchData"
 
-    const response = await fetch(url);
+export const getData = async (table) => {
 
-    if (response.ok) {
-        if (response.status === 204) {
-            //!no content
-            return;
-        } else if (response.status === 304) {
-            console.warn(`${response.status} ${response.statusText} ${endPoint}`);
-            return response.json();
-        } else {
-            return response.json();
-        }
-    } else {
-        throw new Error(`${response.status} ${response.statusText} for ${url}`);
-    }
+    const data = await fetchData(table)
+console.log('data', data)
+    return data
 }
-
-

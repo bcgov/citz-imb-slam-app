@@ -5,11 +5,7 @@ import React, { useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
-
-
-export const TableGrid = ({ listName, title, getData }) => {
-	
-
+export const TableGrid = ({ listName, title, getData, columns = [] }) => {
 	const options = {};
 
 	const { data, isLoading, isError } = useQuery(listName, async () => {
@@ -17,11 +13,9 @@ export const TableGrid = ({ listName, title, getData }) => {
 		return response;
 	});
 
-	console.log('data, isLoading, isError', data, isLoading, isError)
-
-	const { rows, columns } = useMemo(() => {
+	const rows = useMemo(() => {
 		if (isLoading || isError) {
-			return { rows: [], columns: [] };			
+			return [];
 		}
 
 		return data;
@@ -35,14 +29,14 @@ export const TableGrid = ({ listName, title, getData }) => {
 			</Alert>
 		);
 	}
-	console.log('data', data);
+
 	return (
 		<>
-			<DataGrid 
-				columns={columns} 
-				rows={rows} 
-				autoHeight={true} 
-				loading={isLoading} 
+			<DataGrid
+				columns={columns}
+				rows={rows}
+				autoHeight={true}
+				loading={isLoading}
 				checkboxSelection={true}
 				disableColumnMenu={true}
 				// components={{ Toolbar: QuickSearchToolbar }}
@@ -56,7 +50,7 @@ export const TableGrid = ({ listName, title, getData }) => {
 				sx={{
 					boxShadow: 0,
 					backgroundColor: '#fff',
-				  }}
+				}}
 			/>
 		</>
 	);
