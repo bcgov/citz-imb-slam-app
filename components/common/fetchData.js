@@ -1,7 +1,7 @@
 export const fetchData = async (endPoint) => {
-    let port = 8080
+    let port = 80
 
-    if (window.location.port !== 8080) port = 3000
+    if (window.location.port !== 80) port = 3000
 
     const url = `${window.location.protocol}//${window.location.hostname}:${port}/api/${endPoint}`;
     console.log('url', url)
