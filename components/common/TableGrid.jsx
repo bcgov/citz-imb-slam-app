@@ -1,15 +1,13 @@
 /** @format */
 
 import { Alert, AlertTitle } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 import React, { useMemo } from 'react';
 import { useQuery } from 'react-query';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
-export const TableGrid = ({ listName, title, getData, columns = [] }) => {
-	const options = {};
-
+export const TableGrid = ({ listName, getData, columns = [] }) => {
 	const { data, isLoading, isError } = useQuery(listName, async () => {
-		const response = await getData(listName);
+		const response = await getData();
 		return response;
 	});
 
@@ -31,27 +29,17 @@ export const TableGrid = ({ listName, title, getData, columns = [] }) => {
 	}
 
 	return (
-		<>
-			<DataGrid
-				columns={columns}
-				rows={rows}
-				autoHeight={true}
-				loading={isLoading}
-				checkboxSelection={true}
-				disableColumnMenu={true}
-				// components={{ Toolbar: QuickSearchToolbar }}
-				// componentsProps={{
-				// 	toolbar: {
-				// 	  value: searchText,
-				// 	  onChange: (event) => requestSearch(event.target.value),
-				// 	  clearSearch: () => requestSearch(''),
-				// 	},
-				//   }}
-				sx={{
-					boxShadow: 0,
-					backgroundColor: '#fff',
-				}}
-			/>
-		</>
+		<DataGrid
+			columns={columns}
+			rows={rows}
+			autoHeight={true}
+			loading={isLoading}
+			checkboxSelection={true}
+			disableColumnMenu={true}
+			sx={{
+				boxShadow: 0,
+				backgroundColor: '#fff',
+			}}
+		/>
 	);
 };

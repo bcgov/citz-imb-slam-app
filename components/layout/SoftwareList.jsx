@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { TableGrid } from '../common/TableGrid';
+import { TableHeader } from './TableHeader';
 
 const columns = [
 	{ field: 'title', headerName: 'Software Title', width: 150 },
@@ -12,12 +13,8 @@ const columns = [
 export const SoftwareList = ({ getData }) => {
 	return (
 		<div className='app-body'>
-			<TableGrid
-				listName={'software'}
-				title={'Software List'}
-				getData={getData}
-				columns={columns}
-			/>
+			<TableHeader title={'Software List'} buttonText={'+ Add Software'} />
+			<TableGrid listName={'software'} getData={getData} columns={columns} />
 		</div>
 	);
 };
