@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from "../common/Button"
 import Select from 'react-select';
+import { FormHeader } from "../../components/layout/FormHeader";
 
 export const CreateSoftwareForm = props => {
 	const initialFormState = { id: null, name: '', renewaldate: '' }
@@ -23,6 +24,8 @@ export const CreateSoftwareForm = props => {
 	)
 
 	return (
+		<>
+		<FormHeader linkText={'Back to Software List'} formState={'update'} />
 		<form
 			className="software"
 			onSubmit={event => {
@@ -86,5 +89,6 @@ export const CreateSoftwareForm = props => {
 			</div>
 			</div>
 		</form>
+		</>
 	)
 }

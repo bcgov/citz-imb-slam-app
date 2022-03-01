@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
 import Button from "../common/Button"
+import { useRouter } from "next/router"
 
 
-export const FormHeader = () => {
 
-    const [state, setState] = useState('create')
+export const FormHeader = ({linkText, formState}) => {
+
+    const [state, setState] = useState(formState)
+
+    const router = useRouter()
     
 
     return (
         <div className="app-header">
             <div className="block-title">
-                <a href="/Software">Back to Software List</a>
+                <button onClick={()=>router.back()}>{linkText}</button>
             </div>
             {state === 'read' && (
             <div className="block-button">
