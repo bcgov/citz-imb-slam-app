@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Button from "../common/Button"
+import Select from 'react-select';
 
 export const CreateSoftwareForm = props => {
 	const initialFormState = { id: null, name: '', renewaldate: '' }
@@ -10,6 +11,16 @@ export const CreateSoftwareForm = props => {
 
 		setSoftware({ ...software, [name]: value })
 	}
+
+	//dropdown
+	const options = [
+		{ value: 'Monthly', label: 'Monthly' },
+		{ value: 'Yearly', label: 'Yearly' },
+	  ]
+	  
+	const Dropdown = () => (
+		<Select options={options} />
+	)
 
 	return (
 		<form
@@ -41,7 +52,8 @@ export const CreateSoftwareForm = props => {
 				</div>
 				<div className="flex-large">
 					<label>Billing Cycle</label>
-					<input type="text" name="billingcycle" value={software.billingcycle} onChange={handleInputChange} />
+					<Dropdown />
+					{/* <input type="text" name="billingcycle" value={software.billingcycle} onChange={handleInputChange} /> */}
 				</div>
 			</div>
 			<div className="flex-row">

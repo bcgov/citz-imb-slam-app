@@ -128,3 +128,12 @@
     color: $placeholder !important;
     font-family: var(--body-font-family) !important;
   }
+
+  //Dropdown
+  .css-b62m3t-container > div {
+    border:  1px solid #ddd;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    color: #222;
+    padding: 0.3rem 0.2rem;
+}
