@@ -1,7 +1,7 @@
 export const fetchData = async (endPoint) => {
     let port = ''
     console.log('window.location.port', window.location.port)
-    if (window.location.port !== 443) port = ':3000'
+    if (window.location.port) port = ':3000'
 
     const url = `${window.location.protocol}//${window.location.hostname}${port}/api/${endPoint}`;
     console.log('url', url)
