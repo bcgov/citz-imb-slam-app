@@ -1,5 +1,5 @@
-import '../styles/scss/main.scss'
 import { QueryClient, QueryClientProvider } from "react-query"
+import '../styles/scss/main.scss'
 
 const queryClient = new QueryClient()
 
@@ -7,9 +7,9 @@ const queryClient = new QueryClient()
 function MyApp({ Component, pageProps }) {
   return (
 
-      <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <Component {...pageProps} />
+    </QueryClientProvider>
 
   )
 }
