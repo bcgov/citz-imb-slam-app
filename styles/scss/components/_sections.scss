@@ -70,11 +70,13 @@ div {
             font-family: var(--heading-font-family);
         }
 
-        a {
+        button {
             font-size: 0.9rem;
             font-family: var(--heading-font-family); 
             color: #222;
             text-decoration: none;   
+            background: none;
+            border: none;
             
             &:before{
                 content: "\E72B";

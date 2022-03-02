@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
-import Button from "../common/Button"
+import Button from "../../common/Button"
+import Select from 'react-select';
+import TextareaAutosize from 'react-textarea-autosize';
+import { TextInput } from '../../common/TextInput';
+import { PeopleSearch } from '../../common/PeopleSearch';
 
-export const CreateSoftwareForm = props => {
+export const FormBodyCreate = props => {
 	const initialFormState = { id: null, name: '', renewaldate: '' }
 	const [ software, setSoftware ] = useState(initialFormState)
 
@@ -11,7 +15,18 @@ export const CreateSoftwareForm = props => {
 		setSoftware({ ...software, [name]: value })
 	}
 
+	//dropdown
+	const options = [
+		{ value: 'Monthly', label: 'Monthly' },
+		{ value: 'Yearly', label: 'Yearly' },
+	  ]
+	  
+	const Dropdown = () => (
+		<Select options={options} />
+	)
+
 	return (
+		<>
 		<form
 			className="software"
 			onSubmit={event => {
@@ -25,30 +40,27 @@ export const CreateSoftwareForm = props => {
 				</div>
 			</div>
 			<div className="flex-row">
-				<div className="flex-large">
-					<label>Title</label>
-					<input type="text" name="name" value={software.name} onChange={handleInputChange} />
-				</div>
-				<div className="flex-large">
+				<TextInput label={'Title'} />
+				<PeopleSearch label={'License Administrator'}/>
+				{/* <div className="flex-large">
 					<label>Renewal Date</label>
 					<input type="date" name="renewaldate" placeholder="YYYY/MM/DD" value={software.renewaldate} onChange={handleInputChange} />
-				</div>
+				</div> */}
 			</div>
 			<div className="flex-row">
+				<TextInput label={'Publisher'} />
+			</div>
+			{/* <div className="flex-row">
 				<div className="flex-large">
 					<label>Cost</label>
 					<input type="text" name="cost" value={software.cost} onChange={handleInputChange} />
 				</div>
 				<div className="flex-large">
 					<label>Billing Cycle</label>
-					<input type="text" name="billingcycle" value={software.billingcycle} onChange={handleInputChange} />
+					<Dropdown />
 				</div>
-			</div>
-			<div className="flex-row">
-				<div className="flex-large">
-					<label>Administrator</label>
-					<input type="text" name="administrator" value={software.administrator} onChange={handleInputChange} />
-				</div>
+			</div> */}
+			{/* <div className="flex-row">
 				<div className="flex-large">
 					<label>Quantity</label>
 					<input type="text" name="quantity" value={software.quantity} onChange={handleInputChange} />
@@ -57,9 +69,12 @@ export const CreateSoftwareForm = props => {
 			<div className="flex-row">
 				<div className="flex-large">
 					<label>Note</label>
-					<textarea type="text" name="note" value={software.note} onChange={handleInputChange} />
+					<TextareaAutosize 
+						className="textarea"
+						minRows={3}
+					/>
 				</div>
-			</div>
+			</div> */}
 			<div className="flex-row">
 				<div className="flex-large button-group">
 					<Button
@@ -74,5 +89,6 @@ export const CreateSoftwareForm = props => {
 			</div>
 			</div>
 		</form>
+		</>
 	)
 }
