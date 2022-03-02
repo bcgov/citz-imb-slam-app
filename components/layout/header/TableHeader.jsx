@@ -9,14 +9,20 @@ export const TableHeader = ({title, buttonText}) => {
                 <h1>{title}</h1>
             </div>
             <div className="block-button">
-
-                <Link href="/Software/create" >
-                    {/* <Button
+                {/* <Link href="/Software/create" passHref>
+                    <Button
+                        as="a"
                         theme="default"
                     >{buttonText}
-                    </Button> */}
-                    {buttonText}
+                    </Button>
+                </Link> */}
+                <Link href="/Software/create" passHref>
+                    <a
+                        className="btn btn-default"
+                    >{buttonText}
+                    </a>
                 </Link>
+
             </div>
         </div>
     )

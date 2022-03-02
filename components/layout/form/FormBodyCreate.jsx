@@ -77,14 +77,14 @@ export const FormBodyCreate = props => {
 			</div> */}
 			<div className="flex-row">
 				<div className="flex-large button-group">
-					<Button
-						theme="muted"
+					<a
+						className="btn btn-muted"
 						>Cancel
-					</Button>
-					<Button
-						theme="default"
+					</a>
+					<a
+						className="btn btn-default"
 						>Save
-					</Button>
+					</a>
 				</div>
 			</div>
 			</div>

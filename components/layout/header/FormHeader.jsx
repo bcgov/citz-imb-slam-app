@@ -14,18 +14,18 @@ export const FormHeader = ({linkText, formState}) => {
     return (
         <div className="app-header">
             <div className="block-title">
-                <button onClick={()=>router.back()}>{linkText}</button>
+                <a onClick={()=>router.back()}>{linkText}</a>
             </div>
             {state === 'read' && (
             <div className="block-button">
-                <Button
-                    theme="muted warning"
+                <a
+                    className="btn btn-muted warning"
                 >Delete
-                </Button>
-                <Button
-                    theme="default"
+                </a>
+                <a
+                    className="btn btn-muted"
                 >Edit
-                </Button>
+                </a>
             </div>
             )}
         </div>
