@@ -36,10 +36,17 @@
     }
   }
   
-  textarea {
-    // overflow: auto;
-    // height: auto;
+  // textarea {
+  //   overflow: auto;
+  //   height: auto;
+  // }
+
+  .textarea {
+    overflow: hidden;
+    resize: none;
+
   }
+
   
   fieldset {
     border: 1px solid $border-color;

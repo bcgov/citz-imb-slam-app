@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from "../common/Button"
+import Button from "../../common/Button"
 import { useRouter } from "next/router"
 
 
