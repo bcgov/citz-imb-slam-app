@@ -8,7 +8,7 @@ export default function SoftwareFormCreate() {
     <>
       <Navigation />
       <div className="app">
-        <FormHeader linkText={'Back'} formState={'create'} />
+        <FormHeader linkText={'Back'} />
         <SoftwareForm />
       </div>
     </>

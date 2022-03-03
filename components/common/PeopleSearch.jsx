@@ -1,7 +1,5 @@
 /** @format */
 
-import React from 'react';
-
 export const PeopleSearch = ({
 	label,
 	column = 'column is required',

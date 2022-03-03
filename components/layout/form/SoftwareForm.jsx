@@ -1,19 +1,26 @@
 /** @format */
 
 import { Form, Formik } from 'formik';
-import React, { useCallback } from 'react';
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import * as Yup from 'yup';
-import FormButton from '../../common/FormButton';
-import { TextInput } from '../../common/TextInput';
+import { createData } from '../../api';
+import { FormButton, TextInput } from '../../common';
+import { useSoftware } from '../../hooks';
 
 export const SoftwareForm = (props) => {
 	const { initialValues = { title: '', publisher: '', administrator: '' } } =
 		props;
 
-	const onSubmit = (values, onSubmitProps) => {
-		console.log('values', values);
+	const router = useRouter();
+	const { create } = useSoftware();
+
+	const onSubmit = async (body, onSubmitProps) => {
+		console.log('body', body);
 		onSubmitProps.setSubmitting(false);
+		create(body);
 		onSubmitProps.resetForm();
+		router.push('/');
 	};
 
 	const onCancel = useCallback((onCancelProps) => {

@@ -1,7 +1,6 @@
 /** @format */
 
 import { Field } from 'formik';
-import React from 'react';
 import { ErrorMessage } from './ErrorMessage';
 
 export const TextInput = (props) => {

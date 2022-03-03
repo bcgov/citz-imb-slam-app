@@ -16,7 +16,7 @@ export const TableHeader = ({title, buttonText}) => {
                     >{buttonText}
                     </Button>
                 </Link> */}
-                <Link href="/Software/create" passHref>
+                <Link href="/software/create" passHref>
                     <a
                         className="btn btn-default"
                     >{buttonText}
