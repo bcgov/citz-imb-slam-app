@@ -70,13 +70,14 @@ div {
             font-family: var(--heading-font-family);
         }
 
-        button {
+        a {
             font-size: 0.9rem;
             font-family: var(--heading-font-family); 
             color: #222;
             text-decoration: none;   
             background: none;
             border: none;
+            cursor: pointer;
             
             &:before{
                 content: "\E72B";
@@ -107,7 +108,7 @@ form {
 .button-group {
     text-align: center;
 
-    button {
+    a {
         margin: 0rem 1rem;
     }
 }

@@ -14,6 +14,7 @@
     align-self: center;
     border: none;
     padding: 10px 20px;
+    text-decoration: none;
     cursor: pointer;
     outline: 0;
     text-transform: capitalize;
@@ -36,6 +37,7 @@
           color: $muted-color-hover;
           border: $muted-border-hover;
           background: $muted-background-hover;
+          text-decoration: none;
         }
     &.warning {
         color: $error;
