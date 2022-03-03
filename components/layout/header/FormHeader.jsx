@@ -9,7 +9,6 @@ export const FormHeader = ({linkText, formState}) => {
     const [state, setState] = useState(formState)
 
     const router = useRouter()
-    
 
     return (
         <div className="app-header">
@@ -31,7 +30,3 @@ export const FormHeader = ({linkText, formState}) => {
         </div>
     )
   }
-
-
-
-  
