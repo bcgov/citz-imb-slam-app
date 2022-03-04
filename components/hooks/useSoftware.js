@@ -1,8 +1,8 @@
 import { useTable } from "./useTable"
 
 
-export const useSoftware = () => {
-    const response = useTable('software')
+export const useSoftware = (id) => {
+    const response = useTable('software', id)
 
     return response
 }

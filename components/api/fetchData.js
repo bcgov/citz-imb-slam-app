@@ -4,7 +4,7 @@ export const fetchData = async (endPoint) => {
     if (window.location.port) port = ':3000'
 
     const url = `${window.location.protocol}//${window.location.hostname}${port}/api/${endPoint}`;
-    
+
     const response = await fetch(url);
 
     if (response.ok) {

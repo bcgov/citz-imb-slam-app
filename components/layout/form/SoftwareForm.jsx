@@ -4,13 +4,16 @@ import { Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import * as Yup from 'yup';
-import { createData } from '../../api';
 import { FormButton, TextInput } from '../../common';
 import { useSoftware } from '../../hooks';
 
 export const SoftwareForm = (props) => {
-	const { initialValues = { title: '', publisher: '', administrator: '' } } =
-		props;
+	const {
+		initialValues = { title: '', publisher: '', administrator: '' },
+		readOnly = true,
+	} = props;
+
+	console.log('initialValues', initialValues);
 
 	const router = useRouter();
 	const { create } = useSoftware();
@@ -23,10 +26,14 @@ export const SoftwareForm = (props) => {
 		router.push('/');
 	};
 
-	const onCancel = useCallback((onCancelProps) => {
-		console.log('onCancelProps', onCancelProps);
-		onCancelProps.resetForm();
-	}, []);
+	const onCancel = useCallback(
+		(onCancelProps) => {
+			console.log('onCancelProps', onCancelProps);
+			onCancelProps.resetForm();
+			router.push('/');
+		},
+		[router],
+	);
 
 	const validationSchema = Yup.object({
 		title: Yup.string().required('Required'),
@@ -34,6 +41,7 @@ export const SoftwareForm = (props) => {
 
 	return (
 		<Formik
+			enableReinitialize={true}
 			initialValues={initialValues}
 			validationSchema={validationSchema}
 			onSubmit={onSubmit}>
@@ -50,6 +58,7 @@ export const SoftwareForm = (props) => {
 							id='title'
 							name='title'
 							required={true}
+							readOnly={readOnly}
 						/>
 						<TextInput label='Publisher' id='publisher' name='publisher' />
 					</div>
@@ -58,6 +67,7 @@ export const SoftwareForm = (props) => {
 							label='Licence Administrator'
 							id='administrator'
 							name='administrator'
+							readOnly={readOnly}
 						/>
 					</div>
 					<div className='flex-row'>
@@ -65,12 +75,14 @@ export const SoftwareForm = (props) => {
 							<FormButton theme='muted' onClick={() => onCancel(formik)}>
 								Cancel
 							</FormButton>
-							<FormButton
-								theme='default'
-								type='submit'
-								disabled={!(formik.dirty && formik.isValid)}>
-								Save
-							</FormButton>
+							{!readOnly && (
+								<FormButton
+									theme='default'
+									type='submit'
+									disabled={!(formik.dirty && formik.isValid)}>
+									Save
+								</FormButton>
+							)}
 						</div>
 					</div>
 				</Form>

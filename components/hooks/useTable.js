@@ -1,9 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { fetchData, createData } from '../api'
 
-export const useTable = (tableName) => {
-    const query = useQuery(tableName, async () => {
-        const response = await fetchData(tableName);
+export const useTable = (tableName, id) => {
+    const query = useQuery([tableName, id], async () => {
+        let response
+        if (id) {
+            response = await fetchData(`${tableName}/${id}`);
+        } else {
+            response = await fetchData(tableName);
+        }
+
         return response;
     });
 

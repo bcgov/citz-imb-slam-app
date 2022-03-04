@@ -7,6 +7,7 @@ export const TableGrid = (props) => {
 	const {
 		columns = [],
 		rows = [],
+		onRowClick,
 		isLoading,
 		isError,
 		checkboxSelection = true,
@@ -26,6 +27,7 @@ export const TableGrid = (props) => {
 		<DataGrid
 			columns={columns}
 			rows={rows}
+			onRowClick={onRowClick}
 			autoHeight={true}
 			loading={isLoading}
 			checkboxSelection={checkboxSelection}

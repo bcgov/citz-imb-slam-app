@@ -1,12 +1,14 @@
 /** @format */
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { TableGrid } from '../../common/TableGrid';
 import { TableHeader } from '../header/TableHeader';
 import { useSoftware } from '../../hooks';
+import { useRouter } from 'next/router';
 
 export const SoftwareTable = () => {
 	const columns = [
+		{ field: 'id', headerName: 'ID', width: 275 },
 		{ field: 'title', headerName: 'Software Title', width: 150 },
 		{ field: 'publisher', headerName: 'Publisher', width: 150 },
 		{
@@ -17,7 +19,6 @@ export const SoftwareTable = () => {
 	];
 
 	const { data, isLoading, isError } = useSoftware();
-
 	const rows = useMemo(() => {
 		if (isLoading || isError) {
 			return [];
@@ -25,6 +26,16 @@ export const SoftwareTable = () => {
 
 		return data;
 	}, [data, isLoading, isError]);
+
+	const router = useRouter();
+
+	const onRowClick = useCallback(
+		(props) => {
+			console.log('props', props);
+			router.push(`/software/${props.id}`);
+		},
+		[router],
+	);
 
 	return (
 		<>
@@ -34,6 +45,7 @@ export const SoftwareTable = () => {
 					listName={'software'}
 					columns={columns}
 					rows={rows}
+					onRowClick={onRowClick}
 					isError={isError}
 					isLoading={isLoading}
 				/>
