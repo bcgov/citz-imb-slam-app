@@ -5,9 +5,9 @@
 [![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL)
 The project is in the very early stages of development. The codebase will be changing frequently.
 
-# Software Licence and Application Management (SLAM-API)
+# Software Licence and Application Management (SLAM)
 
-This is the API Server (backend) for the [SLAM application](https://github.com/bcgov/citz-imb-slam-app)
+This is the Server (frontend) for the [SLAM API](https://github.com/bcgov/citz-imb-slam-api)
 
 ## How to Contribute
 
@@ -18,3 +18,4 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 ### CICD Pipeline
 
 Commits and Pull Requests to the Main branch trigger the CICD pipeline. The Pipeline will build the image, run tests, and deploy to prod. If the commit contains the **#release** in the commit message, it will deploy to the test environment. After User Acceptance Testing is approved, it will deploy to production. Deployment to both test and prod trigger a notification in our Teams workspace.
+
