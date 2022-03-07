@@ -1,6 +1,0 @@
-export * from './Button'
-export * from './ErrorMessage'
-export * from './FormButton'
-export * from './PeopleSearch'
-export * from './TableGrid'
-export * from './TextInput'
