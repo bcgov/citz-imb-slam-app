@@ -1,12 +1,12 @@
-[![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](<Redirect-URL>)
-The project is in the very early stages of development. The codebase will be changing frequently.
+<!-- @format -->
 
 ![GitHub](https://img.shields.io/github/license/bcgov/citz-imb)
 
-
-[![](https://github.com/jpoehnelt/in-solidarity-bot/raw/main/static//badge-flat.png)](https://github.com/apps/in-solidarity)
+[![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL)
+The project is in the very early stages of development. The codebase will be changing frequently.
 
 # Software Licence and Application Management (SLAM-API)
+
 This is the API Server (backend) for the [SLAM application](https://github.com/bcgov/citz-imb-slam-app)
 
 ## How to Contribute
@@ -16,4 +16,5 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 ### Developer workstation setup
 
 ### CICD Pipeline
- Commits and Pull Requests to the Main branch trigger the CICD pipeline.  The Pipeline will build the image, run tests, and deploy to prod.  If the commit contains the __#release__ in the commit message, it will deploy to the test environment.  After User Acceptance Testing is approved, it will deploy to production.  Deployment to both test and prod trigger a notification in our Teams workspace.
+
+Commits and Pull Requests to the Main branch trigger the CICD pipeline. The Pipeline will build the image, run tests, and deploy to prod. If the commit contains the **#release** in the commit message, it will deploy to the test environment. After User Acceptance Testing is approved, it will deploy to production. Deployment to both test and prod trigger a notification in our Teams workspace.

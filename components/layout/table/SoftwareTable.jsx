@@ -31,7 +31,6 @@ export const SoftwareTable = () => {
 
 	const onRowClick = useCallback(
 		(props) => {
-			console.log('props', props);
 			router.push(`/software/${props.id}`);
 		},
 		[router],

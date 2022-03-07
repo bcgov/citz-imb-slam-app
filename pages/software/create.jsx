@@ -11,7 +11,7 @@ export default function SoftwareFormCreate() {
 			<Navigation />
 			<div className='app'>
 				<FormHeader linkText={'Back'} />
-				<SoftwareForm readOnly={false} />
+				<SoftwareForm editMode={true} />
 			</div>
 		</>
 	);

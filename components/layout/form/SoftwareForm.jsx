@@ -1,27 +1,31 @@
 /** @format */
 
-import { Form, Formik } from 'formik';
+import { updateA } from '@fluentui/react';
+import { Form, Formik, Field } from 'formik';
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import * as Yup from 'yup';
 import { FormButton, TextInput } from '../../common';
 import { useSoftware } from '../../hooks';
 
 export const SoftwareForm = (props) => {
 	const {
-		initialValues = { title: '', publisher: '', administrator: '' },
-		readOnly = true,
+		initialValues = { id: 'temp', title: '', publisher: '', administrator: '' },
+		editMode = false,
 	} = props;
 
-	console.log('initialValues', initialValues);
-
+	const [readOnly, setReadOnly] = useState(!editMode);
 	const router = useRouter();
-	const { create } = useSoftware();
+	const { create, update } = useSoftware();
 
 	const onSubmit = async (body, onSubmitProps) => {
-		console.log('body', body);
 		onSubmitProps.setSubmitting(false);
-		create(body);
+		if (editMode) {
+			create(body);
+		} else {
+			update(body);
+		}
+
 		onSubmitProps.resetForm();
 		router.push('/');
 	};
@@ -52,6 +56,9 @@ export const SoftwareForm = (props) => {
 							<h1 className='form-title'>Add Software</h1>
 						</div>
 					</div>
+					<div>
+						<Field name='id' type='hidden' />
+					</div>
 					<div className='flex-row'>
 						<TextInput
 							label='Software Title'
@@ -60,7 +67,12 @@ export const SoftwareForm = (props) => {
 							required={true}
 							readOnly={readOnly}
 						/>
-						<TextInput label='Publisher' id='publisher' name='publisher' />
+						<TextInput
+							label='Publisher'
+							id='publisher'
+							name='publisher'
+							readOnly={readOnly}
+						/>
 					</div>
 					<div className='flex-row'>
 						<TextInput
@@ -75,7 +87,13 @@ export const SoftwareForm = (props) => {
 							<FormButton theme='muted' onClick={() => onCancel(formik)}>
 								Cancel
 							</FormButton>
-							{!readOnly && (
+							{readOnly ? (
+								<FormButton
+									theme='default'
+									onClick={() => setReadOnly(!readOnly)}>
+									Edit Software Title
+								</FormButton>
+							) : (
 								<FormButton
 									theme='default'
 									type='submit'

@@ -3,7 +3,6 @@ import '../styles/scss/main.scss'
 
 const queryClient = new QueryClient()
 
-
 function MyApp({ Component, pageProps }) {
   return (
 
