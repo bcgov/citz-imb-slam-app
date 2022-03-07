@@ -1,25 +1,39 @@
 /** @format */
 
 import { Form, Formik } from 'formik';
-import React, { useCallback } from 'react';
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import * as Yup from 'yup';
-import FormButton from '../../common/FormButton';
-import { TextInput } from '../../common/TextInput';
+import { FormButton, TextInput } from '../../common';
+import { useSoftware } from '../../hooks';
 
 export const SoftwareForm = (props) => {
-	const { initialValues = { title: '', publisher: '', administrator: '' } } =
-		props;
+	const {
+		initialValues = { title: '', publisher: '', administrator: '' },
+		readOnly = true,
+	} = props;
 
-	const onSubmit = (values, onSubmitProps) => {
-		console.log('values', values);
+	console.log('initialValues', initialValues);
+
+	const router = useRouter();
+	const { create } = useSoftware();
+
+	const onSubmit = async (body, onSubmitProps) => {
+		console.log('body', body);
 		onSubmitProps.setSubmitting(false);
+		create(body);
 		onSubmitProps.resetForm();
+		router.push('/');
 	};
 
-	const onCancel = useCallback((onCancelProps) => {
-		console.log('onCancelProps', onCancelProps);
-		onCancelProps.resetForm();
-	}, []);
+	const onCancel = useCallback(
+		(onCancelProps) => {
+			console.log('onCancelProps', onCancelProps);
+			onCancelProps.resetForm();
+			router.push('/');
+		},
+		[router],
+	);
 
 	const validationSchema = Yup.object({
 		title: Yup.string().required('Required'),
@@ -27,6 +41,7 @@ export const SoftwareForm = (props) => {
 
 	return (
 		<Formik
+			enableReinitialize={true}
 			initialValues={initialValues}
 			validationSchema={validationSchema}
 			onSubmit={onSubmit}>
@@ -43,6 +58,7 @@ export const SoftwareForm = (props) => {
 							id='title'
 							name='title'
 							required={true}
+							readOnly={readOnly}
 						/>
 						<TextInput label='Publisher' id='publisher' name='publisher' />
 					</div>
@@ -51,6 +67,7 @@ export const SoftwareForm = (props) => {
 							label='Licence Administrator'
 							id='administrator'
 							name='administrator'
+							readOnly={readOnly}
 						/>
 					</div>
 					<div className='flex-row'>
@@ -58,12 +75,14 @@ export const SoftwareForm = (props) => {
 							<FormButton theme='muted' onClick={() => onCancel(formik)}>
 								Cancel
 							</FormButton>
-							<FormButton
-								theme='default'
-								type='submit'
-								disabled={!(formik.dirty && formik.isValid)}>
-								Save
-							</FormButton>
+							{!readOnly && (
+								<FormButton
+									theme='default'
+									type='submit'
+									disabled={!(formik.dirty && formik.isValid)}>
+									Save
+								</FormButton>
+							)}
 						</div>
 					</div>
 				</Form>
