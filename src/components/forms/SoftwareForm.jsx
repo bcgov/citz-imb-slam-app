@@ -1,5 +1,3 @@
-/** @format */
-
 import { Field, Form, Formik } from 'formik';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
@@ -10,11 +8,10 @@ import { FormHeader } from './FormHeader';
 import { TextInput } from './inputs';
 
 /**
- * A react component that displays Software Title Form
  *
- * @component
+ * @param {*} props
+ * @returns {React.jsx}
  */
-
 export const SoftwareForm = (props) => {
 	const {
 		initialValues = { id: 'temp', title: '', publisher: '', administrator: '' },

@@ -2,23 +2,72 @@
 
 ### Table of Contents
 
-*   [QueryClient][1]
-*   [Navigation][2]
+*   [Navigation][1]
+*   [QueryClient][2]
 *   [SoftwareForm][3]
-*   [React][4]
-
-## QueryClient
+*   [SoftwareForm][4]
+*   [Home][5]
+*   [SoftwareFormCreate][6]
+*   [SoftwareFormRead][7]
+*   [Main][8]
+    *   [Parameters][9]
 
 ## Navigation
 
+## QueryClient
+
 ## SoftwareForm
 
-## React
+## SoftwareForm
 
-[1]: #queryclient
+## Home
 
-[2]: #navigation
+the home page
+
+Returns **React.jsx** 
+
+## SoftwareFormCreate
+
+present the software form in create mode
+
+Returns **React.jsx** 
+
+## SoftwareFormRead
+
+present the software form in read mode (initially) for a specific software title
+can be turned to edit mode
+
+Returns **React.jsx** 
+
+## Main
+
+the Main Application component
+
+### Parameters
+
+*   `$0` **[Object][10]** 
+
+    *   `$0.Component`  
+    *   `$0.pageProps`  
+
+Returns **React.jsx** 
+
+[1]: #navigation
+
+[2]: #queryclient
 
 [3]: #softwareform
 
-[4]: #react
+[4]: #softwareform-1
+
+[5]: #home
+
+[6]: #softwareformcreate
+
+[7]: #softwareformread
+
+[8]: #main
+
+[9]: #parameters
+
+[10]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object

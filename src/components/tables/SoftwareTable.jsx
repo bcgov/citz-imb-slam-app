@@ -1,17 +1,12 @@
-/** @format */
-
-import React, { useMemo, useCallback } from 'react';
+import { useMemo, useCallback } from 'react';
 import { TableGrid } from './TableGrid';
 import { TableHeader } from './TableHeader';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
 /**
- * A react component that displays Software Titles obtained from an api call the backend server
- * probably needs refactoring
- * 
- * @component
+ *
+ * @returns {React.jsx}
  */
-
 export const SoftwareTable = () => {
 	const columns = [
 		// { field: 'id', headerName: 'ID', width: 275 },

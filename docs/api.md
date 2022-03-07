@@ -2,36 +2,15 @@
 
 ### Table of Contents
 
-*   [createData][1]
+*   [fetchData][1]
     *   [Parameters][2]
     *   [Examples][3]
-*   [fetchData][4]
+*   [createData][4]
     *   [Parameters][5]
     *   [Examples][6]
 *   [updateData][7]
     *   [Parameters][8]
     *   [Examples][9]
-
-## createData
-
-Makes a POST fetch call to the api using the endpoint passed to it
-
-### Parameters
-
-*   `endPoint` **[string][10]** API Endpoint
-*   `options` **[object][11]** a json object containing a body member
-
-    *   `options.body` **object.body** a json object of the payload to be sent to the API Server
-
-### Examples
-
-```javascript
-import { createData } from 'api'
-
-const response = await createData('software', {body:{title:'some-text'}, publisher:'some-text'}, administrator:'some-text'}})
-```
-
-Returns **[Promise][12]<[object][11]>** the returned body of the API call in json format
 
 ## fetchData
 
@@ -49,7 +28,28 @@ import { fetchData } from 'api'
 const response = await fetchData('software')
 ```
 
-Returns **[Promise][12]<[Array][13]<[object][11]>>** the returned body of the API call in json format
+Returns **[Promise][11]<[Array][12]<[object][13]>>** the returned body of the API call in json format
+
+## createData
+
+Makes a POST fetch call to the api using the endpoint passed to it
+
+### Parameters
+
+*   `endPoint` **[string][10]** API Endpoint
+*   `options` **[object][13]** a json object containing a body member
+
+    *   `options.body` **object.body** a json object of the payload to be sent to the API Server
+
+### Examples
+
+```javascript
+import { createData } from 'api'
+
+const response = await createData('software', {body:{title:'some-text'}, publisher:'some-text'}, administrator:'some-text'}})
+```
+
+Returns **[Promise][11]<[object][13]>** the returned body of the API call in json format
 
 ## updateData
 
@@ -58,10 +58,10 @@ Makes a PUT fetch call to the api using the endpoint passed to it
 ### Parameters
 
 *   `endPoint` **[string][10]** API Endpoint
-*   `options` **[object][11]** a json object containing a body member and the id
+*   `options` **[object][13]** a json object containing a body member and the id
 
     *   `options.id` **[string][10]** a string of the item id (uuid)
-    *   `options.body` **[object][11]** a json object of the payload to be sent to the API Server
+    *   `options.body` **[object][13]** a json object of the payload to be sent to the API Server
 
 ### Examples
 
@@ -71,15 +71,15 @@ import { updateData } from 'api'
 const response = await updateData('software', {id:'some_uuid',body:{title:'updated-title'}})
 ```
 
-Returns **[Promise][12]<[object][11]>** the returned body of the API call in json format
+Returns **[Promise][11]<[object][13]>** the returned body of the API call in json format
 
-[1]: #createdata
+[1]: #fetchdata
 
 [2]: #parameters
 
 [3]: #examples
 
-[4]: #fetchdata
+[4]: #createdata
 
 [5]: #parameters-1
 
@@ -93,8 +93,8 @@ Returns **[Promise][12]<[object][11]>** the returned body of the API call in jso
 
 [10]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[11]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[11]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[12]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[12]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[13]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[13]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object

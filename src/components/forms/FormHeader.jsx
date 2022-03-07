@@ -1,10 +1,8 @@
-/** @format */
-
 import { useRouter } from 'next/router';
 /**
- * A react component that displays Software Title Form Header with a link to go back to the previous page
  *
- * @component
+ * @param {*} param0
+ * @returns {React.jsx}
  */
 export const FormHeader = ({ linkText = 'Back' }) => {
 	const router = useRouter();

@@ -1,5 +1,8 @@
-/** @format */
-
+/**
+ *
+ * @param {*} param0
+ * @returns {React.jsx}
+ */
 export const PeopleSearch = ({
 	label,
 	column = 'column is required',

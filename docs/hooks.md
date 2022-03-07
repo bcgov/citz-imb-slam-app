@@ -21,7 +21,7 @@ a hook for retrieving, caching, and manipulating data.  it extends react-query
 ```javascript
 import { useSoftware } from 'hooks'
 
-const { data, isLoading, isError, create, update, delete } = useSoftware()
+const { data, isLoading, isError, create, update, delete } = useSoftware(id)
 ```
 
 Returns **[Promise][5]<[object][6]>** an object with members

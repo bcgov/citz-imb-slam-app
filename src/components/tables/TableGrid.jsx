@@ -1,8 +1,10 @@
-/** @format */
-
 import { Alert, AlertTitle } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-
+/**
+ *
+ * @param {*} props
+ * @returns {React.jsx}
+ */
 export const TableGrid = (props) => {
 	const {
 		columns = [],

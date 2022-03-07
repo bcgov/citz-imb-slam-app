@@ -6,7 +6,12 @@ import { Navigation } from 'components';
 
 const queryClient = new QueryClient();
 
-function MyApp({ Component, pageProps }) {
+/**
+ * the Main Application component
+ * @param {} param0
+ * @returns {React.jsx}
+ */
+function Main({ Component, pageProps }) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Navigation />
@@ -15,4 +20,4 @@ function MyApp({ Component, pageProps }) {
 	);
 }
 
-export default MyApp;
+export default Main;

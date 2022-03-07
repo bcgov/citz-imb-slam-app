@@ -1,8 +1,9 @@
-/** @format */
-
 import Link from 'next/link';
-import React from 'react';
-
+/**
+ *
+ * @param {*} props
+ * @returns {React.jsx}
+ */
 export const TableHeader = (props) => {
 	const { title, buttonText } = props;
 	return (

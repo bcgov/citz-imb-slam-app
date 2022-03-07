@@ -10,7 +10,7 @@ import { useTable } from "./useTable"
  * @example
  * import { useSoftware } from 'hooks'
  *
- * const { data, isLoading, isError, create, update, delete } = useSoftware()
+ * const { data, isLoading, isError, create, update, delete } = useSoftware(id)
  */
 
 export const useSoftware = (id) => {

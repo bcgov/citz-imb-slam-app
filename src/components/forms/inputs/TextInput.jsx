@@ -1,12 +1,10 @@
-/** @format */
-/**
- * A react component that accepts a text string
- *
- * @component
- */
 import { Field } from 'formik';
 import { ErrorMessage } from './ErrorMessage';
-
+/**
+ *
+ * @param {*} props
+ * @returns {React.jsx}
+ */
 export const TextInput = (props) => {
 	const { label, name, required = false, id, ...remainingProps } = props;
 

@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"doc": "documentation build src/api -f md -o docs/api.md && documentation build src/components -f md -o docs/components.md && documentation build src/hooks -f md -o docs/hooks.md && documentation build src/pages -f md -o docs/pages.md"
+		"docs:all": "documentation build --shallow src/api -f md -o docs/api.md && documentation build --shallow src/components -f md -o docs/components.md && documentation build --shallow src/hooks -f md -o docs/hooks.md && documentation build --shallow src/pages -f md -o docs/pages.md && documentation build --shallow src/constants -f md -o docs/constants.md"
 	},
 	"dependencies": {
 		"@bcgov/bc-sans": "1.0.1",

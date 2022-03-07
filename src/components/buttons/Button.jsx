@@ -1,8 +1,7 @@
-/** @format */
 /**
- * A react component button
  *
- * @component
+ * @param {*} props
+ * @returns {React.jsx}
  */
 export const Button = (props) => {
 	const { theme, type = 'button', children, ...remainingProps } = props;

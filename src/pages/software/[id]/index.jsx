@@ -3,8 +3,12 @@
 import { SoftwareForm } from 'components';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
-import React from 'react';
 
+/**
+ * present the software form in read mode (initially) for a specific software title
+ * can be turned to edit mode
+ * @returns {React.jsx}
+ */
 export default function SoftwareFormRead() {
 	const router = useRouter();
 

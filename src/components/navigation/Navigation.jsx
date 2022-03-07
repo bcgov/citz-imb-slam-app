@@ -1,14 +1,10 @@
-/** @format */
-
 import Image from 'next/image';
 import React from 'react';
 import bcgovlogo from 'assets/images/bcgov-h.png';
 
 /**
- * A react component that displays the navigation bar for the application
- * probably needs refactoring
  *
- * @component
+ * @returns {React.jsx}
  */
 export const Navigation = () => {
 	return (
