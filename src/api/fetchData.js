@@ -1,5 +1,4 @@
-import { DEFAULT_API_PORT, HTML_RESPONSE } from 'constants';
-
+import { fetchAPI } from "./common/fetchAPI"
 /**
  * @description Makes a GET fetch call to the api using the endpoint passed to it
  * @async
@@ -12,24 +11,7 @@ import { DEFAULT_API_PORT, HTML_RESPONSE } from 'constants';
  * const response = await fetchData('software')
  */
 export const fetchData = async (endPoint) => {
-    let port = ''
+    const response = await fetchAPI(endPoint)
 
-    if (window.location.port) port = DEFAULT_API_PORT
-
-    const url = `${window.location.protocol}//${window.location.hostname}${port}/api/${endPoint}`;
-
-    const response = await fetch(url);
-
-    if (response.ok) {
-        if (response.status === HTML_RESPONSE.NO_CONTENT) {
-            return;
-        } else if (response.status === HTML_RESPONSE.NOT_MODIFIED) {
-            console.warn(`${response.status} ${response.statusText} ${endPoint}`);
-            return response.json();
-        } else {
-            return response.json();
-        }
-    } else {
-        throw new Error(`${response.status} ${response.statusText} for ${url}`);
-    }
+    return response
 }

@@ -1,4 +1,4 @@
-import { DEFAULT_API_PORT, HTML_RESPONSE } from 'constants'
+import { fetchAPI } from "./common/fetchAPI"
 
 /**
  * @description Makes a POST fetch call to the api using the endpoint passed to it
@@ -24,23 +24,8 @@ export const createData = async (endPoint, options) => {
         }
     }
 
-    let port = ''
-    if (window.location.port) port = DEFAULT_API_PORT
+    const response = await fetchAPI(endPoint, fetchOptions)
 
-    const url = `${window.location.protocol}//${window.location.hostname}${port}/api/${endPoint}`;
+    return response
 
-    const response = await fetch(url, fetchOptions);
-
-    if (response.ok) {
-        if (response.status === HTML_RESPONSE.NO_CONTENT) {
-            return;
-        } else if (response.status === HTML_RESPONSE.NOT_MODIFIED) {
-            console.warn(`${response.status} ${response.statusText} ${endPoint}`);
-            return response.json();
-        } else {
-            return response.json();
-        }
-    } else {
-        throw new Error(`${response.status} ${response.statusText} for ${url}`);
-    }
 }

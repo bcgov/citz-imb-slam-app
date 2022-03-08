@@ -13,11 +13,10 @@ import { fetchAPI } from "./common/fetchAPI"
  *
  * const response = await updateData('software', {id:'some_uuid',body:{title:'updated-title'}})
  */
-export const updateData = async (endPoint, options) => {
+export const deleteData = async (endPoint, options) => {
 
     const fetchOptions = {
-        method: 'put',
-        body: JSON.stringify(options.body),
+        method: 'delete',
         headers: {
             'content-type': 'application/json',
             accept: 'application/json',
