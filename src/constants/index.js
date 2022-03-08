@@ -15,6 +15,13 @@
  */
 
 /**
+ * @external emotion
+ * @description The styled API for @emotion/react
+ * @see {@link https://github.com/emotion-js/emotion/tree/main/packages/styled | emotion}
+ */
+
+
+/**
  * @external MUI
  * @description MUI provides a robust, customizable, and accessible library of foundational and advanced components, enabling you to build your design system and develop React applications faster.
  * @see {@link https://mui.com/ | MUI}
@@ -25,6 +32,13 @@
  * @description Formik is the world's most popular open source form library for React and React Native.
  * @see {@link https://formik.org/ | Formik}
  */
+
+/**
+ * @external Nextjs
+ * @description Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.
+ * @see {@link https://nextjs.org/ | Nextjs}
+ */
+
 
 /**
  * @external React
@@ -42,6 +56,12 @@
  * @external yup
  * @description Yup is a JavaScript schema builder for value parsing and validation. Define a schema, transform a value to match, validate the shape of an existing value, or both. Yup schema are extremely expressive and allow modeling complex, interdependent validations, or value transformations.
  * @see {@link https://github.com/jquense/yup | yup}
+ */
+
+/**
+ * @external documentation
+ * @description The documentation system for modern JavaScript
+ * @see {@link https://documentation.js.org/ | documentation}
  */
 
 export const DEFAULT_API_PORT = ':3000'

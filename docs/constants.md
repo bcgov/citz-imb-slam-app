@@ -5,60 +5,81 @@
 *   [software][1]
     *   [Properties][2]
 *   [BC-Sans][3]
-*   [MUI][4]
-*   [Formik][5]
-*   [React][6]
-*   [React-Query][7]
-*   [yup][8]
+*   [emotion][4]
+*   [MUI][5]
+*   [Formik][6]
+*   [Nextjs][7]
+*   [React][8]
+*   [React-Query][9]
+*   [yup][10]
+*   [documentation][11]
 
 ## software
 
 A Software Title
 
-Type: [Object][9]
+Type: [Object][12]
 
 ### Properties
 
-*   `id` **[string][10]** the uuid value
-*   `title` **[string][10]** the name of the sofware title
-*   `publisher` **[string][10]** the publisher of the sofware title
-*   `administrator` **[string][10]** the person responsible for the licences of the sofware title
-*   `created` **[date][11]** the date the record was created
-*   `modified` **[date][11]** the date the record was last modified
+*   `id` **[string][13]** the uuid value
+*   `title` **[string][13]** the name of the sofware title
+*   `publisher` **[string][13]** the publisher of the sofware title
+*   `administrator` **[string][13]** the person responsible for the licences of the sofware title
+*   `created` **[date][14]** the date the record was created
+*   `modified` **[date][14]** the date the record was last modified
 
 ## BC-Sans
 
 The standard font for B.C. Government digital services is BC Sans. BC Sans is an open source font family, and is a modified version of Noto Sans, developed by Google. BC Sans includes modifications to support Indigenous languages in British Columbia.
 
+## emotion
+
+*   **See**: [| emotion][15]
+
+The styled API for @emotion/react
+
 ## MUI
 
-*   **See**: [| MUI][12]
+*   **See**: [| MUI][16]
 
 MUI provides a robust, customizable, and accessible library of foundational and advanced components, enabling you to build your design system and develop React applications faster.
 
 ## Formik
 
-*   **See**: [| Formik][13]
+*   **See**: [| Formik][17]
 
 Formik is the world's most popular open source form library for React and React Native.
 
+## Nextjs
+
+*   **See**: [| Nextjs][18]
+
+Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.
+
 ## React
 
-*   **See**: [| React][14]
+*   **See**: [| React][19]
 
 A JavaScript library for building user interfaces
 
 ## React-Query
 
-*   **See**: [| React-Query][15]
+*   **See**: [| React-Query][20]
 
 Fetch, cache and update data in your React and React Native applications all without touching any "global state".
 
 ## yup
 
-*   **See**: [| yup][16]
+*   **See**: [| yup][21]
 
 Yup is a JavaScript schema builder for value parsing and validation. Define a schema, transform a value to match, validate the shape of an existing value, or both. Yup schema are extremely expressive and allow modeling complex, interdependent validations, or value transformations.
+
+## documentation
+
+*   **See**: [| documentation][22]
+
+The documentation system for modern JavaScript
 
 [1]: #software
 
@@ -66,28 +87,40 @@ Yup is a JavaScript schema builder for value parsing and validation. Define a sc
 
 [3]: #bc-sans
 
-[4]: #mui
+[4]: #emotion
 
-[5]: #formik
+[5]: #mui
 
-[6]: #react
+[6]: #formik
 
-[7]: #react-query
+[7]: #nextjs
 
-[8]: #yup
+[8]: #react
 
-[9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[9]: #react-query
 
-[10]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[10]: #yup
 
-[11]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date
+[11]: #documentation
 
-[12]: https://mui.com/
+[12]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[13]: https://formik.org/
+[13]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[14]: https://reactjs.org/
+[14]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date
 
-[15]: https://react-query.tanstack.com/
+[15]: https://github.com/emotion-js/emotion/tree/main/packages/styled
 
-[16]: https://github.com/jquense/yup
+[16]: https://mui.com/
+
+[17]: https://formik.org/
+
+[18]: https://nextjs.org/
+
+[19]: https://reactjs.org/
+
+[20]: https://react-query.tanstack.com/
+
+[21]: https://github.com/jquense/yup
+
+[22]: https://documentation.js.org/
