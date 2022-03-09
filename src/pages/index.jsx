@@ -5,7 +5,5 @@ import { SoftwareTable } from 'components';
  * @returns {React.jsx}
  */
 export default function Home() {
-	return (
-			<SoftwareTable />
-	);
+	return <SoftwareTable />;
 }

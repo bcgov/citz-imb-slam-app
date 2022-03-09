@@ -3,6 +3,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import 'styles/scss/main.scss';
 import { Navigation } from 'components';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ function Main({ Component, pageProps }) {
 		<QueryClientProvider client={queryClient}>
 			<Navigation />
 			<Component {...pageProps} />
+			{/* <ReactQueryDevtools /> */}
 		</QueryClientProvider>
 	);
 }

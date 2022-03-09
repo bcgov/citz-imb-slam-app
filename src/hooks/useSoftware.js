@@ -1,4 +1,4 @@
-import { useTable } from "./useTable"
+import { useTable } from "./common/useTable"
 
 /**
  * @description a hook for retrieving, caching, and manipulating data.  it extends react-query
