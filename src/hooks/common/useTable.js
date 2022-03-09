@@ -37,6 +37,8 @@ export const useTable = (tableName, rowId) => {
 
     const refetchQueries = async (data, variables, context) => await queryClient.refetchQueries([tableName])
 
+    const removeQuery = async (data, variables, context, mutation) => await queryClient.removeQueries([tableName, variables.id])
+
     const createItem = useMutation(({ id, ...body }) => createData(tableName, { body }),
         {
             onMutate: (item) => mutate(item, appendItem),
@@ -55,7 +57,9 @@ export const useTable = (tableName, rowId) => {
     const deleteItem = useMutation(({ id }) => deleteData(`${tableName}/${id}`),
         {
             onMutate: (item) => mutate(item, removeItem),
-            onError
+            onError,
+            onSettled: refetchQueries,
+            onSuccess: removeQuery
         })
 
     const create = createItem.mutateAsync

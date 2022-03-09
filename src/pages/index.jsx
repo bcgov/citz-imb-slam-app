@@ -1,14 +1,9 @@
 /** @format */
-import { Navigation, SoftwareTable } from 'components';
+import { SoftwareTable } from 'components';
 /**
  * the home page
  * @returns {React.jsx}
  */
 export default function Home() {
-	return (
-		<>
-			<Navigation />
-			<SoftwareTable />
-		</>
-	);
+	return <SoftwareTable />;
 }
