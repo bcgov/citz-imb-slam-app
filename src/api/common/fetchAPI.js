@@ -1,6 +1,8 @@
 import { DEFAULT_API_PORT, HTML_RESPONSE } from 'constants'
 
 export const fetchAPI = async (endPoint, options) => {
+    const isDelete = options?.method === 'delete'
+    
     let port = ''
     if (window.location.port) port = DEFAULT_API_PORT
 
@@ -15,6 +17,7 @@ export const fetchAPI = async (endPoint, options) => {
             console.warn(`${response.status} ${response.statusText} ${endPoint}`);
             return response.json();
         } else {
+            if(isDelete) return
             return response.json();
         }
     } else {

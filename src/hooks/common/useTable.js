@@ -1,8 +1,9 @@
-import { createData, fetchData, updateData } from 'api';
+import { createData, fetchData, updateData, deleteData } from 'api';
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useCallback, useMemo } from 'react';
 
 export const useTable = (tableName, rowId) => {
-    const queryKey = [tableName, rowId]
+    const queryKey = useMemo(() => [tableName, rowId], [rowId, tableName])
 
     const queryClient = useQueryClient()
 
@@ -17,50 +18,45 @@ export const useTable = (tableName, rowId) => {
         return response;
     });
 
-    const appendItem = (oldValues, item) => oldValues.push(item)
+    const appendItem = (oldValues, item) => [...oldValues, item]
     const removeItem = (oldValues, item) => oldValues.filter(value => value.id !== item.id)
     const updateItem = (oldValues, item) => oldValues.map(value => {
         if (value.id === item.id) return item
         return value
     })
 
-    const mutate = async (item, callBack) => {
-        await queryClient.cancelQueries(queryKey)
-        const previousValues = queryClient.getQueryData(queryKey)
-        queryClient.setQueryData(queryKey, (oldValues = []) => callBack(oldValues, item))
-        return previousValues
-    }
+    const mutate = useCallback(
+        async (item, callBack) => {
+            await queryClient.cancelQueries(queryKey)
+            const previousValues = queryClient.getQueryData(queryKey)
+            queryClient.setQueryData(queryKey, (oldValues = []) => callBack(oldValues, item))
+            return previousValues
+        }, [queryClient, queryKey])
 
-    const onError = (error, newItem, context) => queryClient.setQueryData([tableName, id], context)
+    const onError = (error, newItem, context) => queryClient.setQueryData(queryKey, context)
 
-    const onSettled = async (data, error, variables, context) => await queryClient.refetchQueries([tableName])
+    const refetchQueries = async (data, variables, context) => await queryClient.refetchQueries([tableName])
 
-    const createItem = useMutation(newItem => {
-        const { id, ...body } = newItem
-        createData(tableName, { body })
-    }, {
-        onMutate: (item) => mutate(item, appendItem),
-        onError,
-        onSettled
-    })
+    const createItem = useMutation(({ id, ...body }) => createData(tableName, { body }),
+        {
+            onMutate: (item) => mutate(item, appendItem),
+            onError,
+            onSettled: refetchQueries
+        })
 
-    const changeItem = useMutation(item => {
-        const { id, ...body } = item
-        updateData(tableName, { id, body })
-    }, {
-        onMutate: (item) => mutate(item, updateItem),
-        onError,
-        onSettled
-    })
+    const changeItem = useMutation(async ({ id, ...body }) => await updateData(`${tableName}/${id}`, { id, body }),
+        {
+            onMutate: (item) => mutate(item, updateItem),
+            onError,
+            onSettled: refetchQueries
 
-    const deleteItem = useMutation(item => {
-        const { id, ...body } = item
-        updateData(tableName, { id, body })
-    }, {
-        onMutate: (item) => mutate(item, removeItem),
-        onError,
-        onSettled
-    })
+        })
+
+    const deleteItem = useMutation(({ id }) => deleteData(`${tableName}/${id}`),
+        {
+            onMutate: (item) => mutate(item, removeItem),
+            onError
+        })
 
     const create = createItem.mutateAsync
     const update = changeItem.mutateAsync

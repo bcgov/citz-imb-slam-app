@@ -20,7 +20,7 @@ export const SoftwareForm = (props) => {
 
 	const [readOnly, setReadOnly] = useState(!editMode);
 	const router = useRouter();
-	const { create, update } = useSoftware();
+	const { create, update, remove } = useSoftware();
 
 	const onSubmit = async (body, onSubmitProps) => {
 		onSubmitProps.setSubmitting(false);
@@ -36,12 +36,19 @@ export const SoftwareForm = (props) => {
 
 	const onCancel = useCallback(
 		(onCancelProps) => {
-			console.log('onCancelProps', onCancelProps);
 			onCancelProps.resetForm();
 			router.push('/');
 		},
 		[router],
 	);
+
+	const onDelete = useCallback((formik) => {
+		console.log('formik', formik);
+		console.log('values.id', formik.values.id);
+		remove(formik.values);
+		formik.resetForm()
+		router.push('/');
+	}, [remove, router]);
 
 	const validationSchema = Yup.object({
 		title: Yup.string().required('Required'),
@@ -61,6 +68,16 @@ export const SoftwareForm = (props) => {
 							<div className='flex-large'>
 								<h1 className='form-title'>Add Software</h1>
 							</div>
+							{readOnly ? (
+								<Button theme='default' onClick={() => setReadOnly(!readOnly)}>
+									Edit Software Title
+								</Button>
+							) : null}
+							{editMode ? null : (
+								<Button theme='default' onClick={() => onDelete(formik)}>
+									Delete Software Title
+								</Button>
+							)}
 						</div>
 						<div>
 							<Field name='id' type='hidden' />
@@ -93,13 +110,7 @@ export const SoftwareForm = (props) => {
 								<Button theme='muted' onClick={() => onCancel(formik)}>
 									Cancel
 								</Button>
-								{readOnly ? (
-									<Button
-										theme='default'
-										onClick={() => setReadOnly(!readOnly)}>
-										Edit Software Title
-									</Button>
-								) : (
+								{readOnly ? null : (
 									<Button
 										theme='default'
 										type='submit'

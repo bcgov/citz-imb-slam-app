@@ -1,6 +1,6 @@
 import { useMemo, useCallback } from 'react';
-import { TableGrid } from './TableGrid';
-import { TableHeader } from './TableHeader';
+import { TableGrid } from './common/TableGrid';
+import { TableHeader } from './common/TableHeader';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
 /**
@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
  */
 export const SoftwareTable = () => {
 	const columns = [
-		// { field: 'id', headerName: 'ID', width: 275 },
+		{ field: 'id', headerName: 'ID', width: 275 },
 		{ field: 'title', headerName: 'Software Title', width: 150 },
 		{ field: 'publisher', headerName: 'Publisher', width: 150 },
 		{
