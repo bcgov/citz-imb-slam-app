@@ -108,8 +108,16 @@ form {
 .button-group {
     text-align: center;
 
-    a {
-        margin: 0rem 1rem;
+    button {
+        margin: 0rem 0.5rem;
+    }
+
+    &-edit{
+        text-align:right;
+
+        button {
+            margin: 0rem 0rem 0rem 1rem;
+        }
     }
 }
 

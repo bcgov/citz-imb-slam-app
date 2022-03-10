@@ -8,8 +8,10 @@ import { ErrorMessage } from './ErrorMessage';
 export const TextInput = (props) => {
 	const { label, name, required = false, id, ...remainingProps } = props;
 
+
+
 	return (
-		<Field name={name} id={id}>
+		<Field name={name} id={id} >
 			{(props) => {
 				const { field, meta } = props;
 				return (
@@ -18,9 +20,9 @@ export const TextInput = (props) => {
 							{label}
 							{required ? <span>*</span> : null}
 						</label>
-						<input type='text' {...field} {...remainingProps} />
+						<input type='text' {...field} {...remainingProps} className={ meta.touched && meta.error ? "has-error" : "" }/>
 						{meta.touched && meta.error ? (
-							<ErrorMessage>{meta.error}</ErrorMessage>
+							<ErrorMessage>{label} is required.</ErrorMessage>
 						) : null}
 					</div>
 				);

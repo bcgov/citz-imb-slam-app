@@ -4,5 +4,5 @@
  * @returns {React.jsx}
  */
 export const ErrorMessage = (props) => {
-	return <div>{props.children}</div>;
+	return <div className="error-message">{props.children}</div>;
 };

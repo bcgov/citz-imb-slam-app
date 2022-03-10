@@ -56,28 +56,39 @@ export const SoftwareForm = (props) => {
 
 	return (
 		<div className='app'>
-			<FormHeader />
+			<FormHeader linkText={'Back to Software List'} linkURL={'/'}/>
 			<Formik
 				enableReinitialize={true}
 				initialValues={initialValues}
 				validationSchema={validationSchema}
-				onSubmit={onSubmit}>
+				// onSubmit={onSubmit}
+				validateOnChange={false}
+				validateOnBlur={false}
+				onSubmit={onSubmit}
+			>
 				{(formik) => (
-					<Form className='software'>
+						<Form className='software'>
 						<div className='flex-row'>
 							<div className='flex-large'>
-								<h1 className='form-title'>Add Software</h1>
+								{readOnly ? 
+								(<h1 className='form-title'>View Software</h1>):<h1 className='form-title'>Add Software</h1> 
+								}
 							</div>
-							{readOnly ? (
-								<Button theme='default' onClick={() => setReadOnly(!readOnly)}>
-									Edit Software Title
-								</Button>
-							) : null}
-							{editMode ? null : (
-								<Button theme='default' onClick={() => onDelete(formik)}>
-									Delete Software Title
-								</Button>
-							)}
+							<div className='flex-large'>
+								<div className="button-group-edit">
+									{readOnly ?(
+									<>
+										<Button theme='muted warning' onClick={() => onDelete(formik)}>
+											Delete
+										</Button>
+										<Button theme='default' onClick={() => setReadOnly(!readOnly)}>
+										Edit
+										</Button>
+									</>
+									) : null }
+								</div>
+							</div>
+
 						</div>
 						<div>
 							<Field name='id' type='hidden' />
