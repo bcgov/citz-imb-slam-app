@@ -17,6 +17,10 @@
       display: inline-block;
       padding: 10px;
     }
+
+    &:visited{
+      color: var(--font-color);
+    }
 }
 
 .nav-logo{
