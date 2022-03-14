@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { Button } from "components";
 import { FormHeader } from "./FormHeader";
 import { TextInput } from "./inputs";
+import { DateInput } from "./inputs";
 
 /**
  *
@@ -14,9 +15,10 @@ import { TextInput } from "./inputs";
  */
 export const SoftwareForm = (props) => {
   const {
-    initialValues = { id: "temp", title: "", publisher: "", administrator: "" },
+    initialValues = { id: "temp", title: "", publisher: "", administrator: "", quantity:"", renewal:"" },
     editMode = false,
   } = props;
+
 
   const [readOnly, setReadOnly] = useState(!editMode);
   const router = useRouter();
@@ -56,6 +58,8 @@ export const SoftwareForm = (props) => {
   const validationSchema = Yup.object({
     title: Yup.string().required("Software Title is required"),
   });
+
+
 
   return (
     <div className="app">
@@ -101,14 +105,28 @@ export const SoftwareForm = (props) => {
                   required={true}
                   readOnly={readOnly}
                 />
-                <TextInput
+              </div>
+              <div className="flex-row">
+			 	 <TextInput
                   label="Publisher"
                   id="publisher"
                   name="publisher"
                   readOnly={readOnly}
                 />
+                <DateInput
+                  label="Renewal Date"
+                  id="renewal"
+                  name="renewal"
+                  readOnly={readOnly}
+                />
               </div>
               <div className="flex-row">
+			 	 <TextInput
+                  label="Quantity"
+                  id="quantity"
+                  name="quantity"
+                  readOnly={readOnly}
+                />
                 <TextInput
                   label="Licence Administrator"
                   id="administrator"

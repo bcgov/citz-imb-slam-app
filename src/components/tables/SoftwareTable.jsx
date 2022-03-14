@@ -9,14 +9,26 @@ import { useRouter } from 'next/router';
  */
 export const SoftwareTable = () => {
 	const columns = [
-		{ field: 'id', headerName: 'ID', width: 275 },
-		{ field: 'title', headerName: 'Software Title', width: 150 },
-		{ field: 'publisher', headerName: 'Publisher', width: 150 },
+		// { field: 'id', headerName: 'ID', width: 275 },
+		{ field: 'title', headerName: 'Software Title', width: 250 },
+		{ field: 'publisher', headerName: 'Publisher', width: 200 },
+		{
+			field: 'renewal',
+			headerName: 'Renewal Date',
+			type: 'date',
+			width: 200,
+		},
+		{
+			field: 'quantity',
+			headerName: 'Quantity',
+			width: 150,
+		},
 		{
 			field: 'administrator',
 			headerName: 'Licence Administrator',
-			width: 175,
+			width: 200,
 		},
+
 	];
 
 	const { data, isLoading, isError } = useSoftware();

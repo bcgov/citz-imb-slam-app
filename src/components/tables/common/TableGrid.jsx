@@ -12,7 +12,7 @@ export const TableGrid = (props) => {
 		onRowClick,
 		isLoading,
 		isError,
-		checkboxSelection = true,
+		checkboxSelection = false,
 		disableColumnMenu = true,
 	} = props;
 
