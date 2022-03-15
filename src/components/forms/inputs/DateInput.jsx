@@ -1,6 +1,6 @@
 import { Field } from 'formik';
 import { ErrorMessage } from './ErrorMessage';
-import Moment from 'react-moment';
+import DatePicker from 'react-date-picker/dist/entry.nostyle';
 
 /**
  *
@@ -9,20 +9,27 @@ import Moment from 'react-moment';
  */
 export const DateInput = (props) => {
 	const { label, name, required = false, id, ...remainingProps } = props;
-    console.log(remainingProps)
 
 	return (
-		<Field name={name} id={id} >
+		<Field name={name} id={id}>
 			{(props) => {
+				console.log('props', props);
 				const { field, meta } = props;
+				console.log('field', field)
+				field.value = new Date(field.value)
 				return (
 					<div className='flex-large'>
 						<label htmlFor={id}>
 							{label}
 							{required ? <span>*</span> : null}
 						</label>
-						<input type='date' {...field} {...remainingProps} className={ meta.touched && meta.error ? "has-error" : "" }/>
-                        <Moment>{remainingProps.value}</Moment>
+						<DatePicker {...field}/>
+						<input
+							type='date'
+							{...field}
+							{...remainingProps}
+							className={meta.touched && meta.error ? 'has-error' : ''}
+						/>
 						{meta.touched && meta.error ? (
 							<ErrorMessage>{meta.error}</ErrorMessage>
 						) : null}
