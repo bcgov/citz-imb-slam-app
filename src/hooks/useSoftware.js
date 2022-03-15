@@ -16,6 +16,7 @@ import { useTable } from "./common/useTable"
 export const useSoftware = (id) => {
 
     const dataTransform = (data) => {
+    console.log('dataTransform', data)
         const newData = data.map(item => {
             const newItem = { ...item, renewal: new Date(item.renewal).toLocaleDateString() }
             return newItem
@@ -25,6 +26,6 @@ export const useSoftware = (id) => {
     }
 
     const response = useTable('software', id, { dataTransform })
-
+console.log('response', id, response)
     return response
 }

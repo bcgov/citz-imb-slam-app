@@ -16,5 +16,5 @@ export default function SoftwareFormRead() {
 	const { data } = useSoftware(id);
 	console.log('data', data)
 
-	return <SoftwareForm id={id} initialValues={data} />;
+	return <SoftwareForm id={id} initialValues={data[0]} />;
 }
