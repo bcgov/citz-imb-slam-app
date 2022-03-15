@@ -66,6 +66,6 @@ export const useTable = (tableName, rowId, options = { dataTransform: (data) => 
     const create = createItem.mutateAsync
     const update = changeItem.mutateAsync
     const remove = deleteItem.mutateAsync
-
+        console.log('query', query)
     return { ...query, create, update, remove }
 }

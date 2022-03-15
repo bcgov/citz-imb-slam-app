@@ -25,7 +25,7 @@ export const DateInput = (props) => {
     <Field name={name} id={id}>
       {(props) => {
         const { field, meta } = props;
-        console.log("prop", props);
+        // console.log("prop", props);
         return (
           <div className="flex-large">
             <label htmlFor={id}>
@@ -38,11 +38,11 @@ export const DateInput = (props) => {
               {...field}
               {...remainingProps}
               className={meta.touched && meta.error ? "has-error" : ""}
-              value={
-                props.field.value
-                  ? moment(props.field.value).format("YYYY-MMM-DD")
-                  : ""
-              }
+            //   value={
+            //     props.field.value
+            //       ? moment(props.field.value).format("YYYY-MMM-DD")
+            //       : ""
+            //   }
             />
             {/* <SemanticDatepicker onChange={onChange}               
                 // value={

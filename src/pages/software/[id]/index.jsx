@@ -14,6 +14,7 @@ export default function SoftwareFormRead() {
 
 	const { id } = router.query;
 	const { data } = useSoftware(id);
+	console.log('data', data)
 
 	return <SoftwareForm id={id} initialValues={data} />;
 }
