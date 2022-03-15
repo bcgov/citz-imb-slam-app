@@ -17,6 +17,7 @@ export const SoftwareTable = () => {
 			headerName: 'Renewal Date',
 			type: 'date',
 			width: 200,
+			valueFormatter: (params) => new Date(params.value).toDateString(),
 		},
 		{
 			field: 'quantity',
@@ -28,7 +29,6 @@ export const SoftwareTable = () => {
 			headerName: 'Licence Administrator',
 			width: 200,
 		},
-
 	];
 
 	const { data, isLoading, isError } = useSoftware();
