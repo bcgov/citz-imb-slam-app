@@ -8,17 +8,17 @@ export const fetchAPI = async (endPoint, options) => {
 
     const url = `${window.location.protocol}//${window.location.hostname}${port}/api/${endPoint}`;
 
-    const response = await fetch(url, options);
+    const response = await fetch(url, options)
 
     if (response.ok) {
         if (response.status === HTML_RESPONSE.NO_CONTENT) {
             return;
         } else if (response.status === HTML_RESPONSE.NOT_MODIFIED) {
             console.warn(`${response.status} ${response.statusText} ${endPoint}`);
-            return response.json();
+            return response.json()
         } else {
             if(isDelete) return
-            return response.json();
+            return response.json()
         }
     } else {
         throw new Error(`${response.status} ${response.statusText} for ${url}`);

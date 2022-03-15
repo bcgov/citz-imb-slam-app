@@ -14,8 +14,9 @@ export const useTable = (tableName, rowId) => {
         } else {
             response = await fetchData(tableName);
         }
-
         return response;
+        
+       
     });
 
     const appendItem = (oldValues, item) => [...oldValues, item]
