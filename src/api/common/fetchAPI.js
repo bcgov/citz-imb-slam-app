@@ -4,7 +4,6 @@ const responseTransform = (data) => {
     if (Array.isArray(data)) return data
 
     return [data]
-
 }
 
 export const fetchAPI = async (endPoint, options) => {
