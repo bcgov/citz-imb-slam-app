@@ -13,8 +13,7 @@ export default function SoftwareFormRead() {
 	const router = useRouter();
 
 	const { id } = router.query;
-	const { data } = useSoftware(id);
-	console.log('data', data)
+	const { data = [] } = useSoftware(id);
 
 	return <SoftwareForm id={id} initialValues={data[0]} />;
 }

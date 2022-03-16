@@ -16,7 +16,7 @@ export const useTable = (tableName, rowId, options = { dataTransform: (data) => 
             response = await fetchData(tableName);
         }
 
-        return dataTransform(response)
+        return await dataTransform(response)
     });
 
     const appendItem = (oldValues, item) => [...oldValues, item]

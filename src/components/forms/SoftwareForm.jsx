@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 import * as Yup from 'yup';
 import { Button } from 'components';
 import { FormHeader } from './FormHeader';
-import { TextInput } from './inputs';
+import { TextInput, NumberInput } from './inputs';
 import { DateInput } from './inputs';
 
 /**
@@ -20,12 +20,11 @@ export const SoftwareForm = (props) => {
 			title: '',
 			publisher: '',
 			administrator: '',
-			quantity: '',
+			quantity: 0,
 			renewal: '',
 		},
 		editMode = false,
 	} = props;
-
 	const [readOnly, setReadOnly] = useState(!editMode);
 	const router = useRouter();
 	const { create, update, remove } = useSoftware();
@@ -52,8 +51,6 @@ export const SoftwareForm = (props) => {
 
 	const onDelete = useCallback(
 		(formik) => {
-			console.log('formik', formik);
-			console.log('values.id', formik.values.id);
 			remove(formik.values);
 			formik.resetForm();
 			router.push('/');
@@ -63,6 +60,7 @@ export const SoftwareForm = (props) => {
 
 	const validationSchema = Yup.object({
 		title: Yup.string().required('Software Title is required'),
+		renewal: Yup.date().min(new Date().toDateString())
 	});
 
 	return (
@@ -116,7 +114,7 @@ export const SoftwareForm = (props) => {
 									name='publisher'
 									readOnly={readOnly}
 								/>
-								<DateInput
+								<TextInput
 									label='Renewal Date'
 									id='renewal'
 									name='renewal'
@@ -124,7 +122,7 @@ export const SoftwareForm = (props) => {
 								/>
 							</div>
 							<div className='flex-row'>
-								<TextInput
+								<NumberInput
 									label='Quantity'
 									id='quantity'
 									name='quantity'
