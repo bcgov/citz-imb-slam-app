@@ -1,37 +1,31 @@
+import { Button } from 'components';
 import { Field, Form, Formik } from 'formik';
-import { useSoftware } from 'hooks';
+import { useLicensees } from 'hooks';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 import * as Yup from 'yup';
-import { Button } from 'components';
 import { FormHeader } from './FormHeader';
-import { TextInput, NumberInput } from './inputs';
-import { DateInput } from './inputs';
+import { TextInput } from './inputs';
 
 /**
  *
  * @param {*} props
  * @returns {React.jsx}
  */
-export const SoftwareForm = (props) => {
+export const LicenseeForm = (props) => {
 	const {
 		initialValues = {
 			id: 'temp',
-			title: '',
-			publisher: '',
-			administrator: '',
-			quantity: 0,
-			renewal: '',
+			name: '',
 		},
 		editMode = false,
 	} = props;
 	const [readOnly, setReadOnly] = useState(!editMode);
 	const router = useRouter();
-	const { create, update, remove } = useSoftware();
+	const { create, update, remove } = useLicensees();
 
 	const onSubmit = async (body, onSubmitProps) => {
 		onSubmitProps.setSubmitting(false);
-		console.log('editMode', editMode)
 		if (editMode) {
 			create(body);
 		} else {
@@ -39,13 +33,13 @@ export const SoftwareForm = (props) => {
 		}
 
 		onSubmitProps.resetForm();
-		router.push('/');
+		router.push('/licensees');
 	};
 
 	const onCancel = useCallback(
 		(onCancelProps) => {
 			onCancelProps.resetForm();
-			router.push('/');
+			router.push('/licensees');
 		},
 		[router],
 	);
@@ -54,14 +48,13 @@ export const SoftwareForm = (props) => {
 		(formik) => {
 			remove(formik.values);
 			formik.resetForm();
-			router.push('/');
+			router.push('/licensees');
 		},
 		[remove, router],
 	);
 
 	const validationSchema = Yup.object({
-		title: Yup.string().required('Software Title is required'),
-		renewal: Yup.date('date must be after today').min(new Date().toDateString())
+		name: Yup.string().required('Name is required'),
 	});
 
 	return (
@@ -76,8 +69,8 @@ export const SoftwareForm = (props) => {
 				{(formik) => (
 					<>
 						<FormHeader
-							linkText={'Back to Software List'}
-							linkURL={'/'}
+							linkText={'Back to Licensee List'}
+							linkURL={'/licensees'}
 							readOnly={readOnly}
 							setReadOnly={setReadOnly}
 							onDelete={onDelete}
@@ -88,11 +81,11 @@ export const SoftwareForm = (props) => {
 							<div className='flex-row'>
 								<div className='flex-large'>
 									{editMode ? (
-										<h1 className='form-title'>Add Software</h1>
+										<h1 className='form-title'>Add Licensee</h1>
 									) : readOnly ? (
-										<h1 className='form-title'>View Software</h1>
+										<h1 className='form-title'>View Licensee</h1>
 									) : (
-										<h1 className='form-title'>Update Software</h1>
+										<h1 className='form-title'>Update Licensee</h1>
 									)}
 								</div>
 							</div>
@@ -101,38 +94,10 @@ export const SoftwareForm = (props) => {
 							</div>
 							<div className='flex-row'>
 								<TextInput
-									label='Software Title'
-									id='title'
-									name='title'
+									label='Licensee Name'
+									id='name'
+									name='name'
 									required={true}
-									readOnly={readOnly}
-								/>
-							</div>
-							<div className='flex-row'>
-								<TextInput
-									label='Publisher'
-									id='publisher'
-									name='publisher'
-									readOnly={readOnly}
-								/>
-								<DateInput
-									label='Renewal Date'
-									id='renewal'
-									name='renewal'
-									readOnly={readOnly}
-								/>
-							</div>
-							<div className='flex-row'>
-								<NumberInput
-									label='Quantity'
-									id='quantity'
-									name='quantity'
-									readOnly={readOnly}
-								/>
-								<TextInput
-									label='Licence Administrator'
-									id='administrator'
-									name='administrator'
 									readOnly={readOnly}
 								/>
 							</div>

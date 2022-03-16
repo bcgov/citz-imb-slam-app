@@ -29,6 +29,7 @@ export const fetchAPI = async (endPoint, options) => {
             return responseTransform(data)
         }
     } else {
-        throw new Error(`${response.status} ${response.statusText} for ${url}`);
+        console.error(`${response.status} ${response.statusText} for ${url}`);
+        console.warn('response', response)
     }
 }

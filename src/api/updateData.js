@@ -15,9 +15,11 @@ import { fetchAPI } from "./common/fetchAPI"
  */
 export const updateData = async (endPoint, options) => {
 
+    const { created, modified, ...body } = options.body
+
     const fetchOptions = {
         method: 'put',
-        body: JSON.stringify(options.body),
+        body: JSON.stringify(body),
         headers: {
             'content-type': 'application/json',
             accept: 'application/json',
