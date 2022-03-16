@@ -1,4 +1,4 @@
-import { useTable } from "./common/useTable"
+import { useTable } from "./common/useTable";
 
 /**
  * @description a hook for retrieving, caching, and manipulating data.  it extends react-query
@@ -14,18 +14,20 @@ import { useTable } from "./common/useTable"
  */
 
 export const useSoftware = (id) => {
+  const dataTransform = (data) => {
+    console.log("dataTransform", data);
+    const newData = data.map((item) => {
+      const newItem = {
+        ...item,
+        renewal: new Date(item.renewal).toLocaleDateString(),
+      };
+      return newItem;
+    });
+    console.log('newdata', newData);
+    return newData;
+  };
 
-    const dataTransform = (data) => {
-    console.log('dataTransform', data)
-        const newData = data.map(item => {
-            const newItem = { ...item, renewal: new Date(item.renewal).toLocaleDateString() }
-            return newItem
-        })
-        console.log(newData)
-        return newData
-    }
-
-    const response = useTable('software', id, { dataTransform })
-console.log('response', id, response)
-    return response
-}
+  const response = useTable("software", id, { dataTransform });
+  console.log("response", id, response);
+  return response;
+};
