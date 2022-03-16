@@ -4,12 +4,12 @@ import { TableHeader } from './common/TableHeader';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
 /**
- *
+ * Presents a table with all the Software Titles listed.
  * @returns {React.jsx}
  */
 export const SoftwareTable = () => {
 	const columns = [
-		// { field: 'id', headerName: 'ID', width: 275 },
+		{ field: 'id', headerName: 'ID', width: 300 },
 		{ field: 'title', headerName: 'Software Title', width: 250 },
 		{ field: 'publisher', headerName: 'Publisher', width: 200 },
 		{
@@ -51,7 +51,11 @@ export const SoftwareTable = () => {
 
 	return (
 		<div className='app'>
-			<TableHeader title={'Software List'} buttonText={'+ Add Software'} />
+			<TableHeader
+				title={'Software List'}
+				buttonText={'+ Add Software'}
+				buttonLink={'/software/create'}
+			/>
 			<div className='app-body'>
 				<TableGrid
 					listName={'software'}

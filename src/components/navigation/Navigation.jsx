@@ -1,17 +1,19 @@
-import Image from 'next/image';
-import React from 'react';
 import bcgovlogo from 'assets/images/bcgov-h.png';
+import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 /**
  *
  * @returns {React.jsx}
  */
 export const Navigation = () => {
+	const router = useRouter();
 	return (
 		<nav className='nav'>
 			<div className='nav-container'>
-				<Link href='/' >
+				<Link href='/'>
 					<a className='nav-brand'>
 						<div className='logo-block'>
 							<Image
@@ -28,19 +30,10 @@ export const Navigation = () => {
 				<div className='nav-group'>
 					<ul className='nav-item-wrapper'>
 						<li className='nav-item'>
-							<a className='nav-link' to='/path1'>
-								Link 1
-							</a>
+							<a onClick={() => router.push('/')}>Software</a>
 						</li>
 						<li className='nav-item'>
-							<a className='nav-link' to='/path2'>
-								Link 2
-							</a>
-						</li>
-						<li className='nav-item'>
-							<a className='nav-link' to='/path3'>
-								Link 3
-							</a>
+							<a onClick={() => router.push('/licensees')}>Licensees</a>
 						</li>
 					</ul>
 				</div>

@@ -19,7 +19,6 @@ export const useSoftware = (id) => {
             const newItem = { ...item, renewal: new Date(item.renewal).toLocaleDateString() }
             return newItem
         })
-        console.log(newData)
         return newData
     }
 

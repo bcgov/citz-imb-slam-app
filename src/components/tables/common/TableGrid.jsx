@@ -1,7 +1,7 @@
 import { Alert, AlertTitle } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 /**
- *
+ * Presents a table
  * @param {*} props
  * @returns {React.jsx}
  */
