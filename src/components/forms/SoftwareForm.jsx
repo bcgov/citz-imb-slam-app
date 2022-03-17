@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { Button } from 'components';
 import { FormHeader } from './FormHeader';
 import { TextInput, NumberInput } from './inputs';
-import { DateInput } from './inputs';
+import { DateInput, TextArea } from './inputs';
 
 /**
  *
@@ -84,7 +84,7 @@ export const SoftwareForm = (props) => {
 							formik={formik}
 						/>
 
-						<Form className='software'>
+						<Form className='app-body'>
 							<div className='flex-row'>
 								<div className='flex-large'>
 									{editMode ? (
@@ -133,6 +133,14 @@ export const SoftwareForm = (props) => {
 									label='Licence Administrator'
 									id='administrator'
 									name='administrator'
+									readOnly={readOnly}
+								/>
+							</div>
+							<div className='flex-row'>
+								<TextArea
+									label='Note'
+									id='note'
+									name='note'
 									readOnly={readOnly}
 								/>
 							</div>

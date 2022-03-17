@@ -35,6 +35,11 @@ export const SoftwareTable = () => {
 			headerName: 'Licence Administrator',
 			width: 200,
 		},
+		{
+			field: 'note',
+			headerName: 'Note',
+			width: 300,
+		},
 	];
 
 	const { data, isLoading, isError } = useSoftware();

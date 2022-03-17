@@ -77,7 +77,7 @@ export const LicenseeForm = (props) => {
 							formik={formik}
 						/>
 
-						<Form className='software'>
+						<Form className='app-body'>
 							<div className='flex-row'>
 								<div className='flex-large'>
 									{editMode ? (
