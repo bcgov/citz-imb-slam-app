@@ -3,11 +3,13 @@ import { TableGrid } from './common/TableGrid';
 import { TableHeader } from './common/TableHeader';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
+import clsx from 'clsx';
 /**
  * Presents a table with all the Software Titles listed.
  * @returns {React.jsx}
  */
 export const SoftwareTable = () => {
+
 	const columns = [
 		{ field: 'id', headerName: 'ID', width: 300 },
 		{ field: 'title', headerName: 'Software Title', width: 250 },
@@ -17,7 +19,11 @@ export const SoftwareTable = () => {
 			headerName: 'Renewal Date',
 			type: 'date',
 			width: 200,
-			valueFormatter: (params) => new Date(params.value).toDateString(),
+			valueFormatter: (params) => new Date(params.value).toISOString().split('T')[0].replace(/ /g, '-'),
+			cellClassName: (params) =>
+			clsx('cell-render', {
+			  warning: new Date(params.value) < new Date().setDate(new Date().getDate() + 30),
+			}),
 		},
 		{
 			field: 'quantity',

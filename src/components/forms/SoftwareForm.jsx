@@ -115,7 +115,7 @@ export const SoftwareForm = (props) => {
 									name='publisher'
 									readOnly={readOnly}
 								/>
-								<TextInput
+								<DateInput
 									label='Renewal Date'
 									id='renewal'
 									name='renewal'

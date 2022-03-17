@@ -5,6 +5,7 @@ import { useState } from 'react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
+
 /**
  *
  * @param {*} props
@@ -27,27 +28,12 @@ export const DateInput = (props) => {
 							{label}
 							{required ? <span>*</span> : null}
 						</label>
-
 						<input
 							type='date'
 							{...field}
 							{...remainingProps}
 							className={meta.touched && meta.error ? 'has-error' : ''}
-							// value={
-							// 	props.field.value
-							// 		? moment(props.field.value).format('YYYY-MMM-DD')
-							// 		: ''
-							// }
 						/>
-						{/* <SemanticDatepicker
-							onChange={onChange}
-							// value={
-							// 	props.field.value
-							// 		? moment(props.field.value).format('YYYY-MM-DD')
-							// 		: ''
-							// }
-							value={props.field.value}
-						/> */}
 						{meta.touched && meta.error ? (
 							<ErrorMessage>{meta.error}</ErrorMessage>
 						) : null}

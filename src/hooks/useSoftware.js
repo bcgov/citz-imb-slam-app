@@ -16,9 +16,11 @@ import { useTable } from "./common/useTable";
 export const useSoftware = (id) => {
     const dataTransform = (data) => {
         const newData = data.map(item => {
-            const newItem = { ...item, renewal: new Date(item.renewal).toLocaleDateString() }
+            const newItem = { ...item, renewal: new Date(item.renewal).toISOString().split('T')[0] }
+
             return newItem
         })
+        
         return newData
     }
 
