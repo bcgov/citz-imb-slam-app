@@ -20,7 +20,7 @@ export const TextInput = (props) => {
 							{label}
 							{required ? <span>*</span> : null}
 						</label>
-						<input type='text' {...field} {...remainingProps} className={ meta.touched && meta.error ? "has-error" : "" }/>
+						<input {...field} {...remainingProps} className={ meta.touched && meta.error ? "has-error" : "" }/>
 						{meta.touched && meta.error ? (
 							<ErrorMessage>{meta.error}</ErrorMessage>
 						) : null}

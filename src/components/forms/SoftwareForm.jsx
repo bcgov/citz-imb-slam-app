@@ -104,6 +104,7 @@ export const SoftwareForm = (props) => {
 									label='Software Title'
 									id='title'
 									name='title'
+									type='text'
 									required={true}
 									readOnly={readOnly}
 								/>
@@ -113,34 +114,38 @@ export const SoftwareForm = (props) => {
 									label='Publisher'
 									id='publisher'
 									name='publisher'
+									type='text'
 									readOnly={readOnly}
 								/>
-								<DateInput
+								<TextInput
 									label='Renewal Date'
 									id='renewal'
 									name='renewal'
+									type='date'
 									readOnly={readOnly}
 								/>
 							</div>
 							<div className='flex-row'>
-								<NumberInput
+								<TextInput
 									label='Quantity'
 									id='quantity'
 									name='quantity'
+									type='number'
 									readOnly={readOnly}
 								/>
 								<TextInput
 									label='Licence Administrator'
 									id='administrator'
 									name='administrator'
+									type='text'
 									readOnly={readOnly}
 								/>
 							</div>
 							<div className='flex-row'>
 								<TextArea
-									label='Note'
-									id='note'
-									name='note'
+									label='Notes'
+									id='notes'
+									name='notes'
 									readOnly={readOnly}
 								/>
 							</div>

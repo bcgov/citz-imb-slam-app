@@ -17,7 +17,6 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
  */
 export const SoftwareTable = () => {
 	const columns = [
-		{ field: 'id', headerName: 'ID', width: 300 },
 		{ field: 'title', headerName: 'Software Title', width: 250 },
 		{ field: 'publisher', headerName: 'Publisher', width: 200 },
 		{
@@ -53,8 +52,8 @@ export const SoftwareTable = () => {
 			width: 200,
 		},
 		{
-			field: 'note',
-			headerName: 'Note',
+			field: 'notes',
+			headerName: 'Notes',
 			width: 300,
 		},
 		{
@@ -67,7 +66,7 @@ export const SoftwareTable = () => {
 						<IconButton
 							color='primary'
 							aria-label='go to details'
-							onClick={onDetailsClick}>
+							onClick={()=>onDetailsClick(params.row.id)}>
 							<MoreIcon />
 						</IconButton>
 						<UserSearchDialog id={params.row.id} />
@@ -89,8 +88,8 @@ export const SoftwareTable = () => {
 	const router = useRouter();
 
 	const onDetailsClick = useCallback(
-		(props) => {
-			router.push(`/software/${props.id}`);
+		(id) => {
+			router.push(`/software/${id}`);
 		},
 		[router],
 	);
