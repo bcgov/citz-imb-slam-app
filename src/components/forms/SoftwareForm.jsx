@@ -7,6 +7,7 @@ import { Button } from 'components';
 import { FormHeader } from './FormHeader';
 import { TextInput, NumberInput } from './inputs';
 import { DateInput, TextArea } from './inputs';
+import { AvatarTitle } from 'components/tables/common/AvatarTitle';
 
 /**
  *
@@ -98,6 +99,7 @@ export const SoftwareForm = (props) => {
 							</div>
 							<div>
 								<Field name='id' type='hidden' />
+								<AvatarTitle title={formik.values.title} />
 							</div>
 							<div className='flex-row'>
 								<TextInput
