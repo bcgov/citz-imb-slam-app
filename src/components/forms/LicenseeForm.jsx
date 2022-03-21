@@ -1,12 +1,12 @@
-import { Button } from 'components';
-import { AvatarTitle } from 'components/tables/common/AvatarTitle';
+import { Chip } from '@mui/material';
+import { Button, AvatarChip } from 'components';
 import { Field, Form, Formik } from 'formik';
 import { useLicensees } from 'hooks';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 import * as Yup from 'yup';
 import { FormHeader } from './FormHeader';
-import { TextInput } from './inputs';
+import { MultipleSelectChip, TextInput } from './inputs';
 
 /**
  *
@@ -18,6 +18,7 @@ export const LicenseeForm = (props) => {
 		initialValues = {
 			id: 'temp',
 			name: '',
+			licenses: []
 		},
 		editMode = false,
 	} = props;
@@ -68,7 +69,7 @@ export const LicenseeForm = (props) => {
 				validateOnBlur={false}
 				onSubmit={onSubmit}>
 				{(formik) => {
-					console.log('formik', formik);
+					console.log('formik', formik)
 					return (
 						<>
 							<FormHeader
@@ -94,7 +95,7 @@ export const LicenseeForm = (props) => {
 								</div>
 								<div>
 									<Field name='id' type='hidden' />
-									<AvatarTitle title={formik.values.name} />
+									<AvatarChip title={formik.values.name} />
 								</div>
 								<div className='flex-row'>
 									<TextInput
@@ -105,6 +106,19 @@ export const LicenseeForm = (props) => {
 										required={true}
 										readOnly={readOnly}
 									/>
+								</div>
+								<div className='flex-row'>
+									{readOnly ? (
+										formik.values.licenses.map((license) => (
+											<AvatarChip key={license.id} title={license.title} />
+										))
+									) : (
+										<MultipleSelectChip
+											label='Assigned Licenses'
+											id='licenses'
+											name='licenses'
+										/>
+									)}
 								</div>
 								<div className='flex-row'>
 									<div className='flex-large button-group'>

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
-import { AvatarTitle } from './common/AvatarTitle';
+import { AvatarChip } from 'components';
 import { QuantityAssigned } from './common/QuantityAssigned';
 import { TableGrid } from './common/TableGrid';
 import { TableHeader } from './common/TableHeader';
@@ -20,7 +20,7 @@ export const SoftwareTable = () => {
 			field: 'title',
 			headerName: 'Software Title',
 			width: 250,
-			renderCell: (params) => <AvatarTitle title={params.value} />,
+			renderCell: (params) => <AvatarChip title={params.value} />,
 		},
 		{ field: 'publisher', headerName: 'Publisher', width: 200 },
 		{

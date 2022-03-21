@@ -3,11 +3,10 @@ import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 import * as Yup from 'yup';
-import { Button } from 'components';
+import { Button, AvatarChip } from 'components';
 import { FormHeader } from './FormHeader';
 import { TextInput, NumberInput } from './inputs';
 import { DateInput, TextArea } from './inputs';
-import { AvatarTitle } from 'components/tables/common/AvatarTitle';
 
 /**
  *
@@ -62,7 +61,10 @@ export const SoftwareForm = (props) => {
 
 	const validationSchema = Yup.object({
 		title: Yup.string().required('Software Title is required'),
-		renewal: Yup.date('date must be after today').min(new Date().toDateString())
+		renewal: Yup.date('date must be after today').min(
+			new Date().toDateString(),
+			'date must be after today',
+		),
 	});
 
 	return (
@@ -84,7 +86,6 @@ export const SoftwareForm = (props) => {
 							onDelete={onDelete}
 							formik={formik}
 						/>
-
 						<Form className='app-body'>
 							<div className='flex-row'>
 								<div className='flex-large'>
@@ -99,7 +100,7 @@ export const SoftwareForm = (props) => {
 							</div>
 							<div>
 								<Field name='id' type='hidden' />
-								<AvatarTitle title={formik.values.title} />
+								<AvatarChip title={formik.values.title} />
 							</div>
 							<div className='flex-row'>
 								<TextInput

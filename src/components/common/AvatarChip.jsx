@@ -1,8 +1,8 @@
-import { Avatar, Stack } from '@mui/material';
+import { Avatar, Chip } from '@mui/material';
 import { useCallback } from 'react';
 
-export const AvatarTitle = (props) => {
-	const { title, src } = props;
+export const AvatarChip = (props) => {
+	const { title, size = 24, showTitle = true } = props;
 
 	const stringToColor = useCallback((string) => {
 		let hash = 0;
@@ -25,16 +25,15 @@ export const AvatarTitle = (props) => {
 	}, []);
 
 	return (
-		<Stack direction={'row'} spacing={1}>
-			<Avatar
-				sx={{
-					width: 24,
-					height: 24,
-					bgcolor: stringToColor(title),
-				}}>
-				{title.charAt(0).toUpperCase()}
-			</Avatar>
-			<span>{title}</span>
-		</Stack>
+		<Chip
+			avatar={
+				<Avatar
+					alt={title}
+					sx={{ width: size, height: size, bgcolor: stringToColor(title) }}>
+					{title.charAt(0).toUpperCase()}
+				</Avatar>
+			}
+			label={title}
+		/>
 	);
 };

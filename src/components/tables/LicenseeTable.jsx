@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material';
 import { useLicensees } from 'hooks';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
-import { AvatarTitle } from './common/AvatarTitle';
+import { AvatarChip } from 'components';
 import { TableGrid } from './common/TableGrid';
 import { TableHeader } from './common/TableHeader';
 
@@ -18,7 +18,7 @@ export const LicenseeTable = () => {
 			field: 'name',
 			headerName: 'Licensee',
 			width: 250,
-			renderCell: (params) => <AvatarTitle title={params.value} />,
+			renderCell: (params) => <AvatarChip title={params.value} />,
 		},
 		{
 			field: 'actions',

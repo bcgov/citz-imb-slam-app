@@ -14,7 +14,20 @@ import { useTable } from "./common/useTable";
  */
 
 export const useLicensees = (id) => {
-    const response = useTable('licensee', id)
+    const dataTransform = (data) => {
+
+        const newData = data.map(item => {
+            const newItem = item
+
+            newItem.licenses = item.__softwareConnection__.map(software => software.__software__)
+
+            return newItem
+        })
+
+        return newData
+    }
+
+    const response = useTable('licensee', id, { dataTransform })
 
     return response
 }

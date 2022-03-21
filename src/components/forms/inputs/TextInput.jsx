@@ -14,6 +14,7 @@ export const TextInput = (props) => {
 		<Field name={name} id={id} >
 			{(props) => {
 				const { field, meta } = props;
+				console.log('TextInput field', field);
 				return (
 					<div className='flex-large'>
 						<label htmlFor={id}>
