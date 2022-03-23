@@ -1,4 +1,4 @@
-import { Avatar, Chip } from '@mui/material';
+import { Avatar, Chip, Typography } from '@mui/material';
 import { useCallback } from 'react';
 
 export const AvatarChip = (props) => {
@@ -29,8 +29,12 @@ export const AvatarChip = (props) => {
 			avatar={
 				<Avatar
 					alt={title}
-					sx={{ width: size, height: size, bgcolor: stringToColor(title) }}>
-					{title.charAt(0).toUpperCase()}
+					sx={{
+						width: size,
+						height: size,
+						bgcolor: stringToColor(title),
+					}}>
+					<Typography variant='span' sx={{color: '#ffffff'}}>{title.charAt(0).toUpperCase()}</Typography>
 				</Avatar>
 			}
 			label={title}
