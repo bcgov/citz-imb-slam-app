@@ -50,14 +50,12 @@ export const MultipleSelectChip = (props) => {
 
 	const x = useSoftware();
 	const { data = [] } = x;
-	console.log('x', x);
+
 
 	return (
 		<Field name={name} id={id}>
 			{(props) => {
 				const { field, meta } = props;
-				console.log('field', field);
-				console.log('meta', meta);
 				return (
 					<div className='flex-large'>
 						<label htmlFor={id}>
@@ -73,12 +71,12 @@ export const MultipleSelectChip = (props) => {
 							multiple
 							value={field.value.map((value) => value.title)}
 							onChange={(event) => {
-								console.log('event', event.target)
+
 								field.onChange(event.target.value)
 							}}
 							input={<OutlinedInput id='select-multiple-chip' label='Chip' />}
 							renderValue={(selected) => {
-								console.log('selected', selected);
+
 								return (
 									<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
 										{selected.map((value) => (

@@ -69,7 +69,6 @@ export const LicenseeForm = (props) => {
 				validateOnBlur={false}
 				onSubmit={onSubmit}>
 				{(formik) => {
-					console.log('formik', formik)
 					return (
 						<>
 							<FormHeader
