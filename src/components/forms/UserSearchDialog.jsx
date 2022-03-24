@@ -6,7 +6,6 @@ export const UserSearchDialog = ({ id }) => {
 	const [anchorEl, setAnchorEl] = useState(false);
 
 	const handleClick = (event) => {
-		console.log('i clicked', open);
 		setAnchorEl(anchorEl ? null : event.currentTarget);
 	};
 

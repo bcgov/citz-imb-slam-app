@@ -31,7 +31,7 @@ export const SoftwareForm = (props) => {
 
 	const onSubmit = async (body, onSubmitProps) => {
 		onSubmitProps.setSubmitting(false);
-		console.log('editMode', editMode)
+		
 		if (editMode) {
 			create(body);
 		} else {
