@@ -7,18 +7,36 @@ import { AvatarChip } from 'components';
 import { TableGrid } from './common/TableGrid';
 import { TableHeader } from './common/TableHeader';
 
+import { Chip } from '@mui/material';
+
 /**
  * Presents a table with all the Licensees listed.
  * @returns {React.jsx}
  */
 export const LicenseeTable = () => {
+
+
 	const columns = [
 		// { field: 'id', headerName: 'ID', width: 300 },
 		{
 			field: 'name',
 			headerName: 'Licensee',
 			width: 250,
-			renderCell: (params) => <AvatarChip title={params.value} />,
+			// renderCell: (params) => <AvatarChip title={params.value} />,
+		},
+		{
+			field: 'software',
+			headerName: 'Software',
+			width: 450,
+			renderCell: (params) => {
+				// Have to use Stringfy and Parse as DataGrid can't handle arrays
+				const values = JSON.parse(params.value)
+				return (
+					<>
+					{values.map(value=><Chip label={value} key={value} />)}
+					</>
+				);
+			},
 		},
 		{
 			field: 'actions',

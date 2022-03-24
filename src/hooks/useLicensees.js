@@ -1,3 +1,5 @@
+import { ClassSharp } from "@mui/icons-material";
+import { useCallback } from "react";
 import { useTable } from "./common/useTable";
 
 /**
@@ -14,20 +16,17 @@ import { useTable } from "./common/useTable";
  */
 
 export const useLicensees = (id) => {
-    const dataTransform = (data) => {
+    const dataTransform = useCallback((data) => {
 
         const newData = data.map(item => {
-            const newItem = item
-
-            newItem.licenses = item.__softwareConnection__.map(software => software.__software__)
-
+            const newItem = { ...item, software: JSON.stringify(item.__softwareConnection__.map(software => software.__software__.title))}
             return newItem
+            
         })
-
         return newData
-    }
+    },[])
 
-    const response = useTable('licensee', id, { dataTransform })
+    const response = useTable('licensee', id, {dataTransform})
 
     return response
 }

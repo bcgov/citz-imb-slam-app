@@ -34,7 +34,7 @@ export const SoftwareTable = () => {
 				clsx('cell-render', {
 					warning:
 						new Date(params.value) <
-						new Date().setDate(new Date().getDate() + 30),
+						new Date().setDate(new Date().getDate() + 90),
 				}),
 		},
 		{
