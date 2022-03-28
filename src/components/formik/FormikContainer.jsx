@@ -1,26 +1,26 @@
-import { Box, Grid, Typography } from '@mui/material';
-import { BackButton } from 'components';
-import { SaveCancelButtons } from 'components/buttons/SaveCancelButtons';
+import { useState } from 'react';
+import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { BackButton, SaveCancelButtons } from 'components';
 import { Form, Formik } from 'formik';
-import { useForm, useSoftware } from 'hooks';
+import { useForm } from 'hooks';
 import { FormikControls } from './inputs/FormikControls';
-
-const fakeHook = () => {
-	return {
-		create: (body) => {
-			console.log('create', body);
-		},
-		update: (body) => {
-			console.log('update', body);
-		},
-	};
-};
+import { useRouter } from 'next/router';
 
 export const FormikContainer = (props) => {
-	const { formTitle = '', formFields = [], isNew = true } = props;
+	const { formTitle = '', formFields = [], isNew = true, dataHook } = props;
 
-	const { initialValues, validationSchema, transformedFields, create, update } =
-		useForm(formFields, fakeHook);
+	const [editMode, setEditMode] = useState(isNew);
+
+	const route = useRouter();
+
+	const {
+		initialValues,
+		validationSchema,
+		transformedFields,
+		create,
+		update,
+		remove,
+	} = useForm(formFields, dataHook);
 
 	const submitHandler = (body) => {
 		if (isNew) {
@@ -30,9 +30,34 @@ export const FormikContainer = (props) => {
 		}
 	};
 
+	const deleteHandler = async () => {
+		await remove(initialValues.id);
+		route.back();
+	};
+
+	const editHandler = () => {
+		setEditMode((mode) => !mode);
+	};
+
 	return (
 		<>
-			<BackButton />
+			<Stack direction={'row'} justifyContent='space-between' marginBottom={2}>
+				<BackButton />
+				{editMode ? null : (
+					<Stack direction={'row'} justifyContent='flex-end' spacing={2}>
+						<Button
+							id='delete'
+							onClick={deleteHandler}
+							variant='outlined'
+							color='warning'>
+							Delete
+						</Button>
+						<Button id='edit' onClick={editHandler} variant='contained'>
+							Edit
+						</Button>
+					</Stack>
+				)}
+			</Stack>
 			<Formik
 				initialValues={initialValues}
 				validationSchema={validationSchema}
@@ -56,12 +81,15 @@ export const FormikContainer = (props) => {
 											return <FormikControls {...field} key={key} />;
 										return (
 											<Grid key={key} item {...breakPoints}>
-												<FormikControls {...field} />
+												<FormikControls disabled={!editMode} {...field} />
 											</Grid>
 										);
 									})}
 								</Grid>
-								<SaveCancelButtons resetForm={resetForm} />
+								<SaveCancelButtons
+									ShowSaveButton={editMode}
+									resetForm={resetForm}
+								/>
 							</Box>
 						</Form>
 					);

@@ -2,6 +2,8 @@ import React from 'react';
 import { HiddenFormikControl } from './HiddenFormikControl';
 import { InputFormikControl } from './InputFormikControl';
 import { TextareaFormikControl } from './TextareaFormikControl';
+import { SelectFormikControl } from './SelectFormikControl';
+import { SelectChipFormikControl } from './SelectChipFormikControl';
 
 export const FormikControls = (props) => {
 	const { control, ...remainingProps } = props;
@@ -18,7 +20,9 @@ export const FormikControls = (props) => {
 		case 'date':
 			return <InputFormikControl {...remainingProps} type='date' />;
 		case 'select':
-		// return <SelectFormikControl {...remainingProps} />;
+			return <SelectFormikControl {...remainingProps} />;
+		case 'selectChip':
+			return <SelectChipFormikControl {...remainingProps} />;
 		case 'radio':
 		// return <RadioFormikControl {...remainingProps} />;
 		case 'checkbox':

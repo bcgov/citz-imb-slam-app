@@ -1,14 +1,15 @@
+import { MenuItem, Select } from '@mui/material';
 import { Field } from 'formik';
 import { BaseControl } from './BaseControl';
-import { Input } from '@mui/material';
 
-export const InputFormikControl = (props) => {
+export const SelectFormikControl = (props) => {
 	const {
 		name,
 		label,
 		required,
 		type = 'text',
 		disabled,
+		options,
 		...remainingProps
 	} = props;
 
@@ -20,12 +21,16 @@ export const InputFormikControl = (props) => {
 					required={required}
 					label={label}
 					helperText={form.errors[field.name]}>
-					<Input
+					<Select
+						sx={{ marginTop: 2 }}
 						{...field}
-						disableUnderline={true}
-						type={type}
-						disabled={disabled}
-					/>
+						disabled={disabled}>
+						{options.map((option, key) => (
+							<MenuItem key={key} value={option}>
+								{option}
+							</MenuItem>
+						))}
+					</Select>
 				</BaseControl>
 			)}
 		</Field>

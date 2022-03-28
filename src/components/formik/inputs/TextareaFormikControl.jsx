@@ -1,9 +1,9 @@
+import { TextareaAutosize } from '@mui/material';
 import { Field } from 'formik';
 import { BaseControl } from './BaseControl';
-import { Input, TextareaAutosize } from '@mui/material';
 
 export const TextareaFormikControl = (props) => {
-	const { name, label, required, ...remainingProps } = props;
+	const { name, label, required, disabled, ...remainingProps } = props;
 
 	return (
 		<Field name={name} {...remainingProps}>
@@ -13,7 +13,7 @@ export const TextareaFormikControl = (props) => {
 					required={required}
 					label={label}
 					helperText={form.errors[field.name]}>
-					<TextareaAutosize {...field} />
+					<TextareaAutosize {...field} disabled={disabled} />
 				</BaseControl>
 			)}
 		</Field>
