@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import 'styles/scss/main.scss';
 import { Navigation } from 'components';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { Box, Container, Paper } from '@mui/material';
 
 const queryClient = new QueryClient();
 
@@ -16,7 +17,13 @@ function Main({ Component, pageProps }) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Navigation />
-			<Component {...pageProps} />
+			<Box my={11}>
+				<Container maxWidth='xl'>
+					{/* <Paper elevation={2}> */}
+						<Component {...pageProps} />
+					{/* </Paper> */}
+				</Container>
+			</Box>
 			{/* <ReactQueryDevtools /> */}
 		</QueryClientProvider>
 	);
