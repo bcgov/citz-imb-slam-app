@@ -7,6 +7,7 @@ import { useCallback, useState } from 'react';
 import * as Yup from 'yup';
 import { FormHeader } from './FormHeader';
 import { MultipleSelectChip, TextInput } from './inputs';
+import Select from 'react-select'   
 
 /**
  *
@@ -23,6 +24,14 @@ export const LicenseeForm = (props) => {
 		editMode = false,
 	} = props;
 	const [readOnly, setReadOnly] = useState(!editMode);
+
+	const [selectedOption, setSelectedOption] = useState(null);
+	const options = [
+		{ value: 'chocolate', label: 'Chocolate' },
+		{ value: 'strawberry', label: 'Strawberry' },
+		{ value: 'vanilla', label: 'Vanilla' },
+	  ];
+
 	const router = useRouter();
 	const { create, update, remove } = useLicensees();
 
@@ -58,6 +67,7 @@ export const LicenseeForm = (props) => {
 	const validationSchema = Yup.object({
 		name: Yup.string().required('Name is required'),
 	});
+
 
 	return (
 		<div className='app'>
@@ -106,7 +116,7 @@ export const LicenseeForm = (props) => {
 										readOnly={readOnly}
 									/>
 								</div>
-								<div className='flex-row'>
+								{/* <div className='flex-row'>
 									{readOnly ? (
 										formik.values.licenses.map((license) => (
 											<AvatarChip key={license.id} title={license.title} />
@@ -118,6 +128,16 @@ export const LicenseeForm = (props) => {
 											name='licenses'
 										/>
 									)}
+								</div> */}
+								<div className='flex-row'>
+								<Select
+        defaultValue={selectedOption}
+        onChange={setSelectedOption}
+        options={options}
+      />
+								</div>
+								<div className='flex-row'>
+
 								</div>
 								<div className='flex-row'>
 									<div className='flex-large button-group'>

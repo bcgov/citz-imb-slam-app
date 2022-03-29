@@ -9,7 +9,6 @@ export const TextInput = (props) => {
 	const { label, name, required = false, id, ...remainingProps } = props;
 
 
-
 	return (
 		<Field name={name} id={id} >
 			{(props) => {
