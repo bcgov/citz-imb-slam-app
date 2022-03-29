@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 export const useForm = (dataHook = () => { }, id) => {
     const dataHookResponse = dataHook(id)
 
-
     const initialValues = useMemo(() => {
         if (dataHookResponse.isLoading || dataHookResponse.isError) return {}
         const values = {};

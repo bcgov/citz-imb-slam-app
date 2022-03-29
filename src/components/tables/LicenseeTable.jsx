@@ -14,6 +14,8 @@ import { Chip } from '@mui/material';
  * @returns {React.jsx}
  */
 export const LicenseeTable = () => {
+	const router = useRouter();
+
 	const columns = [
 		// { field: 'id', headerName: 'ID', width: 300 },
 		{
@@ -26,7 +28,16 @@ export const LicenseeTable = () => {
 			field: 'software',
 			headerName: 'Software',
 			width: 450,
+			sortable: false,
+			hideSortIcons: true,
+			filterable: false,
+			groupable: false,
 			renderCell: (params) => {
+				/*
+					MUI DataGrid expects params.value to be number, object, string, or boolean, but we pass in an array
+					this generates an error in the console, but does not hinder rendering the page
+					for now, we will ignore the error until we can find a way to either fix it, or that MUI changes it
+				*/
 				return (
 					<>
 						{params.value.map(({ value, id }) => (
@@ -45,7 +56,7 @@ export const LicenseeTable = () => {
 					<IconButton
 						color='primary'
 						aria-label='go to details'
-						onClick={() => onDetailsClick(params.row.id)}>
+						onClick={() => router.push(`/licensees/${params.row.id}`)}>
 						<MoreHorizIcon color='action' />
 					</IconButton>
 				);
@@ -61,15 +72,6 @@ export const LicenseeTable = () => {
 
 		return data;
 	}, [data, isLoading, isError]);
-
-	const router = useRouter();
-
-	const onDetailsClick = useCallback(
-		(id) => {
-			router.push(`/licensees/${id}`);
-		},
-		[router],
-	);
 
 	return (
 		<div className='app'>

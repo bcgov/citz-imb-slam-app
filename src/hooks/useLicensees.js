@@ -65,31 +65,41 @@ export const useLicensees = (licenseeId) => {
                 name: 'software',
                 label: 'Assigned Licenses',
                 control: 'selectChip',
-                initialValue: licenseeId ? licenseeTable.data[0].software : [],
+                initialValue: licenseeId ? licenseeTable.data[0].software || [] : [],
                 options: licenseOptions,
                 fullWidth: true,
             },
         ]
-    }, [licenseeTable.isLoading, licenseeTable.isError, licenseeTable.data, licenseeId, licenseOptions])
+    }, [licenseeTable, licenseeId, licenseOptions])
 
-
-
-
-    // const assignedLicensesTable = useTable('assigned_license')
+    const assignedLicensesTable = useTable('assigned-license')
 
     const create = async (props) => {
-        const { id, name, licences } = props
-        console.log('create props', props)
+        const { id, name, software } = props
+
+        let licenseeId = id
 
         if (id === 'temp') {
-            //await create licensee record
-            const x = await licenseeTable.create({ name: name, notes: '' })
-            console.log('x', x)
+            const licensee = await licenseeTable.create({ name: name, notes: '' })
+            licenseeId = licensee[0].id
         }
 
-        //create assigned licenses records
-
+        for (let i = 0; i < software.length; i++) {
+            await assignedLicensesTable.create({ softwareId: software[i].id, licenseeId })
+        }
     }
 
-    return { ...licenseeTable, formFields, create }
+    const remove = async (props) => {
+        const { id: licenseeId } = props
+
+        const assignedLicenses = assignedLicensesTable.data.filter(item => item.licenseeId === licenseeId)
+
+        for (let i = 0; i < assignedLicenses.length; i++) {
+            await assignedLicensesTable.remove({ id: assignedLicenses[i].id })
+        }
+
+        await licenseeTable.remove({ id: licenseeId })
+    }
+
+    return { ...licenseeTable, formFields, create, remove }
 }

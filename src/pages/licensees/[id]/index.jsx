@@ -15,10 +15,10 @@ export default function LicenceeFormRead() {
 
 	return (
 		<FormikContainer
-			formTitle='Add Licensee'
+			formTitle='Licensee'
 			dataHook={useLicensees}
 			id={id}
-			isNew={true}
+			isNew={false}
 		/>
 	);
 }

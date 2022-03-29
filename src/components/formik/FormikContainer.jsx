@@ -32,16 +32,17 @@ export const FormikContainer = (props) => {
 		remove,
 	} = useForm(dataHook, id);
 
-	const submitHandler = (body) => {
+	const submitHandler = async (body) => {
 		if (isNew) {
-			create(body);
+			await create(body);
 		} else {
-			update(body);
+			await update(body);
 		}
+		route.back();
 	};
 
 	const deleteHandler = async () => {
-		await remove(initialValues.id);
+		remove({ id: initialValues.id });
 		route.back();
 	};
 
