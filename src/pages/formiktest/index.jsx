@@ -1,12 +1,11 @@
 import { FormikContainer } from 'components';
-import { fields, fakeHook } from './formiktest-fields.js';
+import { useFakeDataHook } from '../../hooks/useFakeDataHook';
 
 export const formiktest = () => {
 	return (
 		<FormikContainer
 			formTitle={'Formik Test'}
-			formFields={fields}
-			dataHook={fakeHook}
+			dataHook={useFakeDataHook}
 			isNew={false}
 		/>
 	);

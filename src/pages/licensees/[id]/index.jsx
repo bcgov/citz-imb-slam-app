@@ -1,6 +1,5 @@
 /** @format */
-
-import { LicenseeForm } from 'components';
+import { FormikContainer } from 'components';
 import { useLicensees } from 'hooks';
 import { useRouter } from 'next/router';
 
@@ -13,7 +12,13 @@ export default function LicenceeFormRead() {
 	const router = useRouter();
 
 	const { id } = router.query;
-	const { data = [] } = useLicensees(id);
 
-	return <LicenseeForm id={id} initialValues={data[0]} />;
+	return (
+		<FormikContainer
+			formTitle='Add Licensee'
+			dataHook={useLicensees}
+			id={id}
+			isNew={true}
+		/>
+	);
 }

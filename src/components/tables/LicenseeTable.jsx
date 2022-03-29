@@ -14,8 +14,6 @@ import { Chip } from '@mui/material';
  * @returns {React.jsx}
  */
 export const LicenseeTable = () => {
-
-
 	const columns = [
 		// { field: 'id', headerName: 'ID', width: 300 },
 		{
@@ -29,11 +27,11 @@ export const LicenseeTable = () => {
 			headerName: 'Software',
 			width: 450,
 			renderCell: (params) => {
-				// Have to use Stringfy and Parse as DataGrid can't handle arrays
-				const values = JSON.parse(params.value)
 				return (
 					<>
-					{values.map(value=><Chip label={value} key={value} />)}
+						{params.value.map(({ value, id }) => (
+							<Chip label={value} key={id} />
+						))}
 					</>
 				);
 			},
@@ -78,7 +76,7 @@ export const LicenseeTable = () => {
 			<TableHeader
 				title={'Licensees'}
 				buttonText={'+ Add Licensee'}
-				buttonLink={'/licensees/create'}
+				buttonLink={'/licensees/add'}
 			/>
 			<div className='app-body'>
 				<TableGrid
