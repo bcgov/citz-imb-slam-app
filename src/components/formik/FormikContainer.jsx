@@ -1,43 +1,69 @@
-import { useState } from 'react';
-import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import {
+	Alert,
+	AlertTitle,
+	Box,
+	Button,
+	Grid,
+	Stack,
+	Typography,
+} from '@mui/material';
 import { BackButton, SaveCancelButtons } from 'components';
 import { Form, Formik } from 'formik';
 import { useForm } from 'hooks';
-import { FormikControls } from './inputs/FormikControls';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { FormikControls } from './inputs/FormikControls';
 
 export const FormikContainer = (props) => {
-	const { formTitle = '', formFields = [], isNew = true, dataHook } = props;
+	const { formTitle = '', isNew = true, dataHook, id } = props;
 
 	const [editMode, setEditMode] = useState(isNew);
 
 	const route = useRouter();
 
 	const {
+		isLoading,
+		isError,
 		initialValues,
 		validationSchema,
 		transformedFields,
 		create,
 		update,
 		remove,
-	} = useForm(formFields, dataHook);
+	} = useForm(dataHook, id);
 
-	const submitHandler = (body) => {
+	const submitHandler = async (body) => {
+		body.software = body.software.map((software) => {
+			return { id: software };
+		});
+
 		if (isNew) {
-			create(body);
+			await create(body);
 		} else {
-			update(body);
+			await update(body);
 		}
+		route.back();
 	};
 
 	const deleteHandler = async () => {
-		await remove(initialValues.id);
+		remove({ id: initialValues.id });
 		route.back();
 	};
 
 	const editHandler = () => {
 		setEditMode((mode) => !mode);
 	};
+
+	if (isError) {
+		return (
+			<Alert severity='error'>
+				<AlertTitle>Error</AlertTitle>
+				there was an error
+			</Alert>
+		);
+	}
+
+	if (isLoading) return null;
 
 	return (
 		<>
@@ -63,7 +89,6 @@ export const FormikContainer = (props) => {
 				validationSchema={validationSchema}
 				onSubmit={submitHandler}>
 				{(props) => {
-					// console.log('props', props);
 					const { resetForm } = props;
 					return (
 						<Form>
@@ -75,16 +100,13 @@ export const FormikContainer = (props) => {
 									direction='row'
 									justifyContent='flex-start'
 									alignItems='flex-start'>
-									{transformedFields.map((transformedField, key) => {
-										const { breakPoints, ...field } = transformedField;
-										if (field.control === 'hidden')
-											return <FormikControls {...field} key={key} />;
-										return (
-											<Grid key={key} item {...breakPoints}>
-												<FormikControls disabled={!editMode} {...field} />
-											</Grid>
-										);
-									})}
+									{transformedFields.map((transformedField, key) => (
+										<FormikControls
+											key={key}
+											disabled={!editMode}
+											{...transformedField}
+										/>
+									))}
 								</Grid>
 								<SaveCancelButtons
 									ShowSaveButton={editMode}

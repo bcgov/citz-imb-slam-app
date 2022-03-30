@@ -14,7 +14,7 @@ import { Chip } from '@mui/material';
  * @returns {React.jsx}
  */
 export const LicenseeTable = () => {
-
+	const router = useRouter();
 
 	const columns = [
 		// { field: 'id', headerName: 'ID', width: 300 },
@@ -28,12 +28,21 @@ export const LicenseeTable = () => {
 			field: 'software',
 			headerName: 'Software',
 			width: 450,
+			sortable: false,
+			hideSortIcons: true,
+			filterable: false,
+			groupable: false,
 			renderCell: (params) => {
-				// Have to use Stringfy and Parse as DataGrid can't handle arrays
-				const values = JSON.parse(params.value)
+				/*
+					MUI DataGrid expects params.value to be number, object, string, or boolean, but we pass in an array
+					this generates an error in the console, but does not hinder rendering the page
+					for now, we will ignore the error until we can find a way to either fix it, or that MUI changes it
+				*/
 				return (
 					<>
-					{values.map(value=><Chip label={value} key={value} />)}
+						{params.value.map(({ value, id }) => (
+							<Chip label={value} key={id} />
+						))}
 					</>
 				);
 			},
@@ -47,7 +56,7 @@ export const LicenseeTable = () => {
 					<IconButton
 						color='primary'
 						aria-label='go to details'
-						onClick={() => onDetailsClick(params.row.id)}>
+						onClick={() => router.push(`/licensees/${params.row.id}`)}>
 						<MoreHorizIcon color='action' />
 					</IconButton>
 				);
@@ -64,21 +73,12 @@ export const LicenseeTable = () => {
 		return data;
 	}, [data, isLoading, isError]);
 
-	const router = useRouter();
-
-	const onDetailsClick = useCallback(
-		(id) => {
-			router.push(`/licensees/${id}`);
-		},
-		[router],
-	);
-
 	return (
 		<div className='app'>
 			<TableHeader
 				title={'Licensees'}
 				buttonText={'+ Add Licensee'}
-				buttonLink={'/licensees/create'}
+				buttonLink={'/licensees/add'}
 			/>
 			<div className='app-body'>
 				<TableGrid

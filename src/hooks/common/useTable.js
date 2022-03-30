@@ -2,7 +2,7 @@ import { createData, fetchData, updateData, deleteData } from 'api';
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useCallback, useMemo } from 'react';
 
-export const useTable = (tableName, rowId, options) => {
+export const useTable = (tableName, rowId, options = {}) => {
     const queryKey = useMemo(() => [tableName, rowId], [rowId, tableName])
     const { dataTransform = (data) => data } = options
 

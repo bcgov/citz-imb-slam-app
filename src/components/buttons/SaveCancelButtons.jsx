@@ -7,15 +7,10 @@ export const SaveCancelButtons = (props) => {
 
 	const router = useRouter();
 
-	const clickHandler = useCallback(
-		async (event) => {
-			if (event.target.id === 'save') await saveCallback();
-
-			resetForm();
-			router.back();
-		},
-		[resetForm, router, saveCallback],
-	);
+	const clickHandler = useCallback(() => {
+		resetForm();
+		router.back();
+	}, [resetForm, router]);
 
 	return (
 		<Stack direction={'row'} spacing={2} justifyContent={'center'}>
@@ -26,7 +21,7 @@ export const SaveCancelButtons = (props) => {
 				<Button
 					type='submit'
 					id='save'
-					onClick={clickHandler}
+					onClick={saveCallback}
 					variant='contained'>
 					Save
 				</Button>

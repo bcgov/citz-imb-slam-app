@@ -1,29 +1,34 @@
-import { useMemo, useCallback } from 'react'
-import * as Yup from 'yup'
+import { useMemo } from 'react';
+import * as Yup from 'yup';
 
-export const useForm = (formFields, dataHook) => {
-
-    const data = dataHook() || {}
+export const useForm = (dataHook = () => { }, id) => {
+    const dataHookResponse = dataHook(id)
 
     const initialValues = useMemo(() => {
+        if (dataHookResponse.isLoading || dataHookResponse.isError) return {}
         const values = {};
 
-        formFields.forEach((field) => (values[field.name] = field.initialValue));
+        dataHookResponse.formFields.forEach((field) => {
+            return (values[field.name] = field.initialValue)
+        });
 
         return values;
-    }, [formFields]);
+    }, [dataHookResponse.formFields, dataHookResponse.isError, dataHookResponse.isLoading]);
 
     const validationSchema = useMemo(() => {
+        if (dataHookResponse.isLoading || dataHookResponse.isError) return {}
+
         const schema = {};
 
-        formFields.forEach((field) => (schema[field.name] = field.validation));
+        dataHookResponse.formFields.forEach((field) => (schema[field.name] = field.validation));
 
         return Yup.object(schema);
-    }, [formFields]);
+    }, [dataHookResponse.formFields, dataHookResponse.isError, dataHookResponse.isLoading]);
 
-    const transformedFields = useMemo(
-        () =>
-            formFields.map((field) => {
+    const transformedFields = useMemo(() => {
+        if (dataHookResponse.isLoading || dataHookResponse.isError) return []
+
+            return dataHookResponse.formFields.map((field) => {
                 const newField = {};
                 for (const [key, value] of Object.entries(field)) {
                     if (key === 'validation') {
@@ -38,9 +43,10 @@ export const useForm = (formFields, dataHook) => {
                     newField.breakPoints = { xs: 12, sm: 12, md: 6, lg: 4, xl: 3 };
                 }
                 return newField;
-            }),
-        [formFields],
+            })
+        },
+        [dataHookResponse.formFields, dataHookResponse.isError, dataHookResponse.isLoading],
     );
 
-    return { ...data, initialValues, validationSchema, transformedFields }
+    return { ...dataHookResponse, initialValues, validationSchema, transformedFields }
 }
