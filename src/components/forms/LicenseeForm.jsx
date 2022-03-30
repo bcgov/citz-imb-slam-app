@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 import * as Yup from 'yup';
 import { FormHeader } from './FormHeader';
-import { MultipleSelectChip, TextInput } from './inputs';
+import { MultipleSelectChip, TextInput, Dropdown } from './inputs';
 import Select from 'react-select'   
 
 /**
@@ -25,12 +25,12 @@ export const LicenseeForm = (props) => {
 	} = props;
 	const [readOnly, setReadOnly] = useState(!editMode);
 
-	const [selectedOption, setSelectedOption] = useState(null);
-	const options = [
-		{ value: 'chocolate', label: 'Chocolate' },
-		{ value: 'strawberry', label: 'Strawberry' },
-		{ value: 'vanilla', label: 'Vanilla' },
-	  ];
+	// const [selectedOption, setSelectedOption] = useState(null);
+	// const options = [
+	// 	{ value: 'chocolate', label: 'Chocolate' },
+	// 	{ value: 'strawberry', label: 'Strawberry' },
+	// 	{ value: 'vanilla', label: 'Vanilla' },
+	//   ];
 
 	const router = useRouter();
 	const { create, update, remove } = useLicensees();
@@ -130,14 +130,21 @@ export const LicenseeForm = (props) => {
 									)}
 								</div> */}
 								<div className='flex-row'>
-								<Select
+								{/* <Select
         defaultValue={selectedOption}
         onChange={setSelectedOption}
         options={options}
-      />
+      /> */}
 								</div>
 								<div className='flex-row'>
-
+								<Dropdown
+										label='Licenses'
+										id='licenses'
+										name='licenses'
+										instanceId='test'
+										required={true}
+										readOnly={readOnly}
+									/>
 								</div>
 								<div className='flex-row'>
 									<div className='flex-large button-group'>
