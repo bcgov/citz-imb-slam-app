@@ -65,7 +65,7 @@ export const useLicensees = (licenseeId) => {
                 name: 'software',
                 label: 'Assigned Licenses',
                 control: 'selectChip',
-                initialValue: licenseeId ? licenseeTable.data[0].software || [] : [],
+                initialValue: licenseeId ? licenseeTable.data[0].software?.map(license => license.id) || [] : [],
                 options: licenseOptions,
                 fullWidth: true,
             },
@@ -74,22 +74,47 @@ export const useLicensees = (licenseeId) => {
 
     const assignedLicensesTable = useTable('assigned-license')
 
-    const create = async (props) => {
-        const { id, name, software } = props
-
-        let licenseeId = id
-
-        if (id === 'temp') {
-            const licensee = await licenseeTable.create({ name: name, notes: '' })
-            licenseeId = licensee[0].id
-        }
+    const create = useCallback(async (props) => {
+        const { name, notes = '', software } = props
+        const licensee = await licenseeTable.create({ name, notes })
+        const licenseeId = licensee[0].id
 
         for (let i = 0; i < software.length; i++) {
             await assignedLicensesTable.create({ softwareId: software[i].id, licenseeId })
         }
-    }
+    }, [assignedLicensesTable, licenseeTable])
 
-    const remove = async (props) => {
+    const update = useCallback(async (props) => {
+        const { id: licenseeId, name, notes = '', software } = props
+
+        await licenseeTable.update({ id: licenseeId, name, notes })
+
+        const currentLicenses = assignedLicensesTable.data.filter(license => license.licenseeId === licenseeId)
+
+        for (let i = 0; i < currentLicenses.length; i++) {
+            for (let j = 0; j < software.length; j++) {
+                if (currentLicenses[i].softwareId === software[j].id) {
+                    currentLicenses[i].keep = true
+                    software[j].keep = true
+                    break
+                }
+            }
+        }
+
+        const licensesToRemove = currentLicenses.filter(license => !license.keep)
+        const licensesToAdd = software.filter(license => !license.keep)
+
+        for (let i = 0; i < licensesToRemove.length; i++) {
+            await assignedLicensesTable.remove({ id: licensesToRemove[i].id })
+        }
+
+        for (let i = 0; i < licensesToAdd.length; i++) {
+            await assignedLicensesTable.create({ softwareId: licensesToAdd[i].id, licenseeId })
+        }
+
+    }, [assignedLicensesTable, licenseeTable])
+
+    const remove = useCallback(async (props) => {
         const { id: licenseeId } = props
 
         const assignedLicenses = assignedLicensesTable.data.filter(item => item.licenseeId === licenseeId)
@@ -99,7 +124,7 @@ export const useLicensees = (licenseeId) => {
         }
 
         await licenseeTable.remove({ id: licenseeId })
-    }
+    }, [assignedLicensesTable, licenseeTable])
 
-    return { ...licenseeTable, formFields, create, remove }
+    return { ...licenseeTable, formFields, create, remove, update }
 }
