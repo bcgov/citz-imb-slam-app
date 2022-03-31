@@ -1,7 +1,7 @@
 import { useSoftware } from 'hooks';
 import { useCallback, useMemo } from "react";
 import * as Yup from 'yup';
-import { useTable } from "./common/useTable";
+import { useDatabase } from "./common/useDatabase";
 
 /**
  * @description a hook for retrieving, caching, and manipulating data.  it extends react-query
@@ -41,7 +41,7 @@ export const useLicensees = (licenseeId) => {
         return newData
     }, [])
 
-    const licenseeTable = useTable('licensee', licenseeId, { dataTransform })
+    const licenseeTable = useDatabase('licensee', licenseeId, { dataTransform })
 
     const formFields = useMemo(() => {
         if (licenseeTable.isLoading || licenseeTable.isError) return []
@@ -72,7 +72,7 @@ export const useLicensees = (licenseeId) => {
         ]
     }, [licenseeTable, licenseeId, licenseOptions])
 
-    const assignedLicensesTable = useTable('assigned-license')
+    const assignedLicensesTable = useDatabase('assigned-license')
 
     const create = useCallback(async (props) => {
         const { name, notes = '', software } = props

@@ -65,9 +65,3 @@
  */
 
 export const DEFAULT_API_PORT = ':3000'
-
-export const HTML_RESPONSE = {
-    NO_CONTENT: 204,
-    NOT_MODIFIED: 304
-
-}

@@ -5,7 +5,7 @@ import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
 import { AvatarChip } from 'components';
-import { QuantityAssigned } from './common/QuantityAssigned';
+import { QuantityAssigned } from '../common/QuantityAssigned';
 import { TableGrid } from './common/TableGrid';
 import { TableHeader } from './common/TableHeader';
 

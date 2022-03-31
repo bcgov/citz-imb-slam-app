@@ -1,4 +1,10 @@
-import { DEFAULT_API_PORT, HTML_RESPONSE } from 'constants'
+import { DEFAULT_API_PORT } from 'constants'
+
+const HTML_RESPONSE = {
+    NO_CONTENT: 204,
+    NOT_MODIFIED: 304
+
+}
 
 const responseTransform = (data) => {
     if (Array.isArray(data)) return data
@@ -25,11 +31,13 @@ export const fetchAPI = async (endPoint, options) => {
             return responseTransform(data)
         } else {
             if (isDelete) return
+
             const data = await response.json()
             return responseTransform(data)
         }
     } else {
         console.error(`${response.status} ${response.statusText} for ${url}`);
         console.warn('response', response)
+        return []
     }
 }

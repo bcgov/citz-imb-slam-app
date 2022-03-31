@@ -1,7 +1,7 @@
-import { useTable } from "./common/useTable";
+import { useDatabase } from "./common/useDatabase";
 
 export const useLicensees = () => {
-    const assignedLicensesTable = useTable('assigned-license')
+    const assignedLicensesTable = useDatabase('assigned-license')
 
     return assignedLicensesTable
 }
