@@ -2,8 +2,11 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button, IconButton } from '@mui/material';
 import { TableContainer } from 'components';
 import { useSoftware } from 'hooks';
+import { useRouter } from 'next/router';
 
 export const Software = () => {
+	const router = useRouter();
+
 	const actionColumn = {
 		field: 'actions',
 		headerName: 'Actions',
@@ -13,7 +16,7 @@ export const Software = () => {
 				<IconButton
 					color='primary'
 					aria-label='go to details'
-					onClick={() => onDetailsClick(params.row.id)}>
+					onClick={() => router.push(`/software/${params.row.id}`)}>
 					<MoreHorizIcon color='action' />
 				</IconButton>
 			);
