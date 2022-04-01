@@ -1,7 +1,8 @@
 import { useSoftware } from 'hooks';
 import { useCallback, useMemo } from "react";
 import * as Yup from 'yup';
-import { useDatabase } from "./common/useDatabase";
+import { useDatabase } from "../common/useDatabase";
+import { licenseeFields } from './licenseeFields'
 
 /**
  * @description a hook for retrieving, caching, and manipulating data.  it extends react-query
@@ -19,58 +20,26 @@ import { useDatabase } from "./common/useDatabase";
 export const useLicensees = (licenseeId) => {
     const softwareTable = useSoftware()
 
-    const licenseOptions = useMemo(() => {
-        if (softwareTable.isLoading || softwareTable.isError) return []
+    const licenseeTable = useDatabase('licensee', licenseeId)
 
-        return softwareTable.data.map(({ id, title }) => {
-            const option = {}
-            option.id = id
-            option.value = title
-            return option
+    const data = useMemo(() => {
+        if (licenseeTable.isLoading || licenseeTable.isError || licenseeTable.data === undefined) return []
+
+        return licenseeTable.data.map(item => {
+            return { ...item, software: item.__softwareConnection__?.map(software => software.__software__.id) }
         })
 
-    }, [softwareTable.data, softwareTable.isLoading, softwareTable.isError])
+    }, [licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading])
 
-    const dataTransform = useCallback((data) => {
+    const initialValues = useMemo(() => {
+        if (licenseeTable.isLoading || licenseeTable.isError || licenseeTable.data === undefined) return {}
 
-        const newData = data.map(item => {
-            const newItem = { ...item, software: item.__softwareConnection__.map(software => { return { id: software.__software__.id, value: software.__software__.title } }) }
-            return newItem
+        if (licenseeId) return { id: licenseeId, name: data[0].name, software: data[0].software }
 
-        })
-        return newData
-    }, [])
+        return {}
+    }, [data, licenseeId, licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading])
 
-    const licenseeTable = useDatabase('licensee', licenseeId, { dataTransform })
-
-    const formFields = useMemo(() => {
-        if (licenseeTable.isLoading || licenseeTable.isError) return []
-
-        return [
-            {
-                name: 'id',
-                label: 'hidden Field',
-                initialValue: licenseeId ? licenseeId : 'temp',
-                control: 'hidden',
-            },
-            {
-                name: 'name',
-                label: 'Licensee Name',
-                initialValue: licenseeId ? licenseeTable.data[0].name : '',
-                control: 'text',
-                validation: Yup.string().required('Required'),
-                fullWidth: true,
-            },
-            {
-                name: 'software',
-                label: 'Assigned Licenses',
-                control: 'selectChip',
-                initialValue: licenseeId ? licenseeTable.data[0].software?.map(license => license.id) || [] : [],
-                options: licenseOptions,
-                fullWidth: true,
-            },
-        ]
-    }, [licenseeTable, licenseeId, licenseOptions])
+    const { tableColumns, formFields } = useMemo(() => licenseeFields(initialValues, softwareTable), [initialValues, softwareTable])
 
     const assignedLicensesTable = useDatabase('assigned-license')
 
@@ -82,6 +51,7 @@ export const useLicensees = (licenseeId) => {
         for (let i = 0; i < software.length; i++) {
             await assignedLicensesTable.create({ softwareId: software[i].id, licenseeId })
         }
+
     }, [assignedLicensesTable, licenseeTable])
 
     const update = useCallback(async (props) => {
@@ -126,5 +96,5 @@ export const useLicensees = (licenseeId) => {
         await licenseeTable.remove({ id: licenseeId })
     }, [assignedLicensesTable, licenseeTable])
 
-    return { ...licenseeTable, formFields, create, remove, update }
+    return { ...licenseeTable, data, tableColumns, formFields, create, remove, update }
 }

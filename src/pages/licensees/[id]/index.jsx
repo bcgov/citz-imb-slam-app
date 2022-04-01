@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
  * can be turned to edit mode
  * @returns {React.jsx}
  */
-export default function LicenceeFormRead() {
+export default function LicenceeForm() {
 	const router = useRouter();
 
 	const { id } = router.query;

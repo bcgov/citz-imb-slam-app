@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { AvatarChip, QuantityAssigned } from 'components';
+import { AvatarChip, DateCell, QuantityAssigned } from 'components';
 
 export const softwareFields = () => {
     const fields = [
@@ -38,12 +38,16 @@ export const softwareFields = () => {
             width: 200,
             valueFormatter: (params) =>
                 new Date(params.value).toISOString().split('T')[0].replace(/ /g, '-'),
-            cellClassName: (params) =>
-                clsx('cell-render', {
-                    warning:
-                        new Date(params.value) <
-                        new Date().setDate(new Date().getDate() + 90),
-                }),
+            // cellClassName: (params) =>
+            //     clsx('cell-render', {
+            //         warning:
+            //             new Date(params.value) <
+            //             new Date().setDate(new Date().getDate() + 90),
+            //     }),
+            renderCell: (params) => {
+                console.log('params', params)
+                return <DateCell value={params.value} />
+            },
             useInTable: true,
             useInForm: true,
             formSortOrder: 0,

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
 export const SaveCancelButtons = (props) => {
-	const { saveCallback = () => {}, resetForm, ShowSaveButton = true } = props;
+	const { resetForm, ShowSaveButton = true } = props;
 
 	const router = useRouter();
 
@@ -18,11 +18,7 @@ export const SaveCancelButtons = (props) => {
 				Cancel
 			</Button>
 			{ShowSaveButton ? (
-				<Button
-					type='submit'
-					id='save'
-					onClick={saveCallback}
-					variant='contained'>
+				<Button type='submit' id='save' variant='contained'>
 					Save
 				</Button>
 			) : null}

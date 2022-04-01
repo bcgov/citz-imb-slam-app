@@ -2,7 +2,7 @@ import { Avatar, Chip, Typography } from '@mui/material';
 import { useCallback } from 'react';
 
 export const AvatarChip = (props) => {
-	const { title, size = 24, showTitle = true } = props;
+	const { title = '', size = 24, showTitle = true } = props;
 
 	const stringToColor = useCallback((string) => {
 		let hash = 0;
@@ -34,7 +34,9 @@ export const AvatarChip = (props) => {
 						height: size,
 						bgcolor: stringToColor(title),
 					}}>
-					<Typography variant='span' sx={{color: '#ffffff'}}>{title.charAt(0).toUpperCase()}</Typography>
+					<Typography variant='span' sx={{ color: '#ffffff' }}>
+						{title.charAt(0).toUpperCase()}
+					</Typography>
 				</Avatar>
 			}
 			label={title}

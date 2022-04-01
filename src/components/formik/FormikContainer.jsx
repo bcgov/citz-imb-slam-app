@@ -12,7 +12,7 @@ import { useForm } from 'hooks';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FormHeader } from './common/FormHeader';
-import { FormikControls } from './inputs/FormikControls';
+import { FormikControls } from './common/FormikControls';
 
 export const FormikContainer = (props) => {
 	const { formTitle = '', isNew = true, dataHook, id } = props;
@@ -24,15 +24,15 @@ export const FormikContainer = (props) => {
 	const {
 		isLoading,
 		isError,
+		formFields,
 		initialValues,
 		validationSchema,
-		transformedFields,
 		create,
 		update,
 		remove,
 	} = useForm(dataHook, id);
 
-	const submitHandler = async (body) => {
+	const submitHandler = async (body, formik) => {
 		body.software = body.software.map((software) => {
 			return { id: software };
 		});
@@ -42,6 +42,7 @@ export const FormikContainer = (props) => {
 		} else {
 			await update(body);
 		}
+		formik.resetForm()
 		route.back();
 	};
 
@@ -66,30 +67,31 @@ export const FormikContainer = (props) => {
 	if (isLoading) return null;
 
 	return (
-		<>
-			<FormHeader>
-				{editMode ? (
+		<Formik
+			initialValues={initialValues}
+			validationSchema={validationSchema}
+			onSubmit={submitHandler}>
+			{(props) => {
+				const { resetForm, handleReset } = props;
+				console.log('props', props)
+				return (
 					<>
-						<Button
-							id='delete'
-							onClick={deleteHandler}
-							variant='outlined'
-							color='warning'>
-							Delete
-						</Button>
-						<Button id='edit' onClick={editHandler} variant='contained'>
-							Edit
-						</Button>
-					</>
-				) : null}
-			</FormHeader>
-			<Formik
-				initialValues={initialValues}
-				validationSchema={validationSchema}
-				onSubmit={submitHandler}>
-				{(props) => {
-					const { resetForm } = props;
-					return (
+						<FormHeader>
+							{editMode ? null : (
+								<>
+									<Button
+										id='delete'
+										onClick={deleteHandler}
+										variant='outlined'
+										color='warning'>
+										Delete
+									</Button>
+									<Button id='edit' onClick={editHandler} variant='contained'>
+										Edit
+									</Button>
+								</>
+							)}
+						</FormHeader>
 						<Form>
 							<Typography variant='h3'>{formTitle}</Typography>
 							<Box sx={{ flexGrow: 1 }}>
@@ -99,11 +101,11 @@ export const FormikContainer = (props) => {
 									direction='row'
 									justifyContent='flex-start'
 									alignItems='flex-start'>
-									{transformedFields.map((transformedField, key) => (
+									{formFields.map((formField, key) => (
 										<FormikControls
 											key={key}
 											disabled={!editMode}
-											{...transformedField}
+											{...formField}
 										/>
 									))}
 								</Grid>
@@ -113,9 +115,9 @@ export const FormikContainer = (props) => {
 								/>
 							</Box>
 						</Form>
-					);
-				}}
-			</Formik>
-		</>
+					</>
+				);
+			}}
+		</Formik>
 	);
 };

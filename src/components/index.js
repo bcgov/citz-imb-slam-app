@@ -10,5 +10,5 @@ export * from './common/QuantityAssigned'
 export * from './formik/FormikContainer'
 export * from './buttons/BackButton'
 export * from './buttons/SaveCancelButtons'
-
+export * from './common/DateCell'
 export * from './table/TableContainer'

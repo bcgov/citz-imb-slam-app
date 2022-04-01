@@ -17,19 +17,17 @@ import { softwareFields } from "./softwareFields";
 
 export const useSoftware = (id) => {
 
-    const response = useDatabase('software', id)
+    const softwareTable = useDatabase('software', id)
 
     const data = useMemo(() => {
-        if (response.isLoading || response.isError || response.data === undefined) return []
+        if (softwareTable.isLoading || softwareTable.isError || softwareTable.data === undefined) return []
 
-        return response.data.map(item => {
+        return softwareTable.data.map(item => {
             return { ...item, renewal: new Date(item.renewal).toISOString().split('T')[0] }
         })
-    }, [response.data, response.isError, response.isLoading])
+    }, [softwareTable.data, softwareTable.isError, softwareTable.isLoading])
 
     const { tableColumns, formFields } = useMemo(() => softwareFields(), [])
 
-
-
-    return { ...response, data, tableColumns, formFields }
+    return { ...softwareTable, tableColumns, formFields }
 }

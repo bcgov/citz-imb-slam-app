@@ -1,3 +1,3 @@
 export * from './useSoftware/useSoftware'
-export * from './useLicensees'
+export * from './useLicensees/useLicensees'
 export * from './useForm'

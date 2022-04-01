@@ -1,6 +1,6 @@
 import { MenuItem, Select } from '@mui/material';
 import { Field } from 'formik';
-import { BaseControl } from './BaseControl';
+import { BaseControl } from '../common/BaseControl';
 
 export const SelectFormikControl = (props) => {
 	const {

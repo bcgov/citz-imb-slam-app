@@ -24,7 +24,7 @@ export const Software = () => {
 	};
 
 	const tableActions = (
-		<Button variant='contained' href='/software/create'>
+		<Button variant='contained' href='/software/add'>
 			+ Add Software
 		</Button>
 	);
