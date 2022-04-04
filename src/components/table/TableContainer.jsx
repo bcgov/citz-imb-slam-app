@@ -7,7 +7,7 @@ export const TableContainer = (props) => {
 	const { dataHook = () => {}, actionColumn, title, tableActions } = props;
 
 	const tableData = dataHook();
-
+	// console.log('tableData', tableData)
 	const { isLoading, isError, error, tableColumns, data } = tableData;
 
 	const columns = useMemo(

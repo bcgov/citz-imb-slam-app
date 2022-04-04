@@ -14,7 +14,8 @@ export const InputFormikControl = (props) => {
 
 	return (
 		<Field name={name}>
-			{({ field, form }) => (
+			{({ field, form }) => {
+				return (
 				<BaseControl
 					error={!!form.errors[field.name]}
 					required={required}
@@ -28,7 +29,7 @@ export const InputFormikControl = (props) => {
 						disabled={disabled}
 					/>
 				</BaseControl>
-			)}
+			)}}
 		</Field>
 	);
 };

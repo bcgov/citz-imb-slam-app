@@ -1,19 +1,7 @@
+import { Fields } from "hooks/common/Fields.class";
 import { useMemo } from "react";
 import { useDatabase } from "../common/useDatabase";
 import { softwareFields } from "./softwareFields";
-
-/**
- * @description a hook for retrieving, caching, and manipulating data.  it extends react-query
- * @async
- * @category Hooks
- * @extends external:React-Query
- * @param {string} [id] optional uuid to recieve a specific software title
- * @returns {Promise<object>} an object with members
- * @example
- * import { useSoftware } from 'hooks'
- *
- * const { data, isLoading, isError, create, update, delete } = useSoftware(id)
- */
 
 export const useSoftware = (id) => {
 
@@ -27,7 +15,7 @@ export const useSoftware = (id) => {
         })
     }, [softwareTable.data, softwareTable.isError, softwareTable.isLoading])
 
-    const { tableColumns, formFields } = useMemo(() => softwareFields(), [])
+    const { tableColumns, formFields } = new Fields(softwareFields)
 
-    return { ...softwareTable, tableColumns, formFields }
+    return { ...softwareTable, data, tableColumns, formFields }
 }

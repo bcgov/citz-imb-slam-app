@@ -1,98 +1,123 @@
-import clsx from 'clsx';
 import { AvatarChip, DateCell, QuantityAssigned } from 'components';
 
-export const softwareFields = () => {
-    const fields = [
-        {
-            field: 'id',
-            headerName: 'ID',
+export const softwareFields = [
+    {
+        name: 'id',
+        label: 'ID',
+        initialValue: 'temp',
+        form: {
+            control: 'hidden',
+            show: true,
+            sortOrder: 0,
+        },
+        table: {
+            show: false,
+            sortOrder: 0,
             width: 300,
-            useInTable: false,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 0,
         },
-        {
-            field: 'title',
-            headerName: 'Title',
-            width: 250,
+    },
+    {
+        name: 'title',
+        label: 'Title',
+        initialValue: '',
+        form: {
+            control: 'text',
+            fullWidth: true,
+            show: true,
+            sortOrder: 0,
+        },
+        table: {
             renderCell: (params) => <AvatarChip title={params.value} />,
-            useInTable: true,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 1,
+            show: true,
+            sortOrder: 1,
+            width: 250,
         },
-        {
-            field: 'publisher',
-            headerName: 'Publisher',
+
+    },
+    {
+        name: 'publisher',
+        label: 'Publisher',
+        initialValue: '',
+        form: {
+            control: 'text',
+            show: true,
+            sortOrder: 0,
+        },
+        table: {
+            show: true,
+            sortOrder: 3,
             width: 200,
-            useInTable: true,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 3,
         },
-        {
-            field: 'renewal',
-            headerName: 'Renewal Date',
+    },
+    {
+        name: 'renewal',
+        label: 'Renewal Date',
+        initialValue: new Date().toISOString().split('T')[0].replace(/ /g, '-'),
+        form: {
+            control: 'date',
+            show: true,
+            sortOrder: 0,
             type: 'date',
-            width: 200,
+        },
+        table: {
+            renderCell: (params) => <DateCell value={params.value} />,
+            show: true,
+            sortOrder: 2,
             valueFormatter: (params) =>
                 new Date(params.value).toISOString().split('T')[0].replace(/ /g, '-'),
-            // cellClassName: (params) =>
-            //     clsx('cell-render', {
-            //         warning:
-            //             new Date(params.value) <
-            //             new Date().setDate(new Date().getDate() + 90),
-            //     }),
-            renderCell: (params) => {
-                console.log('params', params)
-                return <DateCell value={params.value} />
-            },
-            useInTable: true,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 2,
+            width: 200,
         },
-        {
-            field: 'quantity',
-            headerName: 'Quantity',
-            width: 150,
+    },
+    {
+        name: 'quantity',
+        label: 'Quantity',
+        initialValue: 0,
+        form: {
+            control: 'number',
+            show: true,
+            sortOrder: 0,
+        },
+        table: {
             renderCell: (params) => (
                 <QuantityAssigned
                     assigned={params.row.__licenseeConnection__.length}
                     available={params.value}
                 />
             ),
-            useInTable: true,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 5,
+            show: true,
+            sortOrder: 5,
+            width: 150,
         },
-        {
-            field: 'administrator',
-            headerName: 'Licence Administrator',
+    },
+    {
+        name: 'administrator',
+        label: 'Licence Administrator',
+        initialValue: '',
+        form: {
+            control: 'text',
+            show: true,
+            sortOrder: 0,
+        },
+        table: {
+            show: true,
+            sortOrder: 4,
             width: 200,
-            useInTable: true,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 4,
         },
-        {
-            field: 'notes',
-            headerName: 'Notes',
+    },
+    {
+        name: 'notes',
+        label: 'Notes',
+        initialValue: '',
+        form: {
+            control: 'textarea',
+            fullWidth: true,
+            show: true,
+            sortOrder: 0,
+        },
+        table: {
+            show: true,
+            sortOrder: 6,
             width: 300,
-            useInTable: true,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 6,
         },
-    ];
-
-    const formFields = fields.filter(field => field.useInForm)
-    const tableColumns = fields.filter(field => field.useInTable)
-
-    formFields.sort((a, b) => a.formSortOrder - b.formSortOrder)
-    tableColumns.sort((a, b) => a.tableSortOrder - b.tableSortOrder)
-
-    return { formFields, tableColumns }
-}
+    },
+]

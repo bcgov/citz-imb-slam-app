@@ -1,70 +1,53 @@
-import { AvatarChip } from 'components';
+import { AvatarChip, SoftwareCell } from 'components';
 import * as Yup from 'yup';
 
-export const licenseeFields = (initialValues = {}, softwareTable) => {
-    const { id, name, software } = initialValues
-
-
-    const licenseOptions = softwareTable.data.map(({ id, title }) => {
-        const option = {}
-        option.value = id
-        option.label = title
-        return option
-    })
-
-    const fields = [
-        {
-            field: 'id',
-            name: 'id',
-            label: 'hidden Field',
-            initialValue: id || 'temp',
+export const licenseeFields = [
+    {
+        name: 'id',
+        label: 'ID',
+        initialValue: 'temp',
+        form: {
             control: 'hidden',
-            useInTable: false,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 0,
+            show: true,
+            sortOrder: 0,
         },
-        {
-            field: 'name',
-            name: 'name',
-            label: 'Licensee Name',
-            initialValue: name || '',
+        table: {
+            show: false,
+            sortOrder: 0,
+            width: 300,
+        },
+    },
+    {
+        name: 'name',
+        label: 'Licensee Name',
+        initialValue: '',
+        form: {
             control: 'text',
+            fullWidth: true,
+            show: true,
+            sortOrder: 0,
             validation: Yup.string().required('Required'),
-            fullWidth: true,
-            useInTable: true,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 1,
         },
-        {
-            field: 'software',
-            name: 'software',
-            label: 'Assigned Licenses',
+        table: {
+            show: true,
+            sortOrder: 1,
+        },
+    },
+    {
+        name: 'software',
+        label: 'Assigned Licenses',
+        initialValue: [],
+        form: {
             control: 'selectChip',
-            initialValue: software || [],
-            flex: 1,
-            renderCell: (params) => {
-                const values = params.value.map(item => licenseOptions.find(option => option.value === item))
-                return <>
-                    {values.map(item => <AvatarChip key={item.value} title={item.label} />)}
-                </>
-            },
-            options: licenseOptions,
             fullWidth: true,
-            useInTable: true,
-            useInForm: true,
-            formSortOrder: 0,
-            tableSortOrder: 2,
-
+            show: true,
+            sortOrder: 0,
         },
-    ]
-
-    const formFields = fields.filter(field => field.useInForm)
-    const tableColumns = fields.filter(field => field.useInTable)
-
-    formFields.sort((a, b) => a.formSortOrder - b.formSortOrder)
-    tableColumns.sort((a, b) => a.tableSortOrder - b.tableSortOrder)
-
-    return { formFields, tableColumns }
-}
+        table: {
+            flex: 1,
+            renderCell: (params) => <SoftwareCell value={params.value} />,
+            show: true,
+            sortOrder: 2,
+        },
+    },
+]

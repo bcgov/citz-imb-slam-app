@@ -14,7 +14,6 @@ export const useDatabase = (tableName, rowId) => {
         } else {
             response = await fetchData(tableName);
         }
-        console.log('response', response)
         return response
     });
 

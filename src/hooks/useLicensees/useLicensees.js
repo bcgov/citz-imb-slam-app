@@ -1,3 +1,4 @@
+import { Fields } from "hooks/common/Fields.class";
 import { useSoftware } from 'hooks';
 import { useCallback, useMemo } from "react";
 import * as Yup from 'yup';
@@ -38,8 +39,6 @@ export const useLicensees = (licenseeId) => {
 
         return {}
     }, [data, licenseeId, licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading])
-
-    const { tableColumns, formFields } = useMemo(() => licenseeFields(initialValues, softwareTable), [initialValues, softwareTable])
 
     const assignedLicensesTable = useDatabase('assigned-license')
 
@@ -95,6 +94,12 @@ export const useLicensees = (licenseeId) => {
 
         await licenseeTable.remove({ id: licenseeId })
     }, [assignedLicensesTable, licenseeTable])
+
+    const options = softwareTable.data.map(({ id, title }) => {
+        return { value: id, label: title }
+    })
+
+    const { tableColumns, formFields } = new Fields(licenseeFields, { software: options })
 
     return { ...licenseeTable, data, tableColumns, formFields, create, remove, update }
 }

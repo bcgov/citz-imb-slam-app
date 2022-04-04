@@ -1,10 +1,18 @@
 /** @format */
 
-import { SoftwareForm } from 'components';
+import { FormikContainer } from 'components';
+import { useSoftware } from 'hooks';
+
 /**
  * present the software form in create mode
  * @returns {React.jsx}
  */
 export default function SoftwareFormCreate() {
-	return <SoftwareForm editMode={true} />;
+	return (
+		<FormikContainer
+			formTitle='Software'
+			dataHook={useSoftware}
+			isNew={true}
+		/>
+	);
 }

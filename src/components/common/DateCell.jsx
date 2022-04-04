@@ -12,7 +12,7 @@ export const DateCell = ({ value }) => {
 	});
 
 	useEffect(() => {
-		if (date.diff(DateTime.now()).as('days') > DAYS_BEFORE_EXPIRATION_WARNING)
+		if (date.diff(DateTime.now()).as('days') < DAYS_BEFORE_EXPIRATION_WARNING)
 			setSeverity({ severity: 'error' });
 		return () => {};
 	}, []);

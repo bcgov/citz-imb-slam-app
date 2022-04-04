@@ -33,9 +33,9 @@ export const FormikContainer = (props) => {
 	} = useForm(dataHook, id);
 
 	const submitHandler = async (body, formik) => {
-		body.software = body.software.map((software) => {
-			return { id: software };
-		});
+		// body.software = body.software.map((software) => {
+		// 	return { id: software };
+		// });
 
 		if (isNew) {
 			await create(body);
@@ -73,7 +73,6 @@ export const FormikContainer = (props) => {
 			onSubmit={submitHandler}>
 			{(props) => {
 				const { resetForm, handleReset } = props;
-				console.log('props', props)
 				return (
 					<>
 						<FormHeader>

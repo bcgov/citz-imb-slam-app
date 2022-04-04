@@ -6,14 +6,20 @@ export const useForm = (dataHook = () => { }, id) => {
 
     const initialValues = useMemo(() => {
         if (dataHookResponse.isLoading || dataHookResponse.isError) return {}
+
         const values = {};
 
         dataHookResponse.formFields.forEach((field) => {
-            return (values[field.name] = field.initialValue)
+            if (id && dataHookResponse.data.length) {
+                return (values[field.name] = dataHookResponse.data[0][field.name])
+            } else {
+                return values[field.name] = field.initialValue
+            }
+
         });
 
         return values;
-    }, [dataHookResponse.formFields, dataHookResponse.isError, dataHookResponse.isLoading]);
+    }, [dataHookResponse.data, dataHookResponse.formFields, dataHookResponse.isError, dataHookResponse.isLoading, id]);
 
     const validationSchema = useMemo(() => {
         if (dataHookResponse.isLoading || dataHookResponse.isError) return {}
@@ -33,7 +39,7 @@ export const useForm = (dataHook = () => { }, id) => {
             for (const [key, value] of Object.entries(field)) {
                 if (key === 'validation') {
                     newField.required = value.spec.presence === 'required';
-                } else if (key !== 'initialValue') {
+                } else if (key !== 'initialValue' && key !== 'sortOrder' && key !== 'show') {
                     newField[key] = value;
                 }
             }
