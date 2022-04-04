@@ -116,19 +116,6 @@ export const LicenseeForm = (props) => {
 										readOnly={readOnly}
 									/>
 								</div>
-								{/* <div className='flex-row'>
-									{readOnly ? (
-										formik.values.licenses.map((license) => (
-											<AvatarChip key={license.id} title={license.title} />
-										))
-									) : (
-										<MultipleSelectChip
-											label='Assigned Licenses'
-											id='licenses'
-											name='licenses'
-										/>
-									)}
-								</div> */}
 								<div className='flex-row'>
 								{/* <Select
         defaultValue={selectedOption}
