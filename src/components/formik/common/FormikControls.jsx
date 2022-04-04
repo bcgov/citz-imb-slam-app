@@ -1,10 +1,9 @@
 import React from 'react';
-import { HiddenFormikControl } from './HiddenFormikControl';
-import { InputFormikControl } from './InputFormikControl';
-import { TextareaFormikControl } from './TextareaFormikControl';
-import { SelectFormikControl } from './SelectFormikControl';
-import { SelectChipFormikControl } from './SelectChipFormikControl';
-import { DropdownFormikControl } from './DropdownFormikControl';
+import { HiddenFormikControl } from '../inputs/HiddenFormikControl';
+import { InputFormikControl } from '../inputs/InputFormikControl';
+import { TextareaFormikControl } from '../inputs/TextareaFormikControl';
+import { SelectFormikControl } from '../inputs/SelectFormikControl';
+import { SelectChipFormikControl } from '../inputs/SelectChipFormikControl';
 
 export const FormikControls = (props) => {
 	const { control, ...remainingProps } = props;

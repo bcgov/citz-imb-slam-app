@@ -1,5 +1,5 @@
 import { Field } from 'formik';
-import { BaseControl } from './BaseControl';
+import { BaseControl } from '../common/BaseControl';
 import { Input } from '@mui/material';
 
 export const InputFormikControl = (props) => {
@@ -11,7 +11,7 @@ export const InputFormikControl = (props) => {
 		disabled,
 		...remainingProps
 	} = props;
-	
+
 	return (
 		<Field name={name}>
 			{({ field, form }) => (

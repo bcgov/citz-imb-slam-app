@@ -62,8 +62,8 @@ export const useFakeDataHook = () => {
 				name: 'selectchip',
 				label: 'Select Chips',
 				control: 'selectChip',
-				initialValue: ["one"],
-				options: ["one", "two", "three"]
+				initialValue: ['1'],
+				options: [{ value: '1', label: "one" }, { value: '2', label: "two" }, { value: '3', label: "three" }]
 			},
 			{
 				name: 'textarea',

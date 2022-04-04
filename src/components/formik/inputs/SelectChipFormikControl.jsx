@@ -1,15 +1,15 @@
-import { Box, Chip, MenuItem, OutlinedInput, Select } from '@mui/material';
 import { Field } from 'formik';
-import { BaseControl } from './BaseControl';
+import Select from 'react-select';
+import { BaseControl } from '../common/BaseControl';
 
 export const SelectChipFormikControl = (props) => {
 	const { name, label, required, type, disabled, options, ...remainingProps } =
 		props;
-	console.log('props', props)
+
 	return (
 		<Field name={name}>
-			{({ field, form }) => {
-				console.log('field', field)
+			{(props) => {
+				const { field, form, meta } = props;
 				return (
 					<BaseControl
 						error={!!form.errors[field.name]}
@@ -18,39 +18,20 @@ export const SelectChipFormikControl = (props) => {
 						helperText={form.errors[field.name]}
 						{...remainingProps}>
 						<Select
-							sx={{ marginTop: 2 }}
-							{...field}
-							multiple
-							// input={<OutlinedInput id='select-multiple-chip' label='chip' />}
-							renderValue={(selected) => {
-								const selectedOptions = [];
-
-								for (let i = 0; i < selected.length; i++) {
-									for (let j = 0; j < options.length; j++) {
-										if (options[j].id === selected[i]) {
-											selectedOptions.push(options[j].value);
-											break;
-										}
-									}
-								}
-
-								return (
-									<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-										{selectedOptions.map((value, key) => {
-											return <Chip key={key} label={value} />;
-										})}
-									</Box>
-								);
-							}}
-							disabled={disabled}>
-							{options.map((license, key) => {
-								return (
-									<MenuItem key={key} value={license.id}>
-										{license.value}
-									</MenuItem>
-								);
-							})}
-						</Select>
+							onChange={(values) =>
+								form.setFieldValue(
+									field.name,
+									values.map((value) => value.value),
+								)
+							}
+							onBlur={field.onBlur}
+							isDisabled={disabled}
+							isMulti={true}
+							value={field.value.map((item) =>
+								options.find((option) => option.value === item),
+							)}
+							options={options}
+						/>
 					</BaseControl>
 				);
 			}}

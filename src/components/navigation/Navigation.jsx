@@ -30,7 +30,7 @@ export const Navigation = () => {
 				<div className='nav-group'>
 					<ul className='nav-item-wrapper'>
 						<li className='nav-item'>
-							<a onClick={() => router.push('/')}>Software</a>
+							<a onClick={() => router.push('/software')}>Software</a>
 						</li>
 						<li className='nav-item'>
 							<a onClick={() => router.push('/licensees')}>Licensees</a>

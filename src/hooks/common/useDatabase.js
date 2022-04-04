@@ -2,9 +2,8 @@ import { createData, fetchData, updateData, deleteData } from 'api';
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useCallback, useMemo } from 'react';
 
-export const useTable = (tableName, rowId, options = {}) => {
+export const useDatabase = (tableName, rowId) => {
     const queryKey = useMemo(() => [tableName, rowId], [rowId, tableName])
-    const { dataTransform = (data) => data } = options
 
     const queryClient = useQueryClient()
 
@@ -15,8 +14,8 @@ export const useTable = (tableName, rowId, options = {}) => {
         } else {
             response = await fetchData(tableName);
         }
-
-        return await dataTransform(response)
+        console.log('response', response)
+        return response
     });
 
     const appendItem = (oldValues, item) => [...oldValues, item]

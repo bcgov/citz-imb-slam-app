@@ -24,7 +24,7 @@ function Main({ Component, pageProps }) {
 					{/* </Paper> */}
 				</Container>
 			</Box>
-			{/* <ReactQueryDevtools /> */}
+			<ReactQueryDevtools />
 		</QueryClientProvider>
 	);
 }
