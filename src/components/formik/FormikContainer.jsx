@@ -33,10 +33,6 @@ export const FormikContainer = (props) => {
 	} = useForm(dataHook, id);
 
 	const submitHandler = async (body, formik) => {
-		// body.software = body.software.map((software) => {
-		// 	return { id: software };
-		// });
-
 		if (isNew) {
 			await create(body);
 		} else {

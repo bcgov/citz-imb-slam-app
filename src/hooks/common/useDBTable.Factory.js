@@ -2,7 +2,7 @@ import { createData, fetchData, updateData, deleteData } from 'api';
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useCallback, useMemo } from 'react';
 
-export const useDatabase = (tableName, rowId) => {
+export const useDBTableFactory = (tableName, rowId) => {
     const queryKey = useMemo(() => [tableName, rowId], [rowId, tableName])
 
     const queryClient = useQueryClient()

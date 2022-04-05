@@ -1,11 +1,11 @@
 import { Fields } from "hooks/common/Fields.class";
 import { useMemo } from "react";
-import { useDatabase } from "../common/useDatabase";
+import { useDBTableFactory } from "../common/useDBTable.Factory";
 import { softwareFields } from "./softwareFields";
 
 export const useSoftware = (id) => {
 
-    const softwareTable = useDatabase('software', id)
+    const softwareTable = useDBTableFactory('software', id)
 
     const data = useMemo(() => {
         if (softwareTable.isLoading || softwareTable.isError || softwareTable.data === undefined) return []

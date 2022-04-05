@@ -2,7 +2,7 @@ import { Fields } from "hooks/common/Fields.class";
 import { useSoftware } from 'hooks';
 import { useCallback, useMemo } from "react";
 import * as Yup from 'yup';
-import { useDatabase } from "../common/useDatabase";
+import { useDBTableFactory } from "../common/useDBTable.Factory";
 import { licenseeFields } from './licenseeFields'
 
 /**
@@ -21,7 +21,7 @@ import { licenseeFields } from './licenseeFields'
 export const useLicensees = (licenseeId) => {
     const softwareTable = useSoftware()
 
-    const licenseeTable = useDatabase('licensee', licenseeId)
+    const licenseeTable = useDBTableFactory('licensee', licenseeId)
 
     const data = useMemo(() => {
         if (licenseeTable.isLoading || licenseeTable.isError || licenseeTable.data === undefined) return []
@@ -40,10 +40,15 @@ export const useLicensees = (licenseeId) => {
         return {}
     }, [data, licenseeId, licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading])
 
-    const assignedLicensesTable = useDatabase('assigned-license')
+    const assignedLicensesTable = useDBTableFactory('assigned-license')
 
     const create = useCallback(async (props) => {
         const { name, notes = '', software } = props
+
+        software = software.map((software) => {
+            return { id: software };
+        });
+
         const licensee = await licenseeTable.create({ name, notes })
         const licenseeId = licensee[0].id
 
@@ -55,6 +60,10 @@ export const useLicensees = (licenseeId) => {
 
     const update = useCallback(async (props) => {
         const { id: licenseeId, name, notes = '', software } = props
+
+        software = software.map((software) => {
+			return { id: software };
+		});
 
         await licenseeTable.update({ id: licenseeId, name, notes })
 

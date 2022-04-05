@@ -16,8 +16,7 @@ export default function LicenceeForm() {
 	return (
 		<>
 			<FormikContainer
-				// formTitle='Licensee'
-				formTitle='Assigned licences field is broken'
+				formTitle='Licensee'
 				dataHook={useLicensees}
 				id={id}
 				isNew={false}
