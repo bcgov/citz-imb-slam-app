@@ -6,8 +6,7 @@
 		"dev": "next dev -- -p 3001",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
-		"doc": "documentation build --shallow src/api -f md -o docs/api.md && documentation build --shallow src/components -f md -o docs/components.md && documentation build --shallow src/hooks -f md -o docs/hooks.md && documentation build --shallow src/pages -f md -o docs/pages.md && documentation build --shallow src/constants -f md -o docs/constants.md"
+		"lint": "next lint"
 	},
 	"dependencies": {
 		"@bcgov/bc-sans": "1.0.1",
@@ -33,7 +32,6 @@
 		"yup": "0.32.11"
 	},
 	"devDependencies": {
-		"documentation": "13.2.5",
 		"eslint": "8.10.0",
 		"eslint-config-next": "12.1.0",
 		"sass": "1.49.11"
