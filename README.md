@@ -20,3 +20,6 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 ### CICD Pipeline
 
 Commits and Pull Requests to the Main branch trigger the CICD pipeline. The Pipeline will build the image, run tests, and deploy to prod. If the commit contains the **#release** in the commit message, it will deploy to the test environment. After User Acceptance Testing is approved, it will deploy to production. Deployment to both test and prod trigger a notification in our Teams workspace.
+
+
+Changes for a pull request
