@@ -4,6 +4,7 @@ import { InputFormikControl } from '../inputs/InputFormikControl';
 import { TextareaFormikControl } from '../inputs/TextareaFormikControl';
 import { SelectFormikControl } from '../inputs/SelectFormikControl';
 import { SelectChipFormikControl } from '../inputs/SelectChipFormikControl';
+import { DropdownFormikControl } from '../inputs/DropdownFormikControl';
 
 export const FormikControls = (props) => {
 	const { control, ...remainingProps } = props;
