@@ -1,8 +1,13 @@
 import bcgovlogo from 'assets/images/bcgov-h.png';
+import slamlogo from 'assets/images/slam-logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import {React, useState } from 'react';
+import { AvatarChip, UserMenu } from 'components';
+
+
+
 
 /**
  *
@@ -10,6 +15,7 @@ import React from 'react';
  */
 export const Navigation = () => {
 	const router = useRouter();
+
 	return (
 		<nav className='nav'>
 			<div className='nav-container'>
@@ -17,14 +23,14 @@ export const Navigation = () => {
 					<a className='nav-brand'>
 						<div className='logo-block'>
 							<Image
-								src={bcgovlogo}
-								className='nav-logo'
+								src={slamlogo}
+								className='nav-logo-main'
 								alt='BC GOV Logo'
-								width={113}
-								height={30}
+								width={40}
+								height={40}
 							/>
 						</div>
-						<h1 className='nav-header'>Software License Management</h1>
+						<h1 className='nav-header'>License Management</h1>
 					</a>
 				</Link>
 				<div className='nav-group'>
@@ -32,8 +38,14 @@ export const Navigation = () => {
 						<li className='nav-item'>
 							<a onClick={() => router.push('/software')}>Software</a>
 						</li>
-						<li className='nav-item'>
+						<li>
 							<a onClick={() => router.push('/licensees')}>Licensees</a>
+						</li>
+						<li>
+							<a onClick={() => router.push('/contact')}>Contact</a>
+						</li>
+						<li>
+							<UserMenu title='Baby Yoda' />
 						</li>
 					</ul>
 				</div>
