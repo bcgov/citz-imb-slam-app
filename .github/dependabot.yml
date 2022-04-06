@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # npm dependencies - frontend
+  - package-ecosystem: "npm"
+    directory: "./"
+    open-pull-requests-limit: 4
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "14:00"
