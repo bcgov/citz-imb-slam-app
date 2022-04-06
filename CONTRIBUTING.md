@@ -15,15 +15,17 @@ All Contributions to this repository start with a Jira Item associated with the 
 
 ## Open a new bug in jira
 
+A software bug within the CITZ SLAM! React Application can be defined as an unexpected behaviour, error or functionality that was once present but now is not.
+
 - When a bug is detected in the application, a jira bug must be opened
     the bug should be documented as followed:
+    
         - Expected Behavior
         - Current Behavior
         - Steps to Reproduce
         - Environment
         - Description (stack traces, screenshot, error messages, splunk logs query)
         - Optionally you can suggest a possible solution
-    - set the target release
 
 ## Open a new feature request in jira
 
