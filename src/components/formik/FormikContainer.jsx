@@ -71,31 +71,35 @@ export const FormikContainer = (props) => {
 				const { resetForm, handleReset } = props;
 				return (
 					<>
-						<FormHeader>
+						<FormHeader
+							formTitle={formTitle}
+						>
 							{editMode ? null : (
 								<>
 									<Button
 										id='delete'
 										onClick={deleteHandler}
-										variant='outlined'
-										color='warning'>
+										className="btn btn-muted warning"
+										>
 										Delete
 									</Button>
-									<Button id='edit' onClick={editHandler} variant='contained'>
+									<Button id='edit' onClick={editHandler} className="btn btn-default">
 										Edit
 									</Button>
 								</>
 							)}
 						</FormHeader>
 						<Form>
-							<Typography variant='h3'>{formTitle}</Typography>
 							<Box sx={{ flexGrow: 1 }}>
 								<Grid
 									container
 									spacing={2}
 									direction='row'
 									justifyContent='flex-start'
-									alignItems='flex-start'>
+									alignItems='flex-start'
+									className='form-field'
+									
+									>
 									{formFields.map((formField, key) => (
 										<FormikControls
 											key={key}
