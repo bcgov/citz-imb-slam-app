@@ -11,6 +11,7 @@ export default function Licensees() {
 	const router = useRouter();
 
 	const actionColumn = {
+                // TODO: reminder to talk to Scott about line 14-26
 		// field: 'actions',
 		// headerName: 'Actions',
 		// width: 150,
