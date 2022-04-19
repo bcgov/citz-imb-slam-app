@@ -24,9 +24,11 @@ export const SelectChipFormikControl = (props) => {
 									values.map((value) => value.value),
 								)
 							}
+							className={disabled ? "readOnly" : "select"}
 							onBlur={field.onBlur}
 							isDisabled={disabled}
 							isMulti={true}
+							closeMenuOnSelect={false}
 							value={field.value.map((item) =>
 								options.find((option) => option.value === item),
 							)}

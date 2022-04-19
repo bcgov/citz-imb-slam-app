@@ -17,7 +17,7 @@ export const BaseControl = (props) => {
 				</Typography>
 
 				{children}
-				<FormHelperText>{helperText}</FormHelperText>
+				<FormHelperText className="form-error">{helperText}</FormHelperText>
 			</FormControl>
 		</Grid>
 	);

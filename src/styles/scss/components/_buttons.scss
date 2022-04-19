@@ -19,11 +19,20 @@
     outline: 0;
     text-transform: capitalize;
     font-family: var(--body-font-family) !important;
+    box-shadow: none;
 
     &-default {
         background-color: var(--button-color);
         border:  var(--button-color);
         color: var(--white);
+        &:hover,
+        &:focus,
+        &:active {
+          color: var(--white);
+          border: var(--button-color);
+          background: $button-background-hover;
+          text-decoration: none;
+        }
     }
 
     &-muted {

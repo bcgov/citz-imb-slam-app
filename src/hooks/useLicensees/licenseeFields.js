@@ -31,6 +31,7 @@ export const licenseeFields = [
         table: {
             show: true,
             sortOrder: 1,
+            width: 180,
         },
     },
     {
@@ -48,6 +49,23 @@ export const licenseeFields = [
             renderCell: (params) => <SoftwareCell value={params.value} />,
             show: true,
             sortOrder: 2,
+            width: 500,
+        },
+    },
+    {
+        name: 'notes',
+        label: 'Notes',
+        initialValue: '',
+        form: {
+            control: 'text',
+            fullWidth: true,
+            show: true,
+            sortOrder: 3,
+        },
+        table: {
+            show: true,
+            sortOrder: 3,
+            width: 250,
         },
     },
 ]
