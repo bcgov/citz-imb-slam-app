@@ -68,4 +68,19 @@ export const licenseeFields = [
             width: 250,
         },
     },
+    {
+        name: 'modified',
+        label: 'Modified',
+        initialValue: '',
+        form: {
+            control: 'hidden',
+            show: false,
+            sortOrder: 0,
+        },
+        table: {
+            show: true,
+            sortOrder: 4,
+            width: 150,
+        },
+    },
 ]

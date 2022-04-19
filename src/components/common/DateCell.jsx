@@ -18,6 +18,7 @@ export const DateCell = ({ value }) => {
 	}, []);
 
 	return (
-		<Alert {...severity}>{date.setLocale('en-ca').toLocaleString()}</Alert>
+		<Alert icon={false} {...severity}>{date.setLocale('en-ca').toLocaleString()}</Alert>
+		// <span>{date.setLocale('en-ca').toLocaleString()}</span>
 	);
 };

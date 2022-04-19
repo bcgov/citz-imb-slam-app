@@ -3,16 +3,30 @@ import { CircularProgress, Box, Typography } from '@mui/material';
 export const QuantityAssigned = (props) => {
 	const { assigned = 0, available = 0 } = props;
 
-    let color = 'primary';
-    if (assigned >= available * .75) color = 'warning'
-	if (assigned >= available) color = 'error';
+    // let color = 'primary';
+    // if (assigned >= available * .75) color = 'warning'
+	// if (assigned >= available) color = 'error';
+	const cleanUp = Math.round(
+		assigned / available * 100
+		);
 
 	return (
+		<>
 		<Box sx={{ position: 'relative', display: 'inline-flex' }}>
 			<CircularProgress
 				variant='determinate'
+				value={100}
+				className="background"
+				style={{'color': '#eeeeee'}}
+				size={55}
+				thickness={2.5}
+			/>
+			<CircularProgress
+				variant='determinate'
 				value={(assigned / available) * 100}
-				color={color}
+				className="progress"
+				size={55}
+				thickness={2.5}
 			/>
 			<Box
 				sx={{
@@ -25,10 +39,13 @@ export const QuantityAssigned = (props) => {
 					alignItems: 'center',
 					justifyContent: 'center',
 				}}>
-				<Typography variant='caption' component='div' color='text.secondary'>
-					{available}
+				<Typography variant='caption' component='div' color='text.primary'>
+				{/* {cleanUp}% */}
+				<span>{assigned}/{available}</span>
 				</Typography>
+				
 			</Box>
 		</Box>
+		</>
 	);
 };

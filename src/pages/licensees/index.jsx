@@ -10,22 +10,6 @@ import { useRouter } from 'next/router';
 export default function Licensees() {
 	const router = useRouter();
 
-	const actionColumn = {
-		// field: 'actions',
-		// headerName: 'Actions',
-		// width: 150,
-		// renderCell: (params) => {
-		// 	return (
-		// 		<IconButton
-		// 			color='primary'
-		// 			aria-label='go to details'
-		// 			onClick={() => router.push(`/licensees/${params.row.id}`)}>
-		// 			<MoreHorizIcon color='action' />
-		// 		</IconButton>
-		// 	);
-		// },
-	};
-
 	const tableActions = (
 		<Button className="btn btn-default" href='/licensees/add'>
 			+ Add Licencee
@@ -37,8 +21,10 @@ export default function Licensees() {
 			title={'Licensees'}
 			dataHook={useLicensees}
 			route={'licensees'}
-			actionColumn={actionColumn}
 			tableActions={tableActions}
+			sortOrder={'asc'}
+			sortBy={'name'}
+			height={58}
 		/>
 	);
 }
