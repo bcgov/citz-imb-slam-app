@@ -130,7 +130,7 @@ export const FormikContainer = (props) => {
 				<DialogTitle id='alert-dialog-title'>Delete?</DialogTitle>
 				<DialogContent>
 					<DialogContentText id='alert-dialog-description'>
-						really?
+						Are You Sure?
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
