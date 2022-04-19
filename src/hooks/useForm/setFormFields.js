@@ -13,7 +13,7 @@ export const setFormFields = (dataHookResponse) => {
         if (newField.fullWidth) {
             newField.breakPoints = { xs: 12, sm: 12, md: 12, lg: 12, xl: 12 };
         } else {
-            newField.breakPoints = { xs: 12, sm: 12, md: 6, lg: 4, xl: 3 };
+            newField.breakPoints = { xs: 12, sm: 12, md: 6, lg: 6, xl: 6 };
         }
         return newField;
     })
