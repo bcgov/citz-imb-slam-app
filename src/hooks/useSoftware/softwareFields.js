@@ -52,7 +52,7 @@ export const softwareFields = [
     {
         name: 'renewal',
         label: 'Renewal Date',
-        initialValue: new Date().toISOString().split('T')[0].replace(/ /g, '-'),
+        initialValue: '',
         form: {
             control: 'date',
             show: true,
