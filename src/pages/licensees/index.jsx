@@ -3,6 +3,11 @@ import { Button, IconButton } from '@mui/material';
 import { TableContainer } from 'components';
 import { useLicensees } from 'hooks';
 import { useRouter } from 'next/router';
+import { authenticate } from 'helpers';
+export const getServerSideProps = (context) => {
+	return authenticate(context);
+};
+
 /**
  * the Licensee Page
  * @returns {React.jsx}

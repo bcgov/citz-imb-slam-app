@@ -41,7 +41,9 @@ export const UserMenu = () => {
 					signIn('github');
 				}}
 				variant='text'>
-				<Typography>Sign In</Typography>
+				<Typography variant='paragraph' color='text.primary'>
+					Sign In
+				</Typography>
 			</Button>
 		);
 
@@ -52,14 +54,18 @@ export const UserMenu = () => {
 				endIcon={<KeyboardArrowDownIcon />}
 				variant='text'>
 				<Avatar title={userName} image={session.data.user.image} />
-				<Typography>{userName}</Typography>
+				<Typography variant='paragraph' color='text.primary'>
+					{userName}
+				</Typography>
 			</Button>
 			<Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
 				<MenuItem>
 					<ListItemIcon>
 						<PermIdentityIcon />
 					</ListItemIcon>
-					<Typography>My Profile</Typography>
+					<Typography variant='paragraph' color='text.primary'>
+						My Profile
+					</Typography>
 				</MenuItem>
 				<MenuItem
 					onClick={(e) => {
@@ -69,7 +75,9 @@ export const UserMenu = () => {
 					<ListItemIcon>
 						<Logout />
 					</ListItemIcon>
-					<Typography>Sign Out</Typography>
+					<Typography variant='paragraph' color='text.primary'>
+						Sign Out
+					</Typography>
 				</MenuItem>
 			</Menu>
 		</>

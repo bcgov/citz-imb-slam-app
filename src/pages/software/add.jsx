@@ -2,6 +2,10 @@
 
 import { FormikContainer } from 'components';
 import { useSoftware } from 'hooks';
+import { authenticate } from 'helpers';
+export const getServerSideProps = (context) => {
+	return authenticate(context);
+};
 
 /**
  * present the software form in create mode

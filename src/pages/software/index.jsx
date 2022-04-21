@@ -4,6 +4,11 @@ import { TableContainer } from 'components';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
 
+import { authenticate } from 'helpers';
+export const getServerSideProps = (context) => {
+	return authenticate(context);
+};
+
 export const Software = () => {
 	const router = useRouter();
 
