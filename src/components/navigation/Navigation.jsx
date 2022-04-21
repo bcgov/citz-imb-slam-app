@@ -45,7 +45,7 @@ export const Navigation = () => {
 							<a onClick={() => router.push('/contact')}>Contact</a>
 						</li>
 						<li>
-							<UserMenu title='Baby Yoda' />
+							<UserMenu />
 						</li>
 					</ul>
 				</div>

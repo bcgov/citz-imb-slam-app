@@ -1,12 +1,15 @@
 /** @format */
 import { Box, Card, Grid, Paper, Stack, Typography } from '@mui/material';
 import { SoftwareTable } from 'components';
+import { useSession } from 'next-auth/react';
 /**
  * the home page
  * @returns {React.jsx}
  */
 export default function Home() {
 	const boxSX = { width: 300, height: 300, border: '1px solid grey' };
+
+	const { data: session } = useSession()
 
 	return (
 		<Grid container>

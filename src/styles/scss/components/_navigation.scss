@@ -74,7 +74,7 @@
   &:hover{
     cursor: pointer;
     color: var(--primary);
-    
+
     span {
       span {
       color: var(--primary) !important;
@@ -87,7 +87,7 @@
   font-size: 0.85rem;
   font-weight: 400;
   font-family: var(--body-font-family);
-  
+
   div {
     min-width: 24px !important;
   }
@@ -100,7 +100,7 @@
 
 .MuiPaper-root {
   box-shadow: inherit;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 .MuiMenu-list {
@@ -118,10 +118,10 @@ nav {
         margin: 0;
         padding: 0;
         list-style: none;
-        
-        li { 
-          display: inline-block; 
-  
+
+        li {
+          display: inline-block;
+
           a {
             display: flex;
             align-items: center;
@@ -133,7 +133,7 @@ nav {
             border-radius: 5px;
             font-weight: 400;
             line-height: 1.1;
-            
+
             &:hover{
                 cursor: pointer;
                 color: var(--primary);
@@ -167,28 +167,28 @@ nav {
     line-height: 0;
     font-weight: 500;
   }
-  
-  .nav button:hover {
-    background: var(--navbar-color-hover);
-    color: var(--bright-font-color);
-  }
-  
+
+  // .nav button:hover {
+    // background: var(--navbar-color-hover);
+    // color: var(--bright-font-color);
+  // }
+
   .nav button:focus {
     outline: none;
   }
-  
+
   .nav button:focus-visible {
     outline: 3px solid var(--primary);
   }
-  
+
   .nav button span {
     font-size: 0.9rem;
   }
-  
+
   .nav button svg rect {
     fill: var(--font-color);
   }
-  
+
   .nav nav {
     display: flex;
     align-items: center;
@@ -196,7 +196,7 @@ nav {
     gap: 0.6rem;
     height: 100%;
   }
-  
+
   .nav nav a {
     display: flex;
     align-items: center;
@@ -209,20 +209,20 @@ nav {
     font-weight: 500;
     line-height: 1.1;
   }
-  
+
   .nav nav a.active {
     color: var(--bright-font-color);
   }
-  
+
   .nav nav a.brand {
     font-size: 1rem;
     font-weight: 600;
   }
-  
+
   .nav nav a.brand span {
     white-space: nowrap;
   }
-  
+
   .nav nav a:hover {
     color: var(--bright-font-color);
     background: var(--navbar-color-hover);
