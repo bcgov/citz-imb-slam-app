@@ -1,0 +1,60 @@
+name: DEV Build and Deploy SLAM API
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT4_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+            
+      - name: Login to Openshift Docker
+        run : |
+          docker login ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_SA_PASSWORD }}
+            
+      - name: Build the Docker image
+        run: |            
+          docker-compose build slam-app
+          
+      - name: Docker Tag Version
+        run: |  
+          docker tag citz-imb-slam-app_slam-app ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }}:latest
+          
+      - name: Docker List Images
+        run: |  
+          docker image ls
+          
+      - name: Docker Push Version
+        run: |  
+          docker push ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }}:latest
+      
+      - name: Deploy to DEV
+        env:
+          NAMESPACE: "${{ secrets.OPENSHIFT_DEV_NAMESPACE }}"
+          APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
+          LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
+          ENVIRONMENT: "${{ secrets.ENVIRONMENT }}"
+        run: |  
+          ./.github/helpers/deploy-api.sh
+          
+      - name: Health Check DEV deployment
+        env:
+          NAMESPACE: "${{ secrets.OPENSHIFT_DEV_NAMESPACE }}"
+          APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
+          LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
+          ENVIRONMENT: "${{ secrets.ENVIRONMENT }}"
+        run: |  
+          ./.github/helpers/application-health.sh
