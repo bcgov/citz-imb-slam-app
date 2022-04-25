@@ -92,7 +92,8 @@ $borders: $border-width $border-style $border-color !default;
 //==============================================================================
 
 $button-background: $primary-color !default;
-$button-background-hover: darken($button-background, 10%) !default;
+$button-background-hover: #4F70DD;
+$button-border-hover: 1px solid darken($button-background, 5%) !default;
 $button-color: #ffffff !default;
 $button-font-weight: 600 !default;
 $button-font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif !default;

@@ -14,11 +14,11 @@ export const SaveCancelButtons = (props) => {
 
 	return (
 		<Stack direction={'row'} spacing={2} justifyContent={'center'}>
-			<Button id='cancel' onClick={clickHandler} variant='outlined'>
+			<Button id='cancel' onClick={clickHandler} className="btn btn-muted">
 				Cancel
 			</Button>
 			{ShowSaveButton ? (
-				<Button type='submit' id='save' variant='contained'>
+				<Button type='submit' id='save' className="btn btn-default">
 					Save
 				</Button>
 			) : null}
