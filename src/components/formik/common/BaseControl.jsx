@@ -1,7 +1,7 @@
 import { FormControl, FormHelperText, Typography, Grid } from '@mui/material';
 
 export const BaseControl = (props) => {
-	const { children, required, label, helperText, error, breakPoints } =
+	const { children, required, label, availability, helperText, error, breakPoints } =
 		props;
 
 	return (
@@ -14,6 +14,11 @@ export const BaseControl = (props) => {
 							*
 						</Typography>
 					) : null}
+					{availability ? (
+						<Typography component='span' sx={{ fontWeight: '400 !important' }}>
+							{availability}
+						</Typography>
+					) : null}					
 				</Typography>
 
 				{children}

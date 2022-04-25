@@ -5,6 +5,7 @@ import { TextareaFormikControl } from '../inputs/TextareaFormikControl';
 import { SelectFormikControl } from '../inputs/SelectFormikControl';
 import { SelectChipFormikControl } from '../inputs/SelectChipFormikControl';
 import { DropdownFormikControl } from '../inputs/DropdownFormikControl';
+import { MultiUserControl } from '../inputs/MultiUserControl';
 
 export const FormikControls = (props) => {
 	const { control, ...remainingProps } = props;
@@ -25,6 +26,8 @@ export const FormikControls = (props) => {
 			return <DropdownFormikControl {...remainingProps} />;
 		case 'selectChip':
 			return <SelectChipFormikControl {...remainingProps} />;
+		case 'list':
+			return <MultiUserControl {...remainingProps} />;
 		case 'radio':
 		// return <RadioFormikControl {...remainingProps} />;
 		case 'checkbox':

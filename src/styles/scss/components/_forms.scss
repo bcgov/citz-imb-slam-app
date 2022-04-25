@@ -36,25 +36,29 @@
     }
   }
   
-  // textarea {
-  //   overflow: auto;
-  //   height: auto;
-  // }
-
   .textarea {
     overflow: hidden;
     resize: none;
-
   }
-
   
   fieldset {
     border: 1px solid $border-color;
     border-radius: $border-radius;
-    padding: $padding;
-    margin: $margins 0;
+    padding: 0;
+    margin: 0.35rem 0;
+    font-family: var(--body-font-family) !important;
+    font-size: 0.9rem;
+
+    &:disabled {
+      opacity: 1;
+      background-color: #f2f2f2;
+
+      * {
+        color: #aaa;
+      }
+    }
   }
-  
+
   legend {
     padding: 0 0.5rem;
     font-weight: 600;
@@ -81,15 +85,16 @@
   
   // Labels
   label {
-    font-weight: 600;
+    font-weight: 600 !important;
     max-width: 100%;
     display: block;
     margin: 1rem 0 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
+    font-family: var(--body-font-family) !important;
 
     & span {
-      color: $error;
       margin-left: 4px !important;
+      font-size: 0.9rem !important;
     }
   }
   
@@ -211,16 +216,19 @@ form {
   }
 }
 
+.user-info {
+  width: 100%;
+}
+
 .form-title {
   margin-top: 0;
 }
 
-label+div {
+.MuiInputBase-formControl {
   margin-top: 4px !important;
-  & > div {
-      border-radius: 3px !important;
-      border-color: $border-color;
-  }
+}
+
+label+div {
 
   & > input {
       font-weight: 400 !important;
@@ -231,6 +239,25 @@ label+div {
 .readOnly > * > * > * > * {
   color: var(--dark-font-color) !important;
 }
+
+.readOnly {
+    div {
+      border-radius: 3px !important;
+      border-color: $border-color;   
+  }
+}
+
+.MuiInputBase-root {
+  
+    * {
+      font-family: var(--body-font-family) !important;
+    }
+
+  fieldset {
+    border: none !important;
+  }
+} 
+
 
 .css-1rhbuit-multiValue {
   border-radius: 50px !important;
@@ -265,3 +292,21 @@ label+div {
   font-size: 0.85rem !important;
   font-family: var(--body-font-family) !important;
 }
+
+.MuiBox-root > div > * {
+  margin-top: 0px;
+}
+
+.user-list {
+  height: 370px;
+  overflow: scroll;
+    ul {
+
+      li {
+        display: block;
+      }
+    }
+  
+}
+
+

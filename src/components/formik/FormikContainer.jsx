@@ -20,23 +20,23 @@ import { FormHeader } from './common/FormHeader';
 import { FormikControls } from './common/FormikControls';
 
 export const FormikContainer = (props) => {
-	const { formTitle = '', isNew = true, dataHook, id } = props;
+  const { formTitle = "", isNew = true, dataHook, id } = props;
 
 	const [editMode, setEditMode] = useState(isNew);
 	const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
-	const route = useRouter();
+  const route = useRouter();
 
-	const {
-		isLoading,
-		isError,
-		formFields,
-		initialValues,
-		validationSchema,
-		create,
-		update,
-		remove,
-	} = useForm(dataHook, id);
+  const {
+    isLoading,
+    isError,
+    formFields,
+    initialValues,
+    validationSchema,
+    create,
+    update,
+    remove,
+  } = useForm(dataHook, id);
 
 	const submitHandler = async (body, formik) => {
 		if (isNew) {
@@ -53,10 +53,6 @@ export const FormikContainer = (props) => {
 		route.back();
 	};
 
-	const editHandler = () => {
-		setEditMode((mode) => !mode);
-	};
-
 	const confirmationDialogClose = (event) => {
 		if (event.target.id === 'delete') deleteHandler();
 		setConfirmationDialogOpen(false);
@@ -71,7 +67,19 @@ export const FormikContainer = (props) => {
 		);
 	}
 
-	if (isLoading) return null;
+  let size = 12
+  if (id && formTitle == 'licensee') {
+	  size = 6
+  }
+	
+  if (isError) {
+    return (
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        there was an error
+      </Alert>
+    );
+  }
 
 	return (
 		<>
