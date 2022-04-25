@@ -48,7 +48,7 @@ jobs:
           LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
           ENVIRONMENT: "${{ secrets.ENVIRONMENT }}"
         run: |  
-          ./.github/helpers/deploy-api.sh
+          ./.github/helpers/deploy-app.sh
           
       - name: Health Check DEV deployment
         env:
