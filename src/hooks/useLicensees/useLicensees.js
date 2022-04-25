@@ -33,18 +33,10 @@ export const useLicensees = (licenseeId) => {
 
     }, [licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading])
 
-    const initialValues = useMemo(() => {
-        if (licenseeTable.isLoading || licenseeTable.isError || licenseeTable.data === undefined) return {}
-
-        if (licenseeId) return { id: licenseeId, name: data[0].name, software: data[0].software }
-
-        return {}
-    }, [data, licenseeId, licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading])
-
     const assignedLicensesTable = useDBTableFactory('assigned-license')
 
     const create = useCallback(async (props) => {
-        const { name, notes = '', software } = props
+        const { name = '', notes = '', software } = props
 
         software = software.map((software) => {
             return { id: software };
@@ -63,8 +55,8 @@ export const useLicensees = (licenseeId) => {
         const { id: licenseeId, name, notes = '', software } = props
 
         software = software.map((software) => {
-			return { id: software };
-		});
+            return { id: software };
+        });
 
         await licenseeTable.update({ id: licenseeId, name, notes })
 

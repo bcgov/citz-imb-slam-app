@@ -3,6 +3,11 @@ import {
 	AlertTitle,
 	Box,
 	Button,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
 	Grid,
 	Typography,
 } from '@mui/material';
@@ -18,6 +23,7 @@ export const FormikContainer = (props) => {
 	const { formTitle = '', isNew = true, dataHook, id } = props;
 
 	const [editMode, setEditMode] = useState(isNew);
+	const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
 	const route = useRouter();
 
@@ -38,17 +44,22 @@ export const FormikContainer = (props) => {
 		} else {
 			await update(body);
 		}
-		formik.resetForm()
+		formik.resetForm();
 		route.back();
 	};
 
 	const deleteHandler = async () => {
-		remove({ id: initialValues.id });
+		if (confirmationDialogClose) await remove({ id: initialValues.id });
 		route.back();
 	};
 
 	const editHandler = () => {
 		setEditMode((mode) => !mode);
+	};
+
+	const confirmationDialogClose = (event) => {
+		if (event.target.id === 'delete') deleteHandler();
+		setConfirmationDialogOpen(false);
 	};
 
 	if (isError) {
@@ -63,60 +74,74 @@ export const FormikContainer = (props) => {
 	if (isLoading) return null;
 
 	return (
-		<Formik
-			initialValues={initialValues}
-			validationSchema={validationSchema}
-			onSubmit={submitHandler}>
-			{(props) => {
-				const { resetForm, handleReset } = props;
-				return (
-					<>
-						<FormHeader
-							formTitle={formTitle}
-						>
-							{editMode ? null : (
-								<>
-									<Button
-										id='delete'
-										onClick={deleteHandler}
-										className="btn btn-muted warning"
-										>
-										Delete
-									</Button>
-									<Button id='edit' onClick={editHandler} className="btn btn-default">
-										Edit
-									</Button>
-								</>
-							)}
-						</FormHeader>
-						<Form>
-							<Box sx={{ flexGrow: 1 }}>
-								<Grid
-									container
-									spacing={2}
-									direction='row'
-									justifyContent='flex-start'
-									alignItems='flex-start'
-									className='form-field'
-									
-									>
-									{formFields.map((formField, key) => (
-										<FormikControls
-											key={key}
-											disabled={!editMode}
-											{...formField}
-										/>
-									))}
-								</Grid>
-								<SaveCancelButtons
-									ShowSaveButton={editMode}
-									resetForm={resetForm}
-								/>
-							</Box>
-						</Form>
-					</>
-				);
-			}}
-		</Formik>
+		<>
+			<Formik
+				initialValues={initialValues}
+				validationSchema={validationSchema}
+				onSubmit={submitHandler}>
+				{(props) => {
+					const { resetForm, handleReset } = props;
+					return (
+						<>
+							<FormHeader>
+								{editMode ? null : (
+									<>
+										<Button
+											id='delete'
+											onClick={() => setConfirmationDialogOpen(true)}
+											variant='outlined'
+											color='warning'>
+											Delete
+										</Button>
+										<Button id='edit' onClick={editHandler} variant='contained'>
+											Edit
+										</Button>
+									</>
+								)}
+							</FormHeader>
+							<Form>
+								<Typography variant='h3'>{formTitle}</Typography>
+								<Box sx={{ flexGrow: 1 }}>
+									<Grid
+										container
+										spacing={2}
+										direction='row'
+										justifyContent='flex-start'
+										alignItems='flex-start'>
+										{formFields.map((formField, key) => (
+											<FormikControls
+												key={key}
+												disabled={!editMode}
+												{...formField}
+											/>
+										))}
+									</Grid>
+									<SaveCancelButtons
+										ShowSaveButton={editMode}
+										resetForm={resetForm}
+									/>
+								</Box>
+							</Form>
+						</>
+					);
+				}}
+			</Formik>
+			<Dialog open={confirmationDialogOpen} onClose={confirmationDialogClose}>
+				<DialogTitle id='alert-dialog-title'>Delete?</DialogTitle>
+				<DialogContent>
+					<DialogContentText id='alert-dialog-description'>
+						Are You Sure?
+					</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={confirmationDialogClose} id='delete'>
+						Delete
+					</Button>
+					<Button onClick={confirmationDialogClose} id='cancel'>
+						Cancel
+					</Button>
+				</DialogActions>
+			</Dialog>
+		</>
 	);
 };
