@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  ###############################################################################
+  ###                              SLAM API                                   ###
+  ###############################################################################
+  slam-app:
+    container_name: slam-app
+    build:
+      context: .
+    networks:
+      - slam-net
+    ports:
+      - 3000:3000
+    command: ["node", "server.js"]
+
+networks:
+  slam-net:
+    driver: 'bridge'
