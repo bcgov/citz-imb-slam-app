@@ -13,7 +13,7 @@ export const SaveCancelButtons = (props) => {
 	}, [resetForm, router]);
 
 	return (
-		<Stack direction={'row'} spacing={2} justifyContent={'center'}>
+		<Stack direction={'row'} spacing={2} justifyContent={'center'} sx={{ margin: "25px 0px 15px" }}>
 			<Button id='cancel' onClick={clickHandler} className="btn btn-muted">
 				Cancel
 			</Button>

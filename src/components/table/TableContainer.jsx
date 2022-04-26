@@ -12,7 +12,7 @@ export const TableContainer = (props) => {
 	const tableData = dataHook();
 
 	const { isLoading, isError, error, tableColumns, data } = tableData;
-	console.log('tableData', tableData)
+
 	const columns = useMemo(
 		() => [...tableColumns],
 		[tableColumns],
@@ -57,7 +57,6 @@ export const TableContainer = (props) => {
 				disableColumnMenu
 				disableSelectionOnClick
 				onRowClick={openItem}
-				// rowHeight={80}
 				rowHeight={height}
 				sx={{
 					backgroundColor: '#fff',
