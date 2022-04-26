@@ -1,5 +1,4 @@
-name: DEV Build and Deploy SLAM API
-
+name: DEV Deploy of SLAM Frontend Application Image 
 on:
   push:
     branches: [main]
