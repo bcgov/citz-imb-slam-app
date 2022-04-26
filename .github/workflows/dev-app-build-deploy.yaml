@@ -1,4 +1,4 @@
-name: TEST Deploy of SLAM Frontend Application Image 
+name: DEV Deploy of SLAM Frontend Application Image 
 on:
   push:
     branches: [main]
