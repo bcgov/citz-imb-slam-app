@@ -1,12 +1,13 @@
 import { useSoftware } from "hooks";
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 import { Field } from "formik";
 import { BaseControl } from "../common/BaseControl";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
+import {ListMenu} from "../../common/ListMenu"
 
 import {
   Alert,
@@ -35,12 +36,20 @@ export const MultiUserControl = (props) => {
 
   const software = useSoftware(id);
 
-  if (id) {
-    const getData = software.data[0];
+  const availability = useMemo(() => {
+    if (
+      software.isLoading ||
+      software.isError ||
+      software.data.length === 0 ||
+      !software.data.__licenseeConnection__
+    )
+      return `(${software.data[0].__licenseeConnection__.length} assigned of ${software.data[0].quantity})`;
 
-    const availability = `(${getData.__licenseeConnection__.length} used of ${getData.quantity})`;
+    return `(${software.data[0].__licenseeConnection__.length} assigned of ${software.data[0].quantity})`;
+  }, [software.data, software.isError, software.isLoading]);
 
-    const licenseeList = getData.__licenseeConnection__.map((item, index) => (
+  const licenseeList = software.data[0].__licenseeConnection__.map(
+    (item, index) => (
       <>
         <Grid
           container
@@ -89,11 +98,11 @@ export const MultiUserControl = (props) => {
               maytheforce@be.with.you | R2D2
             </Typography>
           </Stack>
-          <MoreHorizSharpIcon  />
+          {disabled? null : (<ListMenu />)}
         </Grid>
       </>
-    ));
-  }
+    )
+  );
 
   return (
     <Field name={name}>
@@ -109,11 +118,7 @@ export const MultiUserControl = (props) => {
               <TextField disabled={disabled} placeholder="Search" />
             )}
             <fieldset className="user-list" disabled={disabled}>
-              <Stack
-                spacing={2}
-              >
-                {licenseeList}
-              </Stack>
+              <Stack spacing={2}>{licenseeList}</Stack>
             </fieldset>
           </BaseControl>
         );

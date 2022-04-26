@@ -52,6 +52,7 @@
     &:disabled {
       opacity: 1;
       background-color: #f2f2f2;
+      cursor: not-allowed;
 
       * {
         color: #aaa;
@@ -298,8 +299,11 @@ label+div {
 }
 
 .user-list {
-  height: 370px;
+  height: 330px;
   overflow: scroll;
+  &:disabled {
+    height: 375px;
+  }
     ul {
 
       li {
