@@ -128,11 +128,11 @@ export const softwareFields = [
         },
     },
     {
-        name: '__licensees__',
+        name: '__licenseeConnection__',
         label: 'Assigned Licensees',
         initialValue: '',
         form: {
-            control: 'list',
+            control: 'userlist',
             fullWidth: true,
             show: true,
             sortOrder: 0,
