@@ -1,4 +1,4 @@
-import { AvatarChip, DateCell, QuantityAssigned } from 'components';
+import { AvatarChip, LogoAvatar, DateCell, QuantityAssigned } from 'components';
 
 export const softwareFields = [
     {
@@ -27,7 +27,7 @@ export const softwareFields = [
             sortOrder: 0,
         },
         table: {
-            renderCell: (params) => <AvatarChip title={params.value} />,
+            renderCell: (params) => <LogoAvatar title={params.value} />,
             show: true,
             sortOrder: 1,
             width: 250,
@@ -45,14 +45,14 @@ export const softwareFields = [
         },
         table: {
             show: true,
-            sortOrder: 3,
+            sortOrder: 2,
             width: 200,
         },
     },
     {
         name: 'renewal',
         label: 'Renewal Date',
-        initialValue: new Date().toISOString().split('T')[0].replace(/ /g, '-'),
+        initialValue: '',
         form: {
             control: 'date',
             show: true,
@@ -62,7 +62,7 @@ export const softwareFields = [
         table: {
             renderCell: (params) => <DateCell value={params.value} />,
             show: true,
-            sortOrder: 2,
+            sortOrder: 4,
             valueFormatter: (params) =>
                 new Date(params.value).toISOString().split('T')[0].replace(/ /g, '-'),
             width: 200,
@@ -85,7 +85,7 @@ export const softwareFields = [
                 />
             ),
             show: true,
-            sortOrder: 5,
+            sortOrder: 3,
             width: 150,
         },
     },
@@ -100,7 +100,7 @@ export const softwareFields = [
         },
         table: {
             show: true,
-            sortOrder: 4,
+            sortOrder: 5,
             width: 200,
         },
     },

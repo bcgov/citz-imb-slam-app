@@ -10,12 +10,15 @@ export const useSoftware = (id) => {
     const data = useMemo(() => {
         if (softwareTable.isLoading || softwareTable.isError || softwareTable.data === undefined) return []
 
-        return softwareTable.data.map(item => {
-            return { ...item, renewal: new Date(item.renewal).toISOString().split('T')[0] }
-        })
+        return softwareTable.data
     }, [softwareTable.data, softwareTable.isError, softwareTable.isLoading])
 
     const { tableColumns, formFields } = new Fields(softwareFields)
 
-    return { ...softwareTable, data, tableColumns, formFields }
+    const create = (body) => {
+        const renewal = body.renewal === '' ? null : body.renewal
+        return softwareTable.create({ ...body, renewal })
+    }
+
+    return { ...softwareTable, data, create, tableColumns, formFields }
 }

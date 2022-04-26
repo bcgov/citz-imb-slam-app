@@ -53,9 +53,10 @@ body {
     &-header{
         align-items: center;
         display: flex;
-        margin-bottom: 12px;
+        margin-bottom: 6px;
         min-height: 50px;
-
+        font-family: var(--heading-font-family);
+        font-weight: 600;
     }
 
 }
@@ -98,30 +99,3 @@ body {
 
 }
 
-form {
-    background-color: #fff;
-    padding: 2rem 2rem;
-    border-radius: 5px;
-    box-shadow: $shadow;
-}
-
-.button-group {
-    text-align: center;
-    padding: 20px 0px 10px 0px;
-
-    button {
-        margin: 0rem 0.5rem;
-    }
-
-    &-edit{
-        text-align:right;
-
-        button {
-            margin: 0rem 0rem 0rem 1rem;
-        }
-    }
-}
-
-.form-title {
-    margin-top: 0;
-}

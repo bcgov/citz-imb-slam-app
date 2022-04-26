@@ -12,24 +12,8 @@ export const getServerSideProps = (context) => {
 export const Software = () => {
 	const router = useRouter();
 
-	const actionColumn = {
-		field: 'actions',
-		headerName: 'Actions',
-		width: 150,
-		renderCell: (params) => {
-			return (
-				<IconButton
-					color='primary'
-					aria-label='go to details'
-					onClick={() => router.push(`/software/${params.row.id}`)}>
-					<MoreHorizIcon color='action' />
-				</IconButton>
-			);
-		},
-	};
-
 	const tableActions = (
-		<Button variant='contained' href='/software/add'>
+		<Button className="btn btn-default" href='/software/add'>
 			+ Add Software
 		</Button>
 	);
@@ -38,8 +22,10 @@ export const Software = () => {
 		<TableContainer
 			title={'Software'}
 			dataHook={useSoftware}
-			actionColumn={actionColumn}
 			tableActions={tableActions}
+			sortOrder={'asc'}
+			sortBy={'title'}
+			height={80}
 		/>
 	);
 };

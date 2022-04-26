@@ -6,6 +6,7 @@ const DAYS_BEFORE_EXPIRATION_WARNING = 90;
 
 export const DateCell = ({ value }) => {
 	const date = DateTime.fromISO(value);
+
 	const [severity, setSeverity] = useState({
 		icon: false,
 		severity: 'success',
@@ -17,7 +18,10 @@ export const DateCell = ({ value }) => {
 		return () => {};
 	}, []);
 
+	if (!value) return null;
+
 	return (
-		<Alert {...severity}>{date.setLocale('en-ca').toLocaleString()}</Alert>
+		<Alert icon={false} {...severity}>{date.setLocale('en-ca').toLocaleString()}</Alert>
+		// <span>{date.setLocale('en-ca').toLocaleString()}</span>
 	);
 };
