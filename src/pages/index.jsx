@@ -1,6 +1,7 @@
 /** @format */
-import { Box, Card, Grid, Paper, Stack, Typography } from '@mui/material';
-import { SoftwareTable } from 'components';
+import { Card, Grid, Stack, Typography } from '@mui/material';
+import { Unauthorized } from 'components';
+import { useSession } from 'next-auth/react';
 /**
  * the home page
  * @returns {React.jsx}
@@ -8,10 +9,13 @@ import { SoftwareTable } from 'components';
 export default function Home() {
 	const boxSX = { width: 300, height: 300, border: '1px solid grey' };
 
+	const { status } = useSession();
+
 	return (
 		<Grid container>
 			<Stack direction='column' spacing={3}>
 				<Typography variant='h4'>Welcome to SLAM</Typography>
+				{status !== 'authenticated' && <Unauthorized />}
 				<div>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quae
 					dignissimos minima recusandae sit? Veniam minus nihil praesentium
