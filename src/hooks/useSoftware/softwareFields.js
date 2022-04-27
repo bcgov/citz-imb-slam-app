@@ -9,6 +9,7 @@ export const softwareFields = [
             control: 'hidden',
             show: true,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             show: false,
@@ -25,6 +26,7 @@ export const softwareFields = [
             fullWidth: true,
             show: true,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             renderCell: (params) => <LogoAvatar title={params.value} />,
@@ -42,6 +44,7 @@ export const softwareFields = [
             control: 'text',
             show: true,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             show: true,
@@ -58,6 +61,7 @@ export const softwareFields = [
             show: true,
             sortOrder: 0,
             type: 'date',
+            column: 0,
         },
         table: {
             renderCell: (params) => <DateCell value={params.value} />,
@@ -76,6 +80,7 @@ export const softwareFields = [
             control: 'number',
             show: true,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             renderCell: (params) => (
@@ -97,6 +102,7 @@ export const softwareFields = [
             control: 'text',
             show: true,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             show: true,
@@ -113,11 +119,27 @@ export const softwareFields = [
             fullWidth: true,
             show: true,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             show: true,
             sortOrder: 6,
             width: 300,
+        },
+    },
+    {
+        name: '__licenseeConnection__',
+        label: 'Assigned Licensees',
+        initialValue: '',
+        form: {
+            control: 'userlist',
+            fullWidth: true,
+            show: true,
+            sortOrder: 0,
+            column: 1,
+        },
+        table: {
+            show: false,
         },
     },
 ]

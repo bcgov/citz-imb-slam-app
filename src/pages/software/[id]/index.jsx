@@ -8,6 +8,7 @@ export const getServerSideProps = (context) => {
 	return authenticate(context);
 };
 
+
 /**
  * present the software form in read mode (initially) for a specific software title
  * can be turned to edit mode
@@ -19,11 +20,13 @@ export default function SoftwareFormRead() {
 	const { id } = router.query;
 
 	return (
+		<>
 		<FormikContainer
 			formTitle='Software'
 			dataHook={useSoftware}
 			id={id}
 			isNew={false}
 		/>
+		</>
 	);
 }

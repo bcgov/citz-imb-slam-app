@@ -5,6 +5,10 @@ import { softwareFields } from "./softwareFields";
 
 export const useSoftware = (id) => {
 
+    let formColumns = 1
+
+    if ( id ) formColumns = 2
+
     const softwareTable = useDBTableFactory('software', id)
 
     const data = useMemo(() => {
@@ -20,5 +24,5 @@ export const useSoftware = (id) => {
         return softwareTable.create({ ...body, renewal })
     }
 
-    return { ...softwareTable, data, create, tableColumns, formFields }
+    return { ...softwareTable, data, create, tableColumns, formFields, formColumns }
 }

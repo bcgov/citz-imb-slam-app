@@ -11,6 +11,5 @@ export const useForm = (dataHook, id) => {
 
     const formFields = setFormFields(dataHookResponse)
     
-
     return { ...dataHookResponse, formFields, initialValues, validationSchema }
 }

@@ -7,6 +7,7 @@ export const getServerSideProps = (context) => {
 	return authenticate(context);
 };
 
+
 /**
  * present the licensee form in read mode (initially) for a specific licensee
  * can be turned to edit mode
