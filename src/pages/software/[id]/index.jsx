@@ -3,6 +3,10 @@
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
 import { FormikContainer } from 'components';
+import { authenticate } from 'helpers';
+export const getServerSideProps = (context) => {
+	return authenticate(context);
+};
 
 
 /**

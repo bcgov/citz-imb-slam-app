@@ -1,55 +1,57 @@
-import bcgovlogo from 'assets/images/bcgov-h.png';
-import slamlogo from 'assets/images/slam-logo.png';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import {React, useState } from 'react';
-import { AvatarChip, UserMenu } from 'components';
-
-
-
+import {
+  AppBar,
+  Box,
+  Button,
+  IconButton,
+  Link,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import slamlogo from "assets/images/slam-logo.png";
+import { UserMenu } from "components";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { React } from "react";
+import { NavigationLinks } from "./NavigationLinks";
 
 /**
  *
  * @returns {React.jsx}
  */
 export const Navigation = () => {
-	const router = useRouter();
+  const router = useRouter();
 
-	return (
-		<nav className='nav'>
-			<div className='nav-container'>
-				<Link href='/'>
-					<a className='nav-brand'>
-						<div className='logo-block'>
-							<Image
-								src={slamlogo}
-								className='nav-logo-main'
-								alt='BC GOV Logo'
-								width={40}
-								height={40}
-							/>
-						</div>
-						<h1 className='nav-header'>License Management</h1>
-					</a>
-				</Link>
-				<div className='nav-group'>
-					<ul className='nav-item-wrapper'>
-						<li className='nav-item'>
-							<a onClick={() => router.push('/software')}>Software</a>
-						</li>
-						<li>
-							<a onClick={() => router.push('/licensees')}>Licensees</a>
-						</li>
-						<li>
-							<a onClick={() => router.push('/contact')}>Contact</a>
-						</li>
-						<li>
-							<UserMenu title='Baby Yoda' />
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	);
+  return (
+    <Box sx={{ flexGrow: 1, boxShadow: 3 }}>
+      <AppBar sx={{ bgcolor: "#ffffff" }}>
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={() => router.push("/")}
+          >
+            <Image
+              src={slamlogo}
+              className="nav-logo-main"
+              alt="BC GOV Logo"
+              width={40}
+              height={40}
+            />
+          </IconButton>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ color: "text.primary", flexGrow: 1 }}
+          >
+            License Management
+          </Typography>
+          <NavigationLinks />
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
 };
