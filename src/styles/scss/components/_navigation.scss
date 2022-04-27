@@ -1,89 +1,89 @@
 .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--white);
-    border-bottom: 1px solid var(--line-color);
-    height: 75px;
-    z-index: 9;
-    box-shadow: $shadow;
-  }
-
-.nav-brand {
-    display: inline-block;
-
-    .logo-block {
-      display: inline-block;
-      padding: 10px 10px 10px 0px;
-    }
-
-    &:visited{
-      color: var(--font-color);
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--white);
+  border-bottom: 1px solid var(--line-color);
+  height: 75px;
+  z-index: 9;
+  box-shadow: $shadow;
 }
 
-.nav-logo{
-    margin-right: 4px;
+.nav-brand {
+  display: inline-block;
 
-    &-main{
-      border-radius: 10px;
-    }
+  .logo-block {
+    display: inline-block;
+    padding: 10px 10px 10px 0px;
+  }
+
+  &:visited {
+    color: var(--font-color);
+  }
+}
+
+.nav-logo {
+  margin-right: 4px;
+
+  &-main {
+    border-radius: 10px;
+  }
 }
 
 .nav-header {
-    display: inline;
-    // font-family: var(--bc-gov-family);
-    float: right;
-    font-weight: 500;
-    letter-spacing: 0.8px;
-    font-size: 1rem;
-    padding: 0px 0px;
-    margin: 14px 0px;
+  display: inline;
+  // font-family: var(--bc-gov-family);
+  float: right;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  font-size: 1rem;
+  padding: 0px 0px;
+  margin: 14px 0px;
 
-    &:before{
-        content: '';
-        line-height: 30px;
-    }
+  &:before {
+    content: "";
+    line-height: 30px;
+  }
 }
 
 .nav-container {
-    display: flex;
-    margin: 0 auto;
-    align-items: center;
-    padding: 0.5rem 24px;
-    font-family: var(--body-font-family);
-    height: 100%;
-    justify-content: space-between;
-    max-width: 1536px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  padding: 0.5rem 24px;
+  font-family: var(--body-font-family);
+  height: 100%;
+  justify-content: space-between;
+  max-width: 1536px;
 
-    .user{
-      line-height: 36px;
-      margin-left: 40px;
+  .user {
+    line-height: 36px;
+    margin-left: 40px;
 
-      &:after{
-        content: '\E972';
-        font-family: FabricMDL2Icons;
-        font-size: 0.75rem;
-        margin-left: 10px;
-      }
+    &:after {
+      content: "\E972";
+      font-family: FabricMDL2Icons;
+      font-size: 0.75rem;
+      margin-left: 10px;
     }
+  }
 }
 
 .user {
-  &:hover{
+  &:hover {
     cursor: pointer;
     color: var(--primary);
 
     span {
       span {
-      color: var(--primary) !important;
-     }
+        color: var(--primary) !important;
+      }
     }
   }
 }
 
-.user-menu{
+.user-menu {
   font-size: 0.85rem;
   font-weight: 400;
   font-family: var(--body-font-family);
@@ -112,118 +112,102 @@
   }
 }
 
-
 nav {
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
-        li {
-          display: inline-block;
+    li {
+      display: inline-block;
 
-          a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--font-color);
-            gap: 0.4rem;
-            font-size: 0.9rem;
-            padding: 0.7rem 1rem;
-            border-radius: 5px;
-            font-weight: 400;
-            line-height: 1.1;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--font-color);
+        gap: 0.4rem;
+        font-size: 0.9rem;
+        padding: 0.7rem 1rem;
+        border-radius: 5px;
+        font-weight: 400;
+        line-height: 1.1;
 
-            &:hover{
-                cursor: pointer;
-                color: var(--primary);
-            }
+        &:hover {
+          cursor: pointer;
+          color: var(--primary);
         }
       }
     }
-
-
-
-
+  }
 }
 
+.nav button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--font-color);
+  cursor: pointer;
+  line-height: 0;
+  font-weight: 500;
+}
 
+.nav button:focus {
+  outline: none;
+}
 
+.nav button:focus-visible {
+  outline: 3px solid var(--primary);
+}
 
+.nav button span {
+  font-size: 0.9rem;
+}
 
+.nav button svg rect {
+  fill: var(--font-color);
+}
 
+.nav nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  height: 100%;
+}
 
-  .nav button {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    border: none;
-    background: transparent;
-    color: var(--font-color);
-    cursor: pointer;
-    line-height: 0;
-    font-weight: 500;
-  }
+.nav nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color);
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  line-height: 1.1;
+}
 
-  // .nav button:hover {
-    // background: var(--navbar-color-hover);
-    // color: var(--bright-font-color);
-  // }
+.nav nav a.active {
+  color: var(--bright-font-color);
+}
 
-  .nav button:focus {
-    outline: none;
-  }
+.nav nav a.brand {
+  font-size: 1rem;
+  font-weight: 600;
+}
 
-  .nav button:focus-visible {
-    outline: 3px solid var(--primary);
-  }
+.nav nav a.brand span {
+  white-space: nowrap;
+}
 
-  .nav button span {
-    font-size: 0.9rem;
-  }
-
-  .nav button svg rect {
-    fill: var(--font-color);
-  }
-
-  .nav nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    height: 100%;
-  }
-
-  .nav nav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--font-color);
-    gap: 0.4rem;
-    font-size: 0.9rem;
-    padding: 0.5rem;
-    border-radius: 8px;
-    font-weight: 500;
-    line-height: 1.1;
-  }
-
-  .nav nav a.active {
-    color: var(--bright-font-color);
-  }
-
-  .nav nav a.brand {
-    font-size: 1rem;
-    font-weight: 600;
-  }
-
-  .nav nav a.brand span {
-    white-space: nowrap;
-  }
-
-  .nav nav a:hover {
-    color: var(--bright-font-color);
-    background: var(--navbar-color-hover);
-  }
+.nav nav a:hover {
+  color: var(--bright-font-color);
+  background: var(--navbar-color-hover);
+}
