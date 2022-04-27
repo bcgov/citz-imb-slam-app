@@ -10,6 +10,7 @@ export const licenseeFields = [
             control: 'hidden',
             show: true,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             show: false,
@@ -27,6 +28,7 @@ export const licenseeFields = [
             show: true,
             sortOrder: 0,
             validation: Yup.string().required('Required'),
+            column: 0,
         },
         table: {
             show: true,
@@ -43,6 +45,7 @@ export const licenseeFields = [
             fullWidth: true,
             show: true,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             flex: 1,
@@ -61,6 +64,7 @@ export const licenseeFields = [
             fullWidth: true,
             show: true,
             sortOrder: 3,
+            column: 0,
         },
         table: {
             show: true,
@@ -76,6 +80,7 @@ export const licenseeFields = [
             control: 'hidden',
             show: false,
             sortOrder: 0,
+            column: 0,
         },
         table: {
             show: true,

@@ -1,5 +1,4 @@
-name: DEV Build and Deploy SLAM API
-
+name: DEV Deploy of SLAM Frontend Application Image 
 on:
   push:
     branches: [main]
@@ -23,7 +22,7 @@ jobs:
             
       - name: Login to Openshift Docker
         run : |
-          docker login ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_SA_PASSWORD }}
+          docker login ${{ secrets.OPENSHIFT4_PUBLIC_IMAGE_REPOSITORY_BASE_URL }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_SA_PASSWORD }}
             
       - name: Build the Docker image
         run: |            
@@ -31,7 +30,7 @@ jobs:
           
       - name: Docker Tag Version
         run: |  
-          docker tag citz-imb-slam-app_slam-app ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }}:latest
+          docker tag citz-imb-slam-app_slam-app ${{ secrets.OPENSHIFT4_APP_PUBLIC_IMAGE_REPOSITORY }}:latest
           
       - name: Docker List Images
         run: |  
@@ -39,7 +38,15 @@ jobs:
           
       - name: Docker Push Version
         run: |  
-          docker push ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }}:latest
+          docker push ${{ secrets.OPENSHIFT4_APP_PUBLIC_IMAGE_REPOSITORY }}:latest
+      
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT4_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_DEV_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
       
       - name: Deploy to DEV
         env:

@@ -19,6 +19,9 @@ import { licenseeFields } from './licenseeFields'
  */
 
 export const useLicensees = (licenseeId) => {
+
+    let formColumns = 1
+
     const softwareTable = useSoftware()
 
     const licenseeTable = useDBTableFactory('licensee', licenseeId)
@@ -103,5 +106,5 @@ export const useLicensees = (licenseeId) => {
 
     const { tableColumns, formFields } = new Fields(licenseeFields, { software: options })
 
-    return { ...licenseeTable, data, tableColumns, formFields, create, remove, update }
+    return { ...licenseeTable, data, tableColumns, formFields, formColumns, create, remove, update }
 }
