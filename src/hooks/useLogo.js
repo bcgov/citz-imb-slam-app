@@ -6,30 +6,30 @@ import {
   powerbi,
   visualstudio,
   docker,
-} from "../assets";
-import Image from "next/image";
-import { Typography } from "@mui/material";
+} from '../assets';
+import Image from 'next/image';
+import { Typography } from '@mui/material';
 
 export const useLogo = (logoName, title) => {
-  if (logoName === "mural")
+  if (logoName === 'mural')
     return (
       <Image src={mural} alt={title} layout="fill" className="logo-small" />
     );
 
   switch (logoName) {
-    case "mural":
+    case 'mural':
       return (
         <Image src={mural} alt={title} layout="fill" className="logo-small" />
       );
       break;
 
-    case "adobecc":
+    case 'adobecc':
       return (
         <Image src={adobecc} alt={title} layout="fill" className="logo-small" />
       );
       break;
 
-    case "openshift":
+    case 'openshift':
       return (
         <Image
           src={openshift}
@@ -40,7 +40,7 @@ export const useLogo = (logoName, title) => {
       );
       break;
 
-    case "rocketchat":
+    case 'rocketchat':
       return (
         <Image
           src={rocketchat}
@@ -51,13 +51,13 @@ export const useLogo = (logoName, title) => {
       );
       break;
 
-    case "powerbi":
+    case 'powerbi':
       return (
         <Image src={powerbi} alt={title} layout="fill" className="logo-small" />
       );
       break;
 
-    case "visualstudio":
+    case 'visualstudio':
       return (
         <Image
           src={visualstudio}
@@ -68,7 +68,7 @@ export const useLogo = (logoName, title) => {
       );
       break;
 
-    case "docker":
+    case 'docker':
       return (
         <Image src={docker} alt={title} layout="fill" className="logo-small" />
       );
@@ -76,7 +76,11 @@ export const useLogo = (logoName, title) => {
 
     default:
       return (
-        <Typography className="logo-initial" variant="span" sx={{ color: "#ffffff" }}>
+        <Typography
+          className="logo-initial"
+          variant="span"
+          sx={{ color: '#ffffff' }}
+        >
           {title.charAt(0).toUpperCase()}
         </Typography>
       );

@@ -1,4 +1,4 @@
-import { fetchAPI } from "./common/fetchAPI"
+import { fetchAPI } from './common/fetchAPI';
 
 /**
  * @description Makes a POST fetch call to the api using the endpoint passed to it
@@ -14,18 +14,16 @@ import { fetchAPI } from "./common/fetchAPI"
  * const response = await createData('software', {body:{title:'some-text'}, publisher:'some-text'}, administrator:'some-text'}})
  */
 export const createData = async (endPoint, options) => {
+  const fetchOptions = {
+    method: 'post',
+    body: JSON.stringify(options.body),
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+  };
 
-    const fetchOptions = {
-        method: 'post',
-        body: JSON.stringify(options.body),
-        headers: {
-            'content-type': 'application/json',
-            accept: 'application/json',
-        }
-    }
+  const response = await fetchAPI(endPoint, fetchOptions);
 
-    const response = await fetchAPI(endPoint, fetchOptions)
-
-    return response
-
-}
+  return response;
+};
