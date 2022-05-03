@@ -2,90 +2,90 @@ import { AvatarChip, SoftwareCell } from 'components';
 import * as Yup from 'yup';
 
 export const licenseeFields = [
-    {
-        name: 'id',
-        label: 'ID',
-        initialValue: 'temp',
-        form: {
-            control: 'hidden',
-            show: true,
-            sortOrder: 0,
-            column: 0,
-        },
-        table: {
-            show: false,
-            sortOrder: 0,
-            width: 300,
-        },
+  {
+    name: 'id',
+    label: 'ID',
+    initialValue: 'temp',
+    form: {
+      control: 'hidden',
+      show: true,
+      sortOrder: 0,
+      column: 0,
     },
-    {
-        name: 'name',
-        label: 'Licensee Name',
-        initialValue: '',
-        form: {
-            control: 'text',
-            fullWidth: true,
-            show: true,
-            sortOrder: 0,
-            validation: Yup.string().required('Required'),
-            column: 0,
-        },
-        table: {
-            show: true,
-            sortOrder: 1,
-            width: 180,
-        },
+    table: {
+      show: false,
+      sortOrder: 0,
+      width: 300,
     },
-    {
-        name: 'software',
-        label: 'Assigned Licenses',
-        initialValue: [],
-        form: {
-            control: 'selectChip',
-            fullWidth: true,
-            show: true,
-            sortOrder: 0,
-            column: 0,
-        },
-        table: {
-            flex: 1,
-            renderCell: (params) => <SoftwareCell value={params.value} />,
-            show: true,
-            sortOrder: 2,
-            width: 500,
-        },
+  },
+  {
+    name: 'name',
+    label: 'Licensee Name',
+    initialValue: '',
+    form: {
+      control: 'text',
+      fullWidth: true,
+      show: true,
+      sortOrder: 0,
+      validation: Yup.string().required('Required'),
+      column: 0,
     },
-    {
-        name: 'notes',
-        label: 'Notes',
-        initialValue: '',
-        form: {
-            control: 'text',
-            fullWidth: true,
-            show: true,
-            sortOrder: 3,
-            column: 0,
-        },
-        table: {
-            show: true,
-            sortOrder: 3,
-            width: 250,
-        },
+    table: {
+      show: true,
+      sortOrder: 1,
+      width: 180,
     },
-    {
-        name: 'modified',
-        label: 'Modified',
-        initialValue: '',
-        form: {
-            control: 'hidden',
-            show: false,
-            sortOrder: 0,
-            column: 0,
-        },
-        table: {
-            show: true,
-            sortOrder: 4,
-            width: 150,
-        },
+  },
+  {
+    name: 'software',
+    label: 'Assigned Licenses',
+    initialValue: [],
+    form: {
+      control: 'selectChip',
+      fullWidth: true,
+      show: true,
+      sortOrder: 0,
+      column: 0,
     },
-]
+    table: {
+      flex: 1,
+      renderCell: (params) => <SoftwareCell value={params.value} />,
+      show: true,
+      sortOrder: 2,
+      width: 500,
+    },
+  },
+  {
+    name: 'notes',
+    label: 'Notes',
+    initialValue: '',
+    form: {
+      control: 'text',
+      fullWidth: true,
+      show: true,
+      sortOrder: 3,
+      column: 0,
+    },
+    table: {
+      show: true,
+      sortOrder: 3,
+      width: 250,
+    },
+  },
+  {
+    name: 'modified',
+    label: 'Modified',
+    initialValue: '',
+    form: {
+      control: 'hidden',
+      show: false,
+      sortOrder: 0,
+      column: 0,
+    },
+    table: {
+      show: true,
+      sortOrder: 4,
+      width: 150,
+    },
+  },
+];

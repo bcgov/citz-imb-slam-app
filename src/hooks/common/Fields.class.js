@@ -27,46 +27,45 @@
  */
 
 export class Fields {
-    constructor(fields, formOptions) {
-        this.tableColumns = []
-        this.formFields = []
+  constructor(fields, formOptions) {
+    this.tableColumns = [];
+    this.formFields = [];
 
-        for (let i = 0; i < fields.length; i++) {
-            if (fields[i].table.show) {
-                const tableColumn = {
-                    field: fields[i].name,
-                    headerName: fields[i].label,
-                    ...fields[i].table
-                }
+    for (let i = 0; i < fields.length; i++) {
+      if (fields[i].table.show) {
+        const tableColumn = {
+          field: fields[i].name,
+          headerName: fields[i].label,
+          ...fields[i].table,
+        };
 
-                this.tableColumns.push(tableColumn)
-            }
+        this.tableColumns.push(tableColumn);
+      }
 
-            if (fields[i].form.show) {
-                const formField = {
-                    name: fields[i].name,
-                    label: fields[i].label,
-                    initialValue: fields[i].initialValue,
-                    ...fields[i].form
-                }
+      if (fields[i].form.show) {
+        const formField = {
+          name: fields[i].name,
+          label: fields[i].label,
+          initialValue: fields[i].initialValue,
+          ...fields[i].form,
+        };
 
-                this.formFields.push(formField)
-            }
-        }
-
-        for (const key in formOptions) {
-            if (Object.hasOwnProperty.call(formOptions, key)) {
-                for (let i = 0; i < this.formFields.length; i++) {
-                    if (this.formFields[i].name === key) {
-                        this.formFields[i].options = formOptions[key]
-                        break
-                    }
-
-                }
-            }
-        }
-
-        this.tableColumns.sort((a, b) => a.sortOrder - b.sortOrder)
-        this.formFields.sort((a, b) => a.sortOrder - b.sortOrder)
+        this.formFields.push(formField);
+      }
     }
+
+    for (const key in formOptions) {
+      if (Object.hasOwnProperty.call(formOptions, key)) {
+        for (let i = 0; i < this.formFields.length; i++) {
+          if (this.formFields[i].name === key) {
+            this.formFields[i].options = formOptions[key];
+            break;
+          }
+        }
+      }
+    }
+
+    this.tableColumns.sort((a, b) => a.sortOrder - b.sortOrder);
+    this.formFields.sort((a, b) => a.sortOrder - b.sortOrder);
+  }
 }

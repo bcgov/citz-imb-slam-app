@@ -1,43 +1,42 @@
-import { DEFAULT_API_PORT } from 'constants'
+import { DEFAULT_API_PORT } from 'constants';
 
 const HTML_RESPONSE = {
-    NO_CONTENT: 204,
-    NOT_MODIFIED: 304
-
-}
+  NO_CONTENT: 204,
+  NOT_MODIFIED: 304,
+};
 
 const responseTransform = (data) => {
-    if (Array.isArray(data)) return data
+  if (Array.isArray(data)) return data;
 
-    return [data]
-}
+  return [data];
+};
 
 export const fetchAPI = async (endPoint, options) => {
-    const isDelete = options?.method === 'delete'
+  const isDelete = options?.method === 'delete';
 
-    let port = ''
-    if (window.location.port) port = DEFAULT_API_PORT
+  let port = '';
+  if (window.location.port) port = DEFAULT_API_PORT;
 
-    const url = `${window.location.protocol}//${window.location.hostname}${port}/api/${endPoint}`;
+  const url = `${window.location.protocol}//${window.location.hostname}${port}/api/${endPoint}`;
 
-    const response = await fetch(url, options)
+  const response = await fetch(url, options);
 
-    if (response.ok) {
-        if (response.status === HTML_RESPONSE.NO_CONTENT) {
-            return;
-        } else if (response.status === HTML_RESPONSE.NOT_MODIFIED) {
-            console.warn(`${response.status} ${response.statusText} ${endPoint}`);
-            const data = await response.json()
-            return responseTransform(data)
-        } else {
-            if (isDelete) return
-
-            const data = await response.json()
-            return responseTransform(data)
-        }
+  if (response.ok) {
+    if (response.status === HTML_RESPONSE.NO_CONTENT) {
+      return;
+    } else if (response.status === HTML_RESPONSE.NOT_MODIFIED) {
+      console.warn(`${response.status} ${response.statusText} ${endPoint}`);
+      const data = await response.json();
+      return responseTransform(data);
     } else {
-        console.error(`${response.status} ${response.statusText} for ${url}`);
-        console.warn('response', response)
-        return []
+      if (isDelete) return;
+
+      const data = await response.json();
+      return responseTransform(data);
     }
-}
+  } else {
+    console.error(`${response.status} ${response.statusText} for ${url}`);
+    console.warn('response', response);
+    return [];
+  }
+};
