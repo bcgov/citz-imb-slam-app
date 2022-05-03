@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Avatar as MUIAvatar, Typography } from "@mui/material";
 
 export const Avatar = (props) => {
-  const { title, size = 25, image } = props;
+  const { title, size = 25, image, fontWeight } = props;
 
   const bgcolor = useMemo(() => {
     let hash = 0;
@@ -32,7 +32,10 @@ export const Avatar = (props) => {
         bgcolor,
       }}
     >
-      <Typography variant="span" sx={{ color: "#ffffff" }}>
+      <Typography
+        variant="span"
+        sx={{ color: "#ffffff", fontWeight: 400, fontSize: "0.9rem" }}
+      >
         {title.charAt(0).toUpperCase()}
       </Typography>
     </MUIAvatar>
