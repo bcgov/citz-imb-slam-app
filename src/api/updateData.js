@@ -1,4 +1,4 @@
-import { fetchAPI } from "./common/fetchAPI"
+import { fetchAPI } from './common/fetchAPI';
 /**
  * @description Makes a PUT fetch call to the api using the endpoint passed to it
  * @async
@@ -14,19 +14,18 @@ import { fetchAPI } from "./common/fetchAPI"
  * const response = await updateData('software', {id:'some_uuid',body:{title:'updated-title'}})
  */
 export const updateData = async (endPoint, options) => {
+  const { created, modified, ...body } = options.body;
 
-    const { created, modified, ...body } = options.body
+  const fetchOptions = {
+    method: 'put',
+    body: JSON.stringify(body),
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+  };
 
-    const fetchOptions = {
-        method: 'put',
-        body: JSON.stringify(body),
-        headers: {
-            'content-type': 'application/json',
-            accept: 'application/json',
-        }
-    }
+  const response = await fetchAPI(endPoint, fetchOptions);
 
-    const response = await fetchAPI(endPoint, fetchOptions)
-
-    return response
-}
+  return response;
+};

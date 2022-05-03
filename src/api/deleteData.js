@@ -1,4 +1,4 @@
-import { fetchAPI } from "./common/fetchAPI"
+import { fetchAPI } from './common/fetchAPI';
 /**
  * @description Makes a DELETE fetch call to the api using the endpoint passed to it
  * @async
@@ -11,16 +11,15 @@ import { fetchAPI } from "./common/fetchAPI"
  * const response = await deleteData(`software/${id}`)
  */
 export const deleteData = async (endPoint) => {
+  const fetchOptions = {
+    method: 'delete',
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+  };
 
-    const fetchOptions = {
-        method: 'delete',
-        headers: {
-            'content-type': 'application/json',
-            accept: 'application/json',
-        }
-    }
+  const response = await fetchAPI(endPoint, fetchOptions);
 
-    const response = await fetchAPI(endPoint, fetchOptions)
-
-    return response
-}
+  return response;
+};

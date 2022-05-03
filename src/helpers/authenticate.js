@@ -1,16 +1,16 @@
-import { getSession } from "next-auth/react";
+import { getSession } from 'next-auth/react';
 
 export const authenticate = async (context) => {
-    const session = await getSession(context);
+  const session = await getSession(context);
 
-    if (!session) {
-        return {
-            redirect: {
-                destination: '/api/auth/signin',
-                permanent: false,
-            },
-        };
-    }
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/api/auth/signin',
+        permanent: false,
+      },
+    };
+  }
 
-    return { props: {} };
-}
+  return { props: {} };
+};
