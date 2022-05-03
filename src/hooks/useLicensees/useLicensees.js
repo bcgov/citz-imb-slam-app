@@ -27,7 +27,7 @@ export const useLicensees = (licenseeId) => {
     const licenseeTable = useDBTableFactory('licensee', licenseeId)
 
     const data = useMemo(() => {
-        
+
         if (licenseeTable.isLoading || licenseeTable.isError || licenseeTable.data === undefined) return []
 
         return licenseeTable.data.map(item => {
