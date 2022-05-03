@@ -2,17 +2,17 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Logout from "@mui/icons-material/Logout";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import {
-  Button,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  Typography,
+	Button,
+	ListItemIcon,
+	Menu,
+	MenuItem,
+	Typography
 } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useMemo, useState } from "react";
-import { Avatar } from "./Avatar";
 import { Theme } from "../style/Theme";
-import { ThemeProvider } from "@mui/material/styles";
+import { Avatar } from "./Avatar";
 
 export const UserMenu = () => {
   const session = useSession();

@@ -1,8 +1,8 @@
 import { Button, Stack, Typography } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { UserMenu } from "components";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Theme } from "../style/Theme";
 
 export const NavigationLinks = () => {

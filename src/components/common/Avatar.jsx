@@ -1,5 +1,5 @@
-import { useMemo } from "react";
 import { Avatar as MUIAvatar, Typography } from "@mui/material";
+import { useMemo } from "react";
 
 export const Avatar = (props) => {
   const { title, size = 25, image, fontWeight } = props;
