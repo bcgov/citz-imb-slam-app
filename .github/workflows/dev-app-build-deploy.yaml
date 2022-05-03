@@ -1,9 +1,13 @@
-name: DEV Deploy of SLAM Frontend Application Image 
+name: DEV Deploy of SLAM Frontend Application Image
 on:
   push:
     branches: [main]
   workflow_dispatch:
     branches: [main]
+
+concurrency:
+  group: citz-imb-slam-app-CICD
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -19,27 +23,27 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_SA_PASSWORD }}"}'
           cmd: |
             'version'
-            
+
       - name: Login to Openshift Docker
         run : |
           docker login ${{ secrets.OPENSHIFT4_PUBLIC_IMAGE_REPOSITORY_BASE_URL }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_SA_PASSWORD }}
-            
+
       - name: Build the Docker image
-        run: |            
+        run: |
           docker-compose build slam-app
-          
+
       - name: Docker Tag Version
-        run: |  
+        run: |
           docker tag citz-imb-slam-app_slam-app ${{ secrets.OPENSHIFT4_APP_PUBLIC_IMAGE_REPOSITORY }}:latest
-          
+
       - name: Docker List Images
-        run: |  
+        run: |
           docker image ls
-          
+
       - name: Docker Push Version
-        run: |  
+        run: |
           docker push ${{ secrets.OPENSHIFT4_APP_PUBLIC_IMAGE_REPOSITORY }}:latest
-      
+
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
         with:
@@ -47,21 +51,21 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_DEV_SA_PASSWORD }}"}'
           cmd: |
             'version'
-      
+
       - name: Deploy to DEV
         env:
           NAMESPACE: "${{ secrets.OPENSHIFT_DEV_NAMESPACE }}"
           APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
           LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
           ENVIRONMENT: "${{ secrets.ENVIRONMENT }}"
-        run: |  
+        run: |
           ./.github/helpers/deploy-app.sh
-          
+
       - name: Health Check DEV deployment
         env:
           NAMESPACE: "${{ secrets.OPENSHIFT_DEV_NAMESPACE }}"
           APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
           LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
           ENVIRONMENT: "${{ secrets.ENVIRONMENT }}"
-        run: |  
+        run: |
           ./.github/helpers/application-health.sh
