@@ -1,4 +1,4 @@
-name: PROD Deploy of Efax Webservice Image 
+name: PROD Deploy of SLAM App Image 
 
 on:
   workflow_dispatch:
