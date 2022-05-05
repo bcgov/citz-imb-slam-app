@@ -20,7 +20,6 @@
  * @see {@link https://github.com/emotion-js/emotion/tree/main/packages/styled | emotion}
  */
 
-
 /**
  * @external MUI
  * @description MUI provides a robust, customizable, and accessible library of foundational and advanced components, enabling you to build your design system and develop React applications faster.
@@ -38,7 +37,6 @@
  * @description Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.
  * @see {@link https://nextjs.org/ | Nextjs}
  */
-
 
 /**
  * @external React
@@ -64,4 +62,4 @@
  * @see {@link https://documentation.js.org/ | documentation}
  */
 
-export const DEFAULT_API_PORT = ':3001'
+export const DEFAULT_API_PORT = ':3001';

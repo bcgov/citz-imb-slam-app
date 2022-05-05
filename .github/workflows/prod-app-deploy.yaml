@@ -1,7 +1,8 @@
-name: TEST Deploy of SLAM Frontend Application Image 
+name: PROD Deploy of SLAM App Image 
 
-on: workflow_dispatch
-   
+on:
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,28 +16,29 @@ jobs:
         uses: redhat-developer/openshift-actions@v1.1
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT4_SERVER_URL }}
-          parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_TEST_SA_PASSWORD }}"}'
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_PROD_SA_PASSWORD }}"}'
           cmd: |
             'version'
             
       - name: Login to Openshift Docker
         run : |
-          docker login ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_TEST_SA_PASSWORD }}
-            
-      - name: Deploy to TEST
+          docker login ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_PROD_SA_PASSWORD }}
+
+      - name: Deploy to PROD
         env:
-          NAMESPACE: "${{ secrets.OPENSHIFT_TEST_NAMESPACE }}"
+          NAMESPACE: "${{ secrets.OPENSHIFT_PROD_NAMESPACE }}"
           APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
           LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
-          ENVIRONMENT: "${{ secrets.TEST_ENVIRONMENT }}"
+          ENVIRONMENT: "${{ secrets.PROD_ENVIRONMENT }}"
         run: |  
           ./.github/helpers/deploy-app.sh
           
-      - name: Health Check TEST deployment
+      - name: Health Check PROD deployment
         env:
-          NAMESPACE: "${{ secrets.OPENSHIFT_TEST_NAMESPACE }}"
+          NAMESPACE: "${{ secrets.OPENSHIFT_PROD_NAMESPACE }}"
           APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
           LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
-          ENVIRONMENT: "${{ secrets.TEST_ENVIRONMENT }}"
+          ENVIRONMENT: "${{ secrets.PROD_ENVIRONMENT }}"
         run: |  
           ./.github/helpers/application-health.sh
+ 

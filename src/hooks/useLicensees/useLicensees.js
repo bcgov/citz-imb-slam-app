@@ -1,9 +1,9 @@
-import { Fields } from "hooks/common/Fields.class";
+import { Fields } from 'hooks/common/Fields.class';
 import { useSoftware } from 'hooks';
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from 'react';
 import * as Yup from 'yup';
-import { useDBTableFactory } from "../common/useDBTable.Factory";
-import { licenseeFields } from './licenseeFields'
+import { useDBTableFactory } from '../common/useDBTable.Factory';
+import { licenseeFields } from './licenseeFields';
 
 /**
  * @description a hook for retrieving, caching, and manipulating data.  it extends react-query
@@ -19,92 +19,129 @@ import { licenseeFields } from './licenseeFields'
  */
 
 export const useLicensees = (licenseeId) => {
+  let formColumns = 1;
 
-    let formColumns = 1
+  const softwareTable = useSoftware();
 
-    const softwareTable = useSoftware()
+  const licenseeTable = useDBTableFactory('licensee', licenseeId);
 
-    const licenseeTable = useDBTableFactory('licensee', licenseeId)
+  const data = useMemo(() => {
+    if (
+      licenseeTable.isLoading ||
+      licenseeTable.isError ||
+      licenseeTable.data === undefined
+    )
+      return [];
 
-    const data = useMemo(() => {
+    return licenseeTable.data.map((item) => {
+      return {
+        ...item,
+        software: item.__softwareConnection__?.map(
+          (software) => software.__software__.id,
+        ),
+      };
+    });
+  }, [licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading]);
 
-        if (licenseeTable.isLoading || licenseeTable.isError || licenseeTable.data === undefined) return []
+  const assignedLicensesTable = useDBTableFactory('assigned-license');
 
-        return licenseeTable.data.map(item => {
-            return { ...item, software: item.__softwareConnection__?.map(software => software.__software__.id) }
-        })
+  const create = useCallback(
+    async (props) => {
+      const { name = '', notes = '', software } = props;
 
-    }, [licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading])
+      software = software.map((software) => {
+        return { id: software };
+      });
 
-    const assignedLicensesTable = useDBTableFactory('assigned-license')
+      const licensee = await licenseeTable.create({ name, notes });
+      const licenseeId = licensee[0].id;
 
-    const create = useCallback(async (props) => {
-        const { name = '', notes = '', software } = props
-
-        software = software.map((software) => {
-            return { id: software };
+      for (let i = 0; i < software.length; i++) {
+        await assignedLicensesTable.create({
+          softwareId: software[i].id,
+          licenseeId,
         });
+      }
+    },
+    [assignedLicensesTable, licenseeTable],
+  );
 
-        const licensee = await licenseeTable.create({ name, notes })
-        const licenseeId = licensee[0].id
+  const update = useCallback(
+    async (props) => {
+      const { id: licenseeId, name, notes = '', software } = props;
 
-        for (let i = 0; i < software.length; i++) {
-            await assignedLicensesTable.create({ softwareId: software[i].id, licenseeId })
+      software = software.map((software) => {
+        return { id: software };
+      });
+
+      await licenseeTable.update({ id: licenseeId, name, notes });
+
+      const currentLicenses = assignedLicensesTable.data.filter(
+        (license) => license.licenseeId === licenseeId,
+      );
+
+      for (let i = 0; i < currentLicenses.length; i++) {
+        for (let j = 0; j < software.length; j++) {
+          if (currentLicenses[i].softwareId === software[j].id) {
+            currentLicenses[i].keep = true;
+            software[j].keep = true;
+            break;
+          }
         }
+      }
 
-    }, [assignedLicensesTable, licenseeTable])
+      const licensesToRemove = currentLicenses.filter(
+        (license) => !license.keep,
+      );
+      const licensesToAdd = software.filter((license) => !license.keep);
 
-    const update = useCallback(async (props) => {
-        const { id: licenseeId, name, notes = '', software } = props
+      for (let i = 0; i < licensesToRemove.length; i++) {
+        await assignedLicensesTable.remove({ id: licensesToRemove[i].id });
+      }
 
-        software = software.map((software) => {
-            return { id: software };
+      for (let i = 0; i < licensesToAdd.length; i++) {
+        await assignedLicensesTable.create({
+          softwareId: licensesToAdd[i].id,
+          licenseeId,
         });
+      }
+    },
+    [assignedLicensesTable, licenseeTable],
+  );
 
-        await licenseeTable.update({ id: licenseeId, name, notes })
+  const remove = useCallback(
+    async (props) => {
+      const { id: licenseeId } = props;
 
-        const currentLicenses = assignedLicensesTable.data.filter(license => license.licenseeId === licenseeId)
+      const assignedLicenses = assignedLicensesTable.data.filter(
+        (item) => item.licenseeId === licenseeId,
+      );
 
-        for (let i = 0; i < currentLicenses.length; i++) {
-            for (let j = 0; j < software.length; j++) {
-                if (currentLicenses[i].softwareId === software[j].id) {
-                    currentLicenses[i].keep = true
-                    software[j].keep = true
-                    break
-                }
-            }
-        }
+      for (let i = 0; i < assignedLicenses.length; i++) {
+        await assignedLicensesTable.remove({ id: assignedLicenses[i].id });
+      }
 
-        const licensesToRemove = currentLicenses.filter(license => !license.keep)
-        const licensesToAdd = software.filter(license => !license.keep)
+      await licenseeTable.remove({ id: licenseeId });
+    },
+    [assignedLicensesTable, licenseeTable],
+  );
 
-        for (let i = 0; i < licensesToRemove.length; i++) {
-            await assignedLicensesTable.remove({ id: licensesToRemove[i].id })
-        }
+  const options = softwareTable.data.map(({ id, title }) => {
+    return { value: id, label: title };
+  });
 
-        for (let i = 0; i < licensesToAdd.length; i++) {
-            await assignedLicensesTable.create({ softwareId: licensesToAdd[i].id, licenseeId })
-        }
+  const { tableColumns, formFields } = new Fields(licenseeFields, {
+    software: options,
+  });
 
-    }, [assignedLicensesTable, licenseeTable])
-
-    const remove = useCallback(async (props) => {
-        const { id: licenseeId } = props
-
-        const assignedLicenses = assignedLicensesTable.data.filter(item => item.licenseeId === licenseeId)
-
-        for (let i = 0; i < assignedLicenses.length; i++) {
-            await assignedLicensesTable.remove({ id: assignedLicenses[i].id })
-        }
-
-        await licenseeTable.remove({ id: licenseeId })
-    }, [assignedLicensesTable, licenseeTable])
-
-    const options = softwareTable.data.map(({ id, title }) => {
-        return { value: id, label: title }
-    })
-
-    const { tableColumns, formFields } = new Fields(licenseeFields, { software: options })
-
-    return { ...licenseeTable, data, tableColumns, formFields, formColumns, create, remove, update }
-}
+  return {
+    ...licenseeTable,
+    data,
+    tableColumns,
+    formFields,
+    formColumns,
+    create,
+    remove,
+    update,
+  };
+};
