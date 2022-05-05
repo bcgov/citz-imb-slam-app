@@ -15,13 +15,13 @@ jobs:
         uses: redhat-developer/openshift-actions@v1.1
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT4_SERVER_URL }}
-          parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_SA_PASSWORD }}"}'
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_TEST_SA_PASSWORD }}"}'
           cmd: |
             'version'
             
       - name: Login to Openshift Docker
         run : |
-          docker login ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_SA_PASSWORD }}
+          docker login ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_TEST_SA_PASSWORD }}
             
       - name: Deploy to TEST
         env:
