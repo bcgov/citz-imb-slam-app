@@ -63,6 +63,15 @@ objects:
           - name: ${APPLICATION_NAME}
             image: >-
               image-registry.openshift-image-registry.svc:5000/ca94a8-dev/citz-imb-slam-app-dc@sha256:ff265c438e5ca9a7cc814e77cab1be48579b4e883ff78fae5914f9fed077cec7
+            env:
+              - name: GITHUB_ID
+                value: 
+              - name: GITHUB_SECRET
+                value: 
+              - name: NEXTAUTH_SECRET
+                value: 
+              - name: NEXTAUTH_URL
+                value: 'https://citz-imb-slam-ca94a8-dev.apps.silver.devops.gov.bc.ca'
             resources: {}
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
