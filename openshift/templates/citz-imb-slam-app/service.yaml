@@ -1,0 +1,67 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: ${APPLICATION_NAME}
+labels:
+  template: ${APPLICATION_NAME}-template
+objects:
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: ${APPLICATION_NAME}
+    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    labels:
+      app: ${APPLICATION_NAME}
+      app.kubernetes.io/component: ${APPLICATION_NAME}
+      app.kubernetes.io/instance: ${APPLICATION_NAME}
+      app.kubernetes.io/name: ${APPLICATION_NAME}
+      app.kubernetes.io/part-of: citz-imb-slam
+    annotations:
+      app.openshift.io/connects-to: >-
+        [{"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","name":"citz-imb-slam-api"}]
+      app.openshift.io/vcs-ref: dockerize-app
+      app.openshift.io/vcs-uri: 'https://github.com/bcgov/citz-imb-slam-app'
+      openshift.io/generated-by: OpenShiftWebConsole
+  spec:
+    ports:
+      - name: 8080-tcp
+        protocol: TCP
+        port: ${PORT}
+        targetPort: ${TARGET_PORT}
+    selector:
+      app: ${APPLICATION_NAME}
+      deploymentconfig: ${APPLICATION_NAME}
+    type: ClusterIP
+    sessionAffinity: None
+    ipFamilies:
+      - IPv4
+    ipFamilyPolicy: SingleStack
+  status:
+    loadBalancer: {}
+parameters:
+- description: Application Name
+  displayName: AppName
+  name: APPLICATION_NAME
+  required: true
+  value: citz-imb-slam-api
+- description: License Plate
+  displayName: License Plate
+  name: LICENSE_PLATE
+  required: true
+  value: ca94a8
+- description: Environment
+  displayName: Environment
+  name: ENVIRONMENT
+  required: true
+  value: prod
+- description: Port
+  displayName: Port
+  name: PORT
+  required: true
+  value: 3000
+- description: TargetPort
+  displayName: TargetPort
+  name: TARGET_PORT
+  required: true
+  value: 3000
