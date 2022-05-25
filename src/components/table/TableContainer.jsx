@@ -1,9 +1,8 @@
-import { Alert, AlertTitle } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
-import { useMemo, useCallback, useState } from 'react';
-import { TableHeader } from './common/TableHeader';
+import { Alert, AlertTitle, Box } from '@mui/material';
+import { DataGrid, GridLinkOperator, GridToolbarQuickFilter, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import { useRouter } from 'next/router';
-
+import { useCallback, useMemo, useState } from 'react';
+import { TableHeader } from './common/TableHeader';
 
 export const TableContainer = (props) => {
 	
@@ -36,18 +35,42 @@ export const TableContainer = (props) => {
 
 	const height = props.height;
 
+	function CustomToolbar() {
+		return (
+		  <GridToolbarContainer>
+			<GridToolbarQuickFilter
+			  quickFilterParser={(searchInput) =>
+				searchInput
+				  .split(',')
+				  .map((value) => value.trim())
+				  .filter((value) => value !== '')
+			  }
+			/> 
+		  </GridToolbarContainer>
+		);
+	  }
+	
 	if (isError)
 		return (
 			<Alert severity='error'>
 				<AlertTitle>Error</AlertTitle>
 				{error.message}
 			</Alert>
-		);
+		);	
 
 	return (
 		<>
 			<TableHeader title={title}>{tableActions}</TableHeader>
 			<DataGrid
+				components={{ Toolbar: CustomToolbar }}
+				initialState={{
+					filter: {
+						filterModel: {
+							items: [],
+							quickFilterLogicOperator: GridLinkOperator.Or,
+						},
+					},
+				}}
 				columns={columns}
 				rows={data}
 				loading={isLoading}

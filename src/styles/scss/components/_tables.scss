@@ -99,3 +99,35 @@
 
     }
 }
+
+.MuiDataGrid-toolbarContainer {
+    position: absolute;
+    top: -74px;
+    right: 148px;
+}
+
+.MuiDataGrid-toolbarContainer > div > div:before{
+    border: none !important;
+}
+
+.MuiDataGrid-toolbarContainer > div > div > svg{
+    display: none;
+}
+
+.MuiDataGrid-toolbarContainer > div > div > input{
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 0.9rem;
+    outline: none;
+    background: transparent;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.5;
+}
+
+.MuiInput-underline:after{
+    border: none !important;
+}
