@@ -48,7 +48,6 @@ export const FormikContainer = (props) => {
     remove,
     formColumns,
   } = useForm(dataHook, id);
-
   const submitHandler = async (body, formik) => {
     const { __licenseeConnection__, ...payload } = body;
 

@@ -4,8 +4,8 @@ export const setInitialValues = (dataHookResponse, id) => {
   const values = {};
 
   dataHookResponse.formFields.forEach((field) => {
-    if (id && dataHookResponse.data.length) {
-      return (values[field.name] = dataHookResponse.data[0][field.name]);
+    if (id) {
+      return (values[field.name] = dataHookResponse.data[field.name]);
     } else {
       return (values[field.name] = field.initialValue);
     }
