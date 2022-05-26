@@ -1,11 +1,19 @@
-import { createData, fetchData, updateData, deleteData } from 'api';
+import { updateData, deleteData } from 'api';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useCallback, useMemo } from 'react';
-
+import { useAPI } from 'hooks';
+/**
+ * Purpose: wrangle data, transform if needed,
+ * present data in ways to view such as an array of rows for a table or
+ * a single row for a form
+ */
+//TODO: refactor to embody the above purpose
 export const useDBTableFactory = (tableName, rowId) => {
   const queryKey = useMemo(() => [tableName, rowId], [rowId, tableName]);
 
   const queryClient = useQueryClient();
+
+  const { fetchData, isAuthorized } = useAPI()
 
   const query = useQuery(queryKey, async () => {
     let response;
@@ -15,7 +23,7 @@ export const useDBTableFactory = (tableName, rowId) => {
       response = await fetchData(tableName);
     }
     return response;
-  });
+  }, { enabled: isAuthorized });
 
   const appendItem = (oldValues, item) => [...oldValues, item];
   const removeItem = (oldValues, item) =>

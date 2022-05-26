@@ -1,44 +1,44 @@
-import { fetchAPI } from './fetchAPI'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import jsonwebtoken from 'jsonwebtoken'
-
-
+import { DEFAULT_API_PORT } from 'constants';
+import { useSession } from 'next-auth/react';
+import { fetchAPI } from "./fetchAPI"
+import { useAuth } from 'hooks';
+/**
+ * Purpose: fetch from an API
+ */
+//TODO: refactor to embody the above purpose
 export const useAPI = () => {
+    const { isAuthenticated, isAuthorized, user, signIn, signOut, access_token } = useAuth()
 
-    const [access_token, setAccess_token] = useState(null)
+    const fetchOptions = useCallback((options = {}) => {
+        const { method = 'GET', headers: optionHeaders, body, ...remainingOptions } = options
 
-    const token_expired = async () => {
-        if (access_token === null) return true
+        const defaultHeaders = {
+            'Accept': '*/*',
+            'Access-Control-Request-Method': method,
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
+        }
 
-        const { exp } = await jsonwebtoken.decode(access_token)
+        const headers = {
+            ...defaultHeaders,
+            ...optionHeaders
+        }
 
-        console.log('exp', exp)
-        return false
-    }
+        return {
+            method,
+            headers,
+            body: typeof body !== 'string' ? JSON.stringify(body) : body,
+            ...remainingOptions
+        }
+    }, [access_token])
 
-    const login = useCallback(
-        async (username) => {
-            if (await token_expired()) {
+    const fetchData = useCallback(async (endPoint) => {
+        const response = await fetchAPI(endPoint, fetchOptions());
 
-                const options = {
-                    method: 'post',
-                    body: { username }
-                }
+        return response;
+    }, [fetchOptions])
 
-                const result = await fetchAPI('login', options)
-
-                setAccess_token(result)
-
-
-
-            }
-        },
-        [],
-    )
-
-
-
-
-
-    return { login }
+    return { fetchData, isAuthorized }
 }
