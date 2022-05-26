@@ -133,15 +133,17 @@ export const FormikContainer = (props) => {
                       xs={formColumns === 2 ? 6 : 12}
                       className="form-field"
                     >
-                      {formFields
-                        .filter((formField) => formField.column === 0)
-                        .map((formField, key) => (
-                          <FormikControls
-                            key={key}
-                            disabled={!editMode}
-                            {...formField}
-                          />
-                        ))}
+                      <Grid container spacing={2}>
+                        {formFields
+                          .filter((formField) => formField.column === 0)
+                          .map((formField, key) => (
+                            <FormikControls
+                              key={key}
+                              disabled={!editMode}
+                              {...formField}
+                            />
+                          ))}
+                      </Grid>
                     </Grid>
                     {formColumns === 2 ? (
                       <Grid
@@ -151,15 +153,17 @@ export const FormikContainer = (props) => {
                         className="form-field"
                         xs={6}
                       >
-                        {formFields
-                          .filter((formField) => formField.column === 1)
-                          .map((formField, key) => (
-                            <FormikControls
-                              key={key}
-                              disabled={!editMode}
-                              {...formField}
-                            />
-                          ))}
+                        <Grid container spacing={2}>
+                          {formFields
+                            .filter((formField) => formField.column === 1)
+                            .map((formField, key) => (
+                              <FormikControls
+                                key={key}
+                                disabled={!editMode}
+                                {...formField}
+                              />
+                            ))}
+                        </Grid>
                       </Grid>
                     ) : null}
                   </Grid>

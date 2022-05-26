@@ -13,7 +13,7 @@ export const BaseControl = (props) => {
 						<Typography component='span' sx={{ color: 'error.main' }}>
 							*
 						</Typography>
-					) : null}					
+					) : null}
 				</Typography>
 				{children}
 				<FormHelperText className="form-error">{helperText}</FormHelperText>
