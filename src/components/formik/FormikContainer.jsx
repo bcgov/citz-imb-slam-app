@@ -11,18 +11,17 @@ import {
   Grid,
   Stack,
   Typography,
-} from "@mui/material";
-import { SaveCancelButtons } from "components";
-import { Form, Formik } from "formik";
-import { useForm } from "hooks";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { FormHeader } from "./common/FormHeader";
-import { FormikControls } from "./common/FormikControls";
-
+} from '@mui/material';
+import { SaveCancelButtons } from 'components';
+import { Form, Formik } from 'formik';
+import { useForm } from 'hooks';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { FormHeader } from './common/FormHeader';
+import { FormikControls } from './common/FormikControls';
 
 export const FormikContainer = (props) => {
-  const { formTitle = "", isNew = true, dataHook, id } = props;
+  const { formTitle = '', isNew = true, dataHook, id } = props;
 
   const [editMode, setEditMode] = useState(isNew);
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
@@ -48,12 +47,11 @@ export const FormikContainer = (props) => {
     create,
     update,
     remove,
-	formColumns,
+    formColumns,
   } = useForm(dataHook, id);
 
   const submitHandler = async (body, formik) => {
-
-    const {__licenseeConnection__ , ...payload} = body
+    const { __licenseeConnection__, ...payload } = body;
 
     if (isNew) {
       await create(payload);
@@ -74,7 +72,7 @@ export const FormikContainer = (props) => {
   };
 
   const confirmationDialogClose = (event) => {
-    if (event.target.id === "delete") deleteHandler();
+    if (event.target.id === 'delete') deleteHandler();
     setConfirmationDialogOpen(false);
   };
 
@@ -87,7 +85,7 @@ export const FormikContainer = (props) => {
     );
   }
 
-  if (isLoading) return null
+  if (isLoading) return null;
 
   return (
     <>
@@ -121,15 +119,18 @@ export const FormikContainer = (props) => {
                 )}
               </FormHeader>
               <Form>
-                <Box sx={{ flexGrow: 1 }}>
-                  <Stack direction="row" spacing={2}>
+                <Box sx={{ width: '100%' }}>
+                  <Grid
+                    container
+                    justifyContent="center"
+                    alignItems="stretch"
+                    spacing={2}
+                  >
                     <Grid
-                      container
-                      spacing={2}
-                      direction="row"
+                      item
                       justifyContent="flex-start"
                       alignItems="flex-start"
-                      lg={formColumns ===2 ? (6) : 12 }
+                      xs={formColumns === 2 ? 6 : 12}
                       className="form-field"
                     >
                       {formFields
@@ -144,13 +145,11 @@ export const FormikContainer = (props) => {
                     </Grid>
                     {formColumns === 2 ? (
                       <Grid
-                        container
-                        spacing={2}
-                        direction="row"
+                        item
                         justifyContent="flex-start"
                         alignItems="flex-start"
                         className="form-field"
-                        lg={6}
+                        xs={6}
                       >
                         {formFields
                           .filter((formField) => formField.column === 1)
@@ -163,7 +162,7 @@ export const FormikContainer = (props) => {
                           ))}
                       </Grid>
                     ) : null}
-                  </Stack>
+                  </Grid>
                   <SaveCancelButtons
                     ShowSaveButton={editMode}
                     resetForm={resetForm}
