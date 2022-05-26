@@ -1,15 +1,12 @@
-import { useState, useCallback, useEffect } from 'react'
-import jsonwebtoken from 'jsonwebtoken'
-import { DEFAULT_API_PORT } from 'constants';
-import { useSession } from 'next-auth/react';
-import { fetchAPI } from "./fetchAPI"
 import { useAuth } from 'hooks';
+import { useCallback } from 'react';
+import { fetchAPI } from "./fetchAPI";
 /**
- * Purpose: fetch from an API
+ * Purpose: prepare for API Call
  */
-//TODO: refactor to embody the above purpose
+
 export const useAPI = () => {
-    const { isAuthenticated, isAuthorized, user, signIn, signOut, access_token } = useAuth()
+    const { isAuthorized, access_token } = useAuth()
 
     const fetchOptions = useCallback((options = {}) => {
         const { method = 'GET', headers: optionHeaders, body, ...remainingOptions } = options

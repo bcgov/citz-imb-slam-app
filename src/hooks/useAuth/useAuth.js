@@ -1,5 +1,6 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useMemo, useState, useEffect, useCallback } from 'react';
+import { API_URL } from 'constants';
 /**
  * Purpose: check if user is authenticated / authorized
  */
@@ -34,17 +35,17 @@ export const useAuth = () => {
 
         let payload = ''
 
-        const response = await fetch('http://localhost:3001/api/v1/login', options);
+        const response = await fetch(`${API_URL}/login`, options);
         //TODO: dynamic url
 
         if (response.ok) {
             payload = await response.json();
             setAccess_token(payload.access_token);
         } else {
-            console.error(`${response.status} ${response.statusText} for ${url}`);
+            console.error(`${response.status} ${response.statusText} for ${API_URL}`);
             console.warn('getAccess_token response', response);
         }
-    }, [data.user.name])
+    }, [data?.user?.name])
 
 
     useEffect(() => {
