@@ -9,19 +9,13 @@ import {
 	Typography
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useAuth } from "hooks";
 import { useMemo, useState } from "react";
 import { Theme } from "../style/Theme";
 import { Avatar } from "./Avatar";
 
 export const UserMenu = () => {
-  const session = useSession();
-
-  const userName = useMemo(() => {
-    if (session.status === "authenticated") return session.data.user.name;
-
-    return "";
-  }, [session.data?.user?.name, session.status]);
+  const { isAuthenticated, user, signIn, signOut } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -34,25 +28,25 @@ export const UserMenu = () => {
     setAnchorEl(null);
   };
 
-  if (session.status !== "authenticated")
+  if (!isAuthenticated)
     return (
       <ThemeProvider theme={Theme}>
         <Button
           color="primary"
           onClick={(e) => {
             e.preventDefault();
-            signIn("github");
+            signIn('github');
           }}
           sx={{
-            color: "primary.text",
-            "&:hover": {
-              color: "primary.main",
-              bgcolor: "secondary.bg",
+            color: 'primary.text',
+            '&:hover': {
+              color: 'primary.main',
+              bgcolor: 'secondary.bg',
             },
-            textTransform: "none",
+            textTransform: 'none',
           }}
         >
-          <Typography sx={{ textTransfrom: "none", fontSize: "0.95rem" }}>
+          <Typography sx={{ textTransfrom: 'none', fontSize: '0.95rem' }}>
             Sign In
           </Typography>
         </Button>
@@ -82,10 +76,10 @@ export const UserMenu = () => {
           }}
         >
           <Avatar
-            title={userName}
+            title={user.name}
             sx={{ textTransfrom: "none", fontSize: "0.95rem" }}
             size={34}
-            image={session.data.user.image}
+            image={user.image}
           />
           <Typography
             sx={{
@@ -94,7 +88,7 @@ export const UserMenu = () => {
               paddingLeft: "10px",
             }}
           >
-            {userName}
+            {user.name}
           </Typography>
         </Button>
         <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
