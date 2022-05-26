@@ -1,4 +1,3 @@
-import { updateData, deleteData } from 'api';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useCallback, useMemo } from 'react';
 import { useAPI } from 'hooks';
@@ -13,7 +12,7 @@ export const useDBTableFactory = (tableName, rowId) => {
 
   const queryClient = useQueryClient();
 
-  const { fetchData, isAuthorized } = useAPI()
+  const { createData, fetchData, updateData, deleteData, isAuthorized } = useAPI()
 
   const query = useQuery(queryKey, async () => {
     let response;

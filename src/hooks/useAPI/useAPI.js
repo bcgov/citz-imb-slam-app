@@ -40,5 +40,29 @@ export const useAPI = () => {
         return response;
     }, [fetchOptions])
 
-    return { fetchData, isAuthorized }
+    const createData = useCallback(async (endPoint, { body }) => {
+        const response = await fetchAPI(endPoint, fetchOptions({
+            method: 'POST',
+            body,
+        }));
+
+        return response;
+    }, [fetchOptions])
+
+    const updateData = useCallback(async (endPoint, { body }) => {
+        const response = await fetchAPI(endPoint, fetchOptions({
+            method: 'PUT',
+            body,
+        }));
+
+        return response;
+    }, [fetchOptions])
+
+    const deleteData = useCallback(async (endPoint) => {
+        const response = await fetchAPI(endPoint, fetchOptions({ method: 'DELETE' }));
+
+        return response;
+    }, [fetchOptions])
+
+    return { createData, fetchData, updateData, deleteData, isAuthorized }
 }

@@ -44,7 +44,7 @@ export const useAuth = () => {
             console.error(`${response.status} ${response.statusText} for ${url}`);
             console.warn('getAccess_token response', response);
         }
-    }, [status, data?.user?.name])
+    }, [data.user.name])
 
 
     useEffect(() => {
