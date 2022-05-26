@@ -114,15 +114,18 @@ export const FormikContainer = (props) => {
                 )}
               </FormHeader>
               <Form>
-                <Box sx={{ flexGrow: 1 }}>
-                  <Stack direction="row" spacing={2}>
+                <Box sx={{ width: '100%' }}>
+                  <Grid
+                    container
+                    justifyContent="center"
+                    alignItems="stretch"
+                    spacing={2}
+                  >
                     <Grid
-                      container
-                      spacing={2}
-                      direction="row"
+                      item
                       justifyContent="flex-start"
                       alignItems="flex-start"
-                      lg={formColumns === 2 ? 6 : 12}
+                      xs={formColumns === 2 ? 6 : 12}
                       className="form-field"
                     >
                       {formFields
@@ -137,13 +140,11 @@ export const FormikContainer = (props) => {
                     </Grid>
                     {formColumns === 2 ? (
                       <Grid
-                        container
-                        spacing={2}
-                        direction="row"
+                        item
                         justifyContent="flex-start"
                         alignItems="flex-start"
                         className="form-field"
-                        lg={6}
+                        xs={6}
                       >
                         {formFields
                           .filter((formField) => formField.column === 1)
@@ -156,7 +157,7 @@ export const FormikContainer = (props) => {
                           ))}
                       </Grid>
                     ) : null}
-                  </Stack>
+                  </Grid>
                   <SaveCancelButtons
                     ShowSaveButton={editMode}
                     resetForm={resetForm}
