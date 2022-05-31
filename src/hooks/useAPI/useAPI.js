@@ -47,6 +47,7 @@ export const useAPI = () => {
     }, [fetchOptions])
 
     const updateData = useCallback(async (endPoint, body) => {
+        console.log('updateData API body', body)
         const response = await fetchAPI(endPoint, fetchOptions({
             method: 'PUT',
             body,
