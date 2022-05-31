@@ -21,7 +21,11 @@ import { licenseeFields } from './licenseeFields';
 export const useLicensees = (licenseeId) => {
   let formColumns = 1;
 
-  const licenseeTable = useDBDataFactory('licensee', licenseeId, licenseeFields);
+  const licenseeTable = useDBDataFactory(
+    'licensee',
+    licenseeId,
+    licenseeFields,
+  );
 
   const data = useMemo(() => {
     if (
@@ -31,7 +35,7 @@ export const useLicensees = (licenseeId) => {
     )
       return [];
 
-    return licenseeTable.data
+    return licenseeTable.data;
   }, [licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading]);
 
   const assignedLicensesTable = useDBDataFactory('assigned-license');

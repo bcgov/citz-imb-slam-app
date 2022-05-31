@@ -20,6 +20,7 @@ export const DateCell = ({ value }) => {
 
   if (!value) return null;
 
+<<<<<<< HEAD
   return (
     <Typography
       sx={{
@@ -33,4 +34,9 @@ export const DateCell = ({ value }) => {
       {date.setLocale('en-ca').toLocaleString()}
     </Typography>
   );
+=======
+	return (
+		<Alert icon={false} {...severity}>{date.setLocale('en-ca').toLocaleString()}</Alert>
+	);
+>>>>>>> c4f42b3 (cleanup)
 };

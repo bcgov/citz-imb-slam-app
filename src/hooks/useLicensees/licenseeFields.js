@@ -43,11 +43,13 @@ export const licenseeFields = [
     initialValue: [],
     setFormOptions: () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const { data } = useSoftware()
-      return data.map(({ id, title }) => { return { value: id, label: title } })
+      const { data } = useSoftware();
+      return data.map(({ id, title }) => {
+        return { value: id, label: title };
+      });
     },
-    transformOnFetch: (value) => value.__softwareConnection__.map(item => item.__software__)
-    ,
+    transformOnFetch: (value) =>
+      value.__softwareConnection__.map((item) => item.__software__),
     form: {
       control: 'selectChip',
       fullWidth: true,

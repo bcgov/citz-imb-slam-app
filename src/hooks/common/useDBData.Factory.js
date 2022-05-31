@@ -13,35 +13,42 @@ export const useDBDataFactory = (tableName, rowId, fields = []) => {
 
   const queryClient = useQueryClient();
 
-  const { createData, fetchData, updateData, deleteData, isAuthorized } = useAPI()
+  const { createData, fetchData, updateData, deleteData, isAuthorized } =
+    useAPI();
 
-  const { tableColumns, formFields, transformOnFetch, transformOnSave } = new Fields(fields);
+  const { tableColumns, formFields, transformOnFetch, transformOnSave } =
+    new Fields(fields);
 
-
-  const query = useQuery(queryKey, async () => {
-    let response;
-    if (rowId) {
-      response = await fetchData(`${tableName}/${rowId}`);
-    } else {
-      response = await fetchData(tableName);
-    }
-    return transformOnFetch(response);
-  }, { enabled: isAuthorized });
+  const query = useQuery(
+    queryKey,
+    async () => {
+      let response;
+      if (rowId) {
+        response = await fetchData(`${tableName}/${rowId}`);
+      } else {
+        response = await fetchData(tableName);
+      }
+      return transformOnFetch(response);
+    },
+    { enabled: isAuthorized },
+  );
 
   const appendItem = (oldValues, item) => [...oldValues, item];
   const removeItem = (oldValues, item) => {
-    if (Array.isArray(oldValues)) return oldValues.filter((value) => value.id !== item.id);
+    if (Array.isArray(oldValues))
+      return oldValues.filter((value) => value.id !== item.id);
 
-    return oldValues
-  }
+    return oldValues;
+  };
   const updateItem = (oldValues, item) => {
-    if (Array.isArray(oldValues)) return oldValues.map((value) => {
-      if (value.id === item.id) return item;
+    if (Array.isArray(oldValues))
+      return oldValues.map((value) => {
+        if (value.id === item.id) return item;
 
-      return value;
-    })
+        return value;
+      });
 
-    return item
+    return item;
   };
 
   const optimisticUpdateQueryData = useCallback(
@@ -56,11 +63,14 @@ export const useDBDataFactory = (tableName, rowId, fields = []) => {
     [queryClient, queryKey],
   );
 
-  const onError = (error, newItem, context) => queryClient.setQueryData(queryKey, context);
+  const onError = (error, newItem, context) =>
+    queryClient.setQueryData(queryKey, context);
 
-  const refetchQueries = async (data, variables, context) => await queryClient.refetchQueries([tableName]);
+  const refetchQueries = async (data, variables, context) =>
+    await queryClient.refetchQueries([tableName]);
 
-  const removeQuery = async (data, variables, context, mutation) => await queryClient.removeQueries([tableName, variables.id]);
+  const removeQuery = async (data, variables, context, mutation) =>
+    await queryClient.removeQueries([tableName, variables.id]);
 
   const createItem = useMutation(
     ({ id, ...body }) => createData(tableName, { body }),
@@ -72,7 +82,8 @@ export const useDBDataFactory = (tableName, rowId, fields = []) => {
   );
 
   const changeItem = useMutation(
-    async ({ id, ...body }) => await updateData(`${tableName}/${id}`, { id, ...body }),
+    async ({ id, ...body }) =>
+      await updateData(`${tableName}/${id}`, { id, ...body }),
     {
       onMutate: (item) => optimisticUpdateQueryData(item, updateItem),
       onError,
@@ -88,8 +99,8 @@ export const useDBDataFactory = (tableName, rowId, fields = []) => {
   });
 
   const remove = deleteItem.mutateAsync;
-  const create = (body) => transformOnSave(body, createItem.mutateAsync)
-  const update = (body) => transformOnSave(body, changeItem.mutateAsync)
+  const create = (body) => transformOnSave(body, createItem.mutateAsync);
+  const update = (body) => transformOnSave(body, changeItem.mutateAsync);
 
   return { ...query, create, update, remove, tableColumns, formFields };
 };
