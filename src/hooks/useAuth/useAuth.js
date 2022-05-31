@@ -6,62 +6,57 @@ import { API_URL } from 'constants';
  */
 //TODO: refactor to embody the above purpose
 export const useAuth = () => {
-    const { data, status } = useSession();
-    const [access_token, setAccess_token] = useState(null)
+  const { data, status } = useSession();
+  const [access_token, setAccess_token] = useState(null);
 
-    const isAuthenticated = useMemo(() => {
-        if (status === 'authenticated') return true
+  const isAuthenticated = useMemo(() => {
+    if (status === 'authenticated') return true;
 
-        return false
-    }, [status])
+    return false;
+  }, [status]);
 
-    const user = useMemo(() => {
-        if (status === 'authenticated') return data.user
+  const user = useMemo(() => {
+    if (status === 'authenticated') return data.user;
 
-        return {}
+    return {};
+  }, [data?.user, status]);
 
-    }, [data?.user, status])
+  const getAccess_token = useCallback(async () => {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({ username: data.user.name }),
+      headers: {
+        Accept: '*/*',
+        'Access-Control-Request-Method': 'POST',
+        'Content-Type': 'application/json',
+      },
+    };
 
-    const getAccess_token = useCallback(async () => {
-        const options = {
-            method: 'POST',
-            body: JSON.stringify({ username: data.user.name }),
-            headers: {
-                'Accept': '*/*',
-                'Access-Control-Request-Method': 'POST',
-                'Content-Type': 'application/json',
-            }
-        }
+    let payload = '';
 
-        let payload = ''
+    const response = await fetch(`${API_URL}/login`, options);
 
-        const response = await fetch(`${API_URL}/login`, options);
-        //TODO: dynamic url
+    if (response.ok) {
+      payload = await response.json();
+      setAccess_token(payload.access_token);
+    } else {
+      console.error(`${response.status} ${response.statusText} for ${API_URL}`);
+      console.warn('getAccess_token response', response);
+    }
+  }, [data?.user?.name]);
 
-        if (response.ok) {
-            payload = await response.json();
-            setAccess_token(payload.access_token);
-        } else {
-            console.error(`${response.status} ${response.statusText} for ${API_URL}`);
-            console.warn('getAccess_token response', response);
-        }
-    }, [data?.user?.name])
+  useEffect(() => {
+    if (status === 'authenticated') {
+      getAccess_token();
+    }
+    return () => {};
+  }, [getAccess_token, status]);
 
+  const isAuthorized = useMemo(() => {
+    if (isAuthenticated && access_token) return true;
 
-    useEffect(() => {
-        if (status === 'authenticated') {
-            getAccess_token()
-        }
-        return () => { }
-    }, [getAccess_token, status])
+    return false;
+  }, [access_token, isAuthenticated]);
 
-
-    const isAuthorized = useMemo(() => {
-        if (isAuthenticated && access_token) return true
-
-        return false
-    }, [access_token, isAuthenticated])
-
-    return { isAuthenticated, isAuthorized, user, signIn, signOut, access_token }
-}
-
+  return { isAuthenticated, isAuthorized, user, signIn, signOut, access_token };
+};

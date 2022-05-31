@@ -50,7 +50,6 @@ export const FormikContainer = (props) => {
     formColumns,
   } = useForm(dataHook, id);
   const submitHandler = async (body, formik) => {
-    console.log('body', body)
     if (isNew) {
       await create(body);
     } else {

@@ -33,31 +33,33 @@ export class Fields {
 
     this.transformOnFetch = (data) => {
       if (fields.length) {
-        const fieldsToTransform = []
+        const fieldsToTransform = [];
         for (let i = 0; i < fields.length; i++) {
-          if (fields[i].transformOnFetch) fieldsToTransform.push(fields[i])
+          if (fields[i].transformOnFetch) fieldsToTransform.push(fields[i]);
         }
 
         for (let i = 0; i < fieldsToTransform.length; i++) {
           for (let j = 0; j < data.length; j++) {
-            data[j][fieldsToTransform[i].name] = fieldsToTransform[i].transformOnFetch(data[j])
+            data[j][fieldsToTransform[i].name] = fieldsToTransform[
+              i
+            ].transformOnFetch(data[j]);
           }
-
         }
       }
-      return data
-    }
+      return data;
+    };
 
     this.transformOnSave = (body, callback) => {
       if (fields.length) {
-        Object.keys(body).forEach(key => {
-          const field = fields.filter(formField => formField.name === key)[0]
-          if (field.transformOnSave) body[key] = field.transformOnSave(body[key])
-        })
+        Object.keys(body).forEach((key) => {
+          const field = fields.filter((formField) => formField.name === key)[0];
+          if (field.transformOnSave)
+            body[key] = field.transformOnSave(body[key]);
+        });
       }
 
-      return callback(body)
-    }
+      return callback(body);
+    };
 
     for (let i = 0; i < fields.length; i++) {
       if (fields[i].table.show) {
@@ -71,7 +73,6 @@ export class Fields {
       }
 
       if (fields[i].form.show) {
-
         const formField = {
           name: fields[i].name,
           label: fields[i].label,
@@ -79,7 +80,8 @@ export class Fields {
           ...fields[i].form,
         };
 
-        if (fields[i].setFormOptions) formField.options = fields[i].setFormOptions()
+        if (fields[i].setFormOptions)
+          formField.options = fields[i].setFormOptions();
 
         this.formFields.push(formField);
       }
