@@ -19,6 +19,8 @@ export const UserListControl = (props) => {
   return (
     <Field name={name}>
       {({ field, form }) => {
+        if (form.values.quantity === undefined) return null;
+
         return (
           <BaseControl
             error={!!form.errors[field.name]}

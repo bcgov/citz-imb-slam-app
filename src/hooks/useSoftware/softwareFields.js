@@ -1,4 +1,4 @@
-import { AvatarChip, LogoAvatar, DateCell, QuantityAssigned } from 'components';
+import { DateCell, LogoAvatar, QuantityAssigned } from 'components';
 
 export const softwareFields = [
   {
@@ -70,6 +70,7 @@ export const softwareFields = [
         new Date(params.value).toISOString().split('T')[0].replace(/ /g, '-'),
       width: 200,
     },
+    transformOnSave: (value) => value === '' ? null : value
   },
   {
     name: 'quantity',

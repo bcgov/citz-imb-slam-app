@@ -62,7 +62,7 @@ export const FormikContainer = (props) => {
   };
 
   const deleteHandler = async () => {
-    if (confirmationDialogClose) await remove({ id: initialValues.id });
+    if (confirmationDialogClose) remove({ id: initialValues.id });
     route.back();
   };
 
