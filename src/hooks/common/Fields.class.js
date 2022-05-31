@@ -32,25 +32,29 @@ export class Fields {
     this.formFields = [];
 
     this.transformOnFetch = (data) => {
-      const fieldsToTransform = []
-      for (let i = 0; i < fields.length; i++) {
-        if (fields[i].transformOnFetch) fieldsToTransform.push(fields[i])
-      }
-
-      for (let i = 0; i < fieldsToTransform.length; i++) {
-        for (let j = 0; j < data.length; j++) {
-          data[j][fieldsToTransform[i].name] = fieldsToTransform[i].transformOnFetch(data[j])
+      if (fields.length) {
+        const fieldsToTransform = []
+        for (let i = 0; i < fields.length; i++) {
+          if (fields[i].transformOnFetch) fieldsToTransform.push(fields[i])
         }
 
+        for (let i = 0; i < fieldsToTransform.length; i++) {
+          for (let j = 0; j < data.length; j++) {
+            data[j][fieldsToTransform[i].name] = fieldsToTransform[i].transformOnFetch(data[j])
+          }
+
+        }
       }
       return data
     }
 
     this.transformOnSave = (body, callback) => {
-      Object.keys(body).forEach(key => {
-        const field = fields.filter(formField => formField.name === key)[0]
-        if (field.transformOnSave) body[key] = field.transformOnSave(body[key])
-      });
+      if (fields.length) {
+        Object.keys(body).forEach(key => {
+          const field = fields.filter(formField => formField.name === key)[0]
+          if (field.transformOnSave) body[key] = field.transformOnSave(body[key])
+        })
+      }
 
       return callback(body)
     }

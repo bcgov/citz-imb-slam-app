@@ -8,7 +8,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
  * a single row for a form
  */
 //TODO: refactor to embody the above purpose
-export const useDBDataFactory = (tableName, rowId, fields=[]) => {
+export const useDBDataFactory = (tableName, rowId, fields = []) => {
   const queryKey = useMemo(() => [tableName, rowId], [rowId, tableName]);
 
   const queryClient = useQueryClient();
@@ -16,6 +16,7 @@ export const useDBDataFactory = (tableName, rowId, fields=[]) => {
   const { createData, fetchData, updateData, deleteData, isAuthorized } = useAPI()
 
   const { tableColumns, formFields, transformOnFetch, transformOnSave } = new Fields(fields);
+
 
   const query = useQuery(queryKey, async () => {
     let response;
@@ -26,9 +27,6 @@ export const useDBDataFactory = (tableName, rowId, fields=[]) => {
     }
     return transformOnFetch(response);
   }, { enabled: isAuthorized });
-
-
-
 
   const appendItem = (oldValues, item) => [...oldValues, item];
   const removeItem = (oldValues, item) => {

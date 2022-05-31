@@ -45,7 +45,8 @@ export const useLicensees = (licenseeId) => {
       });
 
       const licensee = await licenseeTable.create({ name, notes });
-      const licenseeId = licensee[0].id;
+
+      const licenseeId = licensee.id;
 
       for (let i = 0; i < licensesToAssign.length; i++) {
         await assignedLicensesTable.create({
@@ -59,13 +60,13 @@ export const useLicensees = (licenseeId) => {
 
   const update = useCallback(
     async (props) => {
-      const { id: licenseeId, name, notes = '', software } = props;
+      const { id: licenseeId, software: softwareIds, ...body } = props;
 
-      software = software.map((software) => {
+      const software = softwareIds.map((software) => {
         return { id: software };
       });
 
-      await licenseeTable.update({ id: licenseeId, name, notes });
+      await licenseeTable.update({ id: licenseeId, ...body });
 
       const currentLicenses = assignedLicensesTable.data.filter(
         (license) => license.licenseeId === licenseeId,

@@ -50,12 +50,11 @@ export const FormikContainer = (props) => {
     formColumns,
   } = useForm(dataHook, id);
   const submitHandler = async (body, formik) => {
-    const { __licenseeConnection__, ...payload } = body;
-
+    console.log('body', body)
     if (isNew) {
-      await create(payload);
+      await create(body);
     } else {
-      await update(payload);
+      await update(body);
     }
     formik.resetForm();
     route.back();
