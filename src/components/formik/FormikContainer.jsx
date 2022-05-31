@@ -10,19 +10,17 @@ import {
   DialogTitle,
   Grid,
   Stack,
-  Typography,
-} from "@mui/material";
-import { SaveCancelButtons } from "components";
-import { Form, Formik } from "formik";
-import { useForm } from "hooks";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { FormHeader } from "./common/FormHeader";
-import { FormikControls } from "./common/FormikControls";
-
+} from '@mui/material';
+import { DefaultButton, SaveCancelButtons, WarningButton } from 'components';
+import { Form, Formik } from 'formik';
+import { useForm } from 'hooks';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { FormHeader } from './common/FormHeader';
+import { FormikControls } from './common/FormikControls';
 
 export const FormikContainer = (props) => {
-  const { formTitle = "", isNew = true, dataHook, id } = props;
+  const { formTitle = '', isNew = true, dataHook, id } = props;
 
   const [editMode, setEditMode] = useState(isNew);
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
@@ -48,12 +46,11 @@ export const FormikContainer = (props) => {
     create,
     update,
     remove,
-	formColumns,
+    formColumns,
   } = useForm(dataHook, id);
 
   const submitHandler = async (body, formik) => {
-
-    const {__licenseeConnection__ , ...payload} = body
+    const { __licenseeConnection__, ...payload } = body;
 
     if (isNew) {
       await create(payload);
@@ -74,7 +71,7 @@ export const FormikContainer = (props) => {
   };
 
   const confirmationDialogClose = (event) => {
-    if (event.target.id === "delete") deleteHandler();
+    if (event.target.id === 'delete') deleteHandler();
     setConfirmationDialogOpen(false);
   };
 
@@ -87,7 +84,7 @@ export const FormikContainer = (props) => {
     );
   }
 
-  if (isLoading) return null
+  if (isLoading) return null;
 
   return (
     <>
@@ -103,20 +100,16 @@ export const FormikContainer = (props) => {
               <FormHeader formTitle={formTitle}>
                 {editMode ? null : (
                   <>
-                    <Button
+                    <WarningButton
                       id="delete"
                       onClick={() => setConfirmationDialogOpen(true)}
-                      className="btn btn-muted warning"
-                    >
-                      Delete
-                    </Button>
-                    <Button
+                      buttonText="Delete"
+                    />
+                    <DefaultButton
                       id="edit"
                       onClick={editHandler}
-                      className="btn btn-default"
-                    >
-                      Edit
-                    </Button>
+                      buttonText="Edit"
+                    />
                   </>
                 )}
               </FormHeader>
@@ -129,7 +122,7 @@ export const FormikContainer = (props) => {
                       direction="row"
                       justifyContent="flex-start"
                       alignItems="flex-start"
-                      lg={formColumns ===2 ? (6) : 12 }
+                      lg={formColumns === 2 ? 6 : 12}
                       className="form-field"
                     >
                       {formFields

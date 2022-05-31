@@ -1,33 +1,30 @@
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { Button, IconButton } from '@mui/material';
 import { TableContainer } from 'components';
+import { authenticate } from 'helpers';
 import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
+import { DefaultButton } from '../../components/buttons/templates/DefaultButton';
 
-import { authenticate } from 'helpers';
 export const getServerSideProps = (context) => {
-	return authenticate(context);
+  return authenticate(context);
 };
 
 export const Software = () => {
-	const router = useRouter();
+  const router = useRouter();
 
-	const tableActions = (
-		<Button className="btn btn-default" href='/software/add'>
-			+ Add Software
-		</Button>
-	);
+  const tableActions = (
+    <DefaultButton buttonURL="/software/add" buttonText="+ Add Software" />
+  );
 
-	return (
-		<TableContainer
-			title={'Software'}
-			dataHook={useSoftware}
-			tableActions={tableActions}
-			sortOrder={'asc'}
-			sortBy={'title'}
-			height={80}
-		/>
-	);
+  return (
+    <TableContainer
+      title={'Software'}
+      dataHook={useSoftware}
+      tableActions={tableActions}
+      sortOrder={'asc'}
+      sortBy={'title'}
+      height={80}
+    />
+  );
 };
 
 export default Software;
