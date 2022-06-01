@@ -22,7 +22,6 @@ export const FormikControls = (props) => {
 		case 'date':
 			return <InputFormikControl {...remainingProps} type='date' />;
 		case 'select':
-			// return <SelectFormikControl {...remainingProps} />;
 			return <DropdownFormikControl {...remainingProps} />;
 		case 'selectChip':
 			return <SelectChipFormikControl {...remainingProps} />;

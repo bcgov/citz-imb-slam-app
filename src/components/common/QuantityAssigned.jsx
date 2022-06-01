@@ -3,9 +3,6 @@ import { CircularProgress, Box, Typography } from '@mui/material';
 export const QuantityAssigned = (props) => {
 	const { assigned = 0, available = 0 } = props;
 
-    // let color = 'primary';
-    // if (assigned >= available * .75) color = 'warning'
-	// if (assigned >= available) color = 'error';
 	const cleanUp = Math.round(
 		assigned / available * 100
 		);
@@ -43,7 +40,7 @@ export const QuantityAssigned = (props) => {
 				{/* {cleanUp}% */}
 				<span>{assigned}/{available}</span>
 				</Typography>
-				
+
 			</Box>
 		</Box>
 		</>
