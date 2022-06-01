@@ -17,11 +17,10 @@ export const UserListControl = (props) => {
         licenseeList,
         ...remainingProps
       } = props;
-      
+
     return (
         <Field name={name}>
           {({ field, form }) => {
-              console.log(form)
             return (
               <BaseControl
                 error={!!form.errors[field.name]}

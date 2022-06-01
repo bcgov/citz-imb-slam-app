@@ -5,7 +5,7 @@ const HTML_RESPONSE = {
   NOT_MODIFIED: 304,
 };
 
-const API_PATH = 'api/v1'
+const API_PATH = 'api/v1';
 
 const responseTransform = (data) => {
   if (Array.isArray(data)) return data;
