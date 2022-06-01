@@ -7,6 +7,10 @@
     font-family: var(--body-font-family) !important;
 }
 
+.MuiDataGrid-row:hover {
+    cursor:pointer;
+}
+
 .MuiDataGrid-columnHeaderTitle {
     font-weight: 600 !important;
     color: var(--black);
@@ -100,10 +104,13 @@
     }
 }
 
+// Search
+
 .MuiDataGrid-toolbarContainer {
     position: absolute;
-    top: -74px;
-    right: 148px;
+    top: -66.5px;
+    right: 156px;
+    padding: 0px !important;
 }
 
 .MuiDataGrid-toolbarContainer > div > div:before{
@@ -121,11 +128,12 @@
     padding: 0.9rem;
     outline: none;
     background: transparent;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0rem;
     font-size: 0.9rem;
     width: 100%;
     max-width: 100%;
     line-height: 1.5;
+    height: 1.2rem !important;
 }
 
 .MuiInput-underline:after{

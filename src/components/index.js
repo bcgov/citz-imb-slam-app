@@ -1,4 +1,6 @@
-export * from './buttons/BackButton';
+export * from './buttons/templates/DefaultButton';
+export * from './buttons/templates/MutedButton';
+export * from './buttons/templates/WarningButton';
 export * from './buttons/SaveCancelButtons';
 export * from './common/Avatar';
 export * from './common/AvatarChip';

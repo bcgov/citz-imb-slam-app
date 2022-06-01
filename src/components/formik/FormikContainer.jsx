@@ -10,9 +10,8 @@ import {
   DialogTitle,
   Grid,
   Stack,
-  Typography,
 } from '@mui/material';
-import { SaveCancelButtons } from 'components';
+import { DefaultButton, SaveCancelButtons, WarningButton } from 'components';
 import { Form, Formik } from 'formik';
 import { useForm } from 'hooks';
 import { useRouter } from 'next/router';
@@ -98,20 +97,16 @@ export const FormikContainer = (props) => {
               <FormHeader formTitle={formTitle}>
                 {editMode ? null : (
                   <>
-                    <Button
+                    <WarningButton
                       id="delete"
                       onClick={() => setConfirmationDialogOpen(true)}
-                      className="btn btn-muted warning"
-                    >
-                      Delete
-                    </Button>
-                    <Button
+                      buttonText="Delete"
+                    />
+                    <DefaultButton
                       id="edit"
                       onClick={editHandler}
-                      className="btn btn-default"
-                    >
-                      Edit
-                    </Button>
+                      buttonText="Edit"
+                    />
                   </>
                 )}
               </FormHeader>
