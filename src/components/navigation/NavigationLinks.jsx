@@ -46,10 +46,11 @@ export const NavigationLinks = () => {
             </Button>
             <Button
               sx={{
-                color: 'primary.text',
-                '&:hover': {
-                  color: 'primary.main',
-                  bgcolor: 'secondary.bg',
+                color: "primary.text",
+                display: "none",
+                "&:hover": {
+                  color: "primary.main",
+                  bgcolor: "secondary.bg",
                 },
                 textTransform: 'none',
               }}
