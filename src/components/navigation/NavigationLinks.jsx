@@ -44,21 +44,6 @@ export const NavigationLinks = () => {
                 Licensees
               </Typography>
             </Button>
-            <Button
-              sx={{
-                color: 'primary.text',
-                '&:hover': {
-                  color: 'primary.main',
-                  bgcolor: 'secondary.bg',
-                },
-                textTransform: 'none',
-              }}
-              onClick={() => router.push('/contact')}
-            >
-              <Typography sx={{ textTransfrom: 'none', fontSize: '0.95rem' }}>
-                Contact
-              </Typography>
-            </Button>
           </>
         )}
         <UserMenu />
