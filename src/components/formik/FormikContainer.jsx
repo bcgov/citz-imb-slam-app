@@ -48,21 +48,18 @@ export const FormikContainer = (props) => {
     remove,
     formColumns,
   } = useForm(dataHook, id);
-
   const submitHandler = async (body, formik) => {
-    const { __licenseeConnection__, ...payload } = body;
-
     if (isNew) {
-      await create(payload);
+      await create(body);
     } else {
-      await update(payload);
+      await update(body);
     }
     formik.resetForm();
     route.back();
   };
 
   const deleteHandler = async () => {
-    if (confirmationDialogClose) await remove({ id: initialValues.id });
+    if (confirmationDialogClose) remove({ id: initialValues.id });
     route.back();
   };
 
@@ -114,39 +111,23 @@ export const FormikContainer = (props) => {
                 )}
               </FormHeader>
               <Form>
-                <Box sx={{ flexGrow: 1 }}>
-                  <Stack direction="row" spacing={2}>
+                <Box sx={{ width: '100%' }}>
+                  <Grid
+                    container
+                    justifyContent="center"
+                    alignItems="stretch"
+                    spacing={2}
+                  >
                     <Grid
-                      container
-                      spacing={2}
-                      direction="row"
+                      item
                       justifyContent="flex-start"
                       alignItems="flex-start"
-                      lg={formColumns === 2 ? 6 : 12}
+                      xs={formColumns === 2 ? 6 : 12}
                       className="form-field"
                     >
-                      {formFields
-                        .filter((formField) => formField.column === 0)
-                        .map((formField, key) => (
-                          <FormikControls
-                            key={key}
-                            disabled={!editMode}
-                            {...formField}
-                          />
-                        ))}
-                    </Grid>
-                    {formColumns === 2 ? (
-                      <Grid
-                        container
-                        spacing={2}
-                        direction="row"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
-                        className="form-field"
-                        lg={6}
-                      >
+                      <Grid container spacing={2}>
                         {formFields
-                          .filter((formField) => formField.column === 1)
+                          .filter((formField) => formField.column === 0)
                           .map((formField, key) => (
                             <FormikControls
                               key={key}
@@ -155,8 +136,29 @@ export const FormikContainer = (props) => {
                             />
                           ))}
                       </Grid>
+                    </Grid>
+                    {formColumns === 2 ? (
+                      <Grid
+                        item
+                        justifyContent="flex-start"
+                        alignItems="flex-start"
+                        className="form-field"
+                        xs={6}
+                      >
+                        <Grid container spacing={2}>
+                          {formFields
+                            .filter((formField) => formField.column === 1)
+                            .map((formField, key) => (
+                              <FormikControls
+                                key={key}
+                                disabled={!editMode}
+                                {...formField}
+                              />
+                            ))}
+                        </Grid>
+                      </Grid>
                     ) : null}
-                  </Stack>
+                  </Grid>
                   <SaveCancelButtons
                     ShowSaveButton={editMode}
                     resetForm={resetForm}

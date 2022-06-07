@@ -1,14 +1,5 @@
-import { Chip, Typography } from "@mui/material";
-import { useCallback } from "react";
+import { Chip } from '@mui/material';
 
-export const PlainChip = (props) => {
-  const { title = "", size = 24, showTitle = true } = props;
-
-  return (
-    <Chip label={title}>
-      <Typography variant="span" sx={{ color: "#ffffff" }}>
-        {title.charAt(0).toUpperCase()}
-      </Typography>
-    </Chip>
-  );
+export const PlainChip = ({ title }) => {
+  return <Chip label={title} />;
 };

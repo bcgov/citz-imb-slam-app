@@ -2,7 +2,7 @@
 //MUI data-grid requires field prop
 
 /**
- * fields: and array of:
+ * fields: an array of:
  *  name: string
  *  label: string
  *  initialValue: a default value if new eg '' for string
@@ -18,8 +18,8 @@
  *      show: boolean true
  *      sortOrder: number 0
  *      width: number optional 100
- *
- *
+ *  transformOnFetch: optional function that accepts the fetched value and returns a value
+ *  transformOnSave: optional function that accepts the value and returns a value to be sent to the backend
  * formOptions:
  *  'fieldName': matches one of the field names
  *      value: an array of options available for a select field
@@ -27,9 +27,39 @@
  */
 
 export class Fields {
-  constructor(fields, formOptions) {
+  constructor(fields = [], formOptions = {}) {
     this.tableColumns = [];
     this.formFields = [];
+
+    this.transformOnFetch = (data) => {
+      if (fields.length) {
+        const fieldsToTransform = [];
+        for (let i = 0; i < fields.length; i++) {
+          if (fields[i].transformOnFetch) fieldsToTransform.push(fields[i]);
+        }
+
+        for (let i = 0; i < fieldsToTransform.length; i++) {
+          for (let j = 0; j < data.length; j++) {
+            data[j][fieldsToTransform[i].name] = fieldsToTransform[
+              i
+            ].transformOnFetch(data[j]);
+          }
+        }
+      }
+      return data;
+    };
+
+    this.transformOnSave = (body, callback) => {
+      if (fields.length) {
+        Object.keys(body).forEach((key) => {
+          const field = fields.filter((formField) => formField.name === key)[0];
+          if (field.transformOnSave)
+            body[key] = field.transformOnSave(body[key]);
+        });
+      }
+
+      return callback(body);
+    };
 
     for (let i = 0; i < fields.length; i++) {
       if (fields[i].table.show) {
@@ -49,6 +79,9 @@ export class Fields {
           initialValue: fields[i].initialValue,
           ...fields[i].form,
         };
+
+        if (fields[i].setFormOptions)
+          formField.options = fields[i].setFormOptions();
 
         this.formFields.push(formField);
       }

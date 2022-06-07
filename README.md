@@ -16,6 +16,14 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 ## Developer workstation setup
 
 Create a .env file at the root of the project directory.
+```
+GITHUB_ID=
+GITHUB_SECRET=
+NEXTUATH_URL=
+NEXTAUTH_SECRET=
+NEXT_PUBLIC_API_PORT=:3001
+NEXT_PUBLIC_API_PATH=api/v1
+```
 
 Run the following command into local terminal:
 

@@ -19,6 +19,7 @@
     "@mui/styles": "5.5.0",
     "@mui/x-data-grid": "5.11.1",
     "formik": "2.2.9",
+    "jsonwebtoken": "8.5.1",
     "luxon": "2.3.1",
     "next": "12.1.0",
     "next-auth": "4.3.3",
