@@ -15,7 +15,7 @@ export const DateCell = ({ value }) => {
   useEffect(() => {
     if (date.diff(DateTime.now()).as('days') < DAYS_BEFORE_EXPIRATION_WARNING)
       setSeverity({ color: '#d33c40', fontWeight: 600 });
-    return () => {};
+    return () => {};    mm
   }, []);
 
   if (!value) return null;
