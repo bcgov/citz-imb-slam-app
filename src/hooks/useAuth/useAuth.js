@@ -10,7 +10,7 @@ export const useAuth = () => {
   const [access_token, setAccess_token] = useState(null);
 
 
-  const API_PORT = process.env.NEXT_PUBLIC_API_PORT || ':80'
+  const API_PORT = process.env.NEXT_PUBLIC_API_PORT || ''
   const API_PATH = process.env.NEXT_PUBLIC_API_PATH || 'api/v1'
 
   const isAuthenticated = useMemo(() => {
