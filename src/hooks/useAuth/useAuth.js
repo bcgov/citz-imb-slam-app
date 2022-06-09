@@ -38,7 +38,7 @@ export const useAuth = () => {
 
     let payload = '';
 
-    const response = await fetch(`${window.location.protocol}//${window.location.hostname}${$NEXT_PUBLIC_API_PORT}/${$API_PATH}/login`, options);
+    const response = await fetch(`${window.location.protocol}//${window.location.hostname}${API_PORT}/${API_PATH}/login`, options);
 
     if (response.ok) {
       payload = await response.json();
