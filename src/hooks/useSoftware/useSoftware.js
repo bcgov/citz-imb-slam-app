@@ -1,6 +1,5 @@
-import { Fields } from 'hooks/common/Fields.class';
 import { useMemo } from 'react';
-import { useDBTableFactory } from '../common/useDBTable.Factory';
+import { useDBDataFactory } from '../common/useDBData.Factory';
 import { softwareFields } from './softwareFields';
 
 export const useSoftware = (id) => {
@@ -8,7 +7,7 @@ export const useSoftware = (id) => {
 
   if (id) formColumns = 2;
 
-  const softwareTable = useDBTableFactory('software', id);
+  const softwareTable = useDBDataFactory('software', id, softwareFields);
 
   const data = useMemo(() => {
     if (
@@ -21,19 +20,9 @@ export const useSoftware = (id) => {
     return softwareTable.data;
   }, [softwareTable.data, softwareTable.isError, softwareTable.isLoading]);
 
-  const { tableColumns, formFields } = new Fields(softwareFields);
-
-  const create = (body) => {
-    const renewal = body.renewal === '' ? null : body.renewal;
-    return softwareTable.create({ ...body, renewal });
-  };
-
   return {
     ...softwareTable,
     data,
-    create,
-    tableColumns,
-    formFields,
     formColumns,
   };
 };

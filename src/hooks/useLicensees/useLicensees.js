@@ -2,7 +2,7 @@ import { Fields } from 'hooks/common/Fields.class';
 import { useSoftware } from 'hooks';
 import { useCallback, useMemo } from 'react';
 import * as Yup from 'yup';
-import { useDBTableFactory } from '../common/useDBTable.Factory';
+import { useDBDataFactory } from '../common/useDBData.Factory';
 import { licenseeFields } from './licenseeFields';
 
 /**
@@ -21,9 +21,11 @@ import { licenseeFields } from './licenseeFields';
 export const useLicensees = (licenseeId) => {
   let formColumns = 1;
 
-  const softwareTable = useSoftware();
-
-  const licenseeTable = useDBTableFactory('licensee', licenseeId);
+  const licenseeTable = useDBDataFactory(
+    'licensee',
+    licenseeId,
+    licenseeFields,
+  );
 
   const data = useMemo(() => {
     if (
@@ -33,17 +35,10 @@ export const useLicensees = (licenseeId) => {
     )
       return [];
 
-    return licenseeTable.data.map((item) => {
-      return {
-        ...item,
-        software: item.__softwareConnection__?.map(
-          (software) => software.__software__.id,
-        ),
-      };
-    });
+    return licenseeTable.data;
   }, [licenseeTable.data, licenseeTable.isError, licenseeTable.isLoading]);
 
-  const assignedLicensesTable = useDBTableFactory('assigned-license');
+  const assignedLicensesTable = useDBDataFactory('assigned-license');
 
   const create = useCallback(
     async (props) => {
@@ -54,7 +49,8 @@ export const useLicensees = (licenseeId) => {
       });
 
       const licensee = await licenseeTable.create({ name, notes });
-      const licenseeId = licensee[0].id;
+
+      const licenseeId = licensee.id;
 
       for (let i = 0; i < licensesToAssign.length; i++) {
         await assignedLicensesTable.create({
@@ -68,13 +64,13 @@ export const useLicensees = (licenseeId) => {
 
   const update = useCallback(
     async (props) => {
-      const { id: licenseeId, name, notes = '', software } = props;
+      const { id: licenseeId, software: softwareIds, ...body } = props;
 
-      software = software.map((software) => {
+      const software = softwareIds.map((software) => {
         return { id: software };
       });
 
-      await licenseeTable.update({ id: licenseeId, name, notes });
+      await licenseeTable.update({ id: licenseeId, ...body });
 
       const currentLicenses = assignedLicensesTable.data.filter(
         (license) => license.licenseeId === licenseeId,
@@ -126,19 +122,9 @@ export const useLicensees = (licenseeId) => {
     [assignedLicensesTable, licenseeTable],
   );
 
-  const options = softwareTable.data.map(({ id, title }) => {
-    return { value: id, label: title };
-  });
-
-  const { tableColumns, formFields } = new Fields(licenseeFields, {
-    software: options,
-  });
-
   return {
     ...licenseeTable,
     data,
-    tableColumns,
-    formFields,
     formColumns,
     create,
     remove,
