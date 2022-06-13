@@ -17,6 +17,8 @@ export const UserListControl = (props) => {
     ...remainingProps
   } = props;
 
+  console.log('props', props);
+
   const InputStyle = useCallback(
     styled('input')(
       ({ Theme }) => `
@@ -79,6 +81,7 @@ export const UserListControl = (props) => {
   return (
     <Field name={name}>
       {({ field, form }) => {
+        if (form.values[field.name] === undefined) return null;
         return (
           <BaseControl
             error={!!form.errors[field.name]}

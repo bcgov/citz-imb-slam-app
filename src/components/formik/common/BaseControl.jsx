@@ -12,8 +12,8 @@ export const BaseControl = (props) => {
         {...breakPoints}
         sx={{
           marginBottom: '16px',
-		  paddingLeft: '8px',
-		  paddingRight: '16px',
+          paddingLeft: '8px',
+          paddingRight: '16px',
         }}
       >
         <FormControl fullWidth={true} error={error}>

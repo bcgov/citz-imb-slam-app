@@ -15,12 +15,11 @@ export const DateCell = ({ value }) => {
   useEffect(() => {
     if (date.diff(DateTime.now()).as('days') < DAYS_BEFORE_EXPIRATION_WARNING)
       setSeverity({ color: '#d33c40', fontWeight: 600 });
-    return () => {};    mm
+    return () => {};
   }, []);
 
   if (!value) return null;
 
-<<<<<<< HEAD
   return (
     <Typography
       sx={{
@@ -29,14 +28,9 @@ export const DateCell = ({ value }) => {
 		fontWeight: { ...severity },
       }}
       variant="span"
-      icon={false}
+      // icon={false}
     >
       {date.setLocale('en-ca').toLocaleString()}
     </Typography>
   );
-=======
-	return (
-		<Alert icon={false} {...severity}>{date.setLocale('en-ca').toLocaleString()}</Alert>
-	);
->>>>>>> c4f42b3 (cleanup)
 };
