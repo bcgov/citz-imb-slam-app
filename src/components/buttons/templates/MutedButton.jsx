@@ -1,6 +1,6 @@
 import { CommonButton } from './CommonButton';
 
-export const MutedButton = ({ buttonText, ...remainingProps }) => (
+export const MutedButton = ({ children, ...remainingProps }) => (
   <CommonButton
     style={{
       backgroundColor: 'transparent',
@@ -12,6 +12,6 @@ export const MutedButton = ({ buttonText, ...remainingProps }) => (
     }}
     {...remainingProps}
   >
-    {buttonText}
+    {children}
   </CommonButton>
 );

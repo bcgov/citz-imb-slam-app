@@ -33,7 +33,7 @@ const defaultStyle = {
 };
 
 export const CommonButton = (props) => {
-  const { style, buttonText, ...remainingProps } = props;
+  const { style, children, ...remainingProps } = props;
   const buttonStyle = useMemo(
     () => ({
       ...defaultStyle,
@@ -45,7 +45,7 @@ export const CommonButton = (props) => {
   return (
     <ThemeProvider theme={Theme}>
       <Button sx={buttonStyle} {...remainingProps}>
-        {buttonText}
+        {children}
       </Button>
     </ThemeProvider>
   );

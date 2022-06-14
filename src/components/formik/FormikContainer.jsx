@@ -91,11 +91,9 @@ export const FormikContainer = (props) => {
                       onClick={() => setConfirmationDialogOpen(true)}
                       buttonText="Delete"
                     />
-                    <DefaultButton
-                      id="edit"
-                      onClick={editHandler}
-                      buttonText="Edit"
-                    />
+                    <DefaultButton id="edit" onClick={editHandler}>
+                      Edit
+                    </DefaultButton>
                   </>
                 )}
               </FormHeader>

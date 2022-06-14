@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { React } from 'react';
-import slamlogo from '../../assets';
+import slamlogo from '../../assets/images/slam-logo.png';
 import { Theme } from '../style/Theme';
 import { NavigationLinks } from './NavigationLinks';
 

@@ -10,7 +10,7 @@ export const Software = () => (
     title="Software"
     dataHook={useSoftware}
     tableActions={
-      <DefaultButton buttonURL="/software/add" buttonText="+ Add Software" />
+      <DefaultButton href="/software/add">+ Add Software</DefaultButton>
     }
     sortOrder="asc"
     sortBy="title"

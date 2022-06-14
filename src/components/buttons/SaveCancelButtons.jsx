@@ -26,7 +26,9 @@ export const SaveCancelButtons = (props) => {
       >
         <MutedButton id="cancel" onClick={clickHandler} buttonText="Cancel" />
         {ShowSaveButton ? (
-          <DefaultButton type="submit" id="save" buttonText="Save" />
+          <DefaultButton type="submit" id="save">
+            Save
+          </DefaultButton>
         ) : null}
       </Stack>
     </ThemeProvider>
