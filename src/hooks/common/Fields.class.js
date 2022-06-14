@@ -50,12 +50,15 @@ export class Fields {
     };
 
     this.transformOnSave = (body, callback) => {
-      const transformedBody = {}
+      const transformedBody = {};
 
       for (let i = 0; i < fields.length; i++) {
-        transformedBody[fields[i].name] = body[fields[i].name]
+        transformedBody[fields[i].name] = body[fields[i].name];
 
-        if (fields[i].transformOnSave) transformedBody[fields[i].name] = fields[i].transformOnSave(body[fields[i].name])
+        if (fields[i].transformOnSave)
+          transformedBody[fields[i].name] = fields[i].transformOnSave(
+            body[fields[i].name],
+          );
       }
 
       return callback(transformedBody);

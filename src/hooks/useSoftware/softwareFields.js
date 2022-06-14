@@ -71,9 +71,9 @@ export const softwareFields = [
       width: 200,
     },
     transformOnSave: (value) => {
-      if (value === '') return null
+      if (value === '') return null;
 
-      return null
+      return null;
     },
   },
   {

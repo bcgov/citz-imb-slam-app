@@ -1,7 +1,6 @@
 import InputUnstyled from '@mui/base/InputUnstyled';
 import { Stack } from '@mui/material';
 import { Field } from 'formik';
-import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { BaseControl } from '../common/BaseControl';
 import { UserItemControl } from './UserItemControl';
@@ -19,8 +18,8 @@ export const UserListControl = (props) => {
 
   console.log('props', props);
 
-  const InputStyle = useCallback(
-    styled('input')(
+  const InputStyle = useMemo(() => {
+    return styled('input')(
       ({ Theme }) => `
     display: block;
     border: 1px solid #ddd;
@@ -54,9 +53,8 @@ export const UserListControl = (props) => {
 		border: 1px solid #ddd;
 	}
   `,
-    ),
-    [],
-  );
+    );
+  }, []);
 
   const CustomFieldset = styled.fieldset`
     border: 1px solid #ddd;

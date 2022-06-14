@@ -1,4 +1,4 @@
-import { Alert, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { DateTime } from 'luxon';
 import { useEffect, useState } from 'react';
 
@@ -9,14 +9,14 @@ export const DateCell = ({ value }) => {
 
   const [severity, setSeverity] = useState({
     color: '#222',
-	fontWeight: 400,
+    fontWeight: 400,
   });
 
   useEffect(() => {
     if (date.diff(DateTime.now()).as('days') < DAYS_BEFORE_EXPIRATION_WARNING)
       setSeverity({ color: '#d33c40', fontWeight: 600 });
     return () => {};
-  }, []);
+  }, [date]);
 
   if (!value) return null;
 
@@ -25,7 +25,7 @@ export const DateCell = ({ value }) => {
       sx={{
         backgroundColor: 'none',
         color: { ...severity },
-		fontWeight: { ...severity },
+        fontWeight: { ...severity },
       }}
       variant="span"
       // icon={false}
