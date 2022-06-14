@@ -50,15 +50,15 @@ export class Fields {
     };
 
     this.transformOnSave = (body, callback) => {
-      if (fields.length) {
-        Object.keys(body).forEach((key) => {
-          const field = fields.filter((formField) => formField.name === key)[0];
-          if (field.transformOnSave)
-            body[key] = field.transformOnSave(body[key]);
-        });
+      const transformedBody = {}
+
+      for (let i = 0; i < fields.length; i++) {
+        transformedBody[fields[i].name] = body[fields[i].name]
+
+        if (fields[i].transformOnSave) transformedBody[fields[i].name] = fields[i].transformOnSave(body[fields[i].name])
       }
 
-      return callback(body);
+      return callback(transformedBody);
     };
 
     for (let i = 0; i < fields.length; i++) {

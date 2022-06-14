@@ -31,11 +31,11 @@ export const InputFormikControl = (props) => {
 	font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
 	'Roboto', Roboto, Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
 	'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  
+
 	&:hover {
 		border: 1px solid #c4c4c4;
 	}
-  
+
 	&:focus {
 		border: 1px solid #0366ee;
 	}

@@ -1,8 +1,9 @@
-import { API_URL } from 'constants';
-
 export const fetchAPI = async (endPoint, options) => {
-  const url = `${API_URL}/${endPoint}`;
 
+  const API_PORT = process.env.NEXT_PUBLIC_API_PORT || ''
+  const API_PATH = process.env.NEXT_PUBLIC_API_PATH || 'api/v1'
+
+  const url = `${window.location.protocol}//${window.location.hostname}${API_PORT}/${API_PATH}/${endPoint}`;
   const response = await fetch(url, options);
 
   if (response.ok) {

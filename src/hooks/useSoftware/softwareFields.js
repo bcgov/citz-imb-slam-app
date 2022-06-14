@@ -70,7 +70,11 @@ export const softwareFields = [
         new Date(params.value).toISOString().split('T')[0].replace(/ /g, '-'),
       width: 200,
     },
-    transformOnSave: (value) => (value === '' ? null : value),
+    transformOnSave: (value) => {
+      if (value === '') return null
+
+      return null
+    },
   },
   {
     name: 'quantity',
