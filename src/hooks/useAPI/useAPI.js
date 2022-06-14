@@ -50,7 +50,6 @@ export const useAPI = () => {
 
   const createData = useCallback(
     async (endPoint, { body }) => {
-
       const response = await fetchAPI(
         endPoint,
         fetchOptions({
