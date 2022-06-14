@@ -1,32 +1,24 @@
-import { TableContainer } from 'components';
-import { authenticate } from 'helpers';
-import { useLicensees } from 'hooks';
-import { useRouter } from 'next/router';
-import { DefaultButton } from '../../components/buttons/templates/DefaultButton';
+import { DefaultButton, TableContainer } from '../../components';
+import { authenticate } from '../../helpers';
+import { useLicensees } from '../../hooks';
 
-export const getServerSideProps = (context) => {
-  return authenticate(context);
-};
+export const getServerSideProps = (context) => authenticate(context);
 
 /**
  * the Licensee Page
  * @returns {React.jsx}
  */
 export default function Licensees() {
-  const router = useRouter();
-
-  const tableActions = (
-    <DefaultButton buttonURL="/licensees/add" buttonText="+ Add Licensee" />
-  );
-
   return (
     <TableContainer
-      title={'Licensees'}
+      title="Licensees"
       dataHook={useLicensees}
-      route={'licensees'}
-      tableActions={tableActions}
-      sortOrder={'asc'}
-      sortBy={'name'}
+      route="licensees"
+      tableActions={
+        <DefaultButton buttonURL="/licensees/add" buttonText="+ Add Licensee" />
+      }
+      sortOrder="asc"
+      sortBy="name"
       height={58}
     />
   );

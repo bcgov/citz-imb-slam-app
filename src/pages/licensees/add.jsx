@@ -1,16 +1,11 @@
-import { FormikContainer } from 'components';
-import { useLicensees } from 'hooks';
-import { authenticate } from 'helpers';
-export const getServerSideProps = (context) => {
-	return authenticate(context);
-};
+import { FormikContainer } from '../../components';
+import { authenticate } from '../../helpers';
+import { useLicensees } from '../../hooks';
+
+export const getServerSideProps = (context) => authenticate(context);
 
 export default function LicenseeFormCreate() {
-	return (
-		<FormikContainer
-			formTitle='Add Licensee'
-			dataHook={useLicensees}
-			isNew={true}
-		/>
-	);
+  return (
+    <FormikContainer formTitle="Add Licensee" dataHook={useLicensees} isNew />
+  );
 }

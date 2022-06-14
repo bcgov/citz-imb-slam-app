@@ -1,18 +1,10 @@
 import { MenuItem } from '@mui/material';
 import { Field } from 'formik';
-import { BaseControl } from '../common/BaseControl';
 import { Select } from 'react-select';
+import { BaseControl } from '../common/BaseControl';
 
-export const SelectFormikControl = (props) => {
-  const {
-    name,
-    label,
-    required,
-    type = 'text',
-    disabled,
-    options,
-    ...remainingProps
-  } = props;
+export const DropdownFormikControl = (props) => {
+  const { name, label, required, disabled, options, ...remainingProps } = props;
 
   return (
     <Field name={name}>
@@ -25,8 +17,11 @@ export const SelectFormikControl = (props) => {
           {...remainingProps}
         >
           <Select {...field} disabled={disabled}>
-            {options.map((option, key) => (
-              <MenuItem key={key} value={option}>
+            {options.map((option) => (
+              <MenuItem
+                // key={key}
+                value={option}
+              >
                 {option}
               </MenuItem>
             ))}

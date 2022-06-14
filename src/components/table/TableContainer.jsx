@@ -10,7 +10,14 @@ import { useCallback, useMemo, useState } from 'react';
 import { TableHeader } from './common/TableHeader';
 
 export const TableContainer = (props) => {
-  const { dataHook = () => {}, title, tableActions } = props;
+  const {
+    dataHook = () => {},
+    title,
+    tableActions,
+    sortBy,
+    sortOrder,
+    height,
+  } = props;
 
   const tableData = dataHook();
 
@@ -21,23 +28,21 @@ export const TableContainer = (props) => {
   const router = useRouter();
 
   const openItem = useCallback(
-    (props) => {
-      router.push(`${title.toLowerCase()}/${props.id}`);
+    (row) => {
+      router.push(`${title.toLowerCase()}/${row.id}`);
     },
     [router, title],
   );
 
   const [sortModel, setSortModel] = useState([
     {
-      field: props.sortBy,
-      sort: props.sortOrder,
+      field: sortBy,
+      sort: sortOrder,
     },
   ]);
 
-  const height = props.height;
-
-  function CustomToolbar() {
-    return (
+  const CustomToolbar = useMemo(
+    () => (
       <GridToolbarContainer>
         <GridToolbarQuickFilter
           quickFilterParser={(searchInput) =>
@@ -48,8 +53,9 @@ export const TableContainer = (props) => {
           }
         />
       </GridToolbarContainer>
-    );
-  }
+    ),
+    [],
+  );
 
   if (isError)
     return (
@@ -75,7 +81,7 @@ export const TableContainer = (props) => {
         columns={columns}
         rows={data}
         loading={isLoading}
-        autoHeight={true}
+        autoHeight
         sortModel={sortModel}
         onSortModelChange={(model) => setSortModel(model)}
         disableColumnMenu

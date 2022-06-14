@@ -1,14 +1,16 @@
 import InputUnstyled from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 import { Field } from 'formik';
+import { useMemo } from 'react';
 import { BaseControl } from '../common/BaseControl';
 
 export const TextareaFormikControl = (props) => {
   const { name, label, required, disabled, ...remainingProps } = props;
 
-  const InputStyle = useMemo(() => {
-    return styled('textarea')(
-      ({ Theme }) => `
+  const InputStyle = useMemo(
+    () =>
+      styled('textarea')(
+        () => `
 		display: block;
 		border: 1px solid #ddd;
 		border-radius: 3px;
@@ -44,11 +46,12 @@ export const TextareaFormikControl = (props) => {
 		}
 
 	  `,
-    );
-  }, []);
+      ),
+    [],
+  );
 
   const StyledTextareaElement = styled('textarea')(
-    ({ Theme }) => `
+    () => `
 		width: 100%;
 		max-width: 100%;
 		border-radius: 3px;

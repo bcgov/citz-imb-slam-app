@@ -1,26 +1,19 @@
 import InputUnstyled from '@mui/base/InputUnstyled';
 import { Stack } from '@mui/material';
 import { Field } from 'formik';
+import { useMemo } from 'react';
 import styled from 'styled-components';
 import { BaseControl } from '../common/BaseControl';
 import { UserItemControl } from './UserItemControl';
 
 export const UserListControl = (props) => {
-  const {
-    name,
-    label,
-    required,
-    type = 'text',
-    disabled,
-    licenseeList,
-    ...remainingProps
-  } = props;
+  const { name, label, required, disabled, licenseeList, ...remainingProps } =
+    props;
 
-  console.log('props', props);
-
-  const InputStyle = useMemo(() => {
-    return styled('input')(
-      ({ Theme }) => `
+  const InputStyle = useMemo(
+    () =>
+      styled('input')(
+        () => `
     display: block;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -53,8 +46,9 @@ export const UserListControl = (props) => {
 		border: 1px solid #ddd;
 	}
   `,
-    );
-  }, []);
+      ),
+    [],
+  );
 
   const CustomFieldset = styled.fieldset`
     border: 1px solid #ddd;
@@ -97,15 +91,9 @@ export const UserListControl = (props) => {
             )}
             <CustomFieldset disabled={disabled}>
               <Stack spacing={2}>
-                {form.values[field.name].map((value, index) => {
-                  return (
-                    <UserItemControl
-                      disabled={disabled}
-                      key={index}
-                      value={value}
-                    />
-                  );
-                })}
+                {form.values[field.name].map((value) => (
+                  <UserItemControl disabled={disabled} value={value} />
+                ))}
               </Stack>
             </CustomFieldset>
           </BaseControl>

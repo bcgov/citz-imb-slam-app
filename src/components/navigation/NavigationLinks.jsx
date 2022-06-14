@@ -1,9 +1,9 @@
-import { Button, Stack, Typography } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import { UserMenu } from "components";
-import { useAuth } from "hooks";
-import { useRouter } from "next/router";
-import { Theme } from "../style/Theme";
+import { Button, Stack, Typography } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import { useRouter } from 'next/router';
+import { UserMenu } from './UserMenu';
+import { useAuth } from '../../hooks';
+import { Theme } from '../style/Theme';
 
 export const NavigationLinks = () => {
   const router = useRouter();
