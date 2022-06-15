@@ -4,7 +4,7 @@ import { useLicensees } from '../../hooks';
 
 export const getServerSideProps = (context) => authenticate(context);
 
-export default function LicenseeFormCreate() {
+export default function AddLicensee() {
   return (
     <FormikContainer formTitle="Add Licensee" dataHook={useLicensees} isNew />
   );

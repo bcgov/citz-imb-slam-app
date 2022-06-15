@@ -8,6 +8,6 @@ export const getServerSideProps = (context) => authenticate(context);
  * present the software form in create mode
  * @returns {React.jsx}
  */
-export default function SoftwareFormCreate() {
+export default function AddSoftware() {
   return <FormikContainer formTitle="Software" dataHook={useSoftware} isNew />;
 }
