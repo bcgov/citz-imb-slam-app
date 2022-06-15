@@ -1,4 +1,5 @@
-import { DefaultButton, TableContainer } from '../../components';
+import { TableContainer } from '../../components';
+import { DefaultButton } from '../../components/buttons/templates/DefaultButton';
 import { authenticate } from '../../helpers';
 import { useLicensees } from '../../hooks';
 
@@ -15,7 +16,7 @@ export default function Licensees() {
       dataHook={useLicensees}
       route="licensees"
       tableActions={
-        <DefaultButton buttonURL="/licensees/add" buttonText="+ Add Licensee" />
+        <DefaultButton href="/licensees/add">+ Add Licensee</DefaultButton>
       }
       sortOrder="asc"
       sortBy="name"

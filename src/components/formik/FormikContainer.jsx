@@ -39,6 +39,7 @@ export const FormikContainer = (props) => {
     remove,
     formColumns,
   } = useForm(dataHook, id);
+
   const submitHandler = async (body, formik) => {
     if (isNew) {
       await create(body);
@@ -89,8 +90,9 @@ export const FormikContainer = (props) => {
                     <WarningButton
                       id="delete"
                       onClick={() => setConfirmationDialogOpen(true)}
-                      buttonText="Delete"
-                    />
+                    >
+                      Delete
+                    </WarningButton>
                     <DefaultButton id="edit" onClick={editHandler}>
                       Edit
                     </DefaultButton>
@@ -124,6 +126,7 @@ export const FormikContainer = (props) => {
                           .filter((formField) => formField.column === 0)
                           .map((formField) => (
                             <FormikControls
+                              key={formField.name}
                               disabled={!editMode}
                               {...formField}
                             />
@@ -143,6 +146,7 @@ export const FormikContainer = (props) => {
                             .filter((formField) => formField.column === 1)
                             .map((formField) => (
                               <FormikControls
+                                key={formField.name}
                                 disabled={!editMode}
                                 {...formField}
                               />

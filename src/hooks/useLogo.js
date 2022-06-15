@@ -1,14 +1,14 @@
-import {
-  mural,
-  adobecc,
-  openshift,
-  rocketchat,
-  powerbi,
-  visualstudio,
-  docker,
-} from '../assets';
-import Image from 'next/image';
 import { Typography } from '@mui/material';
+import Image from 'next/image';
+import {
+  adobecc,
+  docker,
+  mural,
+  openshift,
+  powerbi,
+  rocketchat,
+  visualstudio,
+} from '../assets';
 
 export const useLogo = (logoName, title) => {
   if (logoName === 'mural')
@@ -21,13 +21,11 @@ export const useLogo = (logoName, title) => {
       return (
         <Image src={mural} alt={title} layout="fill" className="logo-small" />
       );
-      break;
 
     case 'adobecc':
       return (
         <Image src={adobecc} alt={title} layout="fill" className="logo-small" />
       );
-      break;
 
     case 'openshift':
       return (
@@ -38,7 +36,6 @@ export const useLogo = (logoName, title) => {
           className="logo-small"
         />
       );
-      break;
 
     case 'rocketchat':
       return (
@@ -49,13 +46,11 @@ export const useLogo = (logoName, title) => {
           className="logo-small"
         />
       );
-      break;
 
     case 'powerbi':
       return (
         <Image src={powerbi} alt={title} layout="fill" className="logo-small" />
       );
-      break;
 
     case 'visualstudio':
       return (
@@ -66,13 +61,11 @@ export const useLogo = (logoName, title) => {
           className="logo-small"
         />
       );
-      break;
 
     case 'docker':
       return (
         <Image src={docker} alt={title} layout="fill" className="logo-small" />
       );
-      break;
 
     default:
       return (

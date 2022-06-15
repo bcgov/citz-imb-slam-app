@@ -1,7 +1,6 @@
 import InputUnstyled from '@mui/base/InputUnstyled';
 import { Stack } from '@mui/material';
 import { Field } from 'formik';
-import { useMemo } from 'react';
 import styled from 'styled-components';
 import { BaseControl } from '../common/BaseControl';
 import { UserItemControl } from './UserItemControl';
@@ -10,10 +9,7 @@ export const UserListControl = (props) => {
   const { name, label, required, disabled, licenseeList, ...remainingProps } =
     props;
 
-  const InputStyle = useMemo(
-    () =>
-      styled('input')(
-        () => `
+  const InputStyle = styled('input')(`
     display: block;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -45,10 +41,7 @@ export const UserListControl = (props) => {
 	&:disabled:hover {
 		border: 1px solid #ddd;
 	}
-  `,
-      ),
-    [],
-  );
+  `);
 
   const CustomFieldset = styled.fieldset`
     border: 1px solid #ddd;

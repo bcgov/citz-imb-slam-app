@@ -1,4 +1,7 @@
-import { DateCell, LogoAvatar, QuantityAssigned } from 'components';
+import { DateCell } from '../../components/common/DateCell';
+// eslint-disable-next-line import/no-cycle
+import { LogoAvatar } from '../../components/common/LogoAvatar';
+import { QuantityAssigned } from '../../components/common/QuantityAssigned';
 
 export const softwareFields = [
   {
@@ -89,6 +92,7 @@ export const softwareFields = [
     table: {
       renderCell: (params) => (
         <QuantityAssigned
+          // eslint-disable-next-line no-underscore-dangle
           assigned={params.row.__licenseeConnection__.length}
           available={params.value}
         />

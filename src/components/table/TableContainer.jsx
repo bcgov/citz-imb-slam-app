@@ -41,7 +41,7 @@ export const TableContainer = (props) => {
     },
   ]);
 
-  const CustomToolbar = useMemo(
+  const CustomToolbar = useCallback(
     () => (
       <GridToolbarContainer>
         <GridToolbarQuickFilter

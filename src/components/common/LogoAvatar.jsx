@@ -1,5 +1,6 @@
 import { Avatar, Typography } from '@mui/material';
 import { useCallback } from 'react';
+// eslint-disable-next-line import/no-cycle
 import { useLogo } from '../../hooks';
 
 export const LogoAvatar = (props) => {

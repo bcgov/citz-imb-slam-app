@@ -24,7 +24,9 @@ export const SaveCancelButtons = (props) => {
         justifyContent="center"
         sx={{ margin: '25px 0px 15px' }}
       >
-        <MutedButton id="cancel" onClick={clickHandler} buttonText="Cancel" />
+        <MutedButton id="cancel" onClick={clickHandler}>
+          Cancel
+        </MutedButton>
         {ShowSaveButton ? (
           <DefaultButton type="submit" id="save">
             Save
