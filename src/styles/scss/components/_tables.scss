@@ -139,3 +139,35 @@
 .MuiInput-underline:after{
     border: none !important;
 }
+
+.select > div, .readOnly > div {
+    padding: 4.5px 3px;
+    border-color: #ddd;
+  }
+  
+  .css-g1d714-ValueContainer {
+    padding: 0px 3px;
+  }
+  
+  .css-b62m3t-container> * {
+    line-height: 1.5 !important;
+    font-size: 0.85rem !important;
+    font-family: var(--body-font-family) !important;
+  }
+
+  .css-1rhbuit-multiValue {
+    border-radius: 50px !important;
+    padding: 0px 8px;
+  
+    & > div {
+    line-height: 1.5;
+    font-size: 0.9rem;
+    font-family: var(--body-font-family);
+    padding: 4.5px 0px 4.5px 3px;
+    }
+  }
+
+.css-14el2xx-placeholder {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", Roboto, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 0.9rem;
+}

@@ -110,7 +110,14 @@ export const FormikContainer = (props) => {
                   </>
                 )}
               </FormHeader>
-              <Form>
+              <Form
+                style={{
+                  backgroundColor: '#fff',
+                  padding: '2rem 2rem',
+                  borderRadius: '5px',
+                  boxShadow: 'rgb(149 157 165 / 20%) 0px 8px 24px',
+                }}
+              >
                 <Box sx={{ width: '100%' }}>
                   <Grid
                     container

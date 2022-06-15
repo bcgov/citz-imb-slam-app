@@ -9,6 +9,9 @@ export const useAuth = () => {
   const { data, status } = useSession();
   const [access_token, setAccess_token] = useState(null);
 
+  const API_PORT = process.env.NEXT_PUBLIC_API_PORT || '';
+  const API_PATH = process.env.NEXT_PUBLIC_API_PATH || 'api/v1';
+
   const isAuthenticated = useMemo(() => {
     if (status === 'authenticated') return true;
 
@@ -34,7 +37,10 @@ export const useAuth = () => {
 
     let payload = '';
 
-    const response = await fetch(`${API_URL}/login`, options);
+    const response = await fetch(
+      `${window.location.protocol}//${window.location.hostname}${API_PORT}/${API_PATH}/login`,
+      options,
+    );
 
     if (response.ok) {
       payload = await response.json();
