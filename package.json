@@ -13,10 +13,12 @@
     "@bcgov/bc-sans": "1.0.1",
     "@emotion/react": "11.8.1",
     "@emotion/styled": "11.8.1",
+    "@mui/base": "5.0.0-alpha.71",
     "@mui/icons-material": "5.6.0",
     "@mui/material": "5.5.0",
     "@mui/styled-engine-sc": "5.4.2",
     "@mui/styles": "5.5.0",
+    "@mui/system": "5.8.4",
     "@mui/x-data-grid": "5.11.1",
     "formik": "2.2.9",
     "jsonwebtoken": "8.5.1",
@@ -37,8 +39,19 @@
     "yup": "0.32.11"
   },
   "devDependencies": {
-    "eslint": "8.10.0",
+    "@babel/core": "7.18.5",
+    "@babel/eslint-parser": "7.18.2",
+    "eslint": "8.2.0",
+    "eslint-config-airbnb": "19.0.4",
     "eslint-config-next": "12.1.0",
+    "eslint-config-node": "4.1.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-react-hooks": "4.3.0",
     "prettier": "2.6.2"
   }
 }

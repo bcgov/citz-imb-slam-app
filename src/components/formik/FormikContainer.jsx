@@ -9,13 +9,14 @@ import {
   DialogContentText,
   DialogTitle,
   Grid,
-  Stack,
 } from '@mui/material';
-import { DefaultButton, SaveCancelButtons, WarningButton } from 'components';
 import { Form, Formik } from 'formik';
-import { useForm } from 'hooks';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { DefaultButton } from '../buttons/templates/DefaultButton';
+import { SaveCancelButtons } from '../buttons/SaveCancelButtons';
+import { WarningButton } from '../buttons/templates/WarningButton';
+import { useForm } from '../../hooks';
 import { FormHeader } from './common/FormHeader';
 import { FormikControls } from './common/FormikControls';
 
@@ -24,16 +25,6 @@ export const FormikContainer = (props) => {
 
   const [editMode, setEditMode] = useState(isNew);
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
-
-  // pop up menu
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const route = useRouter();
 
@@ -48,6 +39,7 @@ export const FormikContainer = (props) => {
     remove,
     formColumns,
   } = useForm(dataHook, id);
+
   const submitHandler = async (body, formik) => {
     if (isNew) {
       await create(body);
@@ -58,18 +50,16 @@ export const FormikContainer = (props) => {
     route.back();
   };
 
-  const deleteHandler = async () => {
-    if (confirmationDialogClose) remove({ id: initialValues.id });
-    route.back();
+  const confirmationDialogClose = (event) => {
+    if (event.target.id === 'delete') {
+      remove({ id: initialValues.id });
+      route.back();
+    }
+    setConfirmationDialogOpen(false);
   };
 
   const editHandler = () => {
     setEditMode((mode) => !mode);
-  };
-
-  const confirmationDialogClose = (event) => {
-    if (event.target.id === 'delete') deleteHandler();
-    setConfirmationDialogOpen(false);
   };
 
   if (isError) {
@@ -90,8 +80,8 @@ export const FormikContainer = (props) => {
         validationSchema={validationSchema}
         onSubmit={submitHandler}
       >
-        {(props) => {
-          const { resetForm, handleReset } = props;
+        {(formikProps) => {
+          const { resetForm } = formikProps;
           return (
             <>
               <FormHeader formTitle={formTitle}>
@@ -100,13 +90,12 @@ export const FormikContainer = (props) => {
                     <WarningButton
                       id="delete"
                       onClick={() => setConfirmationDialogOpen(true)}
-                      buttonText="Delete"
-                    />
-                    <DefaultButton
-                      id="edit"
-                      onClick={editHandler}
-                      buttonText="Edit"
-                    />
+                    >
+                      Delete
+                    </WarningButton>
+                    <DefaultButton id="edit" onClick={editHandler}>
+                      Edit
+                    </DefaultButton>
                   </>
                 )}
               </FormHeader>
@@ -135,9 +124,9 @@ export const FormikContainer = (props) => {
                       <Grid container spacing={2}>
                         {formFields
                           .filter((formField) => formField.column === 0)
-                          .map((formField, key) => (
+                          .map((formField) => (
                             <FormikControls
-                              key={key}
+                              key={formField.name}
                               disabled={!editMode}
                               {...formField}
                             />
@@ -155,9 +144,9 @@ export const FormikContainer = (props) => {
                         <Grid container spacing={2}>
                           {formFields
                             .filter((formField) => formField.column === 1)
-                            .map((formField, key) => (
+                            .map((formField) => (
                               <FormikControls
-                                key={key}
+                                key={formField.name}
                                 disabled={!editMode}
                                 {...formField}
                               />

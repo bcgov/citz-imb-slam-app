@@ -8,8 +8,8 @@ export const SelectChipFormikControl = (props) => {
 
   return (
     <Field name={name}>
-      {(props) => {
-        const { field, form, meta } = props;
+      {(fieldProps) => {
+        const { field, form } = fieldProps;
         return (
           <BaseControl
             error={!!form.errors[field.name]}
@@ -19,7 +19,7 @@ export const SelectChipFormikControl = (props) => {
             {...remainingProps}
           >
             <Select
-              instanceId={'select-chip-control'}
+              instanceId="select-chip-control"
               onChange={(values) =>
                 form.setFieldValue(
                   field.name,
@@ -29,7 +29,7 @@ export const SelectChipFormikControl = (props) => {
               className={disabled ? 'readOnly' : 'select'}
               onBlur={field.onBlur}
               isDisabled={disabled}
-              isMulti={true}
+              isMulti
               closeMenuOnSelect={false}
               value={
                 field.value === undefined

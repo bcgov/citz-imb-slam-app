@@ -14,9 +14,10 @@ export const InputFormikControl = (props) => {
     ...remainingProps
   } = props;
 
-  const InputStyle = useMemo(() => {
-    return styled('input')(
-      ({ Theme }) => `
+  const InputStyle = useMemo(
+    () =>
+      styled('input')(
+        () => `
     display: block;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -49,29 +50,28 @@ export const InputFormikControl = (props) => {
 		border: 1px solid #ddd;
 	}
   `,
-    );
-  }, []);
+      ),
+    [],
+  );
 
   return (
     <Field name={name}>
-      {({ field, form }) => {
-        return (
-          <BaseControl
-            error={!!form.errors[field.name]}
-            required={required}
-            label={label}
-            helperText={form.errors[field.name]}
-            {...remainingProps}
-          >
-            <InputUnstyled
-              {...field}
-              type={type}
-              disabled={disabled}
-              components={{ Input: InputStyle }}
-            />
-          </BaseControl>
-        );
-      }}
+      {({ field, form }) => (
+        <BaseControl
+          error={!!form.errors[field.name]}
+          required={required}
+          label={label}
+          helperText={form.errors[field.name]}
+          {...remainingProps}
+        >
+          <InputUnstyled
+            {...field}
+            type={type}
+            disabled={disabled}
+            components={{ Input: InputStyle }}
+          />
+        </BaseControl>
+      )}
     </Field>
   );
 };

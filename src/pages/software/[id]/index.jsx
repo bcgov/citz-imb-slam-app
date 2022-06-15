@@ -1,13 +1,11 @@
 /** @format */
 
-import { useSoftware } from 'hooks';
 import { useRouter } from 'next/router';
-import { FormikContainer } from 'components';
-import { authenticate } from 'helpers';
-export const getServerSideProps = (context) => {
-	return authenticate(context);
-};
+import { FormikContainer } from '../../../components';
+import { authenticate } from '../../../helpers';
+import { useSoftware } from '../../../hooks';
 
+export const getServerSideProps = (context) => authenticate(context);
 
 /**
  * present the software form in read mode (initially) for a specific software title
@@ -15,18 +13,16 @@ export const getServerSideProps = (context) => {
  * @returns {React.jsx}
  */
 export default function SoftwareFormRead() {
-	const router = useRouter();
+  const router = useRouter();
 
-	const { id } = router.query;
+  const { id } = router.query;
 
-	return (
-		<>
-		<FormikContainer
-			formTitle='Software'
-			dataHook={useSoftware}
-			id={id}
-			isNew={false}
-		/>
-		</>
-	);
+  return (
+    <FormikContainer
+      formTitle="Software"
+      dataHook={useSoftware}
+      id={id}
+      isNew={false}
+    />
+  );
 }
