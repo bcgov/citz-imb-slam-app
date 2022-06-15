@@ -13,7 +13,7 @@ export const InputFormikControl = (props) => {
     disabled,
     ...remainingProps
   } = props;
-  console.log('props', props);
+
   const InputStyle = useMemo(
     () =>
       styled('input')(
@@ -56,25 +56,22 @@ export const InputFormikControl = (props) => {
 
   return (
     <Field name={name}>
-      {({ field, form }) => {
-        console.log({ field, form });
-        return (
-          <BaseControl
-            error={!!form.errors[field.name]}
-            required={required}
-            label={label}
-            helperText={form.errors[field.name]}
-            {...remainingProps}
-          >
-            <InputUnstyled
-              {...field}
-              type={type}
-              disabled={disabled}
-              components={{ Input: InputStyle }}
-            />
-          </BaseControl>
-        );
-      }}
+      {({ field, form }) => (
+        <BaseControl
+          error={!!form.errors[field.name]}
+          required={required}
+          label={label}
+          helperText={form.errors[field.name]}
+          {...remainingProps}
+        >
+          <InputUnstyled
+            {...field}
+            type={type}
+            disabled={disabled}
+            components={{ Input: InputStyle }}
+          />
+        </BaseControl>
+      )}
     </Field>
   );
 };
