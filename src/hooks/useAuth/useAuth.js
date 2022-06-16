@@ -4,10 +4,10 @@ import { API_URL } from 'constants';
 /**
  * Purpose: check if user is authenticated / authorized
  */
-//TODO: refactor to embody the above purpose
+// TODO: refactor to embody the above purpose
 export const useAuth = () => {
   const { data, status } = useSession();
-  const [access_token, setAccess_token] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
 
   const API_PORT = process.env.NEXT_PUBLIC_API_PORT || '';
   const API_PATH = process.env.NEXT_PUBLIC_API_PATH || 'api/v1';
@@ -24,7 +24,7 @@ export const useAuth = () => {
     return {};
   }, [data?.user, status]);
 
-  const getAccess_token = useCallback(async () => {
+  const getAccessToken = useCallback(async () => {
     const options = {
       method: 'POST',
       body: JSON.stringify({ username: data.user.name }),
@@ -44,7 +44,7 @@ export const useAuth = () => {
 
     if (response.ok) {
       payload = await response.json();
-      setAccess_token(payload.access_token);
+      setAccessToken(payload.access_token);
     } else {
       console.error(`${response.status} ${response.statusText} for ${API_URL}`);
       console.warn('getAccess_token response', response);
@@ -53,16 +53,23 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (status === 'authenticated') {
-      getAccess_token();
+      getAccessToken();
     }
     return () => {};
-  }, [getAccess_token, status]);
+  }, [getAccessToken, status]);
 
   const isAuthorized = useMemo(() => {
-    if (isAuthenticated && access_token) return true;
+    if (isAuthenticated && accessToken) return true;
 
     return false;
-  }, [access_token, isAuthenticated]);
+  }, [accessToken, isAuthenticated]);
 
-  return { isAuthenticated, isAuthorized, user, signIn, signOut, access_token };
+  return {
+    isAuthenticated,
+    isAuthorized,
+    user,
+    signIn,
+    signOut,
+    accessToken,
+  };
 };

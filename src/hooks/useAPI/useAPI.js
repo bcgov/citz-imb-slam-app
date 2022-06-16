@@ -1,12 +1,12 @@
-import { useAuth } from 'hooks';
 import { useCallback } from 'react';
+import { useAuth } from '../useAuth/useAuth';
 import { fetchAPI } from './fetchAPI';
 /**
  * Purpose: prepare for API Call
  */
 
 export const useAPI = () => {
-  const { isAuthorized, access_token } = useAuth();
+  const { isAuthorized, accessToken } = useAuth();
 
   const fetchOptions = useCallback(
     (options = {}) => {
@@ -21,7 +21,7 @@ export const useAPI = () => {
         Accept: '*/*',
         'Access-Control-Request-Method': method,
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${accessToken}`,
       };
 
       const headers = {
@@ -36,7 +36,7 @@ export const useAPI = () => {
         ...remainingOptions,
       };
     },
-    [access_token],
+    [accessToken],
   );
 
   const fetchData = useCallback(

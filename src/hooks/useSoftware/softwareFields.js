@@ -1,5 +1,4 @@
 import { DateCell } from '../../components/common/DateCell';
-// eslint-disable-next-line import/no-cycle
 import { LogoAvatar } from '../../components/common/LogoAvatar';
 import { QuantityAssigned } from '../../components/common/QuantityAssigned';
 
