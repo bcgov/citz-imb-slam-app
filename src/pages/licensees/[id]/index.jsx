@@ -10,7 +10,7 @@ export const getServerSideProps = (context) => authenticate(context);
  * can be turned to edit mode
  * @returns {React.jsx}
  */
-export default function LicenceeForm() {
+export default function Licencee() {
   const router = useRouter();
 
   const { id } = router.query;
