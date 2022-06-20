@@ -1,7 +1,6 @@
 name: DEV Deploy of SLAM Frontend Application Image
 on:
-  push:
-    branches: [main]
+  pull_request:
   workflow_dispatch:
     branches: [main]
 
