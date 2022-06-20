@@ -1,9 +1,8 @@
-import { MenuItem } from '@mui/material';
+import { MenuItem, Select } from '@mui/material';
 import { Field } from 'formik';
 import { BaseControl } from '../common/BaseControl';
-import { Select } from 'react-select';
 
-export const SelectFormikControl = (props) => {
+export const DropdownFormikControl = (props) => {
   const {
     name,
     label,
