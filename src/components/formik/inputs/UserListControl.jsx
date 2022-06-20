@@ -6,21 +6,10 @@ import { BaseControl } from '../common/BaseControl';
 import { UserItemControl } from './UserItemControl';
 
 export const UserListControl = (props) => {
-  const {
-    name,
-    label,
-    required,
-    type = 'text',
-    disabled,
-    licenseeList,
-    ...remainingProps
-  } = props;
+  const { name, label, required, disabled, licenseeList, ...remainingProps } =
+    props;
 
-  console.log('props', props);
-
-  const InputStyle = useMemo(() => {
-    return styled('input')(
-      ({ Theme }) => `
+  const InputStyle = styled('input')(`
     display: block;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -52,9 +41,7 @@ export const UserListControl = (props) => {
 	&:disabled:hover {
 		border: 1px solid #ddd;
 	}
-  `,
-    );
-  }, []);
+  `);
 
   const CustomFieldset = styled.fieldset`
     border: 1px solid #ddd;
@@ -97,15 +84,9 @@ export const UserListControl = (props) => {
             )}
             <CustomFieldset disabled={disabled}>
               <Stack spacing={2}>
-                {form.values[field.name].map((value, index) => {
-                  return (
-                    <UserItemControl
-                      disabled={disabled}
-                      key={index}
-                      value={value}
-                    />
-                  );
-                })}
+                {form.values[field.name].map((value) => (
+                  <UserItemControl disabled={disabled} value={value} />
+                ))}
               </Stack>
             </CustomFieldset>
           </BaseControl>

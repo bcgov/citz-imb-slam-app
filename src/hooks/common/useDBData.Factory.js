@@ -1,13 +1,13 @@
-import { useAPI } from 'hooks';
-import { Fields } from 'hooks/common/Fields.class';
 import { useCallback, useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useAPI } from '../useAPI/useAPI';
+import { Fields } from './Fields.class';
 /**
  * Purpose: wrangle data, transform if needed,
  * present data in ways to view such as an array of rows for a table or
  * a single row for a form
  */
-//TODO: refactor to embody the above purpose
+// TODO: refactor to embody the above purpose
 export const useDBDataFactory = (tableName, rowId, fields = []) => {
   const queryKey = useMemo(() => [tableName, rowId], [rowId, tableName]);
 
@@ -67,10 +67,10 @@ export const useDBDataFactory = (tableName, rowId, fields = []) => {
     queryClient.setQueryData(queryKey, context);
 
   const refetchQueries = async (data, variables, context) =>
-    await queryClient.refetchQueries([tableName]);
+    queryClient.refetchQueries([tableName]);
 
   const removeQuery = async (data, variables, context, mutation) =>
-    await queryClient.removeQueries([tableName, variables.id]);
+    queryClient.removeQueries([tableName, variables.id]);
 
   const createItem = useMutation(
     ({ id, ...body }) => createData(tableName, { body }),
@@ -83,7 +83,7 @@ export const useDBDataFactory = (tableName, rowId, fields = []) => {
 
   const changeItem = useMutation(
     async ({ id, ...body }) =>
-      await updateData(`${tableName}/${id}`, { id, ...body }),
+      updateData(`${tableName}/${id}`, { id, ...body }),
     {
       onMutate: (item) => optimisticUpdateQueryData(item, updateItem),
       onError,

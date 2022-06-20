@@ -1,4 +1,6 @@
-import { DateCell, LogoAvatar, QuantityAssigned } from 'components';
+import { DateCell } from '../../components/common/DateCell';
+import { LogoAvatar } from '../../components/common/LogoAvatar';
+import { QuantityAssigned } from '../../components/common/QuantityAssigned';
 
 export const softwareFields = [
   {
@@ -73,7 +75,7 @@ export const softwareFields = [
     transformOnSave: (value) => {
       if (value === '') return null;
 
-      return null;
+      return value;
     },
   },
   {
@@ -89,6 +91,7 @@ export const softwareFields = [
     table: {
       renderCell: (params) => (
         <QuantityAssigned
+          // eslint-disable-next-line no-underscore-dangle
           assigned={params.row.__licenseeConnection__.length}
           available={params.value}
         />

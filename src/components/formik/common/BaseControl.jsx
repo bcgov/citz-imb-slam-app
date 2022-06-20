@@ -16,7 +16,7 @@ export const BaseControl = (props) => {
           paddingRight: '16px',
         }}
       >
-        <FormControl fullWidth={true} error={error}>
+        <FormControl fullWidth error={error}>
           <Typography
             component="label"
             sx={{

@@ -1,5 +1,4 @@
-import { PlainChip } from 'components';
+import { PlainChip } from './PlainChip';
 
-export const SoftwareCell = ({ value }) => {
-  return value.map((item) => <PlainChip key={item.id} title={item.title} />);
-};
+export const SoftwareCell = ({ value }) =>
+  value.map((item) => <PlainChip key={item.id} title={item.title} />);
