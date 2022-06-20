@@ -2,6 +2,7 @@
 
 import { Box, Container } from '@mui/material';
 import { SessionProvider } from 'next-auth/react';
+import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Navigation } from '../components';
@@ -14,10 +15,18 @@ const queryClient = new QueryClient();
  * @param {} param0
  * @returns {React.jsx}
  */
-function Main({ Component, pageProps }) {
+function Main(props) {
+  const { Component, pageProps } = props;
   return (
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
+        <Head>
+          <title>SLAM | {Component.name}</title>
+          <meta
+            name="description"
+            content="Software License and Application Management"
+          />
+        </Head>
         <Navigation />
         <Box my={11}>
           <Container maxWidth="xl">

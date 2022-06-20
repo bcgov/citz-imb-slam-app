@@ -1,5 +1,5 @@
-//formik <Field /> requires name prop
-//MUI data-grid requires field prop
+// formik <Field /> requires name prop
+// MUI data-grid requires field prop
 
 /**
  * fields: an array of:

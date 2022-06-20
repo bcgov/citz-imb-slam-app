@@ -1,14 +1,11 @@
 import { Avatar, Typography } from '@mui/material';
 import { useCallback } from 'react';
-// eslint-disable-next-line import/no-cycle
-import { useLogo } from '../../hooks';
+import { Logo } from './Logo';
 
 export const LogoAvatar = (props) => {
   const { title = '', size = 28 } = props;
 
   const matching = title.replace(/\s+/g, '').toLowerCase();
-
-  const logo = useLogo(matching, title);
 
   const stringToColor = useCallback((string) => {
     let hash = 0;
@@ -40,7 +37,7 @@ export const LogoAvatar = (props) => {
           bgcolor: stringToColor(title),
         }}
       >
-        {logo}
+        <Logo logoName={matching} title={title} />
       </Avatar>
       <Typography variant="span" sx={{ marginLeft: '10px', color: '#222222' }}>
         {title}

@@ -5,7 +5,7 @@ import { useSoftware } from '../../hooks';
 
 export const getServerSideProps = (context) => authenticate(context);
 
-export const Software = () => (
+export const SoftwareTitles = () => (
   <TableContainer
     title="Software"
     dataHook={useSoftware}
@@ -18,4 +18,4 @@ export const Software = () => (
   />
 );
 
-export default Software;
+export default SoftwareTitles;

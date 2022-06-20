@@ -8,14 +8,9 @@ import {
   powerbi,
   rocketchat,
   visualstudio,
-} from '../assets';
+} from '../../assets';
 
-export const useLogo = (logoName, title) => {
-  if (logoName === 'mural')
-    return (
-      <Image src={mural} alt={title} layout="fill" className="logo-small" />
-    );
-
+export const Logo = ({ logoName, title }) => {
   switch (logoName) {
     case 'mural':
       return (
