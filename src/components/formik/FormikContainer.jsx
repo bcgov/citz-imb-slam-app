@@ -1,8 +1,8 @@
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import {
   Alert,
   AlertTitle,
   Box,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -10,13 +10,16 @@ import {
   DialogTitle,
   Grid,
 } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { DefaultButton } from '../buttons/templates/DefaultButton';
-import { SaveCancelButtons } from '../buttons/SaveCancelButtons';
-import { WarningButton } from '../buttons/templates/WarningButton';
 import { useForm } from '../../hooks';
+import { SaveCancelButtons } from '../buttons/SaveCancelButtons';
+import { DefaultButton } from '../buttons/templates/DefaultButton';
+import { MutedButton } from '../buttons/templates/MutedButton';
+import { WarningButton } from '../buttons/templates/WarningButton';
+import { Theme } from '../style/Theme';
 import { FormHeader } from './common/FormHeader';
 import { FormikControls } from './common/FormikControls';
 
@@ -165,22 +168,59 @@ export const FormikContainer = (props) => {
           );
         }}
       </Formik>
-      <Dialog open={confirmationDialogOpen} onClose={confirmationDialogClose}>
-        <DialogTitle id="alert-dialog-title">Delete?</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are You Sure?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={confirmationDialogClose} id="delete">
-            Delete
-          </Button>
-          <Button onClick={confirmationDialogClose} id="cancel">
-            Cancel
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <ThemeProvider theme={Theme}>
+        <Dialog
+          open={confirmationDialogOpen}
+          onClose={confirmationDialogClose}
+          PaperProps={{
+            style: {
+              padding: '30px',
+            },
+          }}
+        >
+          <DialogTitle
+            id="alert-dialog-title"
+            sx={{
+              padding: '0px',
+              marginTop: '10px',
+              marginBottom: '20px',
+
+              lineHeight: '1',
+              textAlign: 'center',
+            }}
+          >
+            <WarningAmberIcon
+              sx={{
+                fontSize: '3rem',
+                color: 'primary.warning',
+              }}
+            />
+          </DialogTitle>
+          <DialogContent sx={{ padding: '0px', marginBottom: '20px' }}>
+            <DialogContentText
+              id="alert-dialog-description"
+              sx={{ color: '#222' }}
+            >
+              Are you sure you want to delete this item?
+            </DialogContentText>
+            <DialogContentText sx={{ color: '#222' }}>
+              This action cannot be undone.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions
+            sx={{
+              justifyContent: 'space-between',
+              padding: '0',
+              marginTop: '10px',
+            }}
+          >
+            <MutedButton onClick={confirmationDialogClose}>Cancel</MutedButton>
+            <WarningButton id="delete" onClick={confirmationDialogClose}>
+              Delete
+            </WarningButton>
+          </DialogActions>
+        </Dialog>
+      </ThemeProvider>
     </>
   );
 };

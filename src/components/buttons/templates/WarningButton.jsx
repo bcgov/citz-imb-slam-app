@@ -6,6 +6,10 @@ export const WarningButton = ({ children, ...remainingProps }) => (
       backgroundColor: 'transparent',
       borderColor: 'primary.warning',
       color: 'primary.warning',
+      '&:hover, &:active, &:focus': {
+        border: 'hover.border',
+        bgcolor: '#eee',
+      },
     }}
     {...remainingProps}
   >

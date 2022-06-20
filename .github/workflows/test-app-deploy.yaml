@@ -1,7 +1,11 @@
-name: TEST Deploy of SLAM Frontend Application Image 
+name: TEST Deploy of SLAM Frontend Application Image
 
-on: workflow_dispatch
-   
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    branches: [main]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,25 +22,25 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_TEST_SA_PASSWORD }}"}'
           cmd: |
             'version'
-            
+
       - name: Login to Openshift Docker
         run : |
           docker login ${{ secrets.OPENSHIFT4_EXTERNAL_REPOSITORY }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_TEST_SA_PASSWORD }}
-            
+
       - name: Deploy to TEST
         env:
           NAMESPACE: "${{ secrets.OPENSHIFT_TEST_NAMESPACE }}"
           APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
           LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
           ENVIRONMENT: "${{ secrets.TEST_ENVIRONMENT }}"
-        run: |  
+        run: |
           ./.github/helpers/deploy-app.sh
-          
+
       - name: Health Check TEST deployment
         env:
           NAMESPACE: "${{ secrets.OPENSHIFT_TEST_NAMESPACE }}"
           APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
           LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
           ENVIRONMENT: "${{ secrets.TEST_ENVIRONMENT }}"
-        run: |  
+        run: |
           ./.github/helpers/application-health.sh
