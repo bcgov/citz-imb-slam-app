@@ -32,17 +32,37 @@ export class Fields {
     this.formFields = [];
 
     this.transformOnFetch = (data) => {
-      if (fields.length) {
-        const fieldsToTransform = [];
+      console.log('data', { data, isArray: Array.isArray(data) })
+
+      if (Array.isArray(data)) {
+        // TODO
+      } else {
+        console.log('fields', fields)
+        const newData = { ...data }
         for (let i = 0; i < fields.length; i++) {
-          if (fields[i].transformOnFetch) fieldsToTransform.push(fields[i]);
+          if (fields[i].transformOnFetch) {
+            console.log("to transform", fields[i])
+            newData[fields[i].name] = fields[i].transformOnFetch(newData)
+          }
         }
+        console.log('x', { fields, newData })
+
+        return newData
+      }
+
+
+      if (fields.length) {
+
+        const fieldsToTransform = fields.map(field => {
+
+          if (field.transformOnFetch) {
+            console.log('field', field)
+          }
+        })
 
         for (let i = 0; i < fieldsToTransform.length; i++) {
           for (let j = 0; j < data.length; j++) {
-            data[j][fieldsToTransform[i].name] = fieldsToTransform[
-              i
-            ].transformOnFetch(data[j]);
+            data[j][fieldsToTransform[i].name] = fieldsToTransform[i].transformOnFetch(data[j]);
           }
         }
       }
