@@ -52,19 +52,18 @@ export class Fields {
 
 
       if (fields.length) {
-
-        const fieldsToTransform = fields.map(field => {
-
+        const fieldsToTransform = fields.map((field) => {
+          console.log('field>', field)
           if (field.transformOnFetch) {
-            console.log('field', field)
+            console.log('field>>', field)
           }
         })
 
-        for (let i = 0; i < fieldsToTransform.length; i++) {
-          for (let j = 0; j < data.length; j++) {
-            data[j][fieldsToTransform[i].name] = fieldsToTransform[i].transformOnFetch(data[j]);
-          }
-        }
+        // for (let i = 0; i < fieldsToTransform.length; i++) {
+        //   for (let j = 0; j < data.length; j++) {
+        //     data[j][fieldsToTransform[i].name] = fieldsToTransform[i].transformOnFetch(data[j]);
+        //   }
+        // }
       }
       return data;
     };
