@@ -1,6 +1,5 @@
 export const setInitialValues = (dataHookResponse, id) => {
   if (dataHookResponse.isLoading || dataHookResponse.isError) return {};
-
   const values = {};
 
   dataHookResponse.formFields.forEach((field) => {

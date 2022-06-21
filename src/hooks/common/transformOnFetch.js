@@ -1,5 +1,4 @@
 export const transformOnFetch = (data, fields) => {
-  console.log('data', data);
   const fieldsToTransform = fields.filter((field) => field.transformOnFetch);
   if (Array.isArray(data)) {
     const transformedData = data.map((row) => {
