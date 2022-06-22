@@ -69,8 +69,6 @@ export const useLicensees = (licenseeId) => {
   const update = useCallback(
     async (props) => {
       const { id, software, ...body } = props;
-      console.log('update props', props)
-      // const software = selectedSoftware.map((softwareId) => ({ id: softwareId }));
 
       await updateLicensee({ id, ...body });
 
@@ -92,7 +90,7 @@ export const useLicensees = (licenseeId) => {
         (license) => !license.keep,
       );
       const licensesToAdd = software.filter((license) => !license.keep);
-      console.log('licensesToChange', { licensesToRemove, licensesToAdd })
+
       const awaitCompletion = [];
       for (let i = 0; i < licensesToRemove.length; i++) {
         awaitCompletion.push(removeLicense({ id: licensesToRemove[i].id }));
