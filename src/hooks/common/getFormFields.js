@@ -4,7 +4,6 @@ export const getFormFields = (fields) => {
     .map((field) => ({
       name: field.name,
       label: field.label,
-      initalValue: field.initialValue,
       options: field.setFormOptions ? field.setFormOptions() : undefined,
       ...field.form,
     }));
