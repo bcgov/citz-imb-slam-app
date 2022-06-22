@@ -43,7 +43,7 @@ export const licenseeFields = [
     initialValue: [],
     setFormOptions: () => {
       const { data } = useSoftware();
-      return data.map(({ id, title }) => ({ value: id, label: title }));
+      return data.map((option) => ({ value: option.id, label: option.title, ...option }));
     },
     transformOnFetch: (row) =>
       row.__softwareConnection__.map((item) => item.__software__),

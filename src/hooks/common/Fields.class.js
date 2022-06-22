@@ -37,7 +37,7 @@ export class Fields {
 
     this.transformOnFetch = (data) => transformOnFetch(data, fields);
 
-    this.transformOnSave = transformOnSave;
+    this.transformOnSave = (data, callback) => transformOnSave(data, callback, fields);
 
     this.tableColumns.sort((a, b) => a.sortOrder - b.sortOrder);
     this.formFields.sort((a, b) => a.sortOrder - b.sortOrder);

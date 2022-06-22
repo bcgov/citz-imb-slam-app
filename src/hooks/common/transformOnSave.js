@@ -1,6 +1,6 @@
-export const transformOnSave = (data) => {
+export const transformOnSave = (data, callback, fields) => {
   console.log('data', data);
-  return data;
+  return callback(data);
 };
 
 /*

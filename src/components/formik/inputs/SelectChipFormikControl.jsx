@@ -30,7 +30,7 @@ export const SelectChipFormikControl = (props) => {
               onChange={(values) =>
                 form.setFieldValue(
                   field.name,
-                  values.map((value) => value.value),
+                  values.map((value) => value),
                 )
               }
               className={disabled ? 'readOnly' : 'select'}
