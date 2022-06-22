@@ -1,6 +1,6 @@
-import { AvatarChip, SoftwareCell } from 'components';
-import { useSoftware } from 'hooks';
 import * as Yup from 'yup';
+import { SoftwareCell } from '../../components/common/SoftwareCell';
+import { useSoftware } from '../useSoftware/useSoftware';
 
 export const licenseeFields = [
   {
@@ -42,14 +42,15 @@ export const licenseeFields = [
     label: 'Assigned Licenses',
     initialValue: [],
     setFormOptions: () => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
       const { data } = useSoftware();
-      return data.map(({ id, title }) => {
-        return { value: id, label: title };
-      });
+      return data.map((option) => ({
+        value: option.id,
+        label: option.title,
+        ...option,
+      }));
     },
-    transformOnFetch: (value) =>
-      value.__softwareConnection__.map((item) => item.__software__),
+    transformOnFetch: (row) =>
+      row.__softwareConnection__.map((item) => item.__software__),
     form: {
       control: 'selectChip',
       fullWidth: true,

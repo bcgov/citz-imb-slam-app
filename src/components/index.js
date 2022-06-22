@@ -4,7 +4,6 @@ export * from './common/DateCell';
 export * from './common/LogoAvatar';
 export * from './common/PlainChip';
 export * from './common/QuantityAssigned';
-export * from './common/SoftwareCell';
 export * from './common/Unauthorized';
 export * from './formik/FormikContainer';
 export * from './navigation/Navigation';
