@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useDBDataFactory } from '../common/useDBData.Factory';
+import { useDBDataFactory } from '../useDBFactory/useDBData.Factory';
 import { softwareFields } from './softwareFields';
 
 export const useSoftware = (id) => {
