@@ -35,35 +35,35 @@ export const Navigation = () => {
                 color: 'primary.text',
                 flexGrow: 1,
               }}
-              >
-                <Button
+            >
+              <Button
                 component="div"
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 0, textTransform:'capitalize'}}
+                sx={{ mr: 0, textTransform: 'capitalize' }}
                 onClick={() => router.push('/')}
+              >
+                <Image
+                  src={slamlogo}
+                  className="nav-logo-main"
+                  alt="BC GOV Logo"
+                  width={40}
+                  height={40}
+                  sx={{ mr: '2rem' }}
+                />
+                <Typography
+                  sx={{
+                    marginLeft: '.5rem',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                  }}
                 >
-                  <Image
-                    src={slamlogo}
-                    className="nav-logo-main"
-                    alt="BC GOV Logo"
-                    width={40}
-                    height={40}
-                    sx={{ mr: '2rem'}}
-                  />
-                  <Typography
-                    sx={{
-                      marginLeft:'.5rem',
-                      fontSize: '1rem',
-                      fontWeight: 500,
-                    }}
-                  >
                   License Management
-                  </Typography>
-                </Button>
-              </Typography>
+                </Typography>
+              </Button>
+            </Typography>
             <NavigationLinks />
           </Toolbar>
         </AppBar>
