@@ -3,8 +3,15 @@ import Select from 'react-select';
 import { BaseControl } from '../common/BaseControl';
 
 export const SelectChipFormikControl = (props) => {
-  const { name, label, required, type, disabled, options, ...remainingProps } =
-    props;
+  const {
+    name,
+    label,
+    required,
+    type,
+    disabled,
+    options = [],
+    ...remainingProps
+  } = props;
 
   return (
     <Field name={name}>
@@ -23,7 +30,7 @@ export const SelectChipFormikControl = (props) => {
               onChange={(values) =>
                 form.setFieldValue(
                   field.name,
-                  values.map((value) => value.value),
+                  values.map((value) => value),
                 )
               }
               className={disabled ? 'readOnly' : 'select'}
@@ -35,7 +42,7 @@ export const SelectChipFormikControl = (props) => {
                 field.value === undefined
                   ? []
                   : field.value.map((item) =>
-                      options.find((option) => option.value === item),
+                      options.find((option) => option.value === item.id),
                     )
               }
               options={options}

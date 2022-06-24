@@ -82,6 +82,7 @@ export const FormikContainer = (props) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
+        enableReinitialize
       >
         {(formikProps) => {
           const { resetForm } = formikProps;

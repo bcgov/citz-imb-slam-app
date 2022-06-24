@@ -1,3 +1,7 @@
+import { getFormFields } from './getFormFields';
+import { getTableColumns } from './getTableColumns';
+import { transformOnFetch } from './transformOnFetch';
+import { transformOnSave } from './transformOnSave';
 // formik <Field /> requires name prop
 // MUI data-grid requires field prop
 
@@ -27,79 +31,14 @@
  */
 
 export class Fields {
-  constructor(fields = [], formOptions = {}) {
-    this.tableColumns = [];
-    this.formFields = [];
+  constructor(fields = []) {
+    this.tableColumns = getTableColumns(fields);
+    this.formFields = getFormFields(fields);
 
-    this.transformOnFetch = (data) => {
-      if (fields.length) {
-        const fieldsToTransform = [];
-        for (let i = 0; i < fields.length; i++) {
-          if (fields[i].transformOnFetch) fieldsToTransform.push(fields[i]);
-        }
+    this.transformOnFetch = (data) => transformOnFetch(data, fields);
 
-        for (let i = 0; i < fieldsToTransform.length; i++) {
-          for (let j = 0; j < data.length; j++) {
-            data[j][fieldsToTransform[i].name] = fieldsToTransform[
-              i
-            ].transformOnFetch(data[j]);
-          }
-        }
-      }
-      return data;
-    };
-
-    this.transformOnSave = (body, callback) => {
-      const transformedBody = {};
-
-      for (let i = 0; i < fields.length; i++) {
-        transformedBody[fields[i].name] = body[fields[i].name];
-
-        if (fields[i].transformOnSave)
-          transformedBody[fields[i].name] = fields[i].transformOnSave(
-            body[fields[i].name],
-          );
-      }
-
-      return callback(transformedBody);
-    };
-
-    for (let i = 0; i < fields.length; i++) {
-      if (fields[i].table.show) {
-        const tableColumn = {
-          field: fields[i].name,
-          headerName: fields[i].label,
-          ...fields[i].table,
-        };
-
-        this.tableColumns.push(tableColumn);
-      }
-
-      if (fields[i].form.show) {
-        const formField = {
-          name: fields[i].name,
-          label: fields[i].label,
-          initialValue: fields[i].initialValue,
-          ...fields[i].form,
-        };
-
-        if (fields[i].setFormOptions)
-          formField.options = fields[i].setFormOptions();
-
-        this.formFields.push(formField);
-      }
-    }
-
-    for (const key in formOptions) {
-      if (Object.hasOwnProperty.call(formOptions, key)) {
-        for (let i = 0; i < this.formFields.length; i++) {
-          if (this.formFields[i].name === key) {
-            this.formFields[i].options = formOptions[key];
-            break;
-          }
-        }
-      }
-    }
+    this.transformOnSave = (data, callback) =>
+      transformOnSave(data, callback, fields);
 
     this.tableColumns.sort((a, b) => a.sortOrder - b.sortOrder);
     this.formFields.sort((a, b) => a.sortOrder - b.sortOrder);

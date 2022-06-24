@@ -8,6 +8,7 @@ import { Theme } from '../style/Theme';
 export const NavigationLinks = () => {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
+  const { asPath } = useRouter();
 
   return (
     <ThemeProvider theme={Theme}>
@@ -23,7 +24,11 @@ export const NavigationLinks = () => {
                 },
                 textTransform: 'none',
               }}
-              onClick={() => router.push('/software')}
+              onClick={
+                asPath === '/software'
+                  ? () => router.reload()
+                  : () => router.push('/software')
+              }
             >
               <Typography sx={{ textTransfrom: 'none', fontSize: '0.95rem' }}>
                 Software
@@ -38,7 +43,11 @@ export const NavigationLinks = () => {
                 },
                 textTransform: 'none',
               }}
-              onClick={() => router.push('/licensees')}
+              onClick={
+                asPath === '/licensees'
+                  ? () => router.reload()
+                  : () => router.push('/licensees')
+              }
             >
               <Typography sx={{ textTransfrom: 'none', fontSize: '0.95rem' }}>
                 Licensees
