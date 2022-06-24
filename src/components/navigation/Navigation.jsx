@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -29,37 +29,40 @@ export const Navigation = () => {
             className="toolbar"
             sx={{ maxWidth: '1536px', margin: 'auto' }}
           >
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 0 }}
-              onClick={() => router.push('/')}
-            >
-              <Image
-                src={slamlogo}
-                className="nav-logo-main"
-                alt="BC GOV Logo"
-                width={40}
-                height={40}
-              />
-            </IconButton>
             <Typography
               component="div"
               sx={{
                 color: 'primary.text',
-                '&:hover': {
-                  color: 'primary.main',
-                  bgcolor: 'secondary.bg',
-                },
                 flexGrow: 1,
-                fontSize: '1rem',
-                fontWeight: 500,
-                textTransform: 'none',
               }}
             >
-              License Management
+              <Button
+                component="div"
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 0, textTransform: 'capitalize' }}
+                onClick={() => router.push('/')}
+              >
+                <Image
+                  src={slamlogo}
+                  className="nav-logo-main"
+                  alt="BC GOV Logo"
+                  width={40}
+                  height={40}
+                  sx={{ mr: '2rem' }}
+                />
+                <Typography
+                  sx={{
+                    marginLeft: '.5rem',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                  }}
+                >
+                  License Management
+                </Typography>
+              </Button>
             </Typography>
             <NavigationLinks />
           </Toolbar>
