@@ -6,7 +6,11 @@ import { API_URL } from 'constants';
  */
 // TODO: refactor to embody the above purpose
 export const useAuth = () => {
-  const { data, status } = useSession();
+  const session = useSession();
+  console.log('session', session);
+
+  const { data, status } = session;
+
   const [accessToken, setAccessToken] = useState(null);
 
   const API_PORT = process.env.NEXT_PUBLIC_API_PORT || '';
@@ -55,7 +59,7 @@ export const useAuth = () => {
     if (status === 'authenticated') {
       getAccessToken();
     }
-    return () => {};
+    return () => { };
   }, [getAccessToken, status]);
 
   const isAuthorized = useMemo(() => {
