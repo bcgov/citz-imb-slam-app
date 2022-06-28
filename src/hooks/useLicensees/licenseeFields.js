@@ -46,7 +46,13 @@ export const licenseeFields = [
       const { data } = useSoftware();
       return data.map((option) => ({
         value: option.id,
-        label: <LicenseDropdownControl title={option.title} total={option.quantity} used={option.__licenseeConnection__.length}/>,
+        label: (
+          <LicenseDropdownControl
+            title={option.title}
+            total={option.quantity}
+            used={option.__licenseeConnection__.length}
+          />
+        ),
         ...option,
       }));
     },

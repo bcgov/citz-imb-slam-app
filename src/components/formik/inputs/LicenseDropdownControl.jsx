@@ -1,17 +1,17 @@
 /**
- * @description Component used to populate options of Assigned Licenses in the add Licensee page. 
- * @param {Object}  props Contains title of software, how many are used (assigned), total licenses owned.
+ * @description Component used to populate options of Assigned Licenses in the add Licensee page 
+ * @param {Object}  props Contains title of software, how many are used (assigned), total licenses owned
  * @returns React component.
  */
 
 export const LicenseDropdownControl = (props) => {
-  const {
-    title,
-    used,
-    total
+  const { 
+    title, 
+    used, 
+    total 
   } = props;
 
-  function remainingStyle(used, total){
+  function remainingStyle(){
     // Default style
     let style = {
       color: '#222',
@@ -31,7 +31,8 @@ export const LicenseDropdownControl = (props) => {
   
   return (
     <>
-      <span>{ title }</span><span style={ remainingStyle(used, total) }>{`  (${ used } / ${ total })`}</span>
+      <span>{ title }</span>
+      <span style={ remainingStyle() }>{`  (${ used } / ${ total })`}</span>
     </>
   );
 };

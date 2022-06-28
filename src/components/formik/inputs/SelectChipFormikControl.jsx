@@ -42,10 +42,10 @@ export const SelectChipFormikControl = (props) => {
                 field.value === undefined
                   ? []
                   : field.value.map((item) => {
-                    let option = options.find((option) => option.value === item.id);
+                    const option = options.find((option) => option.value === item.id);
                     // Temporary object for chip so original data is not modified.
                     // Otherwise puts quantity in chip or removes quantity from option.
-                    let tempOption = {
+                    const tempOption = {
                       ...option
                     };
                     tempOption.label = tempOption.title;
