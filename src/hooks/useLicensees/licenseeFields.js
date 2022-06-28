@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { SoftwareCell } from '../../components/common/SoftwareCell';
 import { useSoftware } from '../useSoftware/useSoftware';
+import { LicenseDropdownControl } from '../../components/formik/inputs/LicenseDropdownControl';
 
 export const licenseeFields = [
   {
@@ -45,7 +46,7 @@ export const licenseeFields = [
       const { data } = useSoftware();
       return data.map((option) => ({
         value: option.id,
-        label: option.title,
+        label: <LicenseDropdownControl title={option.title} total={option.quantity} used={option.__licenseeConnection__.length}/>,
         ...option,
       }));
     },
