@@ -26,19 +26,19 @@ export const ModifiedCell = ({ value }) => {
 
   useEffect(() => {
     if (timeDifference(date, 'seconds') < SECONDS) {
-        setModified({ text: Math.round(timeDifference(date, 'seconds')) + ' seconds ago' })
+      setModified({ text: Math.round(timeDifference(date, 'seconds')) + ' seconds ago' })
 
     } else if (timeDifference(date, 'minutes') < MINUTES) {
-        setModified({ text: Math.round(timeDifference(date, 'minutes')) + ' minutes ago' })
+      setModified({ text: Math.round(timeDifference(date, 'minutes')) + ' minutes ago' })
 
     } else if (timeDifference(date, 'hours') < HOURS) {
-        setModified({ text: Math.round(timeDifference(date, 'hours')) + ' hours ago' })
+      setModified({ text: Math.round(timeDifference(date, 'hours')) + ' hours ago' })
 
     } else if (timeDifference(date, 'days') < DAYS) {
-        setModified({ text: Math.round(timeDifference(date, 'days')) + ' days ago' })
+      setModified({ text: Math.round(timeDifference(date, 'days')) + ' days ago' })
 
     } else {
-      setModified({text:date.setLocale('en-ca').toLocaleString()})
+      setModified({text:date.setLocale('en-ca').toLocaleString(DateTime.DATE_MED)})
 
     }
     return () => {};

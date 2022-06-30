@@ -101,9 +101,5 @@ export const licenseeFields = [
       sortOrder: 4,
       width: 150,
     },
-    transformOnSave: (value) => {
-      if (value === '') return null;
-      return value;
-    },
   },
 ];
