@@ -11,4 +11,11 @@ export default NextAuth({
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
   },
+  callbacks: {
+    async session({ session, token, user }) {
+      console.log('session', { session, token, user });
+      const { accessToken } = token;
+      return { ...session, accessToken };
+    },
+  },
 });
