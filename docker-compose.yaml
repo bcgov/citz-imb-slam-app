@@ -7,15 +7,10 @@ services:
     container_name: slam-app
     build:
       context: .
-    volumes:
-      - '.:/app'
-      - '/app/node_modules'
     networks:
       - slam-net
     ports:
       - 3000:80
-    environment:
-      - CHOKIDAR_USEPOLLING=true
 
 networks:
   slam-net:
