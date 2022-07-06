@@ -1,39 +1,70 @@
-<!-- @format -->
+# Getting Started with Create React App
 
-![GitHub](https://img.shields.io/github/license/bcgov/citz-imb)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL)
-The project is in the very early stages of development. The codebase will be changing frequently.
+## Available Scripts
 
-# Software Licence and Application Management (SLAM)
+In the project directory, you can run:
 
-This is the Server (frontend) for the [SLAM API](https://github.com/bcgov/citz-imb-slam-api)
+### `npm start`
 
-## How to Contribute
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Please note that this project is released with a [Contributor Code of Conduct](Code_of_Conduct.md). By participating in this project you agree to abide by its terms.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## Developer workstation setup
+### `npm test`
 
-Create a .env file at the root of the project directory.
-```
-GITHUB_ID=
-GITHUB_SECRET=
-NEXTUATH_URL=
-NEXTAUTH_SECRET=
-NEXT_PUBLIC_API_PORT=:3001
-NEXT_PUBLIC_API_PATH=api/v1
-```
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Run the following command into local terminal:
+### `npm run build`
 
-```
-docker-compose up --build slam-app
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The following output in terminal should show that the SLAM! frontend container is healthy.'
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-To access the frontend container, navigate to localhost:3000 in your local browser.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Documentation
-[documentation](/docs/readme.md)
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

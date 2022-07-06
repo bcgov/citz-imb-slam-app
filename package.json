@@ -2,56 +2,37 @@
   "name": "citz-imb-slam-app",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write \"src/**/*.js\""
-  },
   "dependencies": {
-    "@bcgov/bc-sans": "1.0.1",
-    "@emotion/react": "11.8.1",
-    "@emotion/styled": "11.8.1",
-    "@mui/base": "5.0.0-alpha.71",
-    "@mui/icons-material": "5.6.0",
-    "@mui/material": "5.5.0",
-    "@mui/styled-engine-sc": "5.4.2",
-    "@mui/styles": "5.5.0",
-    "@mui/system": "5.8.4",
-    "@mui/x-data-grid": "5.11.1",
-    "formik": "2.2.9",
-    "jsonwebtoken": "8.5.1",
-    "luxon": "2.3.1",
-    "next": "^12.1.6",
-    "next-auth": "4.1.2",
-    "react": "17.0.2",
-    "react-date-picker": "8.4.0",
-    "react-datepicker": "4.7.0",
-    "react-dom": "17.0.2",
-    "react-query": "3.34.19",
-    "react-router-dom": "6.2.2",
-    "react-select": "5.2.2",
-    "react-semantic-ui-datepickers": "2.17.0",
-    "react-textarea-autosize": "8.3.3",
-    "sass": "1.49.11",
-    "styled-components": "5.3.5",
-    "yup": "0.32.11"
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "@babel/core": "7.18.5",
-    "@babel/eslint-parser": "7.18.2",
-    "eslint": "8.2.0",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-next": "^12.1.6",
-    "eslint-config-node": "4.1.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-import": "2.25.3",
-    "eslint-plugin-jsx-a11y": "6.5.1",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.28.0",
-    "eslint-plugin-react-hooks": "4.3.0",
-    "prettier": "2.6.2"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

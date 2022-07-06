@@ -1,17 +1,21 @@
 version: '3.8'
 services:
   ###############################################################################
-  ###                              SLAM API                                   ###
+  ###                              SLAM APP                                   ###
   ###############################################################################
   slam-app:
     container_name: slam-app
     build:
       context: .
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
     networks:
       - slam-net
     ports:
       - 3000:3000
-    command: ["node", "server.js"]
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 
 networks:
   slam-net:

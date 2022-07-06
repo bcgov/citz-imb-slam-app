@@ -1,4 +1,6 @@
-/.vscode
-/build
-/coverage
-/node_modules
+.vscode
+build
+coverage
+node_modules
+Dockerfile
+.dockerignore
