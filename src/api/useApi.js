@@ -10,7 +10,7 @@ export const useApi = () => {
       'Content-Type': 'application/json'
     },
   }
-
+  console.log('BASEURL', BASEURL)
   const getRoot = async () => {
     const response = await fetch(`${BASEURL}`, BASEOPTIONS)
 
