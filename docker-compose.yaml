@@ -10,7 +10,7 @@ services:
     networks:
       - slam-net
     ports:
-      - 3000:3000
+      - 3000:80
 
 networks:
   slam-net:

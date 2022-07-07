@@ -1,0 +1,16 @@
+FROM node:17.5.0-alpine3.14
+
+WORKDIR /code
+
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
+
+# include volume to local files for update on change
+# something like:
+# docker run --rm -it --name web -p 3000:3000 -v \Usrs\scott\Documents\GitHub\citz-imb-slam-app\:/code slam-api:dev
