@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 #NGINX Web Server
-FROM nginx:1.12-alpine as prod
+FROM nginxinc/nginx-unprivileged
 
 COPY --from=build /code/build /usr/share/nginx/html
 
