@@ -34,7 +34,7 @@ export const useApi = () => {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        username: 'Scott',
+        email: 'scott.toews@gmail.com',
         password: 'pass'
       })
     }
