@@ -7,7 +7,7 @@ export const useApi = () => {
 
   const BASEOPTIONS = {
     method: 'GET',
-    // credentials: 'include',
+    credentials: 'include',
     headers: {
       Accept: '*/*',
       'Access-Control-Request-Method': 'GET',
@@ -28,10 +28,10 @@ export const useApi = () => {
   const login = async () => {
 
     const headers = {
-      // ...BASEOPTIONS.headers,
-      // 'Access-Control-Request-Method': 'GET',
-      'Access-Control-Allow-Origin': 'http://localhost:3000',
-      // 'Access-Control-Allow-Headers': 'Content-Type',
+      ...BASEOPTIONS.headers,
+      'Access-Control-Request-Method': 'GET',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
       // mode: 'cors'
     }
 
