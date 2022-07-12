@@ -1,10 +1,13 @@
 export const useApi = () => {
   const PORT = process.env.REACT_APP_PORT || ''
 
-  const BASEURL = `${window.location.protocol}//${window.location.hostname}${PORT}/api/v1`
+  const baseURL = `${window.location.protocol}//${window.location.hostname}${PORT}`
+
+  const APIBASEURL = `${baseURL}/api/v1`
+
   const BASEOPTIONS = {
     method: 'GET',
-    credentials: 'include',
+    // credentials: 'include',
     headers: {
       Accept: '*/*',
       'Access-Control-Request-Method': 'GET',
@@ -13,7 +16,7 @@ export const useApi = () => {
   }
 
   const getRoot = async () => {
-    const response = await fetch(`${BASEURL}`, BASEOPTIONS)
+    const response = await fetch(`${APIBASEURL}`, BASEOPTIONS)
 
     if (response.ok) {
       const payload = await response.json()
@@ -25,20 +28,23 @@ export const useApi = () => {
   const login = async () => {
 
     const headers = {
-      ...BASEOPTIONS.headers,
-      'Access-Control-Request-Method': 'POST',
+      // ...BASEOPTIONS.headers,
+      // 'Access-Control-Request-Method': 'GET',
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      // 'Access-Control-Allow-Headers': 'Content-Type',
+      // mode: 'cors'
     }
 
     const options = {
       ...BASEOPTIONS,
-      method: 'POST',
+      method: 'GET',
       headers,
-      body: JSON.stringify({
-        email: 'scott.toews@gmail.com',
-        password: 'pass'
-      })
+      // body: JSON.stringify({
+      //   email: 'scott.toews@gmail.com',
+      //   password: 'pass'
+      // })
     }
-    const response = await fetch(`${BASEURL}/auth/login`, options)
+    const response = await fetch(`${APIBASEURL}/auth/github`, options)
 
     if (response.ok) {
       // const payload = await response.json()
@@ -47,5 +53,5 @@ export const useApi = () => {
     }
   }
 
-  return { getRoot, login }
+  return { getRoot, login, baseURL }
 }
