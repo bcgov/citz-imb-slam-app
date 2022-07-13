@@ -30,7 +30,16 @@ export const SelectChipFormikControl = (props) => {
               onChange={(values) =>
                 form.setFieldValue(
                   field.name,
-                  values.map((value) => value),
+                  values.map((value) => {
+                    // Temporary object for value so .label is only the title string.
+                    // Otherwise sends React element to body, which fails JSON.stringify()
+                    const tempValue = {
+                      ...value,
+                    };
+
+                    tempValue.label = tempValue.title;
+                    return tempValue;
+                  }),
                 )
               }
               className={disabled ? 'readOnly' : 'select'}
@@ -41,9 +50,19 @@ export const SelectChipFormikControl = (props) => {
               value={
                 field.value === undefined
                   ? []
-                  : field.value.map((item) =>
-                      options.find((option) => option.value === item.id),
-                    )
+                  : field.value.map((item) => {
+                      const originalOption = options.find(
+                        (option) => option.value === item.id,
+                      );
+                      // Temporary object for chip so original data is not modified.
+                      // Otherwise puts quantity in chip or removes quantity from option.
+                      const tempOption = {
+                        ...originalOption,
+                      };
+
+                      tempOption.label = tempOption.title;
+                      return tempOption;
+                    })
               }
               options={options}
             />
