@@ -1,6 +1,8 @@
 import * as Yup from 'yup';
 import { SoftwareCell } from '../../components/common/SoftwareCell';
 import { useSoftware } from '../useSoftware/useSoftware';
+import { LicenseDropdownControl } from '../../components/formik/inputs/LicenseDropdownControl';
+import { ModifiedCell } from '../../components/common/ModifiedCell';
 
 export const licenseeFields = [
   {
@@ -43,9 +45,16 @@ export const licenseeFields = [
     initialValue: [],
     setFormOptions: () => {
       const { data } = useSoftware();
+
       return data.map((option) => ({
         value: option.id,
-        label: option.title,
+        label: (
+          <LicenseDropdownControl
+            title={option.title}
+            total={option.quantity}
+            used={option.__licenseeConnection__.length}
+          />
+        ),
         ...option,
       }));
     },
@@ -94,6 +103,7 @@ export const licenseeFields = [
       column: 0,
     },
     table: {
+      renderCell: (params) => <ModifiedCell value={params} />,
       show: true,
       sortOrder: 4,
       width: 150,
