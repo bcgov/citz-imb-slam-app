@@ -4,7 +4,7 @@
   "rules": {
     "prettier/prettier": "error",
     "no-unused-vars": "warn",
-    "no-console": "warn",
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
     "import/prefer-default-export": "off",
     "react/function-component-definition": "off",
     "react/prop-types": "off",
