@@ -3,9 +3,7 @@ import { useDBDataFactory } from '../common/useDBData.Factory';
 import { softwareFields } from './softwareFields';
 
 export const useSoftware = (id) => {
-  let formColumns = 1;
-
-  if (id) formColumns = 2;
+  const formColumns = id ? 2 : 1;
 
   const softwareTable = useDBDataFactory('software', id, softwareFields);
 
