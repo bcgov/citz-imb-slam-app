@@ -25,7 +25,10 @@ export const Navigation = () => {
             boxShadow: 'none',
           }}
         >
-          <Toolbar className="toolbar" sx={{ maxWidth: '1536px', margin: 0 }}>
+          <Toolbar
+            className="toolbar"
+            sx={{ maxWidth: '1536px', margin: 'auto' }}
+          >
             <Typography
               component="div"
               sx={{
