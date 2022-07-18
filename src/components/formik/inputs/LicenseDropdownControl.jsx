@@ -27,7 +27,7 @@ export const LicenseDropdownControl = (props) => {
 
   return (
     <span style={remainingStyle()}>
-      {`${title}   (${used} used out of ${total})`}
+      {`${title}   (${used} remaining out of ${total})`}
     </span>
   );
 };
