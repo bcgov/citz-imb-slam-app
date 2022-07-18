@@ -31,6 +31,7 @@ export const Navigation = () => {
               sx={{
                 color: 'primary.text',
                 flexGrow: 1,
+                padding: 0,
               }}
             >
               <Button
@@ -44,9 +45,6 @@ export const Navigation = () => {
                   '&:hover': {
                     color: 'primary.main',
                     bgcolor: 'secondary.bg',
-                  },
-                  '&:click': {
-                    color: 'primary.main',
                   },
                   textTransform: 'capitalize',
                 }}
