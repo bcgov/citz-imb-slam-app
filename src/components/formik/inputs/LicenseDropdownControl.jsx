@@ -17,8 +17,8 @@ export const LicenseDropdownControl = (props) => {
     // If no more available licenses, change style.
     if (used >= total) {
       style = {
-        color: '#d33c40',
-        fontWeight: 600,
+        color: '#b5b5b5',
+        fontWeight: 400,
       };
     }
 
@@ -26,9 +26,8 @@ export const LicenseDropdownControl = (props) => {
   }
 
   return (
-    <>
-      <span>{title}</span>
-      <span style={remainingStyle()}>{`  (${used} / ${total})`}</span>
-    </>
+    <span style={remainingStyle()}>
+      {`${title}   (${used} used out of ${total})`}
+    </span>
   );
 };

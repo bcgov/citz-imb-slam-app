@@ -46,7 +46,7 @@ export const Navigation = () => {
                     bgcolor: 'secondary.bg',
                   },
                   '&:click': {
-                    color: 'primary.text',
+                    color: 'primary.main',
                   },
                   textTransform: 'capitalize',
                 }}
