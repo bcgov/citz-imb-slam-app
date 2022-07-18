@@ -25,10 +25,7 @@ export const Navigation = () => {
             boxShadow: 'none',
           }}
         >
-          <Toolbar
-            className="toolbar"
-            sx={{ maxWidth: '1536px', margin: 'auto' }}
-          >
+          <Toolbar className="toolbar" sx={{ maxWidth: '1536px', margin: 0 }}>
             <Typography
               component="div"
               sx={{
@@ -42,7 +39,17 @@ export const Navigation = () => {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 0, textTransform: 'capitalize' }}
+                sx={{
+                  color: 'primary.text',
+                  '&:hover': {
+                    color: 'primary.main',
+                    bgcolor: 'secondary.bg',
+                  },
+                  '&:click': {
+                    color: 'primary.text',
+                  },
+                  textTransform: 'capitalize',
+                }}
                 onClick={() => router.push('/')}
               >
                 <Image
@@ -51,7 +58,6 @@ export const Navigation = () => {
                   alt="BC GOV Logo"
                   width={40}
                   height={40}
-                  sx={{ mr: '2rem' }}
                 />
                 <Typography
                   sx={{
