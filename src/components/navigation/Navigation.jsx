@@ -34,6 +34,7 @@ export const Navigation = () => {
               sx={{
                 color: 'primary.text',
                 flexGrow: 1,
+                padding: 0,
               }}
             >
               <Button
@@ -42,7 +43,14 @@ export const Navigation = () => {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 0, textTransform: 'capitalize' }}
+                sx={{
+                  color: 'primary.text',
+                  '&:hover': {
+                    color: 'primary.main',
+                    bgcolor: 'secondary.bg',
+                  },
+                  textTransform: 'capitalize',
+                }}
                 onClick={() => router.push('/')}
               >
                 <Image
@@ -51,7 +59,6 @@ export const Navigation = () => {
                   alt="BC GOV Logo"
                   width={40}
                   height={40}
-                  sx={{ mr: '2rem' }}
                 />
                 <Typography
                   sx={{

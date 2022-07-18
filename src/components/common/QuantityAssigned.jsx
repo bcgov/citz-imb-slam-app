@@ -3,6 +3,13 @@ import { CircularProgress, Box, Typography } from '@mui/material';
 export const QuantityAssigned = (props) => {
   const { assigned = 0, available = 0 } = props;
 
+  function getFraction(top, bottom) {
+    if (top === 0 && bottom === 0) {
+      return 0;
+    }
+    return top / bottom;
+  }
+
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress
@@ -15,7 +22,7 @@ export const QuantityAssigned = (props) => {
       />
       <CircularProgress
         variant="determinate"
-        value={(assigned / available) * 100}
+        value={getFraction(assigned, available) * 100}
         className="progress"
         size={55}
         thickness={2.5}
