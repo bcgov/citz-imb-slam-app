@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useDBDataFactory } from '../common/useDBData.Factory';
+import { useDBDataFactory } from '../useDBFactory/useDBData.Factory';
 import { licenseeFields } from './licenseeFields';
 
 /**

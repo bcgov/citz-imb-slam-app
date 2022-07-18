@@ -65,10 +65,10 @@ export const InputFormikControl = (props) => {
           {...remainingProps}
         >
           <InputUnstyled
-            {...field}
             type={type}
             disabled={disabled}
             components={{ Input: InputStyle }}
+            {...field}
           />
         </BaseControl>
       )}
