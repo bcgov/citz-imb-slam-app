@@ -15,7 +15,9 @@
     "no-underscore-dangle": "off"
   },
   "parser": "@babel/eslint-parser",
-  "parserOptions": { "sourceType": "module" },
+  "parserOptions": {
+    "requireConfigFile": false
+  },
   "env": {
     "browser": true
   }
