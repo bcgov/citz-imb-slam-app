@@ -18,7 +18,7 @@
     "@mui/material": "5.9.0",
     "@mui/styled-engine-sc": "5.8.0",
     "@mui/styles": "5.9.0",
-    "@mui/system": "5.9.0",
+    "@mui/system": "5.9.1",
     "@mui/x-data-grid": "5.13.0",
     "formik": "2.2.9",
     "jsonwebtoken": "8.5.1",
