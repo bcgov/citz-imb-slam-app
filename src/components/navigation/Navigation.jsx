@@ -50,6 +50,7 @@ export const Navigation = () => {
                     bgcolor: 'secondary.bg',
                   },
                   textTransform: 'capitalize',
+                  left: '-20px',
                 }}
                 onClick={() => router.push('/')}
               >

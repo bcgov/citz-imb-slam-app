@@ -9,7 +9,7 @@ const DAYS = 28;
 
 export const ModifiedCell = ({ value }) => {
   // Date is changed from UTC to PST then formated to ISO
-  const modifiedDate = value.row.modified.replace('Z', '+07:00');
+  const modifiedDate = value.row.modified; // .replace('Z', '+07:00');
   const date = DateTime.fromISO(modifiedDate);
 
   function timeDifference(time, interval) {
