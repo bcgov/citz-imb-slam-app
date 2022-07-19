@@ -27,14 +27,16 @@ export const Navigation = () => {
         >
           <Toolbar
             className="toolbar"
-            sx={{ maxWidth: '1536px', margin: 'auto' }}
+            sx={{
+              maxWidth: '1536px',
+              margin: 'auto',
+            }}
           >
             <Typography
               component="div"
               sx={{
                 color: 'primary.text',
                 flexGrow: 1,
-                padding: 0,
               }}
             >
               <Button
@@ -50,7 +52,7 @@ export const Navigation = () => {
                     bgcolor: 'secondary.bg',
                   },
                   textTransform: 'capitalize',
-                  left: '-20px',
+                  left: '-1rem',
                 }}
                 onClick={() => router.push('/')}
               >
