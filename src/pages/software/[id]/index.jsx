@@ -16,7 +16,7 @@ export default function Software() {
   const router = useRouter();
 
   const { id } = router.query;
-  
+
   return (
     <FormikContainer
       formTitle="Software"

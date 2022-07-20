@@ -1,7 +1,6 @@
 import InputUnstyled from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 import { Field } from 'formik';
-import { useMemo } from 'react';
 import { BaseControl } from '../common/BaseControl';
 
 const InputStyle = styled('input')(`
