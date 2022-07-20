@@ -4,6 +4,40 @@ import { Field } from 'formik';
 import { useMemo } from 'react';
 import { BaseControl } from '../common/BaseControl';
 
+const InputStyle = styled('input')(`
+display: block;
+border: 1px solid #ddd;
+border-radius: 3px;
+padding: 0.75rem;
+outline: none;
+background: #fff;
+margin-bottom: 0.25rem;
+font-size: .9rem;
+width: 100%;
+max-width: 100%;
+line-height: 1.5;
+font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+'Roboto', Roboto, Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+&:hover {
+border: 1px solid #c4c4c4;
+}
+
+&:focus {
+border: 1px solid #0366ee;
+}
+
+&:disabled {
+background-color: #f2f2f2;
+cursor: not-allowed;
+color: #888;
+}
+&:disabled:hover {
+border: 1px solid #ddd;
+}
+`);
+
 export const InputFormikControl = (props) => {
   const {
     name,
@@ -13,46 +47,6 @@ export const InputFormikControl = (props) => {
     disabled,
     ...remainingProps
   } = props;
-
-  const InputStyle = useMemo(
-    () =>
-      styled('input')(
-        () => `
-    display: block;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    padding: 0.75rem;
-    outline: none;
-    background: #fff;
-    margin-bottom: 0.25rem;
-    font-size: .9rem;
-    width: 100%;
-    max-width: 100%;
-    line-height: 1.5;
-	font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
-	'Roboto', Roboto, Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-	'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-
-	&:hover {
-		border: 1px solid #c4c4c4;
-	}
-
-	&:focus {
-		border: 1px solid #0366ee;
-	}
-
-	&:disabled {
-		background-color: #f2f2f2;
-		cursor: not-allowed;
-		color: #888;
-	}
-	&:disabled:hover {
-		border: 1px solid #ddd;
-	}
-  `,
-      ),
-    [],
-  );
 
   return (
     <Field name={name}>

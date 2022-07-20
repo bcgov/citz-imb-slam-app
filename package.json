@@ -29,6 +29,7 @@
     "react-date-picker": "8.4.0",
     "react-datepicker": "4.8.0",
     "react-dom": "18.2.0",
+    "react-moment": "^1.1.2",
     "react-query": "3.39.1",
     "react-router-dom": "6.3.0",
     "react-select": "5.4.0",

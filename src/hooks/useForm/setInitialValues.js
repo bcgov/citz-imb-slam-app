@@ -10,6 +10,5 @@ export const setInitialValues = (dataHookResponse, id) => {
       values[field.name] = field.initialValue;
     }
   });
-
   return values;
 };
