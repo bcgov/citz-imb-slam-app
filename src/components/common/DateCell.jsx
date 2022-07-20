@@ -8,7 +8,7 @@ export const DateCell = ({ value }) => {
   let date = DateTime.fromISO(value);
 
   if (value != null) {
-    const modifiedDate = value.replace('Z', '-07:00');
+    const modifiedDate = value; // .replace('Z', '-07:00');
     date = DateTime.fromISO(modifiedDate);
   }
 

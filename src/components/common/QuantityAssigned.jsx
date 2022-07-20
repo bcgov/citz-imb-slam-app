@@ -7,6 +7,9 @@ export const QuantityAssigned = (props) => {
     if (top === 0 && bottom === 0) {
       return 0;
     }
+    if (top > bottom) {
+      return 1;
+    }
     return top / bottom;
   }
 
