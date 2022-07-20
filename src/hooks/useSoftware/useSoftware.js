@@ -18,6 +18,10 @@ export const useSoftware = (id) => {
     return softwareTable.data;
   }, [softwareTable.data, softwareTable.isError, softwareTable.isLoading]);
 
+  data.renewal
+    ? (data.renewal = new Date(data.renewal).toISOString().slice(0, 10))
+    : '';
+
   return {
     ...softwareTable,
     data,
