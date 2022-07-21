@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react';
 const DAYS_BEFORE_EXPIRATION_WARNING = 90;
 
 export const DateCell = ({ value }) => {
-  const date = DateTime.fromISO(value);
+  let date = DateTime.fromISO(value);
+
+  if (value != null) {
+    date = DateTime.fromISO(value.replace('Z', ''));
+  }
 
   const [severity, setSeverity] = useState({
     color: '#222',

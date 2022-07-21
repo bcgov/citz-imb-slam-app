@@ -68,8 +68,6 @@ export const softwareFields = [
       renderCell: (params) => <DateCell value={params.value} />,
       show: true,
       sortOrder: 4,
-      valueFormatter: (params) =>
-        new Date(params.value).toISOString().split('T')[0].replace(/ /g, '-'),
       width: 200,
     },
     transformOnSave: (value) => {
