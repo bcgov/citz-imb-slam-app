@@ -63,7 +63,7 @@ export const SelectChipFormikControl = (props) => {
                       ...styles,
                       color: '#b5b5b5',
                     };
-                  else return { ...styles };
+                  return { ...styles };
                 },
               }}
               options={options}
