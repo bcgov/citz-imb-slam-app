@@ -30,16 +30,7 @@ export const SelectChipFormikControl = (props) => {
               onChange={(values) =>
                 form.setFieldValue(
                   field.name,
-                  values.map((value) => {
-                    // Temporary object for value so .label is only the title string.
-                    // Otherwise sends React element to body, which fails JSON.stringify()
-                    const tempValue = {
-                      ...value,
-                    };
-
-                    tempValue.label = tempValue.title;
-                    return tempValue;
-                  }),
+                  values.map((value) => value),
                 )
               }
               className={disabled ? 'readOnly' : 'select'}
@@ -60,10 +51,21 @@ export const SelectChipFormikControl = (props) => {
                         ...originalOption,
                       };
 
-                      tempOption.label = tempOption.title;
+                      tempOption.fullLabel = tempOption.title;
                       return tempOption;
                     })
               }
+              getOptionLabel={(option) => `${option.fullLabel}`}
+              styles={{
+                option: (styles, { data }) => {
+                  if (data.remaining <= 0)
+                    return {
+                      ...styles,
+                      color: '#b5b5b5',
+                    };
+                  else return { ...styles };
+                },
+              }}
               options={options}
             />
           </BaseControl>
