@@ -1,11 +1,22 @@
 import NextAuth from 'next-auth';
-import GitHubProvider from 'next-auth/providers/github';
+import KeycloakProvider from 'next-auth/providers/keycloak';
 
 export default NextAuth({
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+    KeycloakProvider({
+      authServerUrl: 'https://dev.loginproxy.gov.bc.ca/auth',
+      publicClient: true,
+      confidentialPort: 0,
+      issuer: 'https://dev.loginproxy.gov.bc.ca/auth/realms/standard',
+      clientId: 'slam-3943',
+      sslRequired: true,
+      redirect_uri: 'https://dev.slam.im.gov.bc.ca',
+      callbacks: {
+        async redirect({ url, baseUrl }) {
+          return baseUrl;
+        },
+      },
+      debug: true,
     }),
   ],
 });
