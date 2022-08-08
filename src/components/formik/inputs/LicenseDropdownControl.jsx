@@ -1,5 +1,5 @@
 /**
- * @description Component used to populate options of Assigned Licenses in the add Licensee page
+ * @description (Currently unused.) Component used to populate options of Assigned Licenses in the add Licensee page
  * @param {Object}  props Contains title of software, how many are used (assigned), total licenses owned
  * @returns React component.
  */
