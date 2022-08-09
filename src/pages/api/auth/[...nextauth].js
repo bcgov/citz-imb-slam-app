@@ -4,19 +4,25 @@ import KeycloakProvider from 'next-auth/providers/keycloak';
 export default NextAuth({
   providers: [
     KeycloakProvider({
-      authServerUrl: 'https://dev.loginproxy.gov.bc.ca/auth',
-      publicClient: true,
-      confidentialPort: 0,
       issuer: 'https://dev.loginproxy.gov.bc.ca/auth/realms/standard',
       clientId: 'slam-3943',
-      sslRequired: true,
-      redirect_uri: 'https://dev.slam.im.gov.bc.ca',
-      callbacks: {
-        async redirect({ url, baseUrl }) {
-          return baseUrl;
-        },
-      },
-      debug: true,
+      clientSecret: 'some secret',
     }),
   ],
+
+  // callbacks: {
+  //   async redirect({ url, baseUrl }) {
+  //     // Allows relative callback URLs
+  //     if (url.startsWith('/')) return `${baseUrl}${url}`;
+  //     // Allows callback URLs on the same origin
+  //     if (new URL(url).origin === baseUrl) return url;
+  //     return baseUrl;
+  //   },
+
+  //   async session({ session, token, user }) {
+  //     // Send properties to the client, like an access_token from a provider.
+  //     session.accessToken = token.accessToken;
+  //     return session;
+  //   },
+  // },
 });
