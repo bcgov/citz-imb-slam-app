@@ -16,13 +16,16 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 ## Developer workstation setup
 
 Create a .env file at the root of the project directory.
+
 ```
-GITHUB_ID=
-GITHUB_SECRET=
-NEXTUATH_URL=
+
+NEXTAUTH_URL=
 NEXTAUTH_SECRET=
 NEXT_PUBLIC_API_PORT=:3001
 NEXT_PUBLIC_API_PATH=api/v1
+NEXT_PUBLIC_ISSUER=
+NEXT_PUBLIC_CLIENT_ID=
+NEXT_PUBLIC_CLIENT_SECRET=
 ```
 
 Run the following command into local terminal:
@@ -36,4 +39,5 @@ The following output in terminal should show that the SLAM! frontend container i
 To access the frontend container, navigate to localhost:3000 in your local browser.
 
 ### Documentation
+
 [documentation](/docs/readme.md)
