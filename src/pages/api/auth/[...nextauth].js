@@ -9,5 +9,4 @@ export default NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
     }),
   ],
-
 });

@@ -27,7 +27,10 @@ export const useAuth = () => {
   const getAccessToken = useCallback(async () => {
     const options = {
       method: 'POST',
-      body: JSON.stringify({ username: data.user.name }),
+      body: JSON.stringify({
+        username: data.user.name,
+        email: data.user.email,
+      }),
       headers: {
         Accept: '*/*',
         'Access-Control-Request-Method': 'POST',
