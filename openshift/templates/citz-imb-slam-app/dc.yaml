@@ -65,7 +65,22 @@ objects:
               image-registry.openshift-image-registry.svc:5000/ca94a8-dev/citz-imb-slam-app-dc@sha256:ff265c438e5ca9a7cc814e77cab1be48579b4e883ff78fae5914f9fed077cec7
             envFrom:
               - secretRef:
-                  name: app-auth-secret
+                name: app-auth-secret
+            env:
+              - name: GITHUB_ID
+                value: 08369a07f4a8568870f8
+              - name: NEXT_PUBLIC_API_PATH
+                value: api/v1
+              - name: NEXTAUTH_URL
+                value: 'https://dev.slam.im.gov.bc.ca'
+              - name: NEXT_PUBLIC_ISSUER
+                value: 'https://dev.loginproxy.gov.bc.ca/auth/realms/standard'
+              - name: NEXT_PUBLIC_CLIENT_ID
+                value: slam-3943
+              - name: NEXT_PUBLIC_CLIENT_SECRET
+                value: somesecret
+              - name: NEXT_PUBLIC_API_PORT
+                value: '3001'
             resources: {}
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
