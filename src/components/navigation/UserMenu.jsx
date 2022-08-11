@@ -24,7 +24,13 @@ export const UserMenu = () => {
   const open = Boolean(anchorEl);
 
   const getlicenseesID = async (email) => {
-    const response = await fetchData(`licensee?filter=email||$eq|${email}`);
+    const url = `licensee?${new URLSearchParams({
+      email,
+    })}`;
+
+    url.replace('email=', 'filter=email||$eq||');
+
+    const response = await fetchData(url);
     return response[0].id;
   };
 
