@@ -36,7 +36,7 @@ export const AvatarChip = (props) => {
           }}
         >
           <Typography variant="span" sx={{ color: '#ffffff' }}>
-            {title.charAt(0).toUpperCase() + title.charAt(1).toUpperCase()}
+            {title.charAt(0).toUpperCase()}
           </Typography>
         </Avatar>
       }
