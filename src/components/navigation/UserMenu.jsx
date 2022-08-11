@@ -63,7 +63,7 @@ export const UserMenu = () => {
           color="primary"
           onClick={(e) => {
             e.preventDefault();
-            signIn();
+            signIn('keycloak');
           }}
           sx={{
             color: 'primary.text',
