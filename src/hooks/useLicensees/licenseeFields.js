@@ -27,7 +27,7 @@ export const licenseeFields = [
     initialValue: '',
     form: {
       control: 'text',
-      fullWidth: true,
+      fullWidth: false,
       show: true,
       sortOrder: 0,
       validation: Yup.string().required('Required'),
@@ -36,7 +36,25 @@ export const licenseeFields = [
     table: {
       show: true,
       sortOrder: 1,
-      width: 180,
+      width: 200,
+    },
+  },
+  {
+    name: 'email',
+    label: 'Licensee Email',
+    initialValue: '',
+    form: {
+      control: 'text',
+      fullWidth: false,
+      show: true,
+      sortOrder: 0,
+      validation: Yup.string().required('Required'),
+      column: 0,
+    },
+    table: {
+      show: true,
+      sortOrder: 1,
+      width: 250,
     },
   },
   {

@@ -10,18 +10,46 @@ import {
 } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useAuth } from '../../hooks';
 import { Avatar } from '../common/Avatar';
 import { Theme } from '../style/Theme';
+import { useAPI } from '../../hooks/useAPI/useAPI';
 
 export const UserMenu = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
+  const { fetchData } = useAPI();
+  const { asPath } = useRouter();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  const getlicenseesID = async (email) => {
+    const url = `licensee?${new URLSearchParams({
+      email,
+    })}`;
+
+    url.replace('email=', 'filter=email||$eq||');
+
+    const response = await fetchData(url);
+    return response[0].id;
+  };
+
+  const router = useRouter();
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const toLicensees = async () => {
+    const licenseeID = await getlicenseesID(user.email);
+    console.log(process.env.NEXTAUTH_URL);
+
+    if (asPath === `/licensees/*`) {
+      router.reload();
+    } else {
+      router.replace(`/licensees/${licenseeID}`);
+    }
   };
 
   const handleClose = () => {
@@ -91,7 +119,12 @@ export const UserMenu = () => {
         </Typography>
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem>
+        <MenuItem
+          onClick={(e) => {
+            e.preventDefault();
+            toLicensees();
+          }}
+        >
           <ListItemIcon sx={{ minWidth: '26px!important' }}>
             <PermIdentityIcon
               sx={{ fontSize: '0.95rem', color: 'primary.text' }}

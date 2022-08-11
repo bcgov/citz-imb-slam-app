@@ -3,9 +3,11 @@ import { Grid, Stack, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import React from 'react';
 import { ListMenu } from '../../common/ListMenu';
+import { useAuth } from '../../../hooks/useAuth/useAuth';
 
 export const UserItemControl = ({ value, disabled }) => {
   const { __licensee__ } = value;
+  const { user } = useAuth();
 
   return (
     <Grid
@@ -48,7 +50,7 @@ export const UserItemControl = ({ value, disabled }) => {
           {__licensee__.name}
         </Typography>
         <Typography variant="span" sx={{ fontSize: '0.7rem' }}>
-          maytheforce@be.with.you | R2D2
+          {user.email}
         </Typography>
       </Stack>
       {disabled ? null : <ListMenu />}

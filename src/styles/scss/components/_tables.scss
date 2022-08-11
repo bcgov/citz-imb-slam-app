@@ -123,7 +123,6 @@
 
 .MuiDataGrid-toolbarContainer > div > div > input{
     display: block;
-    border: 1px solid #ddd;
     border-radius: 3px;
     padding: 0.9rem;
     outline: none;
@@ -136,6 +135,9 @@
     height: 1.2rem !important;
 }
 
+.MuiDataGrid-toolbarContainer > div > div {
+    border: 1px solid #ddd;
+}
 .MuiInput-underline:after{
     border: none !important;
 }
