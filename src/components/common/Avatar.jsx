@@ -38,7 +38,8 @@ export const Avatar = (props) => {
         variant="span"
         sx={{ color: '#ffffff', fontWeight: 400, fontSize: '0.9rem' }}
       >
-        {title.charAt(0).toUpperCase()}
+        {title.split(' ')[0].charAt(0).toUpperCase() +
+          title.split(' ')[1].charAt(0).toUpperCase()}
       </Typography>
     </MUIAvatar>
   );

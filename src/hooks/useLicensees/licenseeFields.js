@@ -36,7 +36,7 @@ export const licenseeFields = [
     table: {
       show: true,
       sortOrder: 1,
-      width: 80,
+      width: 200,
     },
   },
   {
@@ -54,7 +54,7 @@ export const licenseeFields = [
     table: {
       show: true,
       sortOrder: 1,
-      width: 80,
+      width: 250,
     },
   },
   {

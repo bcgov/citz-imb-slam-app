@@ -18,7 +18,8 @@ import { useAPI } from '../../hooks/useAPI/useAPI';
 
 export const UserMenu = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
-  const { fetchData, isAuthorized } = useAPI();
+  const { fetchData } = useAPI();
+  const { asPath } = useRouter();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -42,7 +43,13 @@ export const UserMenu = () => {
 
   const toLicensees = async () => {
     const licenseeID = await getlicenseesID(user.email);
-    router.push(`/licensees/${licenseeID}`);
+    console.log(process.env.NEXTAUTH_URL);
+
+    if (asPath === `/licensees/*`) {
+      router.reload();
+    } else {
+      router.replace(`/licensees/${licenseeID}`);
+    }
   };
 
   const handleClose = () => {
