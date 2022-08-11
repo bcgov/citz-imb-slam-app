@@ -1,11 +1,12 @@
 import NextAuth from 'next-auth';
-import GitHubProvider from 'next-auth/providers/github';
+import KeycloakProvider from 'next-auth/providers/keycloak';
 
 export default NextAuth({
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+    KeycloakProvider({
+      issuer: process.env.NEXT_PUBLIC_ISSUER,
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
     }),
   ],
 });
