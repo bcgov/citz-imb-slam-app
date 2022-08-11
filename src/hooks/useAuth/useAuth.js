@@ -9,8 +9,6 @@ export const useAuth = () => {
   const { data, status } = useSession();
   const [accessToken, setAccessToken] = useState(null);
 
-  console.log('I render', accessToken);
-
   const API_PORT = process.env.NEXT_PUBLIC_API_PORT || '';
   const API_PATH = process.env.NEXT_PUBLIC_API_PATH || 'api/v1';
 
