@@ -119,8 +119,8 @@ export const UserMenu = () => {
         <MenuItem
           onClick={(e) => {
             e.preventDefault();
-            handleClose();
             toLicensees();
+            handleClose();
           }}
         >
           <ListItemIcon sx={{ minWidth: '26px!important' }}>
