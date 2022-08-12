@@ -18,7 +18,6 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 Create a .env file at the root of the project directory.
 
 ```
-
 NEXTAUTH_URL=
 NEXTAUTH_SECRET=
 NEXT_PUBLIC_API_PORT=:3001
@@ -40,4 +39,4 @@ To access the frontend container, navigate to localhost:3000 in your local brows
 
 ### Documentation
 
-[documentation](/docs/readme.md)
+See detailed documentation in the [documentation file](/docs/readme.md).
