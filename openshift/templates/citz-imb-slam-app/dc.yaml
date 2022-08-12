@@ -65,7 +65,7 @@ objects:
               image-registry.openshift-image-registry.svc:5000/ca94a8-dev/citz-imb-slam-app-dc@sha256:ff265c438e5ca9a7cc814e77cab1be48579b4e883ff78fae5914f9fed077cec7
             envFrom:
               - secretRef:
-                name: app-auth-secret
+                  name: app-auth-secret
             env:
               - name: NEXT_PUBLIC_API_PATH
                 value: api/v1
