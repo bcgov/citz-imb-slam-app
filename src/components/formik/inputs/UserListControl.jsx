@@ -75,7 +75,7 @@ export const UserListControl = (props) => {
             }`}
             {...remainingProps}
           >
-            <CustomFieldset disabled={disabled}>
+            <CustomFieldset disabled>
               <Stack spacing={2}>
                 {form.values[field.name].map((value) => (
                   <UserItemControl disabled={disabled} value={value} />

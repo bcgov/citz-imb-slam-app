@@ -91,27 +91,21 @@ export const FormikContainer = (props) => {
           return (
             <>
               <FormHeader formTitle={formTitle}>
-                {editMode ? null : dataHook(id).data.quantity === 0 ? (
-                  <>
-                    <WarningButton
-                      id="delete"
-                      onClick={() => setConfirmationDialogOpen(true)}
-                    >
-                      Delete
-                    </WarningButton>
-
-                    <DefaultButton id="edit" onClick={editHandler}>
-                      Edit
-                    </DefaultButton>
-                  </>
+                {dataHook(id).data.quantity === 0 ||
+                dataHook(id).data.quantity ? (
+                  <WarningButton
+                    id="delete"
+                    onClick={() => setConfirmationDialogOpen(true)}
+                  >
+                    Delete
+                  </WarningButton>
                 ) : (
-                  <>
-                    <DisabledButton id="delete">Delete</DisabledButton>
-
-                    <DefaultButton id="edit" onClick={editHandler}>
-                      Edit
-                    </DefaultButton>
-                  </>
+                  <DisabledButton id="delete">Delete</DisabledButton>
+                )}
+                {editMode ? null : (
+                  <DefaultButton id="edit" onClick={editHandler}>
+                    Edit
+                  </DefaultButton>
                 )}
               </FormHeader>
               <Form
