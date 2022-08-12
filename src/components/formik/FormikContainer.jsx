@@ -27,6 +27,7 @@ import { FormikControls } from './common/FormikControls';
 
 export const FormikContainer = (props) => {
   const { formTitle = '', isNew = true, dataHook, id } = props;
+  console.log(dataHook(id).data);
 
   const [editMode, setEditMode] = useState(isNew);
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
@@ -91,7 +92,8 @@ export const FormikContainer = (props) => {
           return (
             <>
               <FormHeader formTitle={formTitle}>
-                {dataHook(id).data.quantity === 0 ||
+                {dataHook(id).data.__licenseeConnection__ === undefined ||
+                dataHook(id).data.__licenseeConnection__.length === 0 ||
                 dataHook(id).data.quantity === undefined ? (
                   <WarningButton
                     id="delete"
