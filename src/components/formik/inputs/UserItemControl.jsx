@@ -53,7 +53,7 @@ export const UserItemControl = ({ value, disabled }) => {
           {__licensee__.email}
         </Typography>
       </Stack>
-      {disabled ? null : <ListMenu />}
+      {true ? null : <ListMenu />}
     </Grid>
   );
 };
