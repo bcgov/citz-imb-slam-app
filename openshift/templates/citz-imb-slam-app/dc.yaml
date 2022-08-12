@@ -67,8 +67,6 @@ objects:
               - secretRef:
                 name: app-auth-secret
             env:
-              - name: GITHUB_ID
-                value: 08369a07f4a8568870f8
               - name: NEXT_PUBLIC_API_PATH
                 value: api/v1
               - name: NEXTAUTH_URL
