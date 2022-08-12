@@ -1,10 +1,7 @@
 name: TEST Deploy of SLAM Frontend Application Image
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
-    branches: [main]
 
 jobs:
   build:
@@ -12,9 +9,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
         with:
-          ref: ${{ github.event.inputs.tag }}
-
+          openshift_server_url: ${{ secrets.OPENSHIFT4_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT4_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+            
+      - name: Login to Openshift Docker
+        run : |
+          docker login ${{ secrets.OPENSHIFT4_PUBLIC_IMAGE_REPOSITORY_BASE_URL }} -u ${{ secrets.OPENSHIFT4_SA_USERNAME }} -p ${{ secrets.OPENSHIFT4_SA_PASSWORD }}
+      
+      - name: Openshift Tag Imagestream
+        run: |
+          oc tag ${{ secrets.OPENSHIFT4_API_PUBLIC_IMAGE_REPOSITORY }}:dev citz-imb-slam-app:test
+      
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
         with:
