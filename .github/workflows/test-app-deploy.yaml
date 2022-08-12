@@ -44,6 +44,7 @@ jobs:
           APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
           LICENSE_PLATE: "${{ secrets.LICENSE_PLATE }}"
           ENVIRONMENT: "${{ secrets.TEST_ENVIRONMENT }}"
+          IMAGE_TAG: test
         run: |
           ./.github/helpers/deploy-app.sh
 
