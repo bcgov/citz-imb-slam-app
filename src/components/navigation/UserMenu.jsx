@@ -119,6 +119,7 @@ export const UserMenu = () => {
         <MenuItem
           onClick={(e) => {
             e.preventDefault();
+            handleClose();
             toLicensees();
           }}
         >
