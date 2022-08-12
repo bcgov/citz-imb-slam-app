@@ -1,6 +1,6 @@
-import { CommonButton } from './CommonButton';
 import { styled } from '@mui/material/styles';
 import { Tooltip, tooltipClasses } from '@mui/material';
+import { CommonButton } from './CommonButton';
 
 const LightTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
