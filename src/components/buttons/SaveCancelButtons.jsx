@@ -12,12 +12,16 @@ export const SaveCancelButtons = (props) => {
   const router = useRouter();
 
   const clickHandler = useCallback(() => {
-    resetForm();
-    editHandler();
-    router.push(window.location.href);
+    if (ShowSaveButton) {
+      resetForm();
+      editHandler();
+    } else {
+      const href = window.location.href;
+      router.push(href.substring(0, href.lastIndexOf('/')));
+    }
   }, [resetForm, router]);
 
-  if (ShowSaveButton)
+  if (ShowSaveButton) {
     return (
       <ThemeProvider theme={Theme}>
         <Stack
@@ -35,5 +39,20 @@ export const SaveCancelButtons = (props) => {
         </Stack>
       </ThemeProvider>
     );
-  else return null;
+  } else {
+    return (
+      <ThemeProvider theme={Theme}>
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          sx={{ margin: '25px 0px 15px' }}
+        >
+          <MutedButton id="cancel" onClick={clickHandler}>
+            Back
+          </MutedButton>
+        </Stack>
+      </ThemeProvider>
+    );
+  }
 };
