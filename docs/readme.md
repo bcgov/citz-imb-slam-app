@@ -28,15 +28,20 @@ export default NextAuth({
 ```
 
 The variables are:
+
 `NEXT_PUBLIC_ISSUER=https://dev.loginproxy.gov.bc.ca/auth/realms/{realm}`
+
 `NEXT_PUBLIC_CLIENT_ID={resource}`
+
 `NEXT_PUBLIC_CLIENT_SECRET=anything_you_want:)`
 
 Since this project uses a public client, a secret is not attached to it. If using a public client, the client secret still has to be defined.
+
 https://next-auth.js.org/
 
 
 ### Formik
 
 A library that uses prebuilt forms. Used to create software titles and licensees 
+
 https://formik.org/docs/tutorial
