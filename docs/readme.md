@@ -8,7 +8,7 @@
 
 ### Next Auth
 
-Next Auth is a library created for React that manages Authorization. The library creates a session that holds a next-auth token when logged in. On signout, this session is cleared.
+Next Auth is a library created for React that manages Authorization. The library creates a session that holds a next-auth token when logged in. On signout, this session is cleared. The keycloak token will still remain as a cookie until in expires. 
 
 The sign in function redirects to keycloak through the [nextauth].js file.
 ![Provider info](/repository/docs/nextauthprovider.png?raw=true)
