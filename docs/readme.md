@@ -32,7 +32,7 @@ The variables are:
 `NEXT_PUBLIC_CLIENT_ID={resource}`
 `NEXT_PUBLIC_CLIENT_SECRET=anything_you_want:)`
 
-If using a public client, the client secret still has to be defined.
+Since this project uses a public client, a secret is not attached to it. If using a public client, the client secret still has to be defined.
 https://next-auth.js.org/
 
 
