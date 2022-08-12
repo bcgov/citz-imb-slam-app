@@ -24,14 +24,12 @@ export const UserMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const getlicenseesID = async (email) => {
+  const getlicenseesID = async () => {
     const url = `licensee?${new URLSearchParams({
-      email,
+      email: user.email,
     })}`;
-
-    url.replace('email=', 'filter=email||$eq||');
-
-    const response = await fetchData(url);
+    const newUrl = url.replace('email=', 'filter=email||$eq||');
+    const response = await fetchData(newUrl);
     return response[0].id;
   };
 
@@ -42,10 +40,9 @@ export const UserMenu = () => {
   };
 
   const toLicensees = async () => {
-    const licenseeID = await getlicenseesID(user.email);
-    console.log(process.env.NEXTAUTH_URL);
+    const licenseeID = await getlicenseesID();
 
-    if (asPath === `/licensees/*`) {
+    if (asPath === `/licensees/`) {
       router.reload();
     } else {
       router.replace(`/licensees/${licenseeID}`);

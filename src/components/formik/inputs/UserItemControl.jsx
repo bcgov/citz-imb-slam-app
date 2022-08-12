@@ -50,7 +50,7 @@ export const UserItemControl = ({ value, disabled }) => {
           {__licensee__.name}
         </Typography>
         <Typography variant="span" sx={{ fontSize: '0.7rem' }}>
-          {user.email}
+          {__licensee__.email}
         </Typography>
       </Stack>
       {disabled ? null : <ListMenu />}
