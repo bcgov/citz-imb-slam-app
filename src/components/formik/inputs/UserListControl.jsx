@@ -49,7 +49,7 @@ const CustomFieldset = styled.fieldset`
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-size: 0.9rem;
   overflow: scroll;
-  height: 355px;
+  height: 408px;
 
   &:disabled {
     background-color: #f2f2f2;
@@ -75,13 +75,6 @@ export const UserListControl = (props) => {
             }`}
             {...remainingProps}
           >
-            {disabled ? null : (
-              <InputUnstyled
-                disabled={disabled}
-                placeholder="Search"
-                components={{ Input: InputStyle }}
-              />
-            )}
             <CustomFieldset disabled={disabled}>
               <Stack spacing={2}>
                 {form.values[field.name].map((value) => (
