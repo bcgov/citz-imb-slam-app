@@ -11,7 +11,21 @@
 Next Auth is a library created for React that manages Authorization. The library creates a session that holds a next-auth token when logged in. On signout, this session is cleared. The keycloak token will still remain as a cookie until in expires. 
 
 The sign in function redirects to keycloak through the [nextauth].js file.
-![Provider info](/repository/docs/nextauthprovider.png?raw=true)
+```
+[...nextauth].js
+import NextAuth from 'next-auth';
+import KeycloakProvider from 'next-auth/providers/keycloak';
+
+export default NextAuth({
+  providers: [
+    KeycloakProvider({
+      issuer: process.env.NEXT_PUBLIC_ISSUER,
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+    }),
+  ],
+});
+```
 
 The variables are:
 `NEXT_PUBLIC_ISSUER=https://dev.loginproxy.gov.bc.ca/auth/realms/{realm}`
