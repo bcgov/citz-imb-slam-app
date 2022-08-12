@@ -92,7 +92,7 @@ export const FormikContainer = (props) => {
             <>
               <FormHeader formTitle={formTitle}>
                 {dataHook(id).data.quantity === 0 ||
-                dataHook(id).data.quantity ? (
+                dataHook(id).data.quantity === undefined ? (
                   <WarningButton
                     id="delete"
                     onClick={() => setConfirmationDialogOpen(true)}
