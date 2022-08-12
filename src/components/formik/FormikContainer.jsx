@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import {
   Alert,
@@ -14,12 +15,12 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { DisabledButton } from '../buttons/templates/DisabledButton';
 import { useForm } from '../../hooks';
 import { SaveCancelButtons } from '../buttons/SaveCancelButtons';
 import { DefaultButton } from '../buttons/templates/DefaultButton';
 import { MutedButton } from '../buttons/templates/MutedButton';
 import { WarningButton } from '../buttons/templates/WarningButton';
-import { DisabledButton } from '../buttons/templates/DisabledButton';
 import { Theme } from '../style/Theme';
 import { FormHeader } from './common/FormHeader';
 import { FormikControls } from './common/FormikControls';
@@ -90,7 +91,7 @@ export const FormikContainer = (props) => {
           return (
             <>
               <FormHeader formTitle={formTitle}>
-                {editMode ? null : (
+                {editMode ? null : dataHook(id).data.quantity === 0 ? (
                   <>
                     <WarningButton
                       id="delete"
@@ -98,6 +99,15 @@ export const FormikContainer = (props) => {
                     >
                       Delete
                     </WarningButton>
+
+                    <DefaultButton id="edit" onClick={editHandler}>
+                      Edit
+                    </DefaultButton>
+                  </>
+                ) : (
+                  <>
+                    <DisabledButton id="delete">Delete</DisabledButton>
+
                     <DefaultButton id="edit" onClick={editHandler}>
                       Edit
                     </DefaultButton>
