@@ -133,7 +133,12 @@ export const UserMenu = () => {
         <MenuItem
           onClick={(e) => {
             e.preventDefault();
-            signOut();
+            signOut({ redirect: false });
+            const redirectURL = window.location.href.substring(
+              0,
+              window.location.href.indexOf('/', 7),
+            );
+            window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${process.env.NEXT_PUBLIC_ISSUER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
           }}
         >
           <ListItemIcon sx={{ minWidth: '26px!important' }}>
