@@ -120,6 +120,7 @@ export const UserMenu = () => {
           onClick={(e) => {
             e.preventDefault();
             toLicensees();
+            handleClose();
           }}
         >
           <ListItemIcon sx={{ minWidth: '26px!important' }}>

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import {
   Alert,
@@ -14,6 +15,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { DisabledButton } from '../buttons/templates/DisabledButton';
 import { useForm } from '../../hooks';
 import { SaveCancelButtons } from '../buttons/SaveCancelButtons';
 import { DefaultButton } from '../buttons/templates/DefaultButton';
@@ -25,6 +27,7 @@ import { FormikControls } from './common/FormikControls';
 
 export const FormikContainer = (props) => {
   const { formTitle = '', isNew = true, dataHook, id } = props;
+  console.log(dataHook(id).data);
 
   const [editMode, setEditMode] = useState(isNew);
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
@@ -89,18 +92,21 @@ export const FormikContainer = (props) => {
           return (
             <>
               <FormHeader formTitle={formTitle}>
+                {dataHook(id).data.__licenseeConnection__ === undefined ||
+                dataHook(id).data.__licenseeConnection__.length === 0 ? (
+                  <WarningButton
+                    id="delete"
+                    onClick={() => setConfirmationDialogOpen(true)}
+                  >
+                    Delete
+                  </WarningButton>
+                ) : (
+                  <DisabledButton id="delete-disabled">Delete</DisabledButton>
+                )}
                 {editMode ? null : (
-                  <>
-                    <WarningButton
-                      id="delete"
-                      onClick={() => setConfirmationDialogOpen(true)}
-                    >
-                      Delete
-                    </WarningButton>
-                    <DefaultButton id="edit" onClick={editHandler}>
-                      Edit
-                    </DefaultButton>
-                  </>
+                  <DefaultButton id="edit" onClick={editHandler}>
+                    Edit
+                  </DefaultButton>
                 )}
               </FormHeader>
               <Form
