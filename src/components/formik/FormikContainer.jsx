@@ -109,7 +109,8 @@ export const FormikContainer = (props) => {
                   ) : (
                     <DisabledButton id="delete-disabled">Delete</DisabledButton>
                   )}
-
+                </Box>
+                <Box sx={{ display: hidden() }}>
                   <DefaultButton id="edit" onClick={editHandler}>
                     Edit
                   </DefaultButton>
