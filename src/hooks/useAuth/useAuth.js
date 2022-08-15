@@ -41,7 +41,7 @@ export const useAuth = () => {
     let payload = '';
 
     const response = await fetch(
-      `${window.location.protocol}//${window.location.hostname}${API_PORT}/${API_PATH}/login`,
+      `${window.location.protocol}//${window.location.hostname}:${API_PORT}/${API_PATH}/login`,
       options,
     );
 
