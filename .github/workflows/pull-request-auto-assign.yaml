@@ -1,0 +1,17 @@
+name: Pull Request - Auto Assign BC Gov Internal Developers and Government Contractors
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+jobs:
+  assign-team-members:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto Assign Teams
+        uses: delivery-much/actions-assigner@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: sdtoews,aideninbcgov,John-Dion,akroon3r

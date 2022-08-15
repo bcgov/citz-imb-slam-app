@@ -7,14 +7,44 @@ import { DefaultButton } from './templates/DefaultButton';
 import { MutedButton } from './templates/MutedButton';
 
 export const SaveCancelButtons = (props) => {
-  const { resetForm, ShowSaveButton = true } = props;
+  const { resetForm, editHandler, ShowSaveButton = true } = props;
 
   const router = useRouter();
 
-  const clickHandler = useCallback(() => {
-    resetForm();
-    router.back();
+  const backHandler = useCallback(() => {
+    const { href } = window.location;
+    router.push(href.substring(0, href.lastIndexOf('/')));
   }, [resetForm, router]);
+
+  const cancelHandler = useCallback(() => {
+    const { href } = window.location;
+    if (href.substring(href.lastIndexOf('/')) === '/add') {
+      backHandler();
+    } else {
+      editHandler();
+      resetForm();
+    }
+  }, [resetForm, router]);
+
+  if (ShowSaveButton) {
+    return (
+      <ThemeProvider theme={Theme}>
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          sx={{ margin: '25px 0px 15px' }}
+        >
+          <MutedButton id="cancel" onClick={cancelHandler}>
+            Cancel
+          </MutedButton>
+          <DefaultButton type="submit" id="save">
+            Save
+          </DefaultButton>
+        </Stack>
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider theme={Theme}>
@@ -24,14 +54,9 @@ export const SaveCancelButtons = (props) => {
         justifyContent="center"
         sx={{ margin: '25px 0px 15px' }}
       >
-        <MutedButton id="cancel" onClick={clickHandler}>
-          Cancel
+        <MutedButton id="cancel" onClick={backHandler}>
+          Back
         </MutedButton>
-        {ShowSaveButton ? (
-          <DefaultButton type="submit" id="save">
-            Save
-          </DefaultButton>
-        ) : null}
       </Stack>
     </ThemeProvider>
   );

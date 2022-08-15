@@ -42,7 +42,7 @@ objects:
           from:
             kind: ImageStreamTag
             namespace: ${LICENSE_PLATE}-tools
-            name: 'citz-imb-slam-app:latest'
+            name: ${APPLICATION_NAME}:${IMAGE_TAG}
           lastTriggeredImage: >-
             image-registry.openshift-image-registry.svc:5000/ca94a8-dev/citz-imb-slam-app-dc@sha256:ff265c438e5ca9a7cc814e77cab1be48579b4e883ff78fae5914f9fed077cec7
       - type: ConfigChange
@@ -103,5 +103,10 @@ parameters:
 - description: Environment
   displayName: Environment
   name: ENVIRONMENT
+  required: true
+  value: dev
+- description: Image Tag
+  displayName: Image Tag
+  name: IMAGE_TAG
   required: true
   value: dev

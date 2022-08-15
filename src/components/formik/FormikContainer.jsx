@@ -166,6 +166,7 @@ export const FormikContainer = (props) => {
                   <SaveCancelButtons
                     ShowSaveButton={editMode}
                     resetForm={resetForm}
+                    editHandler={editHandler}
                   />
                 </Box>
               </Form>
