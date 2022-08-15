@@ -96,8 +96,8 @@ export const FormikContainer = (props) => {
           const { resetForm } = formikProps;
           return (
             <>
-              <Box sx={{ display: hidden() }}>
-                <FormHeader formTitle={formTitle}>
+              <FormHeader formTitle={formTitle}>
+                <Box sx={{ display: hidden() }}>
                   {dataHook(id).data.__licenseeConnection__ === undefined ||
                   dataHook(id).data.__licenseeConnection__.length === 0 ? (
                     <WarningButton
@@ -113,8 +113,8 @@ export const FormikContainer = (props) => {
                   <DefaultButton id="edit" onClick={editHandler}>
                     Edit
                   </DefaultButton>
-                </FormHeader>
-              </Box>
+                </Box>
+              </FormHeader>
               <Form
                 style={{
                   backgroundColor: '#fff',
