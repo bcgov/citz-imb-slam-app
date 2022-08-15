@@ -93,8 +93,7 @@ export const FormikContainer = (props) => {
             <>
               <FormHeader formTitle={formTitle}>
                 {dataHook(id).data.__licenseeConnection__ === undefined ||
-                dataHook(id).data.__licenseeConnection__.length === 0 ||
-                dataHook(id).data.quantity === undefined ? (
+                dataHook(id).data.__licenseeConnection__.length === 0 ? (
                   <WarningButton
                     id="delete"
                     onClick={() => setConfirmationDialogOpen(true)}
@@ -102,7 +101,7 @@ export const FormikContainer = (props) => {
                     Delete
                   </WarningButton>
                 ) : (
-                  <DisabledButton id="delete">Delete</DisabledButton>
+                  <DisabledButton id="delete-disabled">Delete</DisabledButton>
                 )}
                 {editMode ? null : (
                   <DefaultButton id="edit" onClick={editHandler}>
