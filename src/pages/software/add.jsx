@@ -9,5 +9,7 @@ export const getServerSideProps = (context) => authenticate(context);
  * @returns {React.jsx}
  */
 export default function AddSoftware() {
-  return <FormikContainer formTitle="Software" dataHook={useSoftware} isNew />;
+  return (
+    <FormikContainer formTitle="Add Software" dataHook={useSoftware} isNew />
+  );
 }
