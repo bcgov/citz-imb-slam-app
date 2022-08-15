@@ -27,8 +27,6 @@ import { FormikControls } from './common/FormikControls';
 
 export const FormikContainer = (props) => {
   const { formTitle = '', isNew = true, dataHook, id } = props;
-  console.log(dataHook(id).data);
-
   const [editMode, setEditMode] = useState(isNew);
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
