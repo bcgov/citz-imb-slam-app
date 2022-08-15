@@ -48,19 +48,26 @@ export const useLicensees = (licenseeId) => {
 
   const create = useCallback(
     async (props) => {
-      const { name = '', notes = '', software: softwareLicenses } = props;
+      const {
+        name = '',
+        notes = '',
+        email = '',
+        software: softwareLicenses,
+      } = props;
 
-      const licensesToAssign = softwareLicenses.map((software) => ({
-        id: software,
-      }));
+      const licensee = await createLicensee({ name, email, notes });
 
-      const licensee = await createLicensee({ name, notes });
+      if (softwareLicenses !== undefined) {
+        const licensesToAssign = softwareLicenses.map((software) => ({
+          id: software,
+        }));
 
-      for (let i = 0; i < licensesToAssign.length; i++) {
-        createLicense({
-          softwareId: licensesToAssign[i].id,
-          licenseeId: licensee.id,
-        });
+        for (let i = 0; i < licensesToAssign.length; i++) {
+          createLicense({
+            softwareId: licensesToAssign[i].id,
+            licenseeId: licensee.id,
+          });
+        }
       }
     },
     [createLicense, createLicensee],
