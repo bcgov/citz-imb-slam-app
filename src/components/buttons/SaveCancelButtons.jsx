@@ -12,7 +12,7 @@ export const SaveCancelButtons = (props) => {
   const router = useRouter();
 
   const backHandler = useCallback(() => {
-    const href = window.location.href;
+    const { href } = window.location;
     router.push(href.substring(0, href.lastIndexOf('/')));
   }, [resetForm, router]);
 
@@ -39,20 +39,20 @@ export const SaveCancelButtons = (props) => {
         </Stack>
       </ThemeProvider>
     );
-  } else {
-    return (
-      <ThemeProvider theme={Theme}>
-        <Stack
-          direction="row"
-          spacing={2}
-          justifyContent="center"
-          sx={{ margin: '25px 0px 15px' }}
-        >
-          <MutedButton id="cancel" onClick={backHandler}>
-            Back
-          </MutedButton>
-        </Stack>
-      </ThemeProvider>
-    );
   }
+
+  return (
+    <ThemeProvider theme={Theme}>
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ margin: '25px 0px 15px' }}
+      >
+        <MutedButton id="cancel" onClick={backHandler}>
+          Back
+        </MutedButton>
+      </Stack>
+    </ThemeProvider>
+  );
 };
