@@ -1,13 +1,9 @@
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Grid, Stack, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import React from 'react';
-import { ListMenu } from '../../common/ListMenu';
-import { useAuth } from '../../../hooks/useAuth/useAuth';
 
 export const UserItemControl = ({ value, disabled }) => {
   const { __licensee__ } = value;
-  const { user } = useAuth();
 
   return (
     <Grid
@@ -53,7 +49,6 @@ export const UserItemControl = ({ value, disabled }) => {
           {__licensee__.email}
         </Typography>
       </Stack>
-      {true ? null : <ListMenu />}
     </Grid>
   );
 };
