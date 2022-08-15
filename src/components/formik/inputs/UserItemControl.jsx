@@ -1,6 +1,11 @@
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Grid, Stack, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import React from 'react';
+
+// If you want to add the ListMenu to each Assigned Licensee
+// Add the following line below </Stack>
+// {disabled ? null : <ListMenu />}
 
 export const UserItemControl = ({ value, disabled }) => {
   const { __licensee__ } = value;
