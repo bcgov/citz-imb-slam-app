@@ -17,8 +17,13 @@ export const SaveCancelButtons = (props) => {
   }, [resetForm, router]);
 
   const cancelHandler = useCallback(() => {
-    editHandler();
-    resetForm();
+    const { href } = window.location;
+    if (href.substring(href.lastIndexOf('/')) === '/add') {
+      backHandler();
+    } else {
+      editHandler();
+      resetForm();
+    }
   }, [resetForm, router]);
 
   if (ShowSaveButton) {
