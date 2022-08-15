@@ -11,14 +11,14 @@ export const SaveCancelButtons = (props) => {
 
   const router = useRouter();
 
-  const clickHandler = useCallback(() => {
-    if (ShowSaveButton) {
-      resetForm();
-      editHandler();
-    } else {
-      const href = window.location.href;
-      router.push(href.substring(0, href.lastIndexOf('/')));
-    }
+  const backHandler = useCallback(() => {
+    const href = window.location.href;
+    router.push(href.substring(0, href.lastIndexOf('/')));
+  }, [resetForm, router]);
+
+  const cancelHandler = useCallback(() => {
+    editHandler();
+    resetForm();
   }, [resetForm, router]);
 
   if (ShowSaveButton) {
@@ -30,7 +30,7 @@ export const SaveCancelButtons = (props) => {
           justifyContent="center"
           sx={{ margin: '25px 0px 15px' }}
         >
-          <MutedButton id="cancel" onClick={clickHandler}>
+          <MutedButton id="cancel" onClick={cancelHandler}>
             Cancel
           </MutedButton>
           <DefaultButton type="submit" id="save">
@@ -48,7 +48,7 @@ export const SaveCancelButtons = (props) => {
           justifyContent="center"
           sx={{ margin: '25px 0px 15px' }}
         >
-          <MutedButton id="cancel" onClick={clickHandler}>
+          <MutedButton id="cancel" onClick={backHandler}>
             Back
           </MutedButton>
         </Stack>
