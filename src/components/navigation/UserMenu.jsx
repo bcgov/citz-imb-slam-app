@@ -135,12 +135,13 @@ export const UserMenu = () => {
             e.preventDefault();
             const colon = window.location.port ? ':' : '';
             const redirectURL = `${window.location.protocol}//${window.location.hostname}${colon}${window.location.port}`;
-            const returnURL = !process.env.REACT_APP_NEXT_PUBLIC_ISSUER
-              ? process.env.NEXT_PUBLIC_ISSUER
-              : process.env.REACT_APP_NEXT_PUBLIC_ISSUER;
+            const returnURL =
+              process.env.NODE_ENV === 'development'
+                ? process.env.NEXT_PUBLIC_ISSUER
+                : process.env.REACT_APP_NEXT_PUBLIC_ISSUER;
 
             signOut({ redirect: false });
-
+            console.log('node-env', process.env.NODE_ENV);
             console.log('redirectURL', redirectURL);
             console.log(
               'fullURL',
