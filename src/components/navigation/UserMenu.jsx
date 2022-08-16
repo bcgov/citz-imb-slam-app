@@ -133,10 +133,15 @@ export const UserMenu = () => {
         <MenuItem
           onClick={(e) => {
             e.preventDefault();
+            const colon = window.location.port ? ':' : '';
+            const redirectURL = `${window.location.protocol}//${window.location.hostname}${colon}${window.location.port}`;
+
             signOut({ redirect: false });
-            const redirectURL = window.location.href.substring(
-              0,
-              window.location.href.indexOf('/', 9),
+
+            console.log('redirectURL', redirectURL);
+            console.log(
+              'fullURL',
+              `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${process.env.NEXT_PUBLIC_ISSUER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
             );
             window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${process.env.NEXT_PUBLIC_ISSUER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
           }}
