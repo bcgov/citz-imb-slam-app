@@ -53,6 +53,26 @@ export const UserMenu = () => {
     setAnchorEl(null);
   };
 
+  const keycloakLogout = () => {
+    const colon = window.location.port ? ':' : '';
+    const redirectURL = `${window.location.protocol}//${window.location.hostname}${colon}${window.location.port}`;
+    const returnURL =
+      process.env.NODE_ENV === 'development'
+        ? process.env.NEXT_PUBLIC_ISSUER
+        : process.env.REACT_APP_NEXT_PUBLIC_ISSUER;
+
+    console.log('node-env', process.env.NODE_ENV);
+    console.log('redirectURL', redirectURL);
+    console.log(
+      'fullURL',
+      `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
+    );
+    console.log('issuer1', process.env.REACT_APP_NEXT_PUBLIC_ISSUER);
+    console.log('issuer2', process.env.NEXT_PUBLIC_ISSUER);
+
+    window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
+  };
+
   if (!isAuthenticated)
     return (
       <ThemeProvider theme={Theme}>
@@ -133,24 +153,8 @@ export const UserMenu = () => {
         <MenuItem
           onClick={(e) => {
             e.preventDefault();
-            const colon = window.location.port ? ':' : '';
-            const redirectURL = `${window.location.protocol}//${window.location.hostname}${colon}${window.location.port}`;
-            const returnURL =
-              process.env.NODE_ENV === 'development'
-                ? process.env.NEXT_PUBLIC_ISSUER
-                : process.env.REACT_APP_NEXT_PUBLIC_ISSUER;
-
             signOut({ redirect: false });
-            console.log('node-env', process.env.NODE_ENV);
-            console.log('redirectURL', redirectURL);
-            console.log(
-              'fullURL',
-              `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
-            );
-            console.log('issuer1', process.env.REACT_APP_NEXT_PUBLIC_ISSUER);
-            console.log('issuer2', process.env.NEXT_PUBLIC_ISSUER);
-
-            window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
+            keycloakLogout();
           }}
         >
           <ListItemIcon sx={{ minWidth: '26px!important' }}>
