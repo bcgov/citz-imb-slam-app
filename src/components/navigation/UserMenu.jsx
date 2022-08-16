@@ -11,11 +11,11 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { AUTH_SERVER } from 'constants';
 import { useAuth } from '../../hooks';
 import { Avatar } from '../common/Avatar';
 import { Theme } from '../style/Theme';
 import { useAPI } from '../../hooks/useAPI/useAPI';
-import { AUTH_SERVER } from 'constants';
 
 export const UserMenu = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
