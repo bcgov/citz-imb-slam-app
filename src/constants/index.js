@@ -5,4 +5,3 @@ export const HTML_RESPONSE = {
   NO_CONTENT: 204,
   NOT_MODIFIED: 304,
 };
-export const AUTH_SERVER = process.env.NEXT_PUBLIC_ISSUER;

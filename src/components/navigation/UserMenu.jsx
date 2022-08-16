@@ -11,7 +11,6 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { AUTH_SERVER } from 'constants';
 import { useAuth } from '../../hooks';
 import { Avatar } from '../common/Avatar';
 import { Theme } from '../style/Theme';
@@ -136,15 +135,21 @@ export const UserMenu = () => {
             e.preventDefault();
             const colon = window.location.port ? ':' : '';
             const redirectURL = `${window.location.protocol}//${window.location.hostname}${colon}${window.location.port}`;
+            const returnURL = !process.env.REACT_APP_NEXT_PUBLIC_ISSUER
+              ? process.env.NEXT_PUBLIC_ISSUER
+              : process.env.REACT_APP_NEXT_PUBLIC_ISSUER;
 
             signOut({ redirect: false });
 
             console.log('redirectURL', redirectURL);
             console.log(
               'fullURL',
-              `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${AUTH_SERVER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
+              `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
             );
-            window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${AUTH_SERVER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
+            console.log('issuer1', process.env.REACT_APP_NEXT_PUBLIC_ISSUER);
+            console.log('issuer2', process.env.NEXT_PUBLIC_ISSUER);
+
+            window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
           }}
         >
           <ListItemIcon sx={{ minWidth: '26px!important' }}>
