@@ -56,21 +56,23 @@ export const UserMenu = () => {
   const keycloakLogout = () => {
     const colon = window.location.port ? ':' : '';
     const redirectURL = `${window.location.protocol}//${window.location.hostname}${colon}${window.location.port}`;
-    const returnURL =
-      process.env.NODE_ENV === 'development'
-        ? process.env.NEXT_PUBLIC_ISSUER
-        : process.env.REACT_APP_NEXT_PUBLIC_ISSUER;
+    const returnURL = () => {
+      const site = window.location.hostname;
+      let prefix = '';
+      if (site.includes('dev') || site === 'localhost') prefix = 'dev.';
+      else if (site.includes('test')) prefix = 'test.';
 
-    console.log('node-env', process.env.NODE_ENV);
+      return `https://${prefix}loginproxy.gov.bc.ca/auth/realms/standard`;
+    };
+
     console.log('redirectURL', redirectURL);
+    console.log('returnURL', returnURL());
     console.log(
       'fullURL',
-      `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
+      `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL()}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
     );
-    console.log('issuer1', process.env.REACT_APP_NEXT_PUBLIC_ISSUER);
-    console.log('issuer2', process.env.NEXT_PUBLIC_ISSUER);
 
-    window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
+    window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL()}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
   };
 
   if (!isAuthenticated)
