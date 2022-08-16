@@ -56,6 +56,8 @@ export const UserMenu = () => {
   const keycloakLogout = () => {
     const colon = window.location.port ? ':' : '';
     const redirectURL = `${window.location.protocol}//${window.location.hostname}${colon}${window.location.port}`;
+
+    // Determine environment for keycloak proxy
     const returnURL = () => {
       const site = window.location.hostname;
       let prefix = '';
@@ -65,13 +67,7 @@ export const UserMenu = () => {
       return `https://${prefix}loginproxy.gov.bc.ca/auth/realms/standard`;
     };
 
-    console.log('redirectURL', redirectURL);
-    console.log('returnURL', returnURL());
-    console.log(
-      'fullURL',
-      `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL()}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
-    );
-
+    // Redirect to keycloak proxy
     window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL()}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
   };
 
