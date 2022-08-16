@@ -15,6 +15,7 @@ import { useAuth } from '../../hooks';
 import { Avatar } from '../common/Avatar';
 import { Theme } from '../style/Theme';
 import { useAPI } from '../../hooks/useAPI/useAPI';
+import { AUTH_SERVER } from 'constants';
 
 export const UserMenu = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
@@ -141,9 +142,9 @@ export const UserMenu = () => {
             console.log('redirectURL', redirectURL);
             console.log(
               'fullURL',
-              `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${process.env.NEXT_PUBLIC_ISSUER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
+              `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${AUTH_SERVER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`,
             );
-            window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${process.env.NEXT_PUBLIC_ISSUER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
+            window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${AUTH_SERVER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
           }}
         >
           <ListItemIcon sx={{ minWidth: '26px!important' }}>
