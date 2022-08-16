@@ -50,6 +50,9 @@ export const useAPI = () => {
 
   const createData = useCallback(
     async (endPoint, { body }) => {
+      // Ensure email is treated as lowercase
+      if (body.email) body.email = body.email.toLowerCase();
+
       const response = await fetchAPI(
         endPoint,
         fetchOptions({
@@ -65,6 +68,9 @@ export const useAPI = () => {
 
   const updateData = useCallback(
     async (endPoint, body) => {
+      // Ensure email is treated as lowercase
+      if (body.email) body.email = body.email.toLowerCase();
+
       const response = await fetchAPI(
         endPoint,
         fetchOptions({
