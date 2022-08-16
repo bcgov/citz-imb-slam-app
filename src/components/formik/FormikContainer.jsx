@@ -62,6 +62,13 @@ export const FormikContainer = (props) => {
     setConfirmationDialogOpen(false);
   };
 
+  const hidden = () => {
+    if (editMode) {
+      return 'none';
+    }
+    return 'inline';
+  };
+
   const editHandler = () => {
     setEditMode((mode) => !mode);
   };
@@ -90,22 +97,24 @@ export const FormikContainer = (props) => {
           return (
             <>
               <FormHeader formTitle={formTitle}>
-                {dataHook(id).data.__licenseeConnection__ === undefined ||
-                dataHook(id).data.__licenseeConnection__.length === 0 ? (
-                  <WarningButton
-                    id="delete"
-                    onClick={() => setConfirmationDialogOpen(true)}
-                  >
-                    Delete
-                  </WarningButton>
-                ) : (
-                  <DisabledButton id="delete-disabled">Delete</DisabledButton>
-                )}
-                {editMode ? null : (
+                <Box sx={{ display: hidden() }}>
+                  {dataHook(id).data.__licenseeConnection__ === undefined ||
+                  dataHook(id).data.__licenseeConnection__.length === 0 ? (
+                    <WarningButton
+                      id="delete"
+                      onClick={() => setConfirmationDialogOpen(true)}
+                    >
+                      Delete
+                    </WarningButton>
+                  ) : (
+                    <DisabledButton id="delete-disabled">Delete</DisabledButton>
+                  )}
+                </Box>
+                <Box sx={{ display: hidden() }}>
                   <DefaultButton id="edit" onClick={editHandler}>
                     Edit
                   </DefaultButton>
-                )}
+                </Box>
               </FormHeader>
               <Form
                 style={{
