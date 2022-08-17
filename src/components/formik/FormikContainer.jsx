@@ -31,9 +31,7 @@ export const FormikContainer = (props) => {
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
   const route = useRouter();
-
-
-
+  
   const {
     isLoading,
     isError,
@@ -56,8 +54,6 @@ export const FormikContainer = (props) => {
       formik.resetForm();
       route.back();
     } catch (e) {
-
-
       setErrorMessage(true);
     }
   };
