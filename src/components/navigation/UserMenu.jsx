@@ -53,6 +53,24 @@ export const UserMenu = () => {
     setAnchorEl(null);
   };
 
+  const keycloakLogout = () => {
+    const colon = window.location.port ? ':' : '';
+    const redirectURL = `${window.location.protocol}//${window.location.hostname}${colon}${window.location.port}`;
+
+    // Determine environment for keycloak proxy
+    const returnURL = () => {
+      const site = window.location.hostname;
+      let prefix = '';
+      if (site.includes('dev') || site === 'localhost') prefix = 'dev.';
+      else if (site.includes('test')) prefix = 'test.';
+
+      return `https://${prefix}loginproxy.gov.bc.ca/auth/realms/standard`;
+    };
+
+    // Redirect to keycloak proxy
+    window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${returnURL()}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
+  };
+
   if (!isAuthenticated)
     return (
       <ThemeProvider theme={Theme}>
@@ -134,11 +152,7 @@ export const UserMenu = () => {
           onClick={(e) => {
             e.preventDefault();
             signOut({ redirect: false });
-            const redirectURL = window.location.href.substring(
-              0,
-              window.location.href.indexOf('/', 7),
-            );
-            window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${process.env.NEXT_PUBLIC_ISSUER}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirectURL}`;
+            keycloakLogout();
           }}
         >
           <ListItemIcon sx={{ minWidth: '26px!important' }}>
