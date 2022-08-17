@@ -85,7 +85,7 @@ export const softwareFields = [
     form: {
       control: 'number',
       show: true,
-      validation: Yup.number().min(0),
+      validation: Yup.number().min(0, 'Quantity cannot be below zero.'),
       sortOrder: 0,
       column: 0,
     },
