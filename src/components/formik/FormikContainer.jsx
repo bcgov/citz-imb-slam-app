@@ -31,6 +31,7 @@ export const FormikContainer = (props) => {
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
   const route = useRouter();
+  console.log('fromik');
 
   const {
     isLoading,
@@ -54,10 +55,7 @@ export const FormikContainer = (props) => {
       formik.resetForm();
       route.back();
     } catch (e) {
-      console.log(formColumns);
       console.log(formFields);
-      console.log(dataHook);
-      console.log(formTitle);
       setErrorMessage(true);
     }
   };
@@ -197,7 +195,7 @@ export const FormikContainer = (props) => {
           Software Title already in use.
         </Alert>
       ) : null}
-      {errorMessage && formTitle[2].name === 'email' ? (
+      {errorMessage && formFields[2].name === 'email' ? (
         <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
           Email already in use.
