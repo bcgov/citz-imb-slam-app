@@ -54,6 +54,10 @@ export const FormikContainer = (props) => {
       formik.resetForm();
       route.back();
     } catch (e) {
+      console.log(formColumns);
+      console.log(formFields);
+      console.log(dataHook);
+      console.log(formTitle);
       setErrorMessage(true);
     }
   };
@@ -187,13 +191,13 @@ export const FormikContainer = (props) => {
           );
         }}
       </Formik>
-      {errorMessage && formColumns === 1 ? (
+      {errorMessage && formFields[1].name === 'title' ? (
         <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
           Software Title already in use.
         </Alert>
       ) : null}
-      {errorMessage && formColumns === 2 ? (
+      {errorMessage && formTitle[2].name === 'email' ? (
         <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
           Email already in use.
