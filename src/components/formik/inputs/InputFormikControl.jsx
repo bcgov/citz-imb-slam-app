@@ -1,3 +1,5 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
 import InputUnstyled from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 import { Field } from 'formik';
@@ -60,6 +62,11 @@ export const InputFormikControl = (props) => {
           <InputUnstyled
             type={type}
             disabled={disabled}
+            onBlur={
+              field.name === 'email' && field.value !== undefined
+                ? (field.value = field.value.toLowerCase())
+                : ''
+            }
             components={{ Input: InputStyle }}
             {...field}
           />
