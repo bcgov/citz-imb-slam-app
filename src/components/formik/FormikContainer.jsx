@@ -187,7 +187,13 @@ export const FormikContainer = (props) => {
           );
         }}
       </Formik>
-      {errorMessage ? (
+      {errorMessage && formFields[1].name === 'title' ? (
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          Software Title already in use.
+        </Alert>
+      ) : null}
+      {errorMessage && formFields[2].name === 'email' ? (
         <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
           Email already in use.

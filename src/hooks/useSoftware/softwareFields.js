@@ -1,3 +1,4 @@
+import * as Yup from 'yup';
 import { DateCell } from '../../components/common/DateCell';
 import { LogoAvatar } from '../../components/common/LogoAvatar';
 import { QuantityAssigned } from '../../components/common/QuantityAssigned';
@@ -26,6 +27,7 @@ export const softwareFields = [
     form: {
       control: 'text',
       fullWidth: true,
+      validation: Yup.string().required('Required'),
       show: true,
       sortOrder: 0,
       column: 0,
@@ -83,6 +85,7 @@ export const softwareFields = [
     form: {
       control: 'number',
       show: true,
+      validation: Yup.number().min(0, 'Quantity cannot be below zero.'),
       sortOrder: 0,
       column: 0,
     },
