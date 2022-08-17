@@ -56,7 +56,8 @@ export const FormikContainer = (props) => {
       formik.resetForm();
       route.back();
     } catch (e) {
-      console.log(formFields);
+
+
       setErrorMessage(true);
     }
   };
