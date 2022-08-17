@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import {
   Alert,
@@ -28,6 +27,7 @@ import { FormikControls } from './common/FormikControls';
 export const FormikContainer = (props) => {
   const { formTitle = '', isNew = true, dataHook, id } = props;
   const [editMode, setEditMode] = useState(isNew);
+  const [errorMessage, setErrorMessage] = useState(false);
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
   const route = useRouter();
@@ -45,13 +45,17 @@ export const FormikContainer = (props) => {
   } = useForm(dataHook, id);
 
   const submitHandler = async (body, formik) => {
-    if (isNew) {
-      await create(body);
-    } else {
-      await update(body);
+    try {
+      if (isNew) {
+        await create(body);
+      } else {
+        await update(body);
+      }
+      formik.resetForm();
+      route.back();
+    } catch (e) {
+      setErrorMessage(true);
     }
-    formik.resetForm();
-    route.back();
   };
 
   const confirmationDialogClose = (event) => {
@@ -183,6 +187,12 @@ export const FormikContainer = (props) => {
           );
         }}
       </Formik>
+      {errorMessage ? (
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          Email already in use.
+        </Alert>
+      ) : null}
       <ThemeProvider theme={Theme}>
         <Dialog
           open={confirmationDialogOpen}
