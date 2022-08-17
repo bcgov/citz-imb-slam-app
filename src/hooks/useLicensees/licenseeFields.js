@@ -48,7 +48,9 @@ export const licenseeFields = [
       fullWidth: false,
       show: true,
       sortOrder: 0,
-      validation: Yup.string().required('Required').email(),
+      validation: Yup.string()
+        .required('Required')
+        .email('Email is not a valid email'),
       column: 0,
     },
     table: {
