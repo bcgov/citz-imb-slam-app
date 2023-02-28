@@ -13,7 +13,7 @@
     "@bcgov/bc-sans": "1.0.1",
     "@emotion/react": "11.9.3",
     "@emotion/styled": "11.9.3",
-    "@mui/base": "5.0.0-alpha.90",
+    "@mui/base": "5.0.0-alpha.119",
     "@mui/icons-material": "5.8.4",
     "@mui/material": "5.9.0",
     "@mui/styled-engine-sc": "5.8.0",
